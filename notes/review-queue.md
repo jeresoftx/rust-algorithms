@@ -25,3 +25,5 @@ Estados:
 | Fecha | Problema | Patrón | Puntaje total | Acción siguiente |
 | --- | --- | --- | --- | --- |
 | Pendiente | Minimum Window Substring | Sliding window | Sin evaluar | Ejecutar `notes/simulations/simulacro-01-minimum-window-substring.md` |
+| Pendiente | Course Schedule | Grafos | Sin evaluar | Ejecutar `notes/simulations/simulacro-02-course-schedule.md` |
+| Pendiente | Coin Change | Programación dinámica | Sin evaluar | Ejecutar `notes/simulations/simulacro-03-coin-change.md` |

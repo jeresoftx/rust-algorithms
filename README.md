@@ -59,6 +59,8 @@ notes/
   review-queue.md
   simulations/
     simulacro-01-minimum-window-substring.md
+    simulacro-02-course-schedule.md
+    simulacro-03-coin-change.md
   rust-interview-patterns.md
   mistakes.md
 plan/

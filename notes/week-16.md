@@ -65,6 +65,10 @@ Meta:
 
 - Explicar estado visitado, límites heredados y orden de recorrido.
 
+Artefacto listo:
+
+- `notes/simulations/simulacro-02-course-schedule.md`
+
 ### Simulacro 3: Programación Dinámica y Greedy
 
 Problemas candidatos:
@@ -77,6 +81,10 @@ Problemas candidatos:
 Meta:
 
 - Definir `dp[i]`, transición, casos base y orden de cómputo antes de escribir código.
+
+Artefacto listo:
+
+- `notes/simulations/simulacro-03-coin-change.md`
 
 ## Rúbrica Rápida
 
