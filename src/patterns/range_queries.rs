@@ -244,6 +244,206 @@ fn query_segment_tree(
 }
 
 #[derive(Debug, Clone)]
+pub struct LazySegmentTree {
+    size: usize,
+    tree: Vec<i32>,
+    lazy: Vec<i32>,
+}
+
+impl LazySegmentTree {
+    pub fn from_values(values: &[i32]) -> Self {
+        if values.is_empty() {
+            return Self {
+                size: 0,
+                tree: Vec::new(),
+                lazy: Vec::new(),
+            };
+        }
+
+        let mut tree = vec![0; values.len() * 4];
+        build_sum_segment_tree(values, &mut tree, 1, 0, values.len() - 1);
+
+        Self {
+            size: values.len(),
+            lazy: vec![0; values.len() * 4],
+            tree,
+        }
+    }
+
+    pub fn range_add(&mut self, left: usize, right: usize, delta: i32) -> bool {
+        if self.size == 0 || left > right || right >= self.size {
+            return false;
+        }
+
+        add_lazy_segment_tree(
+            &mut self.tree,
+            &mut self.lazy,
+            1,
+            0,
+            self.size - 1,
+            left,
+            right,
+            delta,
+        );
+        true
+    }
+
+    pub fn range_sum(&mut self, left: usize, right: usize) -> Option<i32> {
+        if self.size == 0 || left > right || right >= self.size {
+            return None;
+        }
+
+        Some(query_lazy_segment_tree(
+            &mut self.tree,
+            &mut self.lazy,
+            1,
+            0,
+            self.size - 1,
+            left,
+            right,
+        ))
+    }
+
+    pub fn len(&self) -> usize {
+        self.size
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.size == 0
+    }
+}
+
+fn build_sum_segment_tree(
+    values: &[i32],
+    tree: &mut [i32],
+    node: usize,
+    left: usize,
+    right: usize,
+) {
+    if left == right {
+        tree[node] = values[left];
+        return;
+    }
+
+    let middle = left + (right - left) / 2;
+    build_sum_segment_tree(values, tree, node * 2, left, middle);
+    build_sum_segment_tree(values, tree, node * 2 + 1, middle + 1, right);
+    tree[node] = tree[node * 2] + tree[node * 2 + 1];
+}
+
+#[allow(clippy::too_many_arguments)]
+fn add_lazy_segment_tree(
+    tree: &mut [i32],
+    lazy: &mut [i32],
+    node: usize,
+    left: usize,
+    right: usize,
+    query_left: usize,
+    query_right: usize,
+    delta: i32,
+) {
+    if query_left <= left && right <= query_right {
+        apply_lazy_delta(tree, lazy, node, left, right, delta);
+        return;
+    }
+
+    push_lazy_delta(tree, lazy, node, left, right);
+
+    let middle = left + (right - left) / 2;
+
+    if query_left <= middle {
+        add_lazy_segment_tree(
+            tree,
+            lazy,
+            node * 2,
+            left,
+            middle,
+            query_left,
+            query_right,
+            delta,
+        );
+    }
+
+    if query_right > middle {
+        add_lazy_segment_tree(
+            tree,
+            lazy,
+            node * 2 + 1,
+            middle + 1,
+            right,
+            query_left,
+            query_right,
+            delta,
+        );
+    }
+
+    tree[node] = tree[node * 2] + tree[node * 2 + 1];
+}
+
+fn query_lazy_segment_tree(
+    tree: &mut [i32],
+    lazy: &mut [i32],
+    node: usize,
+    left: usize,
+    right: usize,
+    query_left: usize,
+    query_right: usize,
+) -> i32 {
+    if query_left <= left && right <= query_right {
+        return tree[node];
+    }
+
+    push_lazy_delta(tree, lazy, node, left, right);
+
+    let middle = left + (right - left) / 2;
+    let mut total = 0;
+
+    if query_left <= middle {
+        total +=
+            query_lazy_segment_tree(tree, lazy, node * 2, left, middle, query_left, query_right);
+    }
+
+    if query_right > middle {
+        total += query_lazy_segment_tree(
+            tree,
+            lazy,
+            node * 2 + 1,
+            middle + 1,
+            right,
+            query_left,
+            query_right,
+        );
+    }
+
+    total
+}
+
+fn push_lazy_delta(tree: &mut [i32], lazy: &mut [i32], node: usize, left: usize, right: usize) {
+    if lazy[node] == 0 || left == right {
+        return;
+    }
+
+    let middle = left + (right - left) / 2;
+    let delta = lazy[node];
+
+    apply_lazy_delta(tree, lazy, node * 2, left, middle, delta);
+    apply_lazy_delta(tree, lazy, node * 2 + 1, middle + 1, right, delta);
+    lazy[node] = 0;
+}
+
+fn apply_lazy_delta(
+    tree: &mut [i32],
+    lazy: &mut [i32],
+    node: usize,
+    left: usize,
+    right: usize,
+    delta: i32,
+) {
+    tree[node] += delta * (right - left + 1) as i32;
+    lazy[node] += delta;
+}
+
+#[derive(Debug, Clone)]
 pub struct DifferenceArray {
     difference: Vec<i32>,
 }

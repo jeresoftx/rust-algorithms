@@ -1,6 +1,7 @@
 use rust_algorithms::patterns::range_queries::{
     car_pooling, corporate_flight_bookings, count_smaller_numbers_after_self, reverse_pairs,
-    DifferenceArray, FenwickTree, MyCalendar, MyCalendarTwo, RangeSumQuery, SegmentTree,
+    DifferenceArray, FenwickTree, LazySegmentTree, MyCalendar, MyCalendarTwo, RangeSumQuery,
+    SegmentTree,
 };
 
 #[test]
@@ -108,6 +109,42 @@ fn segment_tree_rejects_invalid_ranges_and_updates() {
     assert_eq!(tree.range_min(2, 1), None);
     assert_eq!(tree.range_min(0, 3), None);
     assert!(!tree.update(3, 9));
+}
+
+#[test]
+fn lazy_segment_tree_returns_range_sums_after_range_updates() {
+    let mut tree = LazySegmentTree::from_values(&[1, 2, 3, 4, 5]);
+
+    assert_eq!(tree.range_sum(0, 4), Some(15));
+
+    assert!(tree.range_add(1, 3, 10));
+
+    assert_eq!(tree.range_sum(0, 4), Some(45));
+    assert_eq!(tree.range_sum(1, 3), Some(39));
+    assert_eq!(tree.range_sum(4, 4), Some(5));
+}
+
+#[test]
+fn lazy_segment_tree_accumulates_overlapping_updates() {
+    let mut tree = LazySegmentTree::from_values(&[0, 0, 0, 0]);
+
+    assert!(tree.range_add(0, 2, 3));
+    assert!(tree.range_add(1, 3, 2));
+
+    assert_eq!(tree.range_sum(0, 3), Some(15));
+    assert_eq!(tree.range_sum(1, 2), Some(10));
+}
+
+#[test]
+fn lazy_segment_tree_rejects_invalid_ranges() {
+    let mut tree = LazySegmentTree::from_values(&[1, 2, 3]);
+    let mut empty = LazySegmentTree::from_values(&[]);
+
+    assert_eq!(tree.range_sum(2, 1), None);
+    assert_eq!(tree.range_sum(0, 3), None);
+    assert!(!tree.range_add(0, 3, 1));
+    assert_eq!(empty.range_sum(0, 0), None);
+    assert!(!empty.range_add(0, 0, 1));
 }
 
 #[test]
