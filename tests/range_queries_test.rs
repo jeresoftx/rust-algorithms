@@ -53,6 +53,27 @@ fn range_sum_query_rejects_invalid_indexes() {
 }
 
 #[test]
+fn range_sum_query_handles_negative_values_and_multiple_updates() {
+    let mut query = RangeSumQuery::new(vec![4, -2, 7, -5]);
+
+    assert_eq!(query.sum_range(0, 3), Some(4));
+
+    assert!(query.update(1, -6));
+    assert!(query.update(3, 3));
+
+    assert_eq!(query.sum_range(0, 3), Some(8));
+    assert_eq!(query.sum_range(1, 3), Some(4));
+}
+
+#[test]
+fn range_sum_query_rejects_empty_input_operations() {
+    let mut query = RangeSumQuery::new(Vec::new());
+
+    assert_eq!(query.sum_range(0, 0), None);
+    assert!(!query.update(0, 10));
+}
+
+#[test]
 fn segment_tree_returns_range_minimums() {
     let tree = SegmentTree::from_values(&[5, 2, 6, 3, 1, 7]);
 
