@@ -207,7 +207,7 @@ Criterio de avance:
 
 ---
 
-## Semanas 7 y 8: Recursion, Backtracking y Linked Lists
+## Semanas 7 y 8: Recursión, Backtracking y Listas Enlazadas
 
 **Meta:** construir soluciones recursivas claras y manejar punteros/listas en Rust con calma.
 
@@ -239,7 +239,7 @@ Criterio de avance:
 
 ---
 
-## Semanas 9 y 10: Trees
+## Semanas 9 y 10: Árboles
 
 **Meta:** dominar DFS, BFS y recursión sobre árboles binarios.
 
@@ -271,7 +271,7 @@ Criterio de avance:
 
 ---
 
-## Semanas 11 y 12: Graphs
+## Semanas 11 y 12: Grafos
 
 **Meta:** reconocer representaciones y recorridos de grafos con seguridad.
 

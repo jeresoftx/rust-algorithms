@@ -63,3 +63,100 @@ for group in &mut result {
 }
 result.sort();
 ```
+
+## DFS en Matriz
+
+```rust
+fn dfs(grid: &[Vec<i32>], visited: &mut [Vec<bool>], row: usize, col: usize) {
+    if visited[row][col] || grid[row][col] == 0 {
+        return;
+    }
+
+    visited[row][col] = true;
+
+    for (next_row, next_col) in neighbors(row, col, grid.len(), grid[0].len()) {
+        dfs(grid, visited, next_row, next_col);
+    }
+}
+```
+
+Útil para:
+
+- Islas.
+- Componentes conectados en una matriz.
+- Áreas máximas.
+
+## BFS Multisource
+
+```rust
+let mut queue = VecDeque::new();
+
+for row in 0..rows {
+    for col in 0..cols {
+        if is_source(row, col) {
+            queue.push_back((row, col, 0));
+        }
+    }
+}
+
+while let Some((row, col, distance)) = queue.pop_front() {
+    for (next_row, next_col) in neighbors(row, col, rows, cols) {
+        if can_visit(next_row, next_col) {
+            queue.push_back((next_row, next_col, distance + 1));
+        }
+    }
+}
+```
+
+Útil para:
+
+- Distancias mínimas en matriz sin pesos.
+- Propagación simultánea.
+- Problemas con varias fuentes iniciales.
+
+## Ordenamiento Topológico
+
+```rust
+let mut queue = VecDeque::new();
+
+for (node, &indegree) in indegrees.iter().enumerate() {
+    if indegree == 0 {
+        queue.push_back(node);
+    }
+}
+
+while let Some(node) = queue.pop_front() {
+    order.push(node);
+
+    for &neighbor in &graph[node] {
+        indegrees[neighbor] -= 1;
+        if indegrees[neighbor] == 0 {
+            queue.push_back(neighbor);
+        }
+    }
+}
+```
+
+Útil para:
+
+- Prerequisitos.
+- Detección de ciclos en grafos dirigidos.
+- Ordenar tareas con dependencias.
+
+## Union Find
+
+```rust
+fn find(parent: &mut Vec<usize>, value: usize) -> usize {
+    if parent[value] != value {
+        parent[value] = find(parent, parent[value]);
+    }
+
+    parent[value]
+}
+```
+
+Útil para:
+
+- Componentes conectados dinámicos.
+- Detección de ciclos en grafos no dirigidos.
+- Agrupar elementos equivalentes.

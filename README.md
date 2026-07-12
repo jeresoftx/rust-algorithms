@@ -18,6 +18,7 @@ El objetivo es que este proyecto sirva como material de estudio reutilizable: ca
 src/
   patterns/
     binary_search.rs
+    graphs.rs
     hashing.rs
     linked_lists.rs
     recursion_backtracking.rs
@@ -27,6 +28,7 @@ src/
     two_pointers.rs
 tests/
   binary_search_test.rs
+  graphs_test.rs
   hashing_test.rs
   linked_lists_test.rs
   recursion_backtracking_test.rs
@@ -41,6 +43,7 @@ notes/
   week-06.md
   week-07-08.md
   week-09-10.md
+  week-11-12.md
   rust-interview-patterns.md
   mistakes.md
 plan/
@@ -82,15 +85,16 @@ Páginas destacadas:
 - [Semanas 2 y 3: Arrays, Strings, Hashing y Sumas de Prefijos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-2-y-3-Arrays-Strings-Hashing-y-Sumas-de-Prefijos)
 - [Semanas 4 y 5: Two Pointers, Sliding Window y Stack](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-4-y-5-Two-Pointers-Sliding-Window-y-Stack)
 - [Semana 6: Búsqueda Binaria](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-6-Busqueda-Binaria)
-- [Semanas 7 y 8: Recursión, Backtracking y Linked Lists](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-7-y-8-Recursion-Backtracking-y-Linked-Lists)
+- [Semanas 7 y 8: Recursión, Backtracking y Listas Enlazadas](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-7-y-8-Recursion-Backtracking-y-Linked-Lists)
 - [Semanas 9 y 10: Árboles](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-9-y-10-Arboles)
+- [Semanas 11 y 12: Grafos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-11-y-12-Grafos)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 10
-- Problemas implementados: 42
-- Tests automatizados: 102
+- Semana documentada: 12
+- Problemas implementados: 52
+- Tests automatizados: 122
 - Lenguaje: Rust
 
 ## Enfoque de Estudio
