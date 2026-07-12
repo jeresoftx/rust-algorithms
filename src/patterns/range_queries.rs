@@ -342,3 +342,53 @@ impl MyCalendar {
         self.events.is_empty()
     }
 }
+
+#[derive(Debug, Clone, Default)]
+pub struct MyCalendarTwo {
+    bookings: Vec<(i32, i32)>,
+    double_bookings: Vec<(i32, i32)>,
+}
+
+impl MyCalendarTwo {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn book(&mut self, start: i32, end: i32) -> bool {
+        if start >= end {
+            return false;
+        }
+
+        if self
+            .double_bookings
+            .iter()
+            .any(|&(booked_start, booked_end)| {
+                intervals_overlap(start, end, booked_start, booked_end)
+            })
+        {
+            return false;
+        }
+
+        for &(booked_start, booked_end) in &self.bookings {
+            if intervals_overlap(start, end, booked_start, booked_end) {
+                self.double_bookings
+                    .push((start.max(booked_start), end.min(booked_end)));
+            }
+        }
+
+        self.bookings.push((start, end));
+        true
+    }
+
+    pub fn len(&self) -> usize {
+        self.bookings.len()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.bookings.is_empty()
+    }
+}
+
+fn intervals_overlap(left_start: i32, left_end: i32, right_start: i32, right_end: i32) -> bool {
+    left_start < right_end && right_start < left_end
+}

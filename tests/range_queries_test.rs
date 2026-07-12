@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::range_queries::{
-    corporate_flight_bookings, DifferenceArray, FenwickTree, MyCalendar, RangeSumQuery, SegmentTree,
+    corporate_flight_bookings, DifferenceArray, FenwickTree, MyCalendar, MyCalendarTwo,
+    RangeSumQuery, SegmentTree,
 };
 
 #[test]
@@ -151,4 +152,33 @@ fn my_calendar_rejects_empty_or_reversed_ranges() {
     assert!(!calendar.book(10, 10));
     assert!(!calendar.book(20, 10));
     assert!(calendar.book(1, 2));
+}
+
+#[test]
+fn my_calendar_two_allows_double_bookings() {
+    let mut calendar = MyCalendarTwo::new();
+
+    assert!(calendar.book(10, 20));
+    assert!(calendar.book(15, 25));
+    assert!(calendar.book(20, 30));
+}
+
+#[test]
+fn my_calendar_two_rejects_triple_bookings() {
+    let mut calendar = MyCalendarTwo::new();
+
+    assert!(calendar.book(10, 20));
+    assert!(calendar.book(15, 25));
+
+    assert!(!calendar.book(17, 22));
+    assert!(calendar.book(25, 35));
+}
+
+#[test]
+fn my_calendar_two_rejects_empty_or_reversed_ranges() {
+    let mut calendar = MyCalendarTwo::new();
+
+    assert!(!calendar.book(5, 5));
+    assert!(!calendar.book(9, 4));
+    assert!(calendar.book(1, 3));
 }
