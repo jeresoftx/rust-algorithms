@@ -18,7 +18,7 @@ Estados:
 | Validate Binary Search Tree | Árboles | Requiere límites heredados, no solo comparar padre | repetido | 2026-07-20 |
 | Course Schedule | Grafos | Topological sort y ciclos dirigidos | repetido | 2026-07-23 |
 | Coin Change | Programación dinámica | Estado de minimización con centinela | repetido | 2026-07-26 |
-| Partition Equal Subset Sum | Knapsack | Recorrido inverso para 0/1 | pendiente | 2026-07-27 |
+| Partition Equal Subset Sum | Knapsack | Recorrido inverso para 0/1 | repetido | 2026-07-27 |
 
 ## Simulacros
 

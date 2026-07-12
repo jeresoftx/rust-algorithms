@@ -299,9 +299,9 @@ Avance acumulado:
 
 - Simulacros avanzados creados: 3.
 - Simulacros acumulados ejecutados: 6 de 6.
-- Problemas repetidos: 4 de 20.
+- Problemas repetidos: 5 de 20.
 - Problemas implementados: 117 de 140 como mínimo.
-- Faltan para cierre mínimo: 23 problemas implementados y 16 repeticiones.
+- Faltan para cierre mínimo: 23 problemas implementados y 15 repeticiones.
 - Archivos creados: `notes/week-27-28.md`, `notes/simulations/simulacro-04-grafos-ponderados.md`, `notes/simulations/simulacro-05-strings-avanzados.md` y `notes/simulations/simulacro-06-range-queries.md`.
 - Enfoque: práctica cronometrada, explicación verbal y repetición dirigida.
 

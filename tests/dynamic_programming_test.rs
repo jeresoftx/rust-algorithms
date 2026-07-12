@@ -113,3 +113,9 @@ fn can_partition_returns_true_when_array_can_split_equal_sum() {
 fn can_partition_returns_false_when_total_sum_is_odd() {
     assert!(!can_partition(vec![1, 2, 3, 5]));
 }
+
+#[test]
+fn can_partition_does_not_reuse_values_more_than_once() {
+    assert!(!can_partition(vec![1, 2, 5]));
+    assert!(can_partition(vec![0, 0]));
+}
