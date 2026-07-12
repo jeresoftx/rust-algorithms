@@ -1,7 +1,8 @@
 use rust_algorithms::patterns::weighted_graphs::{
     bellman_ford_shortest_paths, cheapest_flight_within_k_stops, critical_connections,
     dijkstra_shortest_paths, floyd_warshall_all_pairs, kruskal_minimum_spanning_tree_weight,
-    minimum_effort_path, network_delay_time, prim_minimum_spanning_tree_weight, BellmanFordError,
+    min_cost_connect_points, minimum_effort_path, network_delay_time,
+    prim_minimum_spanning_tree_weight, BellmanFordError,
 };
 
 #[test]
@@ -187,4 +188,16 @@ fn critical_connections_returns_empty_when_every_edge_is_in_a_cycle() {
     let connections = vec![(0, 1), (1, 2), (2, 0)];
 
     assert!(critical_connections(3, &connections).is_empty());
+}
+
+#[test]
+fn min_cost_connect_points_returns_manhattan_mst_weight() {
+    let points = vec![(0, 0), (2, 2), (3, 10), (5, 2), (7, 0)];
+
+    assert_eq!(min_cost_connect_points(&points), 20);
+}
+
+#[test]
+fn min_cost_connect_points_returns_zero_for_single_point() {
+    assert_eq!(min_cost_connect_points(&[(3, -4)]), 0);
 }

@@ -330,6 +330,41 @@ pub fn critical_connections(
     bridges
 }
 
+pub fn min_cost_connect_points(points: &[(i32, i32)]) -> i32 {
+    if points.len() <= 1 {
+        return 0;
+    }
+
+    let mut in_tree = vec![false; points.len()];
+    let mut min_costs = vec![i32::MAX; points.len()];
+    let mut total_cost = 0;
+
+    min_costs[0] = 0;
+
+    for _ in 0..points.len() {
+        let mut current = None;
+
+        for node in 0..points.len() {
+            if !in_tree[node] && current.is_none_or(|best| min_costs[node] < min_costs[best]) {
+                current = Some(node);
+            }
+        }
+
+        let node = current.unwrap();
+        in_tree[node] = true;
+        total_cost += min_costs[node];
+
+        for neighbor in 0..points.len() {
+            if !in_tree[neighbor] {
+                let cost = manhattan_distance(points[node], points[neighbor]);
+                min_costs[neighbor] = min_costs[neighbor].min(cost);
+            }
+        }
+    }
+
+    total_cost
+}
+
 fn adjacency_list(node_count: usize, edges: &[(usize, usize, i32)]) -> Vec<Vec<(usize, i32)>> {
     let mut graph = vec![Vec::new(); node_count];
 
@@ -340,6 +375,10 @@ fn adjacency_list(node_count: usize, edges: &[(usize, usize, i32)]) -> Vec<Vec<(
     }
 
     graph
+}
+
+fn manhattan_distance(left: (i32, i32), right: (i32, i32)) -> i32 {
+    (left.0 - right.0).abs() + (left.1 - right.1).abs()
 }
 
 fn grid_neighbors(row: usize, col: usize, rows: usize, cols: usize) -> Vec<(usize, usize)> {
