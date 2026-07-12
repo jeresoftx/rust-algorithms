@@ -24,3 +24,4 @@ Estados:
 
 | Fecha | Problema | Patrón | Puntaje total | Acción siguiente |
 | --- | --- | --- | --- | --- |
+| Pendiente | Minimum Window Substring | Sliding window | Sin evaluar | Ejecutar `notes/simulations/simulacro-01-minimum-window-substring.md` |

@@ -48,6 +48,10 @@ Meta:
 
 - Mantener invariantes de conteo sin perder edge cases.
 
+Artefacto listo:
+
+- `notes/simulations/simulacro-01-minimum-window-substring.md`
+
 ### Simulacro 2: Árboles y Grafos
 
 Problemas candidatos:

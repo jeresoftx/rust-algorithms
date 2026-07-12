@@ -57,6 +57,8 @@ notes/
   week-16.md
   mock-interview-rubric.md
   review-queue.md
+  simulations/
+    simulacro-01-minimum-window-substring.md
   rust-interview-patterns.md
   mistakes.md
 plan/
