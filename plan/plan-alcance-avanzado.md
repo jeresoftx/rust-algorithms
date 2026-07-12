@@ -258,9 +258,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 5.
-- Tests agregados: 12.
-- Funciones y estructuras principales: `Point`, `Orientation`, `cross_product`, `orientation`, `convex_hull`, `k_closest_points` y `max_points_on_a_line`.
+- Problemas implementados: 6.
+- Tests agregados: 15.
+- Funciones y estructuras principales: `Point`, `Orientation`, `cross_product`, `orientation`, `convex_hull`, `k_closest_points`, `max_points_on_a_line` y `get_skyline`.
 
 Criterio de cierre:
 
@@ -300,8 +300,8 @@ Avance acumulado:
 - Simulacros avanzados creados: 3.
 - Simulacros acumulados ejecutados: 6 de 6.
 - Problemas repetidos: 6 de 20.
-- Problemas implementados: 118 de 140 como mínimo.
-- Faltan para cierre mínimo: 22 problemas implementados y 14 repeticiones.
+- Problemas implementados: 119 de 140 como mínimo.
+- Faltan para cierre mínimo: 21 problemas implementados y 14 repeticiones.
 - Archivos creados: `notes/week-27-28.md`, `notes/simulations/simulacro-04-grafos-ponderados.md`, `notes/simulations/simulacro-05-strings-avanzados.md` y `notes/simulations/simulacro-06-range-queries.md`.
 - Enfoque: práctica cronometrada, explicación verbal y repetición dirigida.
 

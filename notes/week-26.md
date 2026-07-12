@@ -6,8 +6,8 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 
 ## Estado del Avance Actual
 
-- Problemas implementados acumulados: 113.
-- Tests automatizados acumulados: 273.
+- Problemas implementados acumulados: 119.
+- Tests automatizados acumulados: 300.
 - Módulo agregado: `src/patterns/geometry.rs`.
 - Tests agregados: `tests/geometry_test.rs`.
 
@@ -20,6 +20,7 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 | Convex Hull / Erect the Fence | Monotonic chain | `convex_hull` | implementado |
 | K Closest Points to Origin | Ordenamiento por distancia | `k_closest_points` | implementado |
 | Max Points on a Line | Pendiente normalizada | `max_points_on_a_line` | implementado |
+| The Skyline Problem | Barrido de línea + multiset | `get_skyline` | implementado |
 
 ## Ideas Clave
 
@@ -31,6 +32,7 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 - En empates de distancia, ordenar por coordenadas vuelve el resultado determinista.
 - Max Points on a Line usa pendientes reducidas por `gcd` para evitar errores de precisión.
 - Las líneas verticales se normalizan como `(1, 0)` y las horizontales como `(0, 1)`.
+- Skyline convierte edificios en eventos de inicio y fin, mantiene alturas activas y emite puntos solo cuando cambia la altura máxima.
 
 ## Complejidad
 
@@ -41,6 +43,7 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 | `convex_hull` | `O(n log n)` | `O(n)` |
 | `k_closest_points` | `O(n log n)` | `O(n)` |
 | `max_points_on_a_line` | `O(n^2)` | `O(n)` |
+| `get_skyline` | `O(n log n)` | `O(n)` |
 
 ## Criterio de Cierre
 
@@ -50,6 +53,7 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 - Convex Hull maneja duplicados, entrada vacía y entradas pequeñas.
 - K Closest Points maneja empates, `k` mayor al tamaño y entrada vacía.
 - Max Points on a Line maneja duplicados, líneas verticales, líneas horizontales y entradas pequeñas.
+- Skyline maneja edificios traslapados, edificios contiguos con misma altura y entradas inválidas.
 - README y wiki apuntan al bloque.
 - `cargo fmt` y `cargo test` pasan.
 

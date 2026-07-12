@@ -1,4 +1,4 @@
-use std::collections::{BTreeSet, HashMap};
+use std::collections::{BTreeMap, BTreeSet, HashMap};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Point {
@@ -113,6 +113,57 @@ pub fn max_points_on_a_line(points: Vec<Point>) -> i32 {
     }
 
     best
+}
+
+pub fn get_skyline(buildings: Vec<(i32, i32, i32)>) -> Vec<(i32, i32)> {
+    let mut events = Vec::new();
+
+    for (left, right, height) in buildings {
+        if left >= right || height <= 0 {
+            continue;
+        }
+
+        events.push((left, -height));
+        events.push((right, height));
+    }
+
+    events.sort_unstable();
+
+    let mut active_heights = BTreeMap::new();
+    active_heights.insert(0, 1);
+    let mut previous_height = 0;
+    let mut skyline = Vec::new();
+    let mut index = 0;
+
+    while index < events.len() {
+        let x = events[index].0;
+
+        while index < events.len() && events[index].0 == x {
+            let height = events[index].1;
+
+            if height < 0 {
+                *active_heights.entry(-height).or_insert(0) += 1;
+            } else if let Some(count) = active_heights.get_mut(&height) {
+                *count -= 1;
+                if *count == 0 {
+                    active_heights.remove(&height);
+                }
+            }
+
+            index += 1;
+        }
+
+        let current_height = active_heights
+            .last_key_value()
+            .map_or(0, |(&height, _)| height);
+
+        if current_height != previous_height {
+            skyline.push((x, current_height));
+            previous_height = current_height;
+        }
+    }
+
+    skyline
 }
 
 fn normalized_slope(first: Point, second: Point) -> (i64, i64) {

@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::geometry::{
-    convex_hull, cross_product, k_closest_points, max_points_on_a_line, orientation, Orientation,
-    Point,
+    convex_hull, cross_product, get_skyline, k_closest_points, max_points_on_a_line, orientation,
+    Orientation, Point,
 };
 
 fn sorted_points(mut points: Vec<Point>) -> Vec<Point> {
@@ -190,5 +190,45 @@ fn max_points_on_a_line_handles_small_inputs() {
     assert_eq!(
         max_points_on_a_line(vec![Point::new(5, 8), Point::new(9, 13)]),
         2
+    );
+}
+
+#[test]
+fn get_skyline_returns_key_points_for_overlapping_buildings() {
+    let buildings = vec![
+        (2, 9, 10),
+        (3, 7, 15),
+        (5, 12, 12),
+        (15, 20, 10),
+        (19, 24, 8),
+    ];
+
+    assert_eq!(
+        get_skyline(buildings),
+        vec![
+            (2, 10),
+            (3, 15),
+            (7, 12),
+            (12, 0),
+            (15, 10),
+            (20, 8),
+            (24, 0)
+        ]
+    );
+}
+
+#[test]
+fn get_skyline_merges_adjacent_buildings_with_same_height() {
+    let buildings = vec![(0, 2, 3), (2, 5, 3), (5, 7, 2)];
+
+    assert_eq!(get_skyline(buildings), vec![(0, 3), (5, 2), (7, 0)]);
+}
+
+#[test]
+fn get_skyline_handles_empty_and_invalid_buildings() {
+    assert!(get_skyline(Vec::new()).is_empty());
+    assert_eq!(
+        get_skyline(vec![(3, 3, 4), (4, 7, 0), (1, 2, 5)]),
+        vec![(1, 5), (2, 0)]
     );
 }
