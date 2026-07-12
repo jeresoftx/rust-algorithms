@@ -27,6 +27,7 @@ src/
     intervals.rs
     linked_lists.rs
     math_bit.rs
+    range_queries.rs
     recursion_backtracking.rs
     sliding_window.rs
     stack_queue.rs
@@ -45,6 +46,7 @@ tests/
   intervals_test.rs
   linked_lists_test.rs
   math_bit_test.rs
+  range_queries_test.rs
   recursion_backtracking_test.rs
   sliding_window_test.rs
   stack_queue_test.rs
@@ -67,6 +69,7 @@ notes/
   week-17-18.md
   week-19-20.md
   week-21-23.md
+  week-24-25.md
   complexity-cheatsheet.md
   mock-interview-rubric.md
   review-queue.md
@@ -132,14 +135,15 @@ Páginas destacadas:
 - [Semanas 17 y 18: Complejidad, Matemáticas y Bits](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-17-y-18-Complejidad-Matematicas-y-Bits)
 - [Semanas 19 y 20: Tries y Cadenas](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-19-y-20-Tries-y-Cadenas)
 - [Semanas 21 a 23: Grafos Ponderados](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-21-a-23-Grafos-Ponderados)
+- [Semanas 24 y 25: Consultas por Rangos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-24-y-25-Consultas-por-Rangos)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 21-23
-- Problemas implementados: 98
-- Tests automatizados: 233
-- Ruta avanzada: fase 3 en progreso
+- Semana documentada: 24-25
+- Problemas implementados: 100
+- Tests automatizados: 238
+- Ruta avanzada: fase 4 iniciada
 - Lenguaje: Rust
 
 ## Enfoque de Estudio

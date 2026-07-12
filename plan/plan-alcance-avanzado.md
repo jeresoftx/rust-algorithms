@@ -189,6 +189,8 @@ Criterio de cierre:
 
 Duración sugerida: semanas 24 y 25.
 
+Estado: iniciada.
+
 Temas:
 
 - Prefix sum avanzado.
@@ -199,9 +201,9 @@ Temas:
 
 Archivos sugeridos:
 
-- `src/patterns/range_queries.rs`
-- `tests/range_queries_test.rs`
-- `notes/week-24-25.md`
+- `src/patterns/range_queries.rs`: creado.
+- `tests/range_queries_test.rs`: creado.
+- `notes/week-24-25.md`: creado.
 
 Problemas sugeridos:
 
@@ -213,6 +215,12 @@ Problemas sugeridos:
 - Car Pooling.
 - My Calendar I.
 - My Calendar II.
+
+Avance acumulado:
+
+- Problemas implementados: 2.
+- Tests agregados: 5.
+- Funciones y estructuras principales: `FenwickTree` y `RangeSumQuery`.
 
 Criterio de cierre:
 
