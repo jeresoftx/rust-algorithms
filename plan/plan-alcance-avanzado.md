@@ -83,9 +83,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 12.
-- Tests agregados: 30.
-- Funciones principales: `single_number`, `missing_number`, `count_ones`, `count_bits`, `reverse_bits`, `is_power_of_two`, `fast_pow`, `gcd`, `lcm`, `sieve`, `maximum_subarray` y `majority_element`.
+- Problemas implementados: 13.
+- Tests agregados: 33.
+- Funciones principales: `single_number`, `missing_number`, `count_ones`, `count_bits`, `reverse_bits`, `is_power_of_two`, `is_perfect_square`, `fast_pow`, `gcd`, `lcm`, `sieve`, `maximum_subarray` y `majority_element`.
 
 Criterio de cierre:
 
@@ -300,8 +300,8 @@ Avance acumulado:
 - Simulacros avanzados creados: 3.
 - Simulacros acumulados ejecutados: 6 de 6.
 - Problemas repetidos: 6 de 20.
-- Problemas implementados: 120 de 140 como mínimo.
-- Faltan para cierre mínimo: 20 problemas implementados y 14 repeticiones.
+- Problemas implementados: 121 de 140 como mínimo.
+- Faltan para cierre mínimo: 19 problemas implementados y 14 repeticiones.
 - Archivos creados: `notes/week-27-28.md`, `notes/simulations/simulacro-04-grafos-ponderados.md`, `notes/simulations/simulacro-05-strings-avanzados.md` y `notes/simulations/simulacro-06-range-queries.md`.
 - Enfoque: práctica cronometrada, explicación verbal y repetición dirigida.
 

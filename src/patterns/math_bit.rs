@@ -50,6 +50,33 @@ pub fn is_power_of_two(value: i32) -> bool {
     value > 0 && (value & (value - 1)) == 0
 }
 
+pub fn is_perfect_square(value: i32) -> bool {
+    if value <= 0 {
+        return false;
+    }
+
+    let target = value as i64;
+    let mut left = 1_i64;
+    let mut right = target;
+
+    while left <= right {
+        let middle = left + (right - left) / 2;
+        let square = middle * middle;
+
+        if square == target {
+            return true;
+        }
+
+        if square < target {
+            left = middle + 1;
+        } else {
+            right = middle - 1;
+        }
+    }
+
+    false
+}
+
 pub fn fast_pow(base: f64, exponent: i32) -> f64 {
     if exponent < 0 {
         return 1.0 / pow_positive(base, -(exponent as i64));

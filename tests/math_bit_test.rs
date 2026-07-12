@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::math_bit::{
-    count_bits, count_ones, fast_pow, gcd, is_power_of_two, lcm, majority_element,
-    maximum_subarray, missing_number, reverse_bits, sieve, single_number,
+    count_bits, count_ones, fast_pow, gcd, is_perfect_square, is_power_of_two, lcm,
+    majority_element, maximum_subarray, missing_number, reverse_bits, sieve, single_number,
 };
 
 fn assert_close(actual: f64, expected: f64) {
@@ -79,6 +79,23 @@ fn is_power_of_two_rejects_zero_negative_and_multi_bit_values() {
     assert!(!is_power_of_two(0));
     assert!(!is_power_of_two(-16));
     assert!(!is_power_of_two(18));
+}
+
+#[test]
+fn is_perfect_square_accepts_square_numbers() {
+    assert!(is_perfect_square(16));
+    assert!(is_perfect_square(1));
+}
+
+#[test]
+fn is_perfect_square_rejects_non_square_numbers() {
+    assert!(!is_perfect_square(14));
+}
+
+#[test]
+fn is_perfect_square_rejects_zero_and_negative_values() {
+    assert!(!is_perfect_square(0));
+    assert!(!is_perfect_square(-4));
 }
 
 #[test]
