@@ -54,6 +54,9 @@ notes/
   week-11-12.md
   week-13.md
   week-14-15.md
+  week-16.md
+  mock-interview-rubric.md
+  review-queue.md
   rust-interview-patterns.md
   mistakes.md
 plan/
@@ -100,11 +103,12 @@ Páginas destacadas:
 - [Semanas 11 y 12: Grafos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-11-y-12-Grafos)
 - [Semana 13: Montículos, Intervalos y Greedy](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-13-Monticulos-Intervalos-y-Greedy)
 - [Semanas 14 y 15: Programación Dinámica](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-14-y-15-Programacion-Dinamica)
+- [Semana 16: Simulacros y Repaso](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-16-Simulacros-y-Repaso)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 15
+- Semana documentada: 16
 - Problemas implementados: 69
 - Tests automatizados: 162
 - Lenguaje: Rust

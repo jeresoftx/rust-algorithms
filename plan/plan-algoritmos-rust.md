@@ -371,7 +371,7 @@ Rutina:
 
 - 3 simulacros de 45 minutos.
 - 2 sesiones de revisión profunda.
-- 1 día de behavioral stories.
+- 1 día de historias conductuales.
 - 1 día de repaso de errores frecuentes.
 
 Formato de simulacro:
