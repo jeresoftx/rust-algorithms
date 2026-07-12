@@ -122,3 +122,58 @@ pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {
 
     result
 }
+
+/// Top K Frequent Elements
+///
+/// Pattern: frequency counting.
+/// Idea: count values, sort value/frequency pairs by descending frequency,
+/// then take the first k values.
+///
+/// Time: O(n log n)
+/// Space: O(n)
+pub fn top_k_frequent(nums: Vec<i32>, k: usize) -> Vec<i32> {
+    let mut counts = HashMap::new();
+
+    for value in nums {
+        *counts.entry(value).or_insert(0) += 1;
+    }
+
+    let mut frequencies: Vec<(i32, i32)> = counts.into_iter().collect();
+    frequencies.sort_by(|left, right| right.1.cmp(&left.1).then_with(|| left.0.cmp(&right.0)));
+
+    frequencies
+        .into_iter()
+        .take(k)
+        .map(|(value, _)| value)
+        .collect()
+}
+
+/// Longest Consecutive Sequence
+///
+/// Pattern: set membership.
+/// Idea: only start counting from values that do not have a predecessor.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn longest_consecutive(nums: Vec<i32>) -> usize {
+    let values: HashSet<i32> = nums.into_iter().collect();
+    let mut best = 0;
+
+    for &value in &values {
+        if values.contains(&(value - 1)) {
+            continue;
+        }
+
+        let mut current = value;
+        let mut length = 1;
+
+        while values.contains(&(current + 1)) {
+            current += 1;
+            length += 1;
+        }
+
+        best = best.max(length);
+    }
+
+    best
+}

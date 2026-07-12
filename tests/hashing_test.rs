@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::hashing::{
-    contains_duplicate, group_anagrams, product_except_self, two_sum, valid_anagram,
+    contains_duplicate, group_anagrams, longest_consecutive, product_except_self, top_k_frequent,
+    two_sum, valid_anagram,
 };
 
 #[test]
@@ -111,4 +112,36 @@ fn product_except_self_handles_two_values() {
     let result = product_except_self(vec![4, 5]);
 
     assert_eq!(result, vec![5, 4]);
+}
+
+#[test]
+fn top_k_frequent_returns_most_common_values() {
+    let mut result = top_k_frequent(vec![1, 1, 1, 2, 2, 3], 2);
+    result.sort();
+
+    assert_eq!(result, vec![1, 2]);
+}
+
+#[test]
+fn top_k_frequent_handles_single_requested_value() {
+    assert_eq!(top_k_frequent(vec![4, 4, 4, 6, 6, 7], 1), vec![4]);
+}
+
+#[test]
+fn longest_consecutive_returns_length_of_longest_sequence() {
+    let result = longest_consecutive(vec![100, 4, 200, 1, 3, 2]);
+
+    assert_eq!(result, 4);
+}
+
+#[test]
+fn longest_consecutive_handles_duplicates() {
+    let result = longest_consecutive(vec![0, 3, 7, 2, 5, 8, 4, 6, 0, 1]);
+
+    assert_eq!(result, 9);
+}
+
+#[test]
+fn longest_consecutive_returns_zero_for_empty_input() {
+    assert_eq!(longest_consecutive(vec![]), 0);
 }
