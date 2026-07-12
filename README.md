@@ -83,7 +83,7 @@ Páginas destacadas:
 - [Semanas 4 y 5: Two Pointers, Sliding Window y Stack](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-4-y-5-Two-Pointers-Sliding-Window-y-Stack)
 - [Semana 6: Búsqueda Binaria](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-6-Busqueda-Binaria)
 - [Semanas 7 y 8: Recursión, Backtracking y Linked Lists](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-7-y-8-Recursion-Backtracking-y-Linked-Lists)
-- [Semanas 9 y 10: Trees](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-9-y-10-Trees)
+- [Semanas 9 y 10: Árboles](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-9-y-10-Arboles)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
