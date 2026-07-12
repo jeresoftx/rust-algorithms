@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::{BTreeMap, HashSet, VecDeque};
 
 pub fn find_pattern_positions(text: &str, pattern: &str) -> Vec<usize> {
     if pattern.is_empty() || pattern.len() > text.len() {
@@ -27,6 +27,55 @@ pub fn find_pattern_positions(text: &str, pattern: &str) -> Vec<usize> {
     }
 
     matches
+}
+
+pub fn find_multi_pattern_positions(text: &str, patterns: Vec<&str>) -> Vec<(String, Vec<usize>)> {
+    let pattern_lengths: Vec<usize> = patterns.iter().map(|pattern| pattern.len()).collect();
+    let mut matches = vec![Vec::new(); patterns.len()];
+    let mut automaton = vec![AhoNode::default()];
+
+    for (pattern_index, pattern) in patterns.iter().enumerate() {
+        if pattern.is_empty() {
+            continue;
+        }
+
+        let mut node = 0;
+
+        for &byte in pattern.as_bytes() {
+            if let Some(&next) = automaton[node].children.get(&byte) {
+                node = next;
+            } else {
+                automaton.push(AhoNode::default());
+                let next = automaton.len() - 1;
+                automaton[node].children.insert(byte, next);
+                node = next;
+            }
+        }
+
+        automaton[node].outputs.push(pattern_index);
+    }
+
+    build_failure_links(&mut automaton);
+
+    let mut node = 0;
+
+    for (text_index, &byte) in text.as_bytes().iter().enumerate() {
+        while node != 0 && !automaton[node].children.contains_key(&byte) {
+            node = automaton[node].failure;
+        }
+
+        node = automaton[node].children.get(&byte).copied().unwrap_or(0);
+
+        for &pattern_index in &automaton[node].outputs {
+            matches[pattern_index].push(text_index + 1 - pattern_lengths[pattern_index]);
+        }
+    }
+
+    patterns
+        .into_iter()
+        .enumerate()
+        .map(|(index, pattern)| (pattern.to_string(), matches[index].clone()))
+        .collect()
 }
 
 pub fn find_anagram_starts(text: &str, pattern: &str) -> Vec<usize> {
@@ -161,4 +210,42 @@ fn prefix_table(pattern: &[u8]) -> Vec<usize> {
 
 fn letter_index(byte: u8) -> usize {
     (byte - b'a') as usize
+}
+
+#[derive(Default)]
+struct AhoNode {
+    children: BTreeMap<u8, usize>,
+    failure: usize,
+    outputs: Vec<usize>,
+}
+
+fn build_failure_links(automaton: &mut [AhoNode]) {
+    let mut queue = VecDeque::new();
+    let root_children: Vec<usize> = automaton[0].children.values().copied().collect();
+
+    for child in root_children {
+        queue.push_back(child);
+    }
+
+    while let Some(node) = queue.pop_front() {
+        let transitions: Vec<(u8, usize)> = automaton[node]
+            .children
+            .iter()
+            .map(|(&byte, &child)| (byte, child))
+            .collect();
+
+        for (byte, child) in transitions {
+            let mut failure = automaton[node].failure;
+
+            while failure != 0 && !automaton[failure].children.contains_key(&byte) {
+                failure = automaton[failure].failure;
+            }
+
+            automaton[child].failure = automaton[failure].children.get(&byte).copied().unwrap_or(0);
+
+            let inherited_outputs = automaton[automaton[child].failure].outputs.clone();
+            automaton[child].outputs.extend(inherited_outputs);
+            queue.push_back(child);
+        }
+    }
 }

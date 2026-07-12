@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::string_algorithms::{
-    find_anagram_starts, find_pattern_positions, longest_common_prefix,
-    longest_duplicate_substring, repeated_substring_pattern,
+    find_anagram_starts, find_multi_pattern_positions, find_pattern_positions,
+    longest_common_prefix, longest_duplicate_substring, repeated_substring_pattern,
 };
 
 #[test]
@@ -21,6 +21,36 @@ fn find_pattern_positions_returns_empty_for_missing_pattern() {
 #[test]
 fn find_pattern_positions_returns_empty_for_empty_pattern() {
     assert!(find_pattern_positions("abcdef", "").is_empty());
+}
+
+#[test]
+fn find_multi_pattern_positions_returns_all_overlapping_matches() {
+    let matches = find_multi_pattern_positions("ahishers", vec!["he", "she", "his", "hers"]);
+
+    assert_eq!(
+        matches,
+        vec![
+            ("he".to_string(), vec![4]),
+            ("she".to_string(), vec![3]),
+            ("his".to_string(), vec![1]),
+            ("hers".to_string(), vec![4]),
+        ]
+    );
+}
+
+#[test]
+fn find_multi_pattern_positions_keeps_patterns_with_no_matches() {
+    let matches = find_multi_pattern_positions("aaaa", vec!["a", "aa", "b", ""]);
+
+    assert_eq!(
+        matches,
+        vec![
+            ("a".to_string(), vec![0, 1, 2, 3]),
+            ("aa".to_string(), vec![0, 1, 2]),
+            ("b".to_string(), Vec::<usize>::new()),
+            ("".to_string(), Vec::<usize>::new()),
+        ]
+    );
 }
 
 #[test]
