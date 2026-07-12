@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 pub fn find_pattern_positions(text: &str, pattern: &str) -> Vec<usize> {
     if pattern.is_empty() || pattern.len() > text.len() {
         return Vec::new();
@@ -67,6 +69,52 @@ pub fn repeated_substring_pattern(text: &str) -> bool {
 
     let doubled = format!("{}{}", text, text);
     doubled[1..doubled.len() - 1].contains(text)
+}
+
+pub fn longest_duplicate_substring(text: &str) -> String {
+    let bytes = text.as_bytes();
+    let mut left = 1;
+    let mut right = bytes.len();
+    let mut best_start = 0;
+    let mut best_length = 0;
+
+    while left <= right {
+        let length = left + (right - left) / 2;
+
+        if let Some(start) = duplicate_start_of_length(bytes, length) {
+            best_start = start;
+            best_length = length;
+            left = length + 1;
+        } else if length == 0 {
+            break;
+        } else {
+            right = length - 1;
+        }
+    }
+
+    String::from_utf8(bytes[best_start..best_start + best_length].to_vec()).unwrap_or_default()
+}
+
+fn duplicate_start_of_length(bytes: &[u8], length: usize) -> Option<usize> {
+    if length == 0 {
+        return Some(0);
+    }
+
+    if length > bytes.len() {
+        return None;
+    }
+
+    let mut seen = HashSet::new();
+
+    for start in 0..=bytes.len() - length {
+        let window = &bytes[start..start + length];
+
+        if !seen.insert(window) {
+            return Some(start);
+        }
+    }
+
+    None
 }
 
 fn prefix_table(pattern: &[u8]) -> Vec<usize> {

@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::string_algorithms::{
-    find_anagram_starts, find_pattern_positions, repeated_substring_pattern,
+    find_anagram_starts, find_pattern_positions, longest_duplicate_substring,
+    repeated_substring_pattern,
 };
 
 #[test]
@@ -50,4 +51,25 @@ fn repeated_substring_pattern_rejects_non_repeated_string() {
 #[test]
 fn repeated_substring_pattern_rejects_single_character() {
     assert!(!repeated_substring_pattern("a"));
+}
+
+#[test]
+fn longest_duplicate_substring_returns_longest_duplicate() {
+    assert_eq!(longest_duplicate_substring("banana"), "ana");
+}
+
+#[test]
+fn longest_duplicate_substring_returns_empty_when_missing() {
+    assert_eq!(longest_duplicate_substring("abcd"), "");
+}
+
+#[test]
+fn longest_duplicate_substring_handles_repeated_character_runs() {
+    assert_eq!(longest_duplicate_substring("aaaa"), "aaa");
+}
+
+#[test]
+fn longest_duplicate_substring_handles_empty_and_single_character_inputs() {
+    assert_eq!(longest_duplicate_substring(""), "");
+    assert_eq!(longest_duplicate_substring("z"), "");
 }
