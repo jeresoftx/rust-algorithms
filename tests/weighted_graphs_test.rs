@@ -2,7 +2,8 @@ use rust_algorithms::patterns::weighted_graphs::{
     bellman_ford_shortest_paths, cheapest_flight_within_k_stops, critical_connections,
     dijkstra_shortest_paths, find_critical_and_pseudo_critical_edges, floyd_warshall_all_pairs,
     kruskal_minimum_spanning_tree_weight, min_cost_connect_points, minimum_effort_path,
-    network_delay_time, prim_minimum_spanning_tree_weight, BellmanFordError,
+    network_delay_time, prim_minimum_spanning_tree_weight, strongly_connected_components,
+    BellmanFordError,
 };
 
 #[test]
@@ -239,5 +240,35 @@ fn find_critical_and_pseudo_critical_edges_handles_all_edges_tied() {
     assert_eq!(
         find_critical_and_pseudo_critical_edges(3, &edges),
         (Vec::new(), vec![0, 1, 2])
+    );
+}
+
+#[test]
+fn strongly_connected_components_groups_mutually_reachable_nodes() {
+    let edges = vec![(0, 1), (1, 2), (2, 0), (2, 3), (3, 4), (4, 3)];
+
+    assert_eq!(
+        strongly_connected_components(5, &edges),
+        vec![vec![0, 1, 2], vec![3, 4]]
+    );
+}
+
+#[test]
+fn strongly_connected_components_returns_singletons_for_dag() {
+    let edges = vec![(0, 1), (1, 2), (2, 3)];
+
+    assert_eq!(
+        strongly_connected_components(4, &edges),
+        vec![vec![0], vec![1], vec![2], vec![3]]
+    );
+}
+
+#[test]
+fn strongly_connected_components_ignores_invalid_edges() {
+    let edges = vec![(0, 1), (1, 0), (1, 9), (8, 0)];
+
+    assert_eq!(
+        strongly_connected_components(3, &edges),
+        vec![vec![0, 1], vec![2]]
     );
 }

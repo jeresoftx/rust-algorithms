@@ -330,6 +330,47 @@ pub fn critical_connections(
     bridges
 }
 
+pub fn strongly_connected_components(
+    node_count: usize,
+    edges: &[(usize, usize)],
+) -> Vec<Vec<usize>> {
+    let mut graph = vec![Vec::new(); node_count];
+
+    for &(from, to) in edges {
+        if from < node_count && to < node_count {
+            graph[from].push(to);
+        }
+    }
+
+    let mut discovery = vec![None; node_count];
+    let mut low = vec![0; node_count];
+    let mut stack = Vec::new();
+    let mut on_stack = vec![false; node_count];
+    let mut time = 0;
+    let mut components = Vec::new();
+
+    for node in 0..node_count {
+        if discovery[node].is_none() {
+            collect_strongly_connected_components(
+                node,
+                &graph,
+                &mut discovery,
+                &mut low,
+                &mut stack,
+                &mut on_stack,
+                &mut time,
+                &mut components,
+            );
+        }
+    }
+
+    for component in &mut components {
+        component.sort_unstable();
+    }
+    components.sort_unstable_by_key(|component| component[0]);
+    components
+}
+
 pub fn min_cost_connect_points(points: &[(i32, i32)]) -> i32 {
     if points.len() <= 1 {
         return 0;
@@ -504,6 +545,49 @@ fn collect_bridges(
         } else {
             low[node] = low[node].min(discovery[neighbor].unwrap());
         }
+    }
+}
+
+fn collect_strongly_connected_components(
+    node: usize,
+    graph: &[Vec<usize>],
+    discovery: &mut [Option<usize>],
+    low: &mut [usize],
+    stack: &mut Vec<usize>,
+    on_stack: &mut [bool],
+    time: &mut usize,
+    components: &mut Vec<Vec<usize>>,
+) {
+    *time += 1;
+    discovery[node] = Some(*time);
+    low[node] = *time;
+    stack.push(node);
+    on_stack[node] = true;
+
+    for &neighbor in &graph[node] {
+        if discovery[neighbor].is_none() {
+            collect_strongly_connected_components(
+                neighbor, graph, discovery, low, stack, on_stack, time, components,
+            );
+            low[node] = low[node].min(low[neighbor]);
+        } else if on_stack[neighbor] {
+            low[node] = low[node].min(discovery[neighbor].unwrap());
+        }
+    }
+
+    if low[node] == discovery[node].unwrap() {
+        let mut component = Vec::new();
+
+        while let Some(member) = stack.pop() {
+            on_stack[member] = false;
+            component.push(member);
+
+            if member == node {
+                break;
+            }
+        }
+
+        components.push(component);
     }
 }
 

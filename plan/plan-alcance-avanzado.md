@@ -170,14 +170,15 @@ Problemas sugeridos:
 - Find Critical and Pseudo-Critical Edges in MST.
 - Min Cost to Connect All Points.
 - Critical Connections in a Network.
+- Strongly Connected Components.
 - Course Schedule reforzado con variantes.
 - Shortest Path in Binary Matrix como puente entre BFS y pesos.
 
 Avance acumulado:
 
-- Problemas implementados: 11.
-- Tests agregados: 24.
-- Funciones principales: `dijkstra_shortest_paths`, `network_delay_time`, `bellman_ford_shortest_paths`, `floyd_warshall_all_pairs`, `prim_minimum_spanning_tree_weight`, `kruskal_minimum_spanning_tree_weight`, `cheapest_flight_within_k_stops`, `minimum_effort_path`, `critical_connections`, `min_cost_connect_points` y `find_critical_and_pseudo_critical_edges`.
+- Problemas implementados: 12.
+- Tests agregados: 27.
+- Funciones principales: `dijkstra_shortest_paths`, `network_delay_time`, `bellman_ford_shortest_paths`, `floyd_warshall_all_pairs`, `prim_minimum_spanning_tree_weight`, `kruskal_minimum_spanning_tree_weight`, `cheapest_flight_within_k_stops`, `minimum_effort_path`, `critical_connections`, `strongly_connected_components`, `min_cost_connect_points` y `find_critical_and_pseudo_critical_edges`.
 
 Criterio de cierre:
 
