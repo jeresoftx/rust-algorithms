@@ -257,9 +257,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 3.
-- Tests agregados: 5.
-- Funciones y estructuras principales: `Point`, `Orientation`, `cross_product`, `orientation` y `convex_hull`.
+- Problemas implementados: 4.
+- Tests agregados: 8.
+- Funciones y estructuras principales: `Point`, `Orientation`, `cross_product`, `orientation`, `convex_hull` y `k_closest_points`.
 
 Criterio de cierre:
 
