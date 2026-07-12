@@ -1,4 +1,5 @@
 pub mod binary_search;
+pub mod graphs;
 pub mod hashing;
 pub mod linked_lists;
 pub mod recursion_backtracking;
