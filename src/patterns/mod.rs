@@ -14,3 +14,4 @@ pub mod string_algorithms;
 pub mod trees;
 pub mod tries;
 pub mod two_pointers;
+pub mod weighted_graphs;
