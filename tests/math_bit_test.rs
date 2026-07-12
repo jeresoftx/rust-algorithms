@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::math_bit::{
-    count_bits, count_ones, fast_pow, gcd, is_power_of_two, lcm, maximum_subarray, reverse_bits,
-    sieve, single_number,
+    count_bits, count_ones, fast_pow, gcd, is_power_of_two, lcm, majority_element,
+    maximum_subarray, missing_number, reverse_bits, sieve, single_number,
 };
 
 fn assert_close(actual: f64, expected: f64) {
@@ -19,6 +19,21 @@ fn single_number_returns_value_without_pair() {
 #[test]
 fn single_number_handles_negative_values() {
     assert_eq!(single_number(vec![-7, 3, 3, 2, 2]), -7);
+}
+
+#[test]
+fn missing_number_returns_absent_value_from_zero_to_n() {
+    assert_eq!(missing_number(vec![3, 0, 1]), 2);
+}
+
+#[test]
+fn missing_number_handles_missing_zero() {
+    assert_eq!(missing_number(vec![1, 2, 3]), 0);
+}
+
+#[test]
+fn missing_number_handles_missing_last_value() {
+    assert_eq!(missing_number(vec![0, 1, 2]), 3);
 }
 
 #[test]
@@ -128,4 +143,19 @@ fn maximum_subarray_handles_all_negative_values() {
 #[test]
 fn maximum_subarray_returns_none_for_empty_input() {
     assert_eq!(maximum_subarray(Vec::new()), None);
+}
+
+#[test]
+fn majority_element_returns_value_appearing_more_than_half() {
+    assert_eq!(majority_element(vec![2, 2, 1, 1, 1, 2, 2]), Some(2));
+}
+
+#[test]
+fn majority_element_handles_single_value() {
+    assert_eq!(majority_element(vec![9]), Some(9));
+}
+
+#[test]
+fn majority_element_returns_none_for_empty_input() {
+    assert_eq!(majority_element(Vec::new()), None);
 }

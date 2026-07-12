@@ -2,6 +2,17 @@ pub fn single_number(nums: Vec<i32>) -> i32 {
     nums.into_iter().fold(0, |unique, value| unique ^ value)
 }
 
+pub fn missing_number(nums: Vec<i32>) -> i32 {
+    let mut missing = nums.len() as i32;
+
+    for (index, value) in nums.into_iter().enumerate() {
+        missing ^= index as i32;
+        missing ^= value;
+    }
+
+    missing
+}
+
 pub fn count_ones(mut value: u32) -> u32 {
     let mut count = 0;
 
@@ -110,6 +121,24 @@ pub fn maximum_subarray(nums: Vec<i32>) -> Option<i32> {
     }
 
     Some(best)
+}
+
+pub fn majority_element(nums: Vec<i32>) -> Option<i32> {
+    let mut candidate = None;
+    let mut count = 0;
+
+    for value in nums {
+        if count == 0 {
+            candidate = Some(value);
+            count = 1;
+        } else if candidate == Some(value) {
+            count += 1;
+        } else {
+            count -= 1;
+        }
+    }
+
+    candidate
 }
 
 fn pow_positive(mut base: f64, mut exponent: i64) -> f64 {
