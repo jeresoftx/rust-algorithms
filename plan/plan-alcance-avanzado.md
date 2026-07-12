@@ -218,9 +218,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 2.
-- Tests agregados: 5.
-- Funciones y estructuras principales: `FenwickTree` y `RangeSumQuery`.
+- Problemas implementados: 3.
+- Tests agregados: 9.
+- Funciones y estructuras principales: `FenwickTree`, `RangeSumQuery` y `SegmentTree`.
 
 Criterio de cierre:
 
