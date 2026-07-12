@@ -1,5 +1,7 @@
 use rust_algorithms::patterns::weighted_graphs::{
-    bellman_ford_shortest_paths, dijkstra_shortest_paths, network_delay_time, BellmanFordError,
+    bellman_ford_shortest_paths, dijkstra_shortest_paths, floyd_warshall_all_pairs,
+    kruskal_minimum_spanning_tree_weight, network_delay_time, prim_minimum_spanning_tree_weight,
+    BellmanFordError,
 };
 
 #[test]
@@ -86,4 +88,56 @@ fn bellman_ford_marks_unreachable_nodes_as_none() {
         bellman_ford_shortest_paths(4, &edges, 0),
         Ok(vec![Some(0), Some(3), None, None])
     );
+}
+
+#[test]
+fn floyd_warshall_returns_all_pairs_shortest_paths() {
+    let edges = vec![(0, 1, 3), (0, 2, 8), (1, 2, 2), (2, 3, 1), (3, 0, 4)];
+
+    assert_eq!(
+        floyd_warshall_all_pairs(4, &edges),
+        vec![
+            vec![Some(0), Some(3), Some(5), Some(6)],
+            vec![Some(7), Some(0), Some(2), Some(3)],
+            vec![Some(5), Some(8), Some(0), Some(1)],
+            vec![Some(4), Some(7), Some(9), Some(0)],
+        ]
+    );
+}
+
+#[test]
+fn floyd_warshall_keeps_unreachable_pairs_as_none() {
+    let edges = vec![(0, 1, 5), (2, 3, 7)];
+
+    assert_eq!(
+        floyd_warshall_all_pairs(4, &edges),
+        vec![
+            vec![Some(0), Some(5), None, None],
+            vec![None, Some(0), None, None],
+            vec![None, None, Some(0), Some(7)],
+            vec![None, None, None, Some(0)],
+        ]
+    );
+}
+
+#[test]
+fn prim_returns_minimum_spanning_tree_weight() {
+    let edges = vec![(0, 1, 10), (0, 2, 6), (0, 3, 5), (1, 3, 15), (2, 3, 4)];
+
+    assert_eq!(prim_minimum_spanning_tree_weight(4, &edges), Some(19));
+}
+
+#[test]
+fn kruskal_returns_minimum_spanning_tree_weight() {
+    let edges = vec![(0, 1, 10), (0, 2, 6), (0, 3, 5), (1, 3, 15), (2, 3, 4)];
+
+    assert_eq!(kruskal_minimum_spanning_tree_weight(4, &edges), Some(19));
+}
+
+#[test]
+fn minimum_spanning_tree_returns_none_for_disconnected_graph() {
+    let edges = vec![(0, 1, 1), (2, 3, 1)];
+
+    assert_eq!(prim_minimum_spanning_tree_weight(4, &edges), None);
+    assert_eq!(kruskal_minimum_spanning_tree_weight(4, &edges), None);
 }
