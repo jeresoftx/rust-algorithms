@@ -130,7 +130,7 @@ Patrones:
 - Difference array básico.
 - String normalization.
 - Anagramas.
-- Deteccion de duplicados.
+- Detección de duplicados.
 
 Problemas sugeridos:
 
@@ -190,7 +190,7 @@ Patrones:
 - Buscar índice exacto.
 - Lower bound / upper bound.
 - Binary search on answer.
-- Condicion monotona.
+- Condición monótona.
 
 Problemas sugeridos:
 
@@ -246,10 +246,10 @@ Criterio de avance:
 Patrones:
 
 - Preorder, inorder, postorder.
-- DFS con retorno de informacion.
+- DFS con retorno de información.
 - BFS por niveles.
 - Lowest common ancestor.
-- Validacion de BST.
+- Validación de BST.
 - Construcción de árboles.
 
 Problemas sugeridos:
@@ -267,7 +267,7 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Puedes decidir si el estado vive en parametros, retorno o estructura auxiliar.
+- Puedes decidir si el estado vive en parámetros, retorno o estructura auxiliar.
 
 ---
 
@@ -299,7 +299,7 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Puedes elegir representacion antes de codificar.
+- Puedes elegir representación antes de codificar.
 - Puedes explicar visited, pila de recursión y componentes.
 
 ---
@@ -328,7 +328,7 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Puedes justificar por que un heap o sort simplifica el problema.
+- Puedes justificar por qué un heap o sort simplifica el problema.
 
 ---
 

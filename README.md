@@ -22,6 +22,7 @@ tests/
   hashing_test.rs
 notes/
   week-01.md
+  week-02-03.md
   rust-interview-patterns.md
   mistakes.md
 plan/
@@ -53,15 +54,21 @@ Para estudiar un problema:
 
 ## Wiki
 
-La documentación de avance está en la wiki del repositorio:
+La wiki es el punto de entrada recomendado para estudiar el avance, revisar patrones y seguir las semanas del plan:
 
 [Wiki de Rust Algorithms](https://github.com/jeresoftx/rust-algorithms/wiki)
 
+Páginas destacadas:
+
+- [Semana 1: Rust, Hashing, Arrays y Strings](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-1-Rust-Hashing-Arrays-y-Strings)
+- [Semanas 2 y 3: Arrays, Strings, Hashing y Sumas de Prefijos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-2-y-3-Arrays-Strings-Hashing-y-Sumas-de-Prefijos)
+- [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
+
 ## Estado Actual
 
-- Semana documentada: 1
-- Problemas implementados: 7
-- Tests automatizados: 18
+- Semana documentada: 3
+- Problemas implementados: 8
+- Tests automatizados: 22
 - Lenguaje: Rust
 
 ## Enfoque de Estudio
@@ -70,6 +77,6 @@ Este repositorio prioriza:
 
 - Comprender patrones antes que memorizar soluciones.
 - Practicar con tests desde el inicio.
-- Explicar decisiones y trade-offs.
+- Explicar decisiones y compensaciones.
 - Repetir problemas fallados hasta dominarlos.
 - Mantener notas útiles para repaso futuro.
