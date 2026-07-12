@@ -52,7 +52,7 @@ La meta de 400 problemas queda como horizonte opcional de largo plazo. Para este
 
 Duración sugerida: semanas 17 y 18.
 
-Estado: iniciada.
+Estado: en progreso.
 
 Temas:
 
@@ -81,7 +81,7 @@ Problemas sugeridos:
 - Majority Element.
 - Maximum Subarray.
 
-Primer avance:
+Avance acumulado:
 
 - Problemas implementados: 12.
 - Tests agregados: 28.
@@ -175,9 +175,9 @@ Problemas sugeridos:
 
 Primer avance:
 
-- Problemas implementados: 3.
-- Tests agregados: 9.
-- Funciones principales: `dijkstra_shortest_paths`, `network_delay_time` y `bellman_ford_shortest_paths`.
+- Problemas implementados: 6.
+- Tests agregados: 14.
+- Funciones principales: `dijkstra_shortest_paths`, `network_delay_time`, `bellman_ford_shortest_paths`, `floyd_warshall_all_pairs`, `prim_minimum_spanning_tree_weight` y `kruskal_minimum_spanning_tree_weight`.
 
 Criterio de cierre:
 

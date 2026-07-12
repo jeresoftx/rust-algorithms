@@ -137,9 +137,9 @@ Páginas destacadas:
 ## Estado Actual
 
 - Semana documentada: 21-23
-- Problemas implementados: 90
-- Tests automatizados: 218
-- Ruta avanzada: fase 3 iniciada
+- Problemas implementados: 93
+- Tests automatizados: 223
+- Ruta avanzada: fase 3 en progreso
 - Lenguaje: Rust
 
 ## Enfoque de Estudio
