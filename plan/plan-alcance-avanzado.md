@@ -298,6 +298,10 @@ Rutina:
 Avance acumulado:
 
 - Simulacros avanzados creados: 3.
+- Simulacros acumulados ejecutados: 6 de 6.
+- Problemas repetidos: 3 de 20.
+- Problemas implementados: 116 de 140 como mínimo.
+- Faltan para cierre mínimo: 24 problemas implementados y 17 repeticiones.
 - Archivos creados: `notes/week-27-28.md`, `notes/simulations/simulacro-04-grafos-ponderados.md`, `notes/simulations/simulacro-05-strings-avanzados.md` y `notes/simulations/simulacro-06-range-queries.md`.
 - Enfoque: práctica cronometrada, explicación verbal y repetición dirigida.
 
