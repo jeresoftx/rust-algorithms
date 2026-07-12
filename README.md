@@ -31,6 +31,7 @@ src/
     sliding_window.rs
     stack_queue.rs
     trees.rs
+    tries.rs
     two_pointers.rs
 tests/
   binary_search_test.rs
@@ -46,6 +47,7 @@ tests/
   sliding_window_test.rs
   stack_queue_test.rs
   trees_test.rs
+  tries_test.rs
   two_pointers_test.rs
 notes/
   week-01.md
@@ -59,6 +61,7 @@ notes/
   week-14-15.md
   week-16.md
   week-17-18.md
+  week-19-20.md
   complexity-cheatsheet.md
   mock-interview-rubric.md
   review-queue.md
@@ -122,14 +125,15 @@ Páginas destacadas:
 - [Semanas 14 y 15: Programación Dinámica](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-14-y-15-Programacion-Dinamica)
 - [Semana 16: Simulacros y Repaso](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-16-Simulacros-y-Repaso)
 - [Semanas 17 y 18: Complejidad, Matemáticas y Bits](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-17-y-18-Complejidad-Matematicas-y-Bits)
+- [Semanas 19 y 20: Tries y Cadenas](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-19-y-20-Tries-y-Cadenas)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 17-18
-- Problemas implementados: 81
-- Tests automatizados: 190
-- Ruta avanzada: fase 1 iniciada
+- Semana documentada: 19-20
+- Problemas implementados: 84
+- Tests automatizados: 199
+- Ruta avanzada: fase 2 iniciada
 - Lenguaje: Rust
 
 ## Enfoque de Estudio

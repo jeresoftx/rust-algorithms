@@ -97,6 +97,8 @@ Criterio de cierre:
 
 Duración sugerida: semanas 19 y 20.
 
+Estado: iniciada.
+
 Temas:
 
 - Trie básico.
@@ -109,11 +111,11 @@ Temas:
 
 Archivos sugeridos:
 
-- `src/patterns/tries.rs`
+- `src/patterns/tries.rs`: creado.
 - `src/patterns/string_algorithms.rs`
-- `tests/tries_test.rs`
+- `tests/tries_test.rs`: creado.
 - `tests/string_algorithms_test.rs`
-- `notes/week-19-20.md`
+- `notes/week-19-20.md`: creado.
 
 Problemas sugeridos:
 
@@ -126,6 +128,12 @@ Problemas sugeridos:
 - Repeated Substring Pattern.
 - Longest Duplicate Substring.
 - Multi-pattern Search.
+
+Primer avance:
+
+- Problemas implementados: 3.
+- Tests agregados: 9.
+- Funciones y estructuras principales: `Trie`, `WordDictionary` y `replace_words`.
 
 Criterio de cierre:
 
