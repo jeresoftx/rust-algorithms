@@ -97,7 +97,7 @@ Criterio de cierre:
 
 Duración sugerida: semanas 19 y 20.
 
-Estado: iniciada.
+Estado: completada.
 
 Temas:
 
@@ -218,9 +218,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 9.
-- Tests agregados: 25.
-- Funciones y estructuras principales: `FenwickTree`, `RangeSumQuery`, `SegmentTree`, `DifferenceArray`, `corporate_flight_bookings`, `count_smaller_numbers_after_self`, `reverse_pairs`, `MyCalendar` y `MyCalendarTwo`.
+- Problemas implementados: 10.
+- Tests agregados: 28.
+- Funciones y estructuras principales: `FenwickTree`, `RangeSumQuery`, `SegmentTree`, `DifferenceArray`, `corporate_flight_bookings`, `car_pooling`, `count_smaller_numbers_after_self`, `reverse_pairs`, `MyCalendar` y `MyCalendarTwo`.
 
 Criterio de cierre:
 
