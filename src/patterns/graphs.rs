@@ -1,4 +1,4 @@
-use std::collections::VecDeque;
+use std::collections::{HashMap, HashSet, VecDeque};
 
 const DIRECTIONS: [(isize, isize); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
@@ -232,6 +232,234 @@ pub fn walls_and_gates(rooms: &mut Vec<Vec<i32>>) {
                 queue.push_back((next_row, next_col));
             }
         }
+    }
+}
+
+/// Course Schedule
+///
+/// Pattern: topological sort with indegrees.
+/// Idea: all courses with indegree zero can be taken immediately.
+///
+/// Time: O(v + e)
+/// Space: O(v + e)
+pub fn can_finish(num_courses: usize, prerequisites: Vec<(usize, usize)>) -> bool {
+    find_course_order(num_courses, prerequisites).len() == num_courses
+}
+
+/// Course Schedule II
+///
+/// Pattern: topological sort with Kahn's algorithm.
+/// Idea: repeatedly remove nodes with no remaining prerequisites.
+///
+/// Time: O(v + e)
+/// Space: O(v + e)
+pub fn find_course_order(num_courses: usize, prerequisites: Vec<(usize, usize)>) -> Vec<usize> {
+    let mut graph = vec![Vec::new(); num_courses];
+    let mut indegrees = vec![0; num_courses];
+
+    for (course, prerequisite) in prerequisites {
+        graph[prerequisite].push(course);
+        indegrees[course] += 1;
+    }
+
+    let mut queue = VecDeque::new();
+    for (course, &indegree) in indegrees.iter().enumerate() {
+        if indegree == 0 {
+            queue.push_back(course);
+        }
+    }
+
+    let mut order = Vec::with_capacity(num_courses);
+
+    while let Some(course) = queue.pop_front() {
+        order.push(course);
+
+        for &next_course in &graph[course] {
+            indegrees[next_course] -= 1;
+            if indegrees[next_course] == 0 {
+                queue.push_back(next_course);
+            }
+        }
+    }
+
+    if order.len() == num_courses {
+        order
+    } else {
+        Vec::new()
+    }
+}
+
+/// Redundant Connection
+///
+/// Pattern: Union Find.
+/// Idea: an edge is redundant when both endpoints are already connected.
+///
+/// Time: O(e * alpha(v))
+/// Space: O(v)
+pub fn redundant_connection(edges: Vec<(usize, usize)>) -> Option<(usize, usize)> {
+    let max_node = edges
+        .iter()
+        .flat_map(|&(left, right)| [left, right])
+        .max()
+        .unwrap_or(0);
+    let mut union_find = UnionFind::new(max_node + 1);
+
+    for (left, right) in edges {
+        if !union_find.union(left, right) {
+            return Some((left, right));
+        }
+    }
+
+    None
+}
+
+/// Accounts Merge
+///
+/// Pattern: connected components in an email graph.
+/// Idea: emails in the same account belong to the same component.
+///
+/// Time: O(n * k log k)
+/// Space: O(n * k)
+pub fn accounts_merge(accounts: Vec<Vec<String>>) -> Vec<Vec<String>> {
+    let mut graph: HashMap<String, Vec<String>> = HashMap::new();
+    let mut email_to_name: HashMap<String, String> = HashMap::new();
+
+    for account in accounts {
+        let Some(name) = account.first() else {
+            continue;
+        };
+        let emails = &account[1..];
+
+        for email in emails {
+            email_to_name.insert(email.clone(), name.clone());
+            graph.entry(email.clone()).or_default();
+        }
+
+        if let Some(first_email) = emails.first() {
+            for email in emails.iter().skip(1) {
+                graph
+                    .entry(first_email.clone())
+                    .or_default()
+                    .push(email.clone());
+                graph
+                    .entry(email.clone())
+                    .or_default()
+                    .push(first_email.clone());
+            }
+        }
+    }
+
+    let mut visited = HashSet::new();
+    let mut merged = Vec::new();
+
+    for email in graph.keys() {
+        if visited.contains(email) {
+            continue;
+        }
+
+        let mut component = Vec::new();
+        let mut stack = vec![email.clone()];
+        visited.insert(email.clone());
+
+        while let Some(current) = stack.pop() {
+            component.push(current.clone());
+
+            if let Some(neighbors) = graph.get(&current) {
+                for neighbor in neighbors {
+                    if visited.insert(neighbor.clone()) {
+                        stack.push(neighbor.clone());
+                    }
+                }
+            }
+        }
+
+        component.sort();
+        let name = email_to_name
+            .get(&component[0])
+            .expect("every email has an owner")
+            .clone();
+        let mut account = Vec::with_capacity(component.len() + 1);
+        account.push(name);
+        account.extend(component);
+        merged.push(account);
+    }
+
+    merged
+}
+
+/// Clone Graph
+///
+/// Pattern: graph traversal over an adjacency list.
+/// Idea: visit every node and rebuild its neighbor list in a separate vector.
+///
+/// Time: O(v + e)
+/// Space: O(v + e)
+pub fn clone_graph(adjacency: Vec<Vec<usize>>) -> Vec<Vec<usize>> {
+    let mut clone = vec![Vec::new(); adjacency.len()];
+    let mut visited = vec![false; adjacency.len()];
+
+    for node in 0..adjacency.len() {
+        if visited[node] {
+            continue;
+        }
+
+        let mut queue = VecDeque::from([node]);
+        visited[node] = true;
+
+        while let Some(current) = queue.pop_front() {
+            clone[current] = adjacency[current].clone();
+
+            for &neighbor in &adjacency[current] {
+                if !visited[neighbor] {
+                    visited[neighbor] = true;
+                    queue.push_back(neighbor);
+                }
+            }
+        }
+    }
+
+    clone
+}
+
+struct UnionFind {
+    parent: Vec<usize>,
+    rank: Vec<usize>,
+}
+
+impl UnionFind {
+    fn new(size: usize) -> Self {
+        Self {
+            parent: (0..size).collect(),
+            rank: vec![0; size],
+        }
+    }
+
+    fn find(&mut self, value: usize) -> usize {
+        if self.parent[value] != value {
+            self.parent[value] = self.find(self.parent[value]);
+        }
+
+        self.parent[value]
+    }
+
+    fn union(&mut self, left: usize, right: usize) -> bool {
+        let left_root = self.find(left);
+        let right_root = self.find(right);
+
+        if left_root == right_root {
+            return false;
+        }
+
+        match self.rank[left_root].cmp(&self.rank[right_root]) {
+            std::cmp::Ordering::Less => self.parent[left_root] = right_root,
+            std::cmp::Ordering::Greater => self.parent[right_root] = left_root,
+            std::cmp::Ordering::Equal => {
+                self.parent[right_root] = left_root;
+                self.rank[left_root] += 1;
+            }
+        }
+
+        true
     }
 }
 
