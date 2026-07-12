@@ -1,7 +1,7 @@
 use rust_algorithms::patterns::weighted_graphs::{
-    bellman_ford_shortest_paths, dijkstra_shortest_paths, floyd_warshall_all_pairs,
-    kruskal_minimum_spanning_tree_weight, network_delay_time, prim_minimum_spanning_tree_weight,
-    BellmanFordError,
+    bellman_ford_shortest_paths, cheapest_flight_within_k_stops, critical_connections,
+    dijkstra_shortest_paths, floyd_warshall_all_pairs, kruskal_minimum_spanning_tree_weight,
+    minimum_effort_path, network_delay_time, prim_minimum_spanning_tree_weight, BellmanFordError,
 };
 
 #[test]
@@ -140,4 +140,51 @@ fn minimum_spanning_tree_returns_none_for_disconnected_graph() {
 
     assert_eq!(prim_minimum_spanning_tree_weight(4, &edges), None);
     assert_eq!(kruskal_minimum_spanning_tree_weight(4, &edges), None);
+}
+
+#[test]
+fn cheapest_flight_respects_stop_limit() {
+    let flights = vec![(0, 1, 100), (1, 2, 100), (2, 3, 100), (0, 3, 500)];
+
+    assert_eq!(
+        cheapest_flight_within_k_stops(4, &flights, 0, 3, 1),
+        Some(500)
+    );
+    assert_eq!(
+        cheapest_flight_within_k_stops(4, &flights, 0, 3, 2),
+        Some(300)
+    );
+}
+
+#[test]
+fn cheapest_flight_returns_none_when_destination_is_unreachable() {
+    let flights = vec![(0, 1, 50), (1, 2, 50)];
+
+    assert_eq!(cheapest_flight_within_k_stops(4, &flights, 0, 3, 2), None);
+}
+
+#[test]
+fn minimum_effort_path_minimizes_largest_step() {
+    let heights = vec![vec![1, 2, 2], vec![3, 8, 2], vec![5, 3, 5]];
+
+    assert_eq!(minimum_effort_path(heights), 2);
+}
+
+#[test]
+fn minimum_effort_path_returns_zero_for_single_cell() {
+    assert_eq!(minimum_effort_path(vec![vec![7]]), 0);
+}
+
+#[test]
+fn critical_connections_returns_network_bridges() {
+    let connections = vec![(0, 1), (1, 2), (2, 0), (1, 3)];
+
+    assert_eq!(critical_connections(4, &connections), vec![(1, 3)]);
+}
+
+#[test]
+fn critical_connections_returns_empty_when_every_edge_is_in_a_cycle() {
+    let connections = vec![(0, 1), (1, 2), (2, 0)];
+
+    assert!(critical_connections(3, &connections).is_empty());
 }

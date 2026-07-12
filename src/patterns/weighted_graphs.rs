@@ -1,6 +1,8 @@
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
 
+const GRID_DIRECTIONS: [(isize, isize); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
+
 #[derive(Debug, PartialEq, Eq)]
 pub enum BellmanFordError {
     NegativeCycle,
@@ -220,6 +222,114 @@ pub fn kruskal_minimum_spanning_tree_weight(
     (edges_used == node_count - 1).then_some(total_weight)
 }
 
+pub fn cheapest_flight_within_k_stops(
+    node_count: usize,
+    flights: &[(usize, usize, i32)],
+    source: usize,
+    destination: usize,
+    max_stops: usize,
+) -> Option<i32> {
+    if source >= node_count || destination >= node_count {
+        return None;
+    }
+
+    if source == destination {
+        return Some(0);
+    }
+
+    let mut distances = vec![i32::MAX; node_count];
+    distances[source] = 0;
+
+    for _ in 0..=max_stops {
+        let mut next_distances = distances.clone();
+
+        for &(from, to, price) in flights {
+            if from >= node_count || to >= node_count || distances[from] == i32::MAX {
+                continue;
+            }
+
+            let candidate = distances[from].saturating_add(price);
+            next_distances[to] = next_distances[to].min(candidate);
+        }
+
+        distances = next_distances;
+    }
+
+    (distances[destination] != i32::MAX).then_some(distances[destination])
+}
+
+pub fn minimum_effort_path(heights: Vec<Vec<i32>>) -> i32 {
+    if heights.is_empty() || heights[0].is_empty() {
+        return 0;
+    }
+
+    let rows = heights.len();
+    let cols = heights[0].len();
+    let mut efforts = vec![vec![i32::MAX; cols]; rows];
+    let mut heap = BinaryHeap::new();
+
+    efforts[0][0] = 0;
+    heap.push(Reverse((0, 0, 0)));
+
+    while let Some(Reverse((effort, row, col))) = heap.pop() {
+        if row == rows - 1 && col == cols - 1 {
+            return effort;
+        }
+
+        if effort > efforts[row][col] {
+            continue;
+        }
+
+        for (next_row, next_col) in grid_neighbors(row, col, rows, cols) {
+            let step_effort = (heights[row][col] - heights[next_row][next_col]).abs();
+            let next_effort = effort.max(step_effort);
+
+            if next_effort < efforts[next_row][next_col] {
+                efforts[next_row][next_col] = next_effort;
+                heap.push(Reverse((next_effort, next_row, next_col)));
+            }
+        }
+    }
+
+    0
+}
+
+pub fn critical_connections(
+    node_count: usize,
+    connections: &[(usize, usize)],
+) -> Vec<(usize, usize)> {
+    let mut graph = vec![Vec::new(); node_count];
+
+    for &(left, right) in connections {
+        if left < node_count && right < node_count {
+            graph[left].push(right);
+            graph[right].push(left);
+        }
+    }
+
+    let mut discovery = vec![None; node_count];
+    let mut low = vec![0; node_count];
+    let mut time = 0;
+    let mut bridges = Vec::new();
+
+    for node in 0..node_count {
+        if discovery[node].is_none() {
+            collect_bridges(
+                node,
+                usize::MAX,
+                &graph,
+                &mut discovery,
+                &mut low,
+                &mut time,
+                &mut bridges,
+            );
+        }
+    }
+
+    bridges.sort_unstable();
+    bridges
+}
+
 fn adjacency_list(node_count: usize, edges: &[(usize, usize, i32)]) -> Vec<Vec<(usize, i32)>> {
     let mut graph = vec![Vec::new(); node_count];
 
@@ -230,6 +340,52 @@ fn adjacency_list(node_count: usize, edges: &[(usize, usize, i32)]) -> Vec<Vec<(
     }
 
     graph
+}
+
+fn grid_neighbors(row: usize, col: usize, rows: usize, cols: usize) -> Vec<(usize, usize)> {
+    let mut result = Vec::with_capacity(4);
+
+    for (row_delta, col_delta) in GRID_DIRECTIONS {
+        let next_row = row as isize + row_delta;
+        let next_col = col as isize + col_delta;
+
+        if next_row >= 0 && next_row < rows as isize && next_col >= 0 && next_col < cols as isize {
+            result.push((next_row as usize, next_col as usize));
+        }
+    }
+
+    result
+}
+
+fn collect_bridges(
+    node: usize,
+    parent: usize,
+    graph: &[Vec<usize>],
+    discovery: &mut [Option<usize>],
+    low: &mut [usize],
+    time: &mut usize,
+    bridges: &mut Vec<(usize, usize)>,
+) {
+    *time += 1;
+    discovery[node] = Some(*time);
+    low[node] = *time;
+
+    for &neighbor in &graph[node] {
+        if neighbor == parent {
+            continue;
+        }
+
+        if discovery[neighbor].is_none() {
+            collect_bridges(neighbor, node, graph, discovery, low, time, bridges);
+            low[node] = low[node].min(low[neighbor]);
+
+            if low[neighbor] > discovery[node].unwrap() {
+                bridges.push((node.min(neighbor), node.max(neighbor)));
+            }
+        } else {
+            low[node] = low[node].min(discovery[neighbor].unwrap());
+        }
+    }
 }
 
 fn undirected_adjacency_list(
