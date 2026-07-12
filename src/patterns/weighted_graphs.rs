@@ -365,6 +365,47 @@ pub fn min_cost_connect_points(points: &[(i32, i32)]) -> i32 {
     total_cost
 }
 
+pub fn find_critical_and_pseudo_critical_edges(
+    node_count: usize,
+    edges: &[(usize, usize, i32)],
+) -> (Vec<usize>, Vec<usize>) {
+    let mut indexed_edges: Vec<(usize, usize, i32, usize)> = edges
+        .iter()
+        .copied()
+        .enumerate()
+        .filter_map(|(index, (from, to, weight))| {
+            (from < node_count && to < node_count).then_some((from, to, weight, index))
+        })
+        .collect();
+    indexed_edges.sort_by_key(|&(_, _, weight, _)| weight);
+
+    let Some(base_weight) = constrained_mst_weight(node_count, &indexed_edges, None, None) else {
+        return (Vec::new(), Vec::new());
+    };
+
+    let mut critical = Vec::new();
+    let mut pseudo_critical = Vec::new();
+
+    for &(_, _, _, index) in &indexed_edges {
+        let without_edge = constrained_mst_weight(node_count, &indexed_edges, None, Some(index));
+
+        if without_edge.is_none_or(|weight| weight > base_weight) {
+            critical.push(index);
+            continue;
+        }
+
+        if constrained_mst_weight(node_count, &indexed_edges, Some(index), None)
+            == Some(base_weight)
+        {
+            pseudo_critical.push(index);
+        }
+    }
+
+    critical.sort_unstable();
+    pseudo_critical.sort_unstable();
+    (critical, pseudo_critical)
+}
+
 fn adjacency_list(node_count: usize, edges: &[(usize, usize, i32)]) -> Vec<Vec<(usize, i32)>> {
     let mut graph = vec![Vec::new(); node_count];
 
@@ -375,6 +416,45 @@ fn adjacency_list(node_count: usize, edges: &[(usize, usize, i32)]) -> Vec<Vec<(
     }
 
     graph
+}
+
+fn constrained_mst_weight(
+    node_count: usize,
+    edges: &[(usize, usize, i32, usize)],
+    forced_edge: Option<usize>,
+    banned_edge: Option<usize>,
+) -> Option<i32> {
+    if node_count <= 1 {
+        return Some(0);
+    }
+
+    let mut union_find = UnionFind::new(node_count);
+    let mut total_weight = 0;
+    let mut edges_used = 0;
+
+    if let Some(forced_index) = forced_edge {
+        let &(from, to, weight, _) = edges
+            .iter()
+            .find(|&&(_, _, _, index)| index == forced_index)?;
+
+        if union_find.union(from, to) {
+            total_weight += weight;
+            edges_used += 1;
+        }
+    }
+
+    for &(from, to, weight, index) in edges {
+        if Some(index) == banned_edge || Some(index) == forced_edge {
+            continue;
+        }
+
+        if union_find.union(from, to) {
+            total_weight += weight;
+            edges_used += 1;
+        }
+    }
+
+    (edges_used == node_count - 1).then_some(total_weight)
 }
 
 fn manhattan_distance(left: (i32, i32), right: (i32, i32)) -> i32 {

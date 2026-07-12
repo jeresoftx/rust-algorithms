@@ -1,8 +1,8 @@
 use rust_algorithms::patterns::weighted_graphs::{
     bellman_ford_shortest_paths, cheapest_flight_within_k_stops, critical_connections,
-    dijkstra_shortest_paths, floyd_warshall_all_pairs, kruskal_minimum_spanning_tree_weight,
-    min_cost_connect_points, minimum_effort_path, network_delay_time,
-    prim_minimum_spanning_tree_weight, BellmanFordError,
+    dijkstra_shortest_paths, find_critical_and_pseudo_critical_edges, floyd_warshall_all_pairs,
+    kruskal_minimum_spanning_tree_weight, min_cost_connect_points, minimum_effort_path,
+    network_delay_time, prim_minimum_spanning_tree_weight, BellmanFordError,
 };
 
 #[test]
@@ -200,4 +200,32 @@ fn min_cost_connect_points_returns_manhattan_mst_weight() {
 #[test]
 fn min_cost_connect_points_returns_zero_for_single_point() {
     assert_eq!(min_cost_connect_points(&[(3, -4)]), 0);
+}
+
+#[test]
+fn find_critical_and_pseudo_critical_edges_classifies_mst_edges() {
+    let edges = vec![
+        (0, 1, 1),
+        (1, 2, 1),
+        (2, 3, 2),
+        (0, 3, 2),
+        (0, 4, 3),
+        (3, 4, 3),
+        (1, 4, 6),
+    ];
+
+    assert_eq!(
+        find_critical_and_pseudo_critical_edges(5, &edges),
+        (vec![0, 1], vec![2, 3, 4, 5])
+    );
+}
+
+#[test]
+fn find_critical_and_pseudo_critical_edges_handles_all_edges_tied() {
+    let edges = vec![(0, 1, 1), (1, 2, 1), (2, 0, 1)];
+
+    assert_eq!(
+        find_critical_and_pseudo_critical_edges(3, &edges),
+        (Vec::new(), vec![0, 1, 2])
+    );
 }
