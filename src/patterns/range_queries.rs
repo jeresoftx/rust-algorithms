@@ -303,6 +303,31 @@ pub fn corporate_flight_bookings(
     difference.values()
 }
 
+pub fn car_pooling(trips: &[(i32, usize, usize)], capacity: i32) -> bool {
+    if capacity < 0 {
+        return false;
+    }
+
+    let Some(max_destination) = trips.iter().map(|&(_, _, destination)| destination).max() else {
+        return true;
+    };
+
+    let mut difference = DifferenceArray::new(max_destination);
+
+    for &(passengers, origin, destination) in trips {
+        if passengers <= 0 || origin >= destination {
+            return false;
+        }
+
+        difference.increment_range(origin, destination - 1, passengers);
+    }
+
+    difference
+        .values()
+        .into_iter()
+        .all(|passengers| passengers <= capacity)
+}
+
 pub fn count_smaller_numbers_after_self(values: Vec<i32>) -> Vec<i32> {
     let mut sorted_values = values.clone();
     sorted_values.sort_unstable();

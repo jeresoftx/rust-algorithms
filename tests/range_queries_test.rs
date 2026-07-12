@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::range_queries::{
-    corporate_flight_bookings, count_smaller_numbers_after_self, reverse_pairs, DifferenceArray,
-    FenwickTree, MyCalendar, MyCalendarTwo, RangeSumQuery, SegmentTree,
+    car_pooling, corporate_flight_bookings, count_smaller_numbers_after_self, reverse_pairs,
+    DifferenceArray, FenwickTree, MyCalendar, MyCalendarTwo, RangeSumQuery, SegmentTree,
 };
 
 #[test]
@@ -123,6 +123,28 @@ fn corporate_flight_bookings_ignores_invalid_bookings() {
     let bookings = vec![(0, 2, 10), (2, 4, 20), (3, 2, 30), (1, 3, 5)];
 
     assert_eq!(corporate_flight_bookings(&bookings, 3), vec![5, 5, 5]);
+}
+
+#[test]
+fn car_pooling_rejects_trips_that_exceed_capacity() {
+    let trips = vec![(2, 1, 5), (3, 3, 7)];
+
+    assert!(!car_pooling(&trips, 4));
+    assert!(car_pooling(&trips, 5));
+}
+
+#[test]
+fn car_pooling_treats_destination_as_exclusive() {
+    let trips = vec![(2, 1, 5), (3, 5, 7)];
+
+    assert!(car_pooling(&trips, 3));
+}
+
+#[test]
+fn car_pooling_rejects_invalid_trips_and_capacity() {
+    assert!(!car_pooling(&[(1, 3, 3)], 4));
+    assert!(!car_pooling(&[(0, 1, 3)], 4));
+    assert!(!car_pooling(&[(1, 1, 3)], -1));
 }
 
 #[test]
