@@ -1,5 +1,6 @@
 pub mod binary_search;
 pub mod dynamic_programming;
+pub mod geometry;
 pub mod graphs;
 pub mod greedy;
 pub mod hashing;
