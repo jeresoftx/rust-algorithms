@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::string_algorithms::{
-    find_anagram_starts, find_pattern_positions, longest_duplicate_substring,
-    repeated_substring_pattern,
+    find_anagram_starts, find_pattern_positions, longest_common_prefix,
+    longest_duplicate_substring, repeated_substring_pattern,
 };
 
 #[test]
@@ -51,6 +51,29 @@ fn repeated_substring_pattern_rejects_non_repeated_string() {
 #[test]
 fn repeated_substring_pattern_rejects_single_character() {
     assert!(!repeated_substring_pattern("a"));
+}
+
+#[test]
+fn longest_common_prefix_returns_shared_prefix() {
+    let words = vec![
+        "flower".to_string(),
+        "flow".to_string(),
+        "flight".to_string(),
+    ];
+
+    assert_eq!(longest_common_prefix(words), "fl");
+}
+
+#[test]
+fn longest_common_prefix_returns_empty_when_no_prefix_exists() {
+    let words = vec!["dog".to_string(), "racecar".to_string(), "car".to_string()];
+
+    assert_eq!(longest_common_prefix(words), "");
+}
+
+#[test]
+fn longest_common_prefix_handles_empty_input() {
+    assert_eq!(longest_common_prefix(Vec::new()), "");
 }
 
 #[test]

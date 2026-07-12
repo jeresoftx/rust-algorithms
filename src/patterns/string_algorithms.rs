@@ -71,6 +71,30 @@ pub fn repeated_substring_pattern(text: &str) -> bool {
     doubled[1..doubled.len() - 1].contains(text)
 }
 
+pub fn longest_common_prefix(words: Vec<String>) -> String {
+    if words.is_empty() {
+        return String::new();
+    }
+
+    let mut prefix: Vec<char> = words[0].chars().collect();
+
+    for word in words.iter().skip(1) {
+        let common_length = prefix
+            .iter()
+            .zip(word.chars())
+            .take_while(|(left, right)| **left == *right)
+            .count();
+
+        prefix.truncate(common_length);
+
+        if prefix.is_empty() {
+            break;
+        }
+    }
+
+    prefix.into_iter().collect()
+}
+
 pub fn longest_duplicate_substring(text: &str) -> String {
     let bytes = text.as_bytes();
     let mut left = 1;

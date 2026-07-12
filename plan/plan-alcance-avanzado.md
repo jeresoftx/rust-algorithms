@@ -131,9 +131,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 7.
-- Tests agregados: 23.
-- Funciones y estructuras principales: `Trie`, `WordDictionary`, `replace_words`, `find_pattern_positions`, `find_anagram_starts`, `repeated_substring_pattern` y `longest_duplicate_substring`.
+- Problemas implementados: 8.
+- Tests agregados: 26.
+- Funciones y estructuras principales: `Trie`, `WordDictionary`, `replace_words`, `find_pattern_positions`, `find_anagram_starts`, `repeated_substring_pattern`, `longest_common_prefix` y `longest_duplicate_substring`.
 
 Criterio de cierre:
 
