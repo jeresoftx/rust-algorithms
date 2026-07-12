@@ -10,6 +10,7 @@ El objetivo es que este proyecto sirva como material de estudio reutilizable: ca
 - Tests de integración para validar cada ejercicio.
 - Notas de estudio con ideas, invariantes y errores comunes.
 - Un plan de práctica por semanas.
+- Una ruta avanzada para ampliar el alcance después del plan base.
 - Wiki con documentación resumida del avance.
 
 ## Estructura
@@ -64,6 +65,7 @@ notes/
   rust-interview-patterns.md
   mistakes.md
 plan/
+  plan-alcance-avanzado.md
   plan-algoritmos-rust.md
 ```
 
@@ -96,8 +98,14 @@ La wiki es el punto de entrada recomendado para estudiar el avance, revisar patr
 
 [Wiki de Rust Algorithms](https://github.com/jeresoftx/rust-algorithms/wiki)
 
+Planes locales:
+
+- [Plan base de algoritmos en Rust](plan/plan-algoritmos-rust.md)
+- [Plan de alcance avanzado](plan/plan-alcance-avanzado.md)
+
 Páginas destacadas:
 
+- [Plan de Alcance Avanzado](https://github.com/jeresoftx/rust-algorithms/wiki/Plan-de-Alcance-Avanzado)
 - [Semana 1: Rust, Hashing, Arrays y Strings](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-1-Rust-Hashing-Arrays-y-Strings)
 - [Semanas 2 y 3: Arrays, Strings, Hashing y Sumas de Prefijos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-2-y-3-Arrays-Strings-Hashing-y-Sumas-de-Prefijos)
 - [Semanas 4 y 5: Two Pointers, Sliding Window y Stack](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-4-y-5-Two-Pointers-Sliding-Window-y-Stack)
@@ -115,6 +123,7 @@ Páginas destacadas:
 - Semana documentada: 16
 - Problemas implementados: 69
 - Tests automatizados: 162
+- Ruta avanzada: planificada
 - Lenguaje: Rust
 
 ## Enfoque de Estudio

@@ -359,7 +359,7 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Puedes definir estado, transición, base cases y orden de cómputo.
+- Puedes definir estado, transición, casos base y orden de cómputo.
 
 ---
 
@@ -384,7 +384,7 @@ Formato de simulacro:
 
 Criterio de avance:
 
-- Resuelves mediums frecuentes en 35 a 45 minutos.
+- Resuelves problemas medios frecuentes en 35 a 45 minutos.
 - Hablas mientras piensas sin perder estructura.
 - Tienes historias STAR preparadas para liderazgo, conflicto, ambigüedad, impacto y aprendizaje.
 
@@ -452,6 +452,23 @@ Calidad > cantidad: un problema bien revisado vale más que tres copiados.
 
 ---
 
+## Expansión Después de la Semana 16
+
+El plan base cubre los patrones más frecuentes y prepara una rutina sólida de simulacros. Para ampliar el alcance hacia temas avanzados, usar el documento:
+
+- [Plan de Alcance Avanzado](plan-alcance-avanzado.md)
+
+Ese plan agrega complejidad formal, matemáticas, manipulación de bits, tries, algoritmos de cadenas, grafos ponderados, árboles de expansión mínima, Tarjan, Fenwick tree, segment tree, convex hull y simulacros avanzados.
+
+El criterio recomendado es no saltar a la expansión hasta que:
+
+- `cargo test` pase de forma consistente.
+- Los patrones base puedan explicarse sin mirar notas.
+- Exista una cola clara de problemas fallados en `notes/review-queue.md`.
+- Se hayan completado al menos 3 simulacros de 45 minutos.
+
+---
+
 ## Preparación de Entrevistas Técnicas
 
 Una buena entrevista técnica suele valorar:
@@ -459,7 +476,7 @@ Una buena entrevista técnica suele valorar:
 - Claridad para explorar requisitos.
 - Pensamiento estructurado.
 - Correctness antes de micro-optimización.
-- Manejo de edge cases.
+- Manejo de casos borde.
 - Comunicación durante la solución.
 - Capacidad de mejorar una primera solución.
 
@@ -471,12 +488,12 @@ Practicar frases:
 - "Voy a mantener este invariante de la ventana."
 - "Probemos con un caso pequeño y uno borde."
 
-Behavioral:
+Conductual:
 
 Preparar 5 historias STAR:
 
 - Liderazgo.
-- Conflicto tecnico.
+- Conflicto técnico.
 - Ambigüedad.
 - Error propio y aprendizaje.
 - Impacto medible.
@@ -499,7 +516,7 @@ Día 2:
 Día 3:
 
 - Resolver Product of Array Except Self.
-- Documentar complejidad y edge cases.
+- Documentar complejidad y casos borde.
 
 Día 4:
 
@@ -522,7 +539,7 @@ Día 7:
 
 ---
 
-## Senales de que Vas Bien
+## Señales de que Vas Bien
 
 - Antes de codificar, puedes decir qué patrón aplica.
 - Tus tests capturan bordes sin exagerar.
@@ -530,7 +547,7 @@ Día 7:
 - Fallas menos por Rust y más por razonamiento real.
 - Puedes explicar por qué una solución es correcta.
 
-## Senales de Ajuste
+## Señales de Ajuste
 
 - Si pasas más de 3 días atorado en Rust, dedicar 1 sesión solo a lenguaje.
 - Si resuelves muchos easy pero pocos medium, bajar cantidad y subir profundidad.
@@ -541,6 +558,6 @@ Día 7:
 
 ## Próxima Acción Recomendada
 
-1. Crear `Cargo.toml`, `src/lib.rs`, `notes/mistakes.md` y el primer modulo `src/patterns/hashing.rs`.
+1. Crear `Cargo.toml`, `src/lib.rs`, `notes/mistakes.md` y el primer módulo `src/patterns/hashing.rs`.
 2. Resolver `Two Sum` con tests.
 3. Registrar la solución como la primera entrada del repositorio.
