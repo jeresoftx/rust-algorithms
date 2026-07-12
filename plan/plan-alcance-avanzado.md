@@ -175,9 +175,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 9.
-- Tests agregados: 20.
-- Funciones principales: `dijkstra_shortest_paths`, `network_delay_time`, `bellman_ford_shortest_paths`, `floyd_warshall_all_pairs`, `prim_minimum_spanning_tree_weight`, `kruskal_minimum_spanning_tree_weight`, `cheapest_flight_within_k_stops`, `minimum_effort_path` y `critical_connections`.
+- Problemas implementados: 10.
+- Tests agregados: 22.
+- Funciones principales: `dijkstra_shortest_paths`, `network_delay_time`, `bellman_ford_shortest_paths`, `floyd_warshall_all_pairs`, `prim_minimum_spanning_tree_weight`, `kruskal_minimum_spanning_tree_weight`, `cheapest_flight_within_k_stops`, `minimum_effort_path`, `critical_connections` y `min_cost_connect_points`.
 
 Criterio de cierre:
 
