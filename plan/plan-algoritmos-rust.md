@@ -1,6 +1,6 @@
-# Plan de Autoestudio: Algoritmos en Rust para Entrevistas de Google
+# Plan de Autoestudio: Algoritmos en Rust para Entrevistas Técnicas
 
-**Objetivo:** prepararme para entrevistas técnicas tipo Google usando este repo como bitácora práctica de algoritmos, patrones de resolución y simulacros en Rust.
+**Objetivo:** prepararme para entrevistas técnicas usando este repo como bitácora práctica de algoritmos, patrones de resolución y simulacros en Rust.
 
 **Duración sugerida:** 16 semanas.
 
@@ -55,7 +55,7 @@ rust-algorithms/
     rust-interview-patterns.md
     complexity-cheatsheet.md
   plan/
-    plan-google-algoritmos-rust.md
+    plan-algoritmos-rust.md
 ```
 
 Cada solución debería incluir:
@@ -63,9 +63,9 @@ Cada solución debería incluir:
 - Nombre del problema.
 - Link o fuente.
 - Patrón principal.
-- Idea en 3 a 6 lineas.
+- Idea en 3 a 6 líneas.
 - Complejidad temporal y espacial.
-- Tests para caso normal, borde y caso pequeno.
+- Tests para caso normal, borde y caso pequeño.
 - Nota de error si te atoraste.
 
 ---
@@ -86,7 +86,7 @@ Cada solución debería incluir:
 2. Resolver 1 problema nuevo cronometrado.
 3. Actualizar checklist semanal.
 
-### Sabado Opcional
+### Sábado Opcional
 
 Simulacro ligero o repaso de Rust.
 
@@ -203,7 +203,7 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Puedes definir `lo`, `hi` y la condicion monotona antes de escribir codigo.
+- Puedes definir `lo`, `hi` y la condición monótona antes de escribir código.
 
 ---
 
@@ -359,18 +359,18 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Puedes definir estado, transicion, base cases y orden de computo.
+- Puedes definir estado, transición, base cases y orden de cómputo.
 
 ---
 
-## Semana 16: Simulacros Google
+## Semana 16: Simulacros de Entrevista
 
 **Meta:** convertir conocimiento en performance de entrevista.
 
 Rutina:
 
 - 3 simulacros de 45 minutos.
-- 2 sesiones de revision profunda.
+- 2 sesiones de revisión profunda.
 - 1 día de behavioral stories.
 - 1 día de repaso de errores frecuentes.
 
@@ -394,13 +394,13 @@ Criterio de avance:
 
 Antes de marcar un problema como terminado:
 
-- [ ] Entendi el enunciado y escribi ejemplos.
+- [ ] Entendí el enunciado y escribí ejemplos.
 - [ ] Identifiqué el patrón principal.
-- [ ] Explique el algoritmo en voz alta.
-- [ ] Escribi tests.
-- [ ] Pase los tests.
-- [ ] Anote complejidad temporal y espacial.
-- [ ] Registre errores o bloqueos.
+- [ ] Expliqué el algoritmo en voz alta.
+- [ ] Escribí tests.
+- [ ] Pasé los tests.
+- [ ] Anoté complejidad temporal y espacial.
+- [ ] Registré errores o bloqueos.
 - [ ] Rehice el problema otro día si fallé o miré solución.
 
 ---
@@ -410,9 +410,9 @@ Antes de marcar un problema como terminado:
 Usa cuatro estados:
 
 - `nuevo`: primera vez.
-- `fallado`: no salio sin ayuda.
-- `repetir`: salio con dificultad o con bugs importantes.
-- `dominado`: salio limpio en tiempo.
+- `fallado`: no salió sin ayuda.
+- `repetir`: salió con dificultad o con bugs importantes.
+- `dominado`: salió limpio en tiempo.
 
 Cadencia:
 
@@ -430,7 +430,7 @@ Mantener una tabla en `notes/mistakes.md`:
 
 ---
 
-## Metricas de Progreso
+## Métricas de Progreso
 
 Medir cada semana:
 
@@ -452,9 +452,9 @@ Calidad > cantidad: un problema bien revisado vale más que tres copiados.
 
 ---
 
-## Preparacion Especifica para Google
+## Preparación de Entrevistas Técnicas
 
-Google suele valorar:
+Una buena entrevista técnica suele valorar:
 
 - Claridad para explorar requisitos.
 - Pensamiento estructurado.
@@ -467,9 +467,9 @@ Practicar frases:
 
 - "Primero voy a confirmar constraints y casos borde."
 - "La solución brute force sería..., pero cuesta..."
-- "Hay una propiedad monotona, asi que podemos usar binary search."
+- "Hay una propiedad monótona, así que podemos usar binary search."
 - "Voy a mantener este invariante de la ventana."
-- "Probemos con un caso pequeno y uno borde."
+- "Probemos con un caso pequeño y uno borde."
 
 Behavioral:
 

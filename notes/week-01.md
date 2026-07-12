@@ -83,4 +83,4 @@ cargo test
 
 - El patrón más fuerte esta semana fue la búsqueda directa con hash.
 - El hábito más importante fue escribir el test antes de la implementación.
-- La siguiente semana debe introducir two pointers y sliding window, porque complementan muy bien los ejercicios de hashing en entrevistas estilo Google.
+- La siguiente semana debe introducir two pointers y sliding window, porque complementan muy bien los ejercicios de hashing en entrevistas técnicas.

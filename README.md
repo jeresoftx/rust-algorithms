@@ -1,0 +1,75 @@
+# Rust Algorithms
+
+Repositorio de autoestudio de algoritmos y estructuras de datos en Rust, pensado para practicar resolución de problemas, análisis de complejidad y hábitos de entrevista técnica.
+
+El objetivo es que este proyecto sirva como material de estudio reutilizable: cada solución debe tener una implementación clara, tests automatizados y notas que expliquen el patrón usado.
+
+## Qué Contiene
+
+- Soluciones de algoritmos organizadas por patrón.
+- Tests de integración para validar cada ejercicio.
+- Notas de estudio con ideas, invariantes y errores comunes.
+- Un plan de práctica por semanas.
+- Wiki con documentación resumida del avance.
+
+## Estructura
+
+```text
+src/
+  patterns/
+    hashing.rs
+tests/
+  hashing_test.rs
+notes/
+  week-01.md
+  rust-interview-patterns.md
+  mistakes.md
+plan/
+  plan-algoritmos-rust.md
+```
+
+## Cómo Usarlo
+
+Ejecutar los tests:
+
+```bash
+cargo test
+```
+
+Formatear el código:
+
+```bash
+cargo fmt
+```
+
+Para estudiar un problema:
+
+1. Leer el enunciado y escribir ejemplos.
+2. Identificar el patrón principal.
+3. Escribir tests antes de implementar.
+4. Resolver con una solución clara.
+5. Anotar complejidad temporal y espacial.
+6. Registrar errores o bloqueos en la bitácora.
+
+## Wiki
+
+La documentación de avance está en la wiki del repositorio:
+
+[Wiki de Rust Algorithms](https://github.com/jeresoftx/rust-algorithms/wiki)
+
+## Estado Actual
+
+- Semana documentada: 1
+- Problemas implementados: 7
+- Tests automatizados: 18
+- Lenguaje: Rust
+
+## Enfoque de Estudio
+
+Este repositorio prioriza:
+
+- Comprender patrones antes que memorizar soluciones.
+- Practicar con tests desde el inicio.
+- Explicar decisiones y trade-offs.
+- Repetir problemas fallados hasta dominarlos.
+- Mantener notas útiles para repaso futuro.
