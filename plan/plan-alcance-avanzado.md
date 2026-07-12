@@ -131,9 +131,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 8.
-- Tests agregados: 26.
-- Funciones y estructuras principales: `Trie`, `WordDictionary`, `replace_words`, `find_pattern_positions`, `find_anagram_starts`, `repeated_substring_pattern`, `longest_common_prefix` y `longest_duplicate_substring`.
+- Problemas implementados: 9.
+- Tests agregados: 29.
+- Funciones y estructuras principales: `Trie`, `WordDictionary`, `replace_words`, `find_words`, `find_pattern_positions`, `find_anagram_starts`, `repeated_substring_pattern`, `longest_common_prefix` y `longest_duplicate_substring`.
 
 Criterio de cierre:
 
@@ -300,8 +300,8 @@ Avance acumulado:
 - Simulacros avanzados creados: 3.
 - Simulacros acumulados ejecutados: 6 de 6.
 - Problemas repetidos: 4 de 20.
-- Problemas implementados: 116 de 140 como mínimo.
-- Faltan para cierre mínimo: 24 problemas implementados y 16 repeticiones.
+- Problemas implementados: 117 de 140 como mínimo.
+- Faltan para cierre mínimo: 23 problemas implementados y 16 repeticiones.
 - Archivos creados: `notes/week-27-28.md`, `notes/simulations/simulacro-04-grafos-ponderados.md`, `notes/simulations/simulacro-05-strings-avanzados.md` y `notes/simulations/simulacro-06-range-queries.md`.
 - Enfoque: práctica cronometrada, explicación verbal y repetición dirigida.
 

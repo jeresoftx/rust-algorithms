@@ -1,4 +1,4 @@
-use rust_algorithms::patterns::tries::{replace_words, Trie, WordDictionary};
+use rust_algorithms::patterns::tries::{find_words, replace_words, Trie, WordDictionary};
 
 #[test]
 fn trie_searches_inserted_words_exactly() {
@@ -96,4 +96,31 @@ fn replace_words_keeps_words_without_matching_root() {
     let sentence = "red yellow bluebird";
 
     assert_eq!(replace_words(dictionary, sentence), "red yellow blue");
+}
+
+#[test]
+fn find_words_returns_dictionary_words_present_on_board() {
+    let board = vec![
+        vec!['o', 'a', 'a', 'n'],
+        vec!['e', 't', 'a', 'e'],
+        vec!['i', 'h', 'k', 'r'],
+        vec!['i', 'f', 'l', 'v'],
+    ];
+    let words = vec!["oath", "pea", "eat", "rain"];
+
+    assert_eq!(find_words(board, words), vec!["eat", "oath"]);
+}
+
+#[test]
+fn find_words_does_not_reuse_the_same_cell_in_one_word() {
+    let board = vec![vec!['a', 'b']];
+    let words = vec!["aba", "ab"];
+
+    assert_eq!(find_words(board, words), vec!["ab"]);
+}
+
+#[test]
+fn find_words_handles_empty_inputs() {
+    assert!(find_words(Vec::new(), vec!["a"]).is_empty());
+    assert!(find_words(vec![vec!['a']], Vec::new()).is_empty());
 }
