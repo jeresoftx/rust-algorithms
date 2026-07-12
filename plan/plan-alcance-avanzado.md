@@ -83,9 +83,9 @@ Problemas sugeridos:
 
 Primer avance:
 
-- Problemas implementados: 10.
-- Tests agregados: 22.
-- Funciones principales: `single_number`, `count_ones`, `count_bits`, `reverse_bits`, `is_power_of_two`, `fast_pow`, `gcd`, `lcm`, `sieve` y `maximum_subarray`.
+- Problemas implementados: 12.
+- Tests agregados: 28.
+- Funciones principales: `single_number`, `missing_number`, `count_ones`, `count_bits`, `reverse_bits`, `is_power_of_two`, `fast_pow`, `gcd`, `lcm`, `sieve`, `maximum_subarray` y `majority_element`.
 
 Criterio de cierre:
 

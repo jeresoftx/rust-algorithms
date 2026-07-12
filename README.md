@@ -127,8 +127,8 @@ Páginas destacadas:
 ## Estado Actual
 
 - Semana documentada: 17-18
-- Problemas implementados: 79
-- Tests automatizados: 184
+- Problemas implementados: 81
+- Tests automatizados: 190
 - Ruta avanzada: fase 1 iniciada
 - Lenguaje: Rust
 
