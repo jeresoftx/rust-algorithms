@@ -52,6 +52,8 @@ La meta de 400 problemas queda como horizonte opcional de largo plazo. Para este
 
 Duración sugerida: semanas 17 y 18.
 
+Estado: iniciada.
+
 Temas:
 
 - Big O, Θ, Ω y amortizada.
@@ -61,9 +63,10 @@ Temas:
 
 Archivos sugeridos:
 
-- `notes/complexity-cheatsheet.md`
-- `src/patterns/math_bit.rs`
-- `tests/math_bit_test.rs`
+- `notes/complexity-cheatsheet.md`: creado.
+- `src/patterns/math_bit.rs`: creado.
+- `tests/math_bit_test.rs`: creado.
+- `notes/week-17-18.md`: creado.
 
 Problemas sugeridos:
 
@@ -77,6 +80,12 @@ Problemas sugeridos:
 - Sieve of Eratosthenes.
 - Majority Element.
 - Maximum Subarray.
+
+Primer avance:
+
+- Problemas implementados: 10.
+- Tests agregados: 22.
+- Funciones principales: `single_number`, `count_ones`, `count_bits`, `reverse_bits`, `is_power_of_two`, `fast_pow`, `gcd`, `lcm`, `sieve` y `maximum_subarray`.
 
 Criterio de cierre:
 

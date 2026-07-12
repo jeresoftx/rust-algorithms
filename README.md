@@ -26,6 +26,7 @@ src/
     heaps.rs
     intervals.rs
     linked_lists.rs
+    math_bit.rs
     recursion_backtracking.rs
     sliding_window.rs
     stack_queue.rs
@@ -40,6 +41,7 @@ tests/
   heaps_test.rs
   intervals_test.rs
   linked_lists_test.rs
+  math_bit_test.rs
   recursion_backtracking_test.rs
   sliding_window_test.rs
   stack_queue_test.rs
@@ -56,6 +58,8 @@ notes/
   week-13.md
   week-14-15.md
   week-16.md
+  week-17-18.md
+  complexity-cheatsheet.md
   mock-interview-rubric.md
   review-queue.md
   simulations/
@@ -106,6 +110,7 @@ Planes locales:
 Páginas destacadas:
 
 - [Plan de Alcance Avanzado](https://github.com/jeresoftx/rust-algorithms/wiki/Plan-de-Alcance-Avanzado)
+- [Guía de Complejidad](https://github.com/jeresoftx/rust-algorithms/wiki/Guia-de-Complejidad)
 - [Semana 1: Rust, Hashing, Arrays y Strings](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-1-Rust-Hashing-Arrays-y-Strings)
 - [Semanas 2 y 3: Arrays, Strings, Hashing y Sumas de Prefijos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-2-y-3-Arrays-Strings-Hashing-y-Sumas-de-Prefijos)
 - [Semanas 4 y 5: Two Pointers, Sliding Window y Stack](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-4-y-5-Two-Pointers-Sliding-Window-y-Stack)
@@ -116,14 +121,15 @@ Páginas destacadas:
 - [Semana 13: Montículos, Intervalos y Greedy](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-13-Monticulos-Intervalos-y-Greedy)
 - [Semanas 14 y 15: Programación Dinámica](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-14-y-15-Programacion-Dinamica)
 - [Semana 16: Simulacros y Repaso](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-16-Simulacros-y-Repaso)
+- [Semanas 17 y 18: Complejidad, Matemáticas y Bits](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-17-y-18-Complejidad-Matematicas-y-Bits)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 16
-- Problemas implementados: 69
-- Tests automatizados: 162
-- Ruta avanzada: planificada
+- Semana documentada: 17-18
+- Problemas implementados: 79
+- Tests automatizados: 184
+- Ruta avanzada: fase 1 iniciada
 - Lenguaje: Rust
 
 ## Enfoque de Estudio
