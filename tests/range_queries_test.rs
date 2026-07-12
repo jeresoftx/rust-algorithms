@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::range_queries::{
-    corporate_flight_bookings, count_smaller_numbers_after_self, DifferenceArray, FenwickTree,
-    MyCalendar, MyCalendarTwo, RangeSumQuery, SegmentTree,
+    corporate_flight_bookings, count_smaller_numbers_after_self, reverse_pairs, DifferenceArray,
+    FenwickTree, MyCalendar, MyCalendarTwo, RangeSumQuery, SegmentTree,
 };
 
 #[test]
@@ -147,6 +147,24 @@ fn count_smaller_numbers_after_self_handles_empty_input() {
         count_smaller_numbers_after_self(Vec::new()),
         Vec::<i32>::new()
     );
+}
+
+#[test]
+fn reverse_pairs_counts_values_more_than_double_right_side() {
+    assert_eq!(reverse_pairs(vec![1, 3, 2, 3, 1]), 2);
+    assert_eq!(reverse_pairs(vec![2, 4, 3, 5, 1]), 3);
+}
+
+#[test]
+fn reverse_pairs_handles_negatives_and_extreme_values() {
+    assert_eq!(reverse_pairs(vec![-5, -5]), 1);
+    assert_eq!(reverse_pairs(vec![i32::MAX, i32::MAX, i32::MIN]), 2);
+}
+
+#[test]
+fn reverse_pairs_handles_sorted_and_empty_inputs() {
+    assert_eq!(reverse_pairs(vec![1, 2, 3, 4]), 0);
+    assert_eq!(reverse_pairs(Vec::new()), 0);
 }
 
 #[test]

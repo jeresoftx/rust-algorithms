@@ -328,6 +328,70 @@ pub fn count_smaller_numbers_after_self(values: Vec<i32>) -> Vec<i32> {
     counts
 }
 
+pub fn reverse_pairs(values: Vec<i32>) -> i32 {
+    let mut values: Vec<i64> = values.into_iter().map(i64::from).collect();
+    let mut buffer = values.clone();
+
+    count_reverse_pairs(&mut values, &mut buffer) as i32
+}
+
+fn count_reverse_pairs(values: &mut [i64], buffer: &mut [i64]) -> i64 {
+    if values.len() <= 1 {
+        return 0;
+    }
+
+    let middle = values.len() / 2;
+    let (left_values, right_values) = values.split_at_mut(middle);
+    let (left_buffer, right_buffer) = buffer.split_at_mut(middle);
+
+    let mut total = count_reverse_pairs(left_values, left_buffer);
+    total += count_reverse_pairs(right_values, right_buffer);
+
+    let mut right_index = 0;
+    for &left_value in left_values.iter() {
+        while right_index < right_values.len() && left_value > 2 * right_values[right_index] {
+            right_index += 1;
+        }
+
+        total += right_index as i64;
+    }
+
+    merge_sorted_slices(left_values, right_values, buffer);
+    values.copy_from_slice(&buffer[..values.len()]);
+
+    total
+}
+
+fn merge_sorted_slices(left: &[i64], right: &[i64], output: &mut [i64]) {
+    let mut left_index = 0;
+    let mut right_index = 0;
+    let mut output_index = 0;
+
+    while left_index < left.len() && right_index < right.len() {
+        if left[left_index] <= right[right_index] {
+            output[output_index] = left[left_index];
+            left_index += 1;
+        } else {
+            output[output_index] = right[right_index];
+            right_index += 1;
+        }
+
+        output_index += 1;
+    }
+
+    while left_index < left.len() {
+        output[output_index] = left[left_index];
+        left_index += 1;
+        output_index += 1;
+    }
+
+    while right_index < right.len() {
+        output[output_index] = right[right_index];
+        right_index += 1;
+        output_index += 1;
+    }
+}
+
 #[derive(Debug, Clone, Default)]
 pub struct MyCalendar {
     events: BTreeMap<i32, i32>,
