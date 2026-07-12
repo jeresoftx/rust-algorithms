@@ -271,6 +271,8 @@ Criterio de cierre:
 
 Duración sugerida: semanas 27 y 28.
 
+Estado: iniciada.
+
 Temas:
 
 - Simulacros mixtos de 45 a 60 minutos.
@@ -291,6 +293,12 @@ Rutina:
 2. Registrar enfoque, errores y complejidad.
 3. Rehacer 1 problema fallado sin mirar solución.
 4. Actualizar `notes/review-queue.md`.
+
+Avance acumulado:
+
+- Simulacros avanzados creados: 3.
+- Archivos creados: `notes/week-27-28.md`, `notes/simulations/simulacro-04-grafos-ponderados.md`, `notes/simulations/simulacro-05-strings-avanzados.md` y `notes/simulations/simulacro-06-range-queries.md`.
+- Enfoque: práctica cronometrada, explicación verbal y repetición dirigida.
 
 Criterio de cierre:
 
