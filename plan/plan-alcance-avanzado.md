@@ -145,6 +145,8 @@ Criterio de cierre:
 
 Duración sugerida: semanas 21 a 23.
 
+Estado: iniciada.
+
 Temas:
 
 - Dijkstra.
@@ -156,9 +158,9 @@ Temas:
 
 Archivos sugeridos:
 
-- `src/patterns/weighted_graphs.rs`
-- `tests/weighted_graphs_test.rs`
-- `notes/week-21-23.md`
+- `src/patterns/weighted_graphs.rs`: creado.
+- `tests/weighted_graphs_test.rs`: creado.
+- `notes/week-21-23.md`: creado.
 
 Problemas sugeridos:
 
@@ -170,6 +172,12 @@ Problemas sugeridos:
 - Critical Connections in a Network.
 - Course Schedule reforzado con variantes.
 - Shortest Path in Binary Matrix como puente entre BFS y pesos.
+
+Primer avance:
+
+- Problemas implementados: 3.
+- Tests agregados: 9.
+- Funciones principales: `dijkstra_shortest_paths`, `network_delay_time` y `bellman_ford_shortest_paths`.
 
 Criterio de cierre:
 
