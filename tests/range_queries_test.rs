@@ -1,4 +1,6 @@
-use rust_algorithms::patterns::range_queries::{FenwickTree, RangeSumQuery, SegmentTree};
+use rust_algorithms::patterns::range_queries::{
+    corporate_flight_bookings, DifferenceArray, FenwickTree, RangeSumQuery, SegmentTree,
+};
 
 #[test]
 fn fenwick_tree_returns_prefix_and_range_sums() {
@@ -84,4 +86,40 @@ fn segment_tree_rejects_invalid_ranges_and_updates() {
     assert_eq!(tree.range_min(2, 1), None);
     assert_eq!(tree.range_min(0, 3), None);
     assert!(!tree.update(3, 9));
+}
+
+#[test]
+fn difference_array_applies_range_increments() {
+    let mut difference = DifferenceArray::new(5);
+
+    assert!(difference.increment_range(1, 3, 2));
+    assert!(difference.increment_range(2, 4, 3));
+
+    assert_eq!(difference.values(), vec![0, 2, 5, 5, 3]);
+}
+
+#[test]
+fn difference_array_rejects_invalid_ranges() {
+    let mut difference = DifferenceArray::new(3);
+
+    assert!(!difference.increment_range(2, 1, 5));
+    assert!(!difference.increment_range(0, 3, 5));
+    assert_eq!(difference.values(), vec![0, 0, 0]);
+}
+
+#[test]
+fn corporate_flight_bookings_accumulates_reserved_seats() {
+    let bookings = vec![(1, 2, 10), (2, 3, 20), (2, 5, 25)];
+
+    assert_eq!(
+        corporate_flight_bookings(&bookings, 5),
+        vec![10, 55, 45, 25, 25]
+    );
+}
+
+#[test]
+fn corporate_flight_bookings_ignores_invalid_bookings() {
+    let bookings = vec![(0, 2, 10), (2, 4, 20), (3, 2, 30), (1, 3, 5)];
+
+    assert_eq!(corporate_flight_bookings(&bookings, 3), vec![5, 5, 5]);
 }

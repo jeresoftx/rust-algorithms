@@ -240,3 +240,63 @@ fn query_segment_tree(
 
     best
 }
+
+#[derive(Debug, Clone)]
+pub struct DifferenceArray {
+    difference: Vec<i32>,
+}
+
+impl DifferenceArray {
+    pub fn new(size: usize) -> Self {
+        Self {
+            difference: vec![0; size + 1],
+        }
+    }
+
+    pub fn increment_range(&mut self, left: usize, right: usize, delta: i32) -> bool {
+        if left > right || right >= self.len() {
+            return false;
+        }
+
+        self.difference[left] += delta;
+        self.difference[right + 1] -= delta;
+        true
+    }
+
+    pub fn values(&self) -> Vec<i32> {
+        let mut current = 0;
+        let mut result = Vec::with_capacity(self.len());
+
+        for &delta in self.difference.iter().take(self.len()) {
+            current += delta;
+            result.push(current);
+        }
+
+        result
+    }
+
+    pub fn len(&self) -> usize {
+        self.difference.len().saturating_sub(1)
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+}
+
+pub fn corporate_flight_bookings(
+    bookings: &[(usize, usize, i32)],
+    flight_count: usize,
+) -> Vec<i32> {
+    let mut difference = DifferenceArray::new(flight_count);
+
+    for &(first, last, seats) in bookings {
+        if first == 0 || last == 0 {
+            continue;
+        }
+
+        difference.increment_range(first - 1, last - 1, seats);
+    }
+
+    difference.values()
+}
