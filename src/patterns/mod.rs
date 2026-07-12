@@ -1,5 +1,6 @@
 pub mod binary_search;
 pub mod graphs;
+pub mod greedy;
 pub mod hashing;
 pub mod heaps;
 pub mod intervals;
