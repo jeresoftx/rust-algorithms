@@ -10,3 +10,6 @@
 | 2026-07-12 | Largest Rectangle in Histogram | Stack monotónico | Sin centinela final quedan barras pendientes sin cerrar | Agregar altura `0` al final para vaciar la pila | 2026-07-16 |
 | 2026-07-12 | Binary Search | Búsqueda binaria | Mezclar rangos cerrados y semiabiertos produce off-by-one | Elegir una convención por función y actualizar `left`/`right` de forma consistente | 2026-07-17 |
 | 2026-07-12 | Koko Eating Bananas | Búsqueda sobre respuesta | Dividir con truncamiento subestima las horas necesarias | Usar división redondeando hacia arriba: `(value + divisor - 1) / divisor` | 2026-07-17 |
+| 2026-07-12 | Backtracking | Recursión | Olvidar deshacer una decisión contamina otras ramas | Hacer `push`, recursión y `pop` siempre juntos | 2026-07-18 |
+| 2026-07-12 | Word Search | DFS | Reutilizar una celda en el mismo camino produce falsos positivos | Marcar visitado temporalmente y restaurar al volver | 2026-07-18 |
+| 2026-07-12 | Linked Lists | Ownership | Manipular `next` directamente puede mover valores inesperadamente | Usar `take()` para transferir propiedad del siguiente nodo | 2026-07-19 |
