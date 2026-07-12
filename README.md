@@ -30,6 +30,7 @@ src/
     recursion_backtracking.rs
     sliding_window.rs
     stack_queue.rs
+    string_algorithms.rs
     trees.rs
     tries.rs
     two_pointers.rs
@@ -46,6 +47,7 @@ tests/
   recursion_backtracking_test.rs
   sliding_window_test.rs
   stack_queue_test.rs
+  string_algorithms_test.rs
   trees_test.rs
   tries_test.rs
   two_pointers_test.rs
@@ -131,8 +133,8 @@ Páginas destacadas:
 ## Estado Actual
 
 - Semana documentada: 19-20
-- Problemas implementados: 84
-- Tests automatizados: 199
+- Problemas implementados: 87
+- Tests automatizados: 209
 - Ruta avanzada: fase 2 iniciada
 - Lenguaje: Rust
 

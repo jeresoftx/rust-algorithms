@@ -112,9 +112,9 @@ Temas:
 Archivos sugeridos:
 
 - `src/patterns/tries.rs`: creado.
-- `src/patterns/string_algorithms.rs`
+- `src/patterns/string_algorithms.rs`: creado.
 - `tests/tries_test.rs`: creado.
-- `tests/string_algorithms_test.rs`
+- `tests/string_algorithms_test.rs`: creado.
 - `notes/week-19-20.md`: creado.
 
 Problemas sugeridos:
@@ -131,9 +131,9 @@ Problemas sugeridos:
 
 Primer avance:
 
-- Problemas implementados: 3.
-- Tests agregados: 9.
-- Funciones y estructuras principales: `Trie`, `WordDictionary` y `replace_words`.
+- Problemas implementados: 6.
+- Tests agregados: 19.
+- Funciones y estructuras principales: `Trie`, `WordDictionary`, `replace_words`, `find_pattern_positions`, `find_anagram_starts` y `repeated_substring_pattern`.
 
 Criterio de cierre:
 
