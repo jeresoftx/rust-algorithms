@@ -1,86 +1,86 @@
-# Week 01: Rust Basics, Hashing, Arrays, and Strings
+# Semana 01: Fundamentos de Rust, Hashing, Arrays y Strings
 
-## Goal
+## Objetivo
 
-Build enough Rust fluency to solve common interview warmups without getting blocked by syntax, ownership, or standard collections.
+Construir suficiente fluidez en Rust para resolver ejercicios comunes de entrevista sin atascarse con sintaxis, ownership o colecciones estándar.
 
-## Problems Completed
+## Problemas Completados
 
-| Problem | Pattern | Function | Tests |
+| Problema | Patrón | Función | Tests |
 | --- | --- | --- | --- |
-| Two Sum | Hash map complement lookup | `two_sum` | 3 |
-| Valid Anagram | Frequency counting | `valid_anagram` | 3 |
-| Contains Duplicate | Set membership | `contains_duplicate` | 2 |
-| Group Anagrams | Canonical hash key | `group_anagrams` | 2 |
-| Product of Array Except Self | Prefix/suffix products | `product_except_self` | 3 |
-| Top K Frequent Elements | Frequency counting + sorting | `top_k_frequent` | 2 |
-| Longest Consecutive Sequence | Set sequence starts | `longest_consecutive` | 3 |
+| Two Sum | Búsqueda de complemento con hash map | `two_sum` | 3 |
+| Valid Anagram | Conteo de frecuencias | `valid_anagram` | 3 |
+| Contains Duplicate | Pertenencia en set | `contains_duplicate` | 2 |
+| Group Anagrams | Llave canónica | `group_anagrams` | 2 |
+| Product of Array Except Self | Productos prefijo/sufijo | `product_except_self` | 3 |
+| Top K Frequent Elements | Conteo y ordenamiento por frecuencia | `top_k_frequent` | 2 |
+| Longest Consecutive Sequence | Inicios de secuencia en set | `longest_consecutive` | 3 |
 
-## Rust Concepts Practiced
+## Conceptos de Rust Practicados
 
-- `Vec<T>` ownership and iteration.
-- `HashMap` for counts, indexes, and grouping.
-- `HashSet` for membership checks.
-- `Option` for functions that may not find an answer.
-- Integration tests in `tests/hashing_test.rs`.
-- `cargo fmt` and `cargo test` as the default verification loop.
+- Ownership e iteración con `Vec<T>`.
+- `HashMap` para conteos, índices y agrupaciones.
+- `HashSet` para consultas rápidas de pertenencia.
+- `Option` para funciones que pueden no encontrar una respuesta.
+- Tests de integración en `tests/hashing_test.rs`.
+- `cargo fmt` y `cargo test` como ciclo básico de verificación.
 
-## Interview Patterns
+## Patrones de Entrevista
 
-### Complement Lookup
+### Búsqueda de Complemento
 
-Use when a problem asks for two values that combine into a target.
+Útil cuando el problema pide dos valores que se combinan para llegar a un objetivo.
 
-Invariant:
+Invariante:
 
-- Before processing index `i`, the map contains values from indexes `< i`.
-- If `target - nums[i]` exists in the map, the answer is found.
+- Antes de procesar el índice `i`, el mapa contiene valores de índices `< i`.
+- Si `target - nums[i]` existe en el mapa, encontramos la respuesta.
 
-### Frequency Counting
+### Conteo de Frecuencias
 
-Use when comparing character counts, finding common values, or ranking by occurrence.
+Útil al comparar conteos de caracteres, encontrar valores comunes o ordenar por ocurrencia.
 
-Questions to ask:
+Preguntas útiles:
 
-- Do I need exact counts or just presence?
-- Is sorting simpler than hashing?
-- Does the output order matter?
+- ¿Necesito conteos exactos o solo presencia?
+- ¿Ordenar es más simple que usar hashing?
+- ¿El orden de salida importa?
 
-### Canonical Keys
+### Llaves Canónicas
 
-Use when values can be normalized into the same representation.
+Útil cuando los valores pueden normalizarse a una misma representación.
 
-Example:
+Ejemplo:
 
-- `"eat"`, `"tea"`, and `"ate"` all normalize to `"aet"`.
+- `"eat"`, `"tea"` y `"ate"` se normalizan como `"aet"`.
 
-### Prefix/Suffix
+### Prefijo/Sufijo
 
-Use when each index needs information from the left and the right.
+Útil cuando cada índice necesita información acumulada desde la izquierda y desde la derecha.
 
-Invariant:
+Invariante:
 
-- First pass stores the product before each index.
-- Reverse pass multiplies by the product after each index.
+- La primera pasada guarda el producto antes de cada índice.
+- La pasada inversa multiplica por el producto después de cada índice.
 
-### Sequence Starts
+### Inicios de Secuencia
 
-Use when finding consecutive runs in an unordered collection.
+Útil para encontrar secuencias consecutivas en una colección desordenada.
 
-Invariant:
+Invariante:
 
-- Only start counting at `x` when `x - 1` is absent.
-- This prevents recounting the same sequence.
+- Solo empezamos a contar en `x` cuando `x - 1` está ausente.
+- Esto evita contar varias veces la misma secuencia.
 
-## Commands
+## Comandos
 
 ```bash
 cargo fmt
 cargo test
 ```
 
-## Retrospective
+## Retrospectiva
 
-- The strongest pattern this week is direct hash lookup.
-- The most important habit is writing the test before the implementation.
-- The next week should introduce two pointers and sliding windows, because those complement hashing well in Google-style interviews.
+- El patrón más fuerte esta semana fue la búsqueda directa con hash.
+- El hábito más importante fue escribir el test antes de la implementación.
+- La siguiente semana debe introducir two pointers y sliding window, porque complementan muy bien los ejercicios de hashing en entrevistas estilo Google.

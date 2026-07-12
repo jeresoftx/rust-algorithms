@@ -1,19 +1,19 @@
 # Plan de Autoestudio: Algoritmos en Rust para Entrevistas de Google
 
-**Objetivo:** prepararme para entrevistas tecnicas tipo Google usando este repo como bitacora practica de algoritmos, patrones de resolucion y simulacros en Rust.
+**Objetivo:** prepararme para entrevistas técnicas tipo Google usando este repo como bitácora práctica de algoritmos, patrones de resolución y simulacros en Rust.
 
-**Duracion sugerida:** 16 semanas.
+**Duración sugerida:** 16 semanas.
 
-**Ritmo base:** 5 dias por semana, 90 a 150 minutos por dia.
+**Ritmo base:** 5 días por semana, 90 a 150 minutos por día.
 
-**Resultado esperado:** resolver problemas medium con consistencia, explicar trade-offs con claridad, escribir Rust correcto bajo tiempo y llegar a simulacros de entrevista con un metodo repetible.
+**Resultado esperado:** resolver problemas medium con consistencia, explicar trade-offs con claridad, escribir Rust correcto bajo tiempo y llegar a simulacros de entrevista con un método repetible.
 
 ---
 
 ## Principios
 
 1. Practicar patrones, no listas infinitas.
-2. Escribir cada solucion con tests y analisis de complejidad.
+2. Escribir cada solución con tests y análisis de complejidad.
 3. Repetir problemas fallados hasta poder resolverlos sin mirar notas.
 4. Priorizar claridad sobre trucos.
 5. Simular entrevistas antes de sentirse listo.
@@ -58,11 +58,11 @@ rust-algorithms/
     plan-google-algoritmos-rust.md
 ```
 
-Cada solucion deberia incluir:
+Cada solución debería incluir:
 
 - Nombre del problema.
 - Link o fuente.
-- Patron principal.
+- Patrón principal.
 - Idea en 3 a 6 lineas.
 - Complejidad temporal y espacial.
 - Tests para caso normal, borde y caso pequeno.
@@ -75,14 +75,14 @@ Cada solucion deberia incluir:
 ### Lunes a Jueves
 
 1. Calentamiento: 10 minutos repasando errores anteriores.
-2. Estudio de patron: 20 a 30 minutos.
+2. Estudio de patrón: 20 a 30 minutos.
 3. Problema principal: 45 a 70 minutos.
 4. Refactor y tests: 15 a 25 minutos.
 5. Nota final: 5 minutos en `notes/mistakes.md`.
 
 ### Viernes
 
-1. Rehacer 2 problemas fallados sin mirar la solucion.
+1. Rehacer 2 problemas fallados sin mirar la solución.
 2. Resolver 1 problema nuevo cronometrado.
 3. Actualizar checklist semanal.
 
@@ -107,27 +107,27 @@ Temas:
 - Complejidad Big O.
 - Esqueleto de tests en Rust.
 
-Practica:
+Práctica:
 
 - 8 a 10 problemas easy.
 - 2 problemas medium sencillos.
 
 Criterio de avance:
 
-- Puedes escribir una funcion con tests en menos de 10 minutos.
+- Puedes escribir una función con tests en menos de 10 minutos.
 - Puedes explicar complejidad sin dudar.
 
 ---
 
 ## Semanas 2 y 3: Arrays, Strings y Hashing
 
-**Meta:** dominar los problemas mas comunes de conteo, frecuencia, indices y transformaciones.
+**Meta:** dominar los problemas más comunes de conteo, frecuencia, índices y transformaciones.
 
 Patrones:
 
 - Frequency map.
 - Prefix sum.
-- Difference array basico.
+- Difference array básico.
 - String normalization.
 - Anagramas.
 - Deteccion de duplicados.
@@ -144,7 +144,7 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Identificas rapidamente cuando usar `HashMap` vs ordenar.
+- Identificas rápidamente cuándo usar `HashMap` vs ordenar.
 - Puedes explicar el trade-off entre tiempo, memoria y mutabilidad.
 
 ---
@@ -183,11 +183,11 @@ Criterio de avance:
 
 ## Semana 6: Binary Search
 
-**Meta:** usar busqueda binaria tambien en respuestas, no solo en arreglos.
+**Meta:** usar búsqueda binaria también en respuestas, no solo en arreglos.
 
 Patrones:
 
-- Buscar indice exacto.
+- Buscar índice exacto.
 - Lower bound / upper bound.
 - Binary search on answer.
 - Condicion monotona.
@@ -234,14 +234,14 @@ Problemas sugeridos:
 
 Criterio de avance:
 
-- Puedes dibujar el arbol de decisiones antes de codificar.
+- Puedes dibujar el árbol de decisiones antes de codificar.
 - Puedes implementar listas enlazadas en Rust sin bloquearte demasiado en ownership.
 
 ---
 
 ## Semanas 9 y 10: Trees
 
-**Meta:** dominar DFS, BFS y recursion sobre arboles binarios.
+**Meta:** dominar DFS, BFS y recursión sobre árboles binarios.
 
 Patrones:
 
@@ -250,7 +250,7 @@ Patrones:
 - BFS por niveles.
 - Lowest common ancestor.
 - Validacion de BST.
-- Construccion de arboles.
+- Construcción de árboles.
 
 Problemas sugeridos:
 
@@ -300,7 +300,7 @@ Problemas sugeridos:
 Criterio de avance:
 
 - Puedes elegir representacion antes de codificar.
-- Puedes explicar visited, recursion stack y componentes.
+- Puedes explicar visited, pila de recursión y componentes.
 
 ---
 
@@ -312,7 +312,7 @@ Patrones:
 
 - Min heap / max heap.
 - Merge intervals.
-- Sweep line basico.
+- Sweep line básico.
 - Greedy con prueba intuitiva.
 
 Problemas sugeridos:
@@ -334,13 +334,13 @@ Criterio de avance:
 
 ## Semanas 14 y 15: Dynamic Programming
 
-**Meta:** pasar de recursion a memoizacion y tabulacion cuando convenga.
+**Meta:** pasar de recursión a memoización y tabulación cuando convenga.
 
 Patrones:
 
 - 1D DP.
 - 2D DP.
-- Knapsack basico.
+- Knapsack básico.
 - Longest common subsequence.
 - State compression.
 - Decision DP.
@@ -371,8 +371,8 @@ Rutina:
 
 - 3 simulacros de 45 minutos.
 - 2 sesiones de revision profunda.
-- 1 dia de behavioral stories.
-- 1 dia de repaso de errores frecuentes.
+- 1 día de behavioral stories.
+- 1 día de repaso de errores frecuentes.
 
 Formato de simulacro:
 
@@ -386,7 +386,7 @@ Criterio de avance:
 
 - Resuelves mediums frecuentes en 35 a 45 minutos.
 - Hablas mientras piensas sin perder estructura.
-- Tienes historias STAR preparadas para liderazgo, conflicto, ambiguedad, impacto y aprendizaje.
+- Tienes historias STAR preparadas para liderazgo, conflicto, ambigüedad, impacto y aprendizaje.
 
 ---
 
@@ -395,13 +395,13 @@ Criterio de avance:
 Antes de marcar un problema como terminado:
 
 - [ ] Entendi el enunciado y escribi ejemplos.
-- [ ] Identifique el patron principal.
+- [ ] Identifiqué el patrón principal.
 - [ ] Explique el algoritmo en voz alta.
 - [ ] Escribi tests.
 - [ ] Pase los tests.
 - [ ] Anote complejidad temporal y espacial.
 - [ ] Registre errores o bloqueos.
-- [ ] Rehice el problema otro dia si falle o mire solucion.
+- [ ] Rehice el problema otro día si fallé o miré solución.
 
 ---
 
@@ -416,16 +416,16 @@ Usa cuatro estados:
 
 Cadencia:
 
-- Problema fallado: repetir en 2 dias.
+- Problema fallado: repetir en 2 días.
 - Problema con dificultad: repetir en 1 semana.
 - Problema dominado: repetir en 3 a 4 semanas.
 
 Mantener una tabla en `notes/mistakes.md`:
 
 ```markdown
-| Fecha | Problema | Patron | Error | Correccion | Repetir |
+| Fecha | Problema | Patrón | Error | Corrección | Repetir |
 | --- | --- | --- | --- | --- | --- |
-| 2026-07-11 | Two Sum | Hashing | Busque pares con O(n^2) | Usar HashMap valor -> indice | 2026-07-13 |
+| 2026-07-11 | Two Sum | Hashing | Busqué pares con O(n^2) | Usar HashMap valor -> índice | 2026-07-13 |
 ```
 
 ---
@@ -436,10 +436,10 @@ Medir cada semana:
 
 - Problemas resueltos.
 - Problemas repetidos.
-- Porcentaje sin mirar solucion.
+- Porcentaje sin mirar solución.
 - Tiempo promedio por problema medium.
 - Bugs de Rust frecuentes.
-- Patrones mas debiles.
+- Patrones más débiles.
 
 Metas acumuladas:
 
@@ -448,7 +448,7 @@ Metas acumuladas:
 - Semana 12: 120 a 140 problemas.
 - Semana 16: 160 a 190 problemas y 5 a 8 simulacros.
 
-Calidad > cantidad: un problema bien revisado vale mas que tres copiados.
+Calidad > cantidad: un problema bien revisado vale más que tres copiados.
 
 ---
 
@@ -458,15 +458,15 @@ Google suele valorar:
 
 - Claridad para explorar requisitos.
 - Pensamiento estructurado.
-- Correctness antes de micro-optimizacion.
+- Correctness antes de micro-optimización.
 - Manejo de edge cases.
-- Comunicacion durante la solucion.
-- Capacidad de mejorar una primera solucion.
+- Comunicación durante la solución.
+- Capacidad de mejorar una primera solución.
 
 Practicar frases:
 
 - "Primero voy a confirmar constraints y casos borde."
-- "La solucion brute force seria..., pero cuesta..."
+- "La solución brute force sería..., pero cuesta..."
 - "Hay una propiedad monotona, asi que podemos usar binary search."
 - "Voy a mantener este invariante de la ventana."
 - "Probemos con un caso pequeno y uno borde."
@@ -477,46 +477,46 @@ Preparar 5 historias STAR:
 
 - Liderazgo.
 - Conflicto tecnico.
-- Ambiguedad.
+- Ambigüedad.
 - Error propio y aprendizaje.
 - Impacto medible.
 
 ---
 
-## Primeros 7 Dias
+## Primeros 7 Días
 
-Dia 1:
+Día 1:
 
 - Inicializar proyecto Rust.
 - Crear estructura base.
 - Resolver Two Sum y Valid Anagram.
 
-Dia 2:
+Día 2:
 
 - Repasar `HashMap`, `HashSet`, slices y strings.
 - Resolver Contains Duplicate y Group Anagrams.
 
-Dia 3:
+Día 3:
 
 - Resolver Product of Array Except Self.
 - Documentar complejidad y edge cases.
 
-Dia 4:
+Día 4:
 
 - Resolver Top K Frequent Elements.
 - Comparar heap vs bucket sort.
 
-Dia 5:
+Día 5:
 
 - Rehacer un problema fallado.
 - Resolver Longest Consecutive Sequence.
 
-Dia 6:
+Día 6:
 
 - Simulacro corto: 1 easy + 1 medium.
 - Registrar errores.
 
-Dia 7:
+Día 7:
 
 - Descanso o lectura ligera de notas.
 
@@ -524,23 +524,23 @@ Dia 7:
 
 ## Senales de que Vas Bien
 
-- Antes de codificar, puedes decir que patron aplica.
+- Antes de codificar, puedes decir qué patrón aplica.
 - Tus tests capturan bordes sin exagerar.
-- Tus soluciones se vuelven mas pequenas y claras.
-- Fallas menos por Rust y mas por razonamiento real.
-- Puedes explicar por que una solucion es correcta.
+- Tus soluciones se vuelven más pequeñas y claras.
+- Fallas menos por Rust y más por razonamiento real.
+- Puedes explicar por qué una solución es correcta.
 
 ## Senales de Ajuste
 
-- Si pasas mas de 3 dias atorado en Rust, dedicar 1 sesion solo a lenguaje.
+- Si pasas más de 3 días atorado en Rust, dedicar 1 sesión solo a lenguaje.
 - Si resuelves muchos easy pero pocos medium, bajar cantidad y subir profundidad.
-- Si miras soluciones demasiado pronto, usar un limite: 25 minutos de intento real, luego pista minima, luego solucion.
-- Si olvidas patrones, hacer tarjetas pequenas con invariantes y ejemplos.
+- Si miras soluciones demasiado pronto, usar un límite: 25 minutos de intento real, luego pista mínima, luego solución.
+- Si olvidas patrones, hacer tarjetas pequeñas con invariantes y ejemplos.
 
 ---
 
-## Proxima Accion Recomendada
+## Próxima Acción Recomendada
 
 1. Crear `Cargo.toml`, `src/lib.rs`, `notes/mistakes.md` y el primer modulo `src/patterns/hashing.rs`.
 2. Resolver `Two Sum` con tests.
-3. Registrar la solucion como la primera entrada del repositorio.
+3. Registrar la solución como la primera entrada del repositorio.

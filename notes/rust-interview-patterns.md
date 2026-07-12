@@ -1,6 +1,6 @@
-# Rust Interview Patterns
+# Patrones de Rust para Entrevistas
 
-## HashMap Count
+## Conteo con HashMap
 
 ```rust
 let mut counts = std::collections::HashMap::new();
@@ -10,13 +10,13 @@ for value in values {
 }
 ```
 
-Use for:
+Útil para:
 
-- Character frequencies.
-- Value frequencies.
-- Grouping by normalized keys.
+- Frecuencias de caracteres.
+- Frecuencias de valores.
+- Agrupación por llaves normalizadas.
 
-## HashSet Membership
+## Pertenencia con HashSet
 
 ```rust
 let mut seen = std::collections::HashSet::new();
@@ -28,13 +28,13 @@ for value in values {
 }
 ```
 
-Use for:
+Útil para:
 
-- Duplicates.
-- Fast membership.
-- Consecutive sequence checks.
+- Duplicados.
+- Consultas rápidas de pertenencia.
+- Secuencias consecutivas.
 
-## Option Return
+## Retorno con Option
 
 ```rust
 pub fn search(values: Vec<i32>, target: i32) -> Option<usize> {
@@ -48,14 +48,14 @@ pub fn search(values: Vec<i32>, target: i32) -> Option<usize> {
 }
 ```
 
-Use when:
+Útil cuando:
 
-- A result may not exist.
-- Returning sentinel values like `-1` would make the API less idiomatic.
+- Una respuesta puede no existir.
+- Devolver valores centinela como `-1` haría menos idiomática la API.
 
-## Sorting a Result for Stable Tests
+## Tests Estables al Usar HashMap
 
-When the algorithm returns groups from a `HashMap`, order is not guaranteed. Sort inside the test before asserting.
+Cuando el algoritmo devuelve grupos desde un `HashMap`, el orden no está garantizado. Ordena dentro del test antes de comparar.
 
 ```rust
 for group in &mut result {
