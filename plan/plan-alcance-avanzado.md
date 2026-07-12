@@ -218,9 +218,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 3.
-- Tests agregados: 9.
-- Funciones y estructuras principales: `FenwickTree`, `RangeSumQuery` y `SegmentTree`.
+- Problemas implementados: 5.
+- Tests agregados: 13.
+- Funciones y estructuras principales: `FenwickTree`, `RangeSumQuery`, `SegmentTree`, `DifferenceArray` y `corporate_flight_bookings`.
 
 Criterio de cierre:
 
