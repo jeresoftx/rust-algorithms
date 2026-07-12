@@ -1,5 +1,5 @@
 use rust_algorithms::patterns::range_queries::{
-    corporate_flight_bookings, DifferenceArray, FenwickTree, RangeSumQuery, SegmentTree,
+    corporate_flight_bookings, DifferenceArray, FenwickTree, MyCalendar, RangeSumQuery, SegmentTree,
 };
 
 #[test]
@@ -122,4 +122,33 @@ fn corporate_flight_bookings_ignores_invalid_bookings() {
     let bookings = vec![(0, 2, 10), (2, 4, 20), (3, 2, 30), (1, 3, 5)];
 
     assert_eq!(corporate_flight_bookings(&bookings, 3), vec![5, 5, 5]);
+}
+
+#[test]
+fn my_calendar_books_non_overlapping_events() {
+    let mut calendar = MyCalendar::new();
+
+    assert!(calendar.book(10, 20));
+    assert!(calendar.book(20, 30));
+    assert!(calendar.book(5, 10));
+}
+
+#[test]
+fn my_calendar_rejects_overlapping_events() {
+    let mut calendar = MyCalendar::new();
+
+    assert!(calendar.book(10, 20));
+
+    assert!(!calendar.book(15, 25));
+    assert!(!calendar.book(5, 15));
+    assert!(!calendar.book(10, 20));
+}
+
+#[test]
+fn my_calendar_rejects_empty_or_reversed_ranges() {
+    let mut calendar = MyCalendar::new();
+
+    assert!(!calendar.book(10, 10));
+    assert!(!calendar.book(20, 10));
+    assert!(calendar.book(1, 2));
 }

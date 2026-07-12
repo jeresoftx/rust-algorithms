@@ -1,3 +1,5 @@
+use std::collections::BTreeMap;
+
 #[derive(Debug, Clone)]
 pub struct FenwickTree {
     tree: Vec<i32>,
@@ -299,4 +301,44 @@ pub fn corporate_flight_bookings(
     }
 
     difference.values()
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct MyCalendar {
+    events: BTreeMap<i32, i32>,
+}
+
+impl MyCalendar {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn book(&mut self, start: i32, end: i32) -> bool {
+        if start >= end {
+            return false;
+        }
+
+        if let Some((_, &previous_end)) = self.events.range(..=start).next_back() {
+            if previous_end > start {
+                return false;
+            }
+        }
+
+        if let Some((&next_start, _)) = self.events.range(start..).next() {
+            if next_start < end {
+                return false;
+            }
+        }
+
+        self.events.insert(start, end);
+        true
+    }
+
+    pub fn len(&self) -> usize {
+        self.events.len()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.events.is_empty()
+    }
 }
