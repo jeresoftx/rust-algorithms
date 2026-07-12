@@ -74,3 +74,13 @@ pub fn convex_hull(points: Vec<Point>) -> Vec<Point> {
         .into_iter()
         .collect()
 }
+
+pub fn k_closest_points(mut points: Vec<Point>, k: usize) -> Vec<Point> {
+    points.sort_unstable_by_key(|point| (squared_distance_to_origin(*point), point.x, point.y));
+    points.truncate(k.min(points.len()));
+    points
+}
+
+fn squared_distance_to_origin(point: Point) -> i64 {
+    point.x * point.x + point.y * point.y
+}

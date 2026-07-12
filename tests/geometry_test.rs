@@ -1,5 +1,5 @@
 use rust_algorithms::patterns::geometry::{
-    convex_hull, cross_product, orientation, Orientation, Point,
+    convex_hull, cross_product, k_closest_points, orientation, Orientation, Point,
 };
 
 fn sorted_points(mut points: Vec<Point>) -> Vec<Point> {
@@ -94,4 +94,43 @@ fn convex_hull_handles_duplicates_and_small_inputs() {
         vec![Point::new(1, 1)]
     );
     assert_eq!(convex_hull(Vec::new()), Vec::<Point>::new());
+}
+
+#[test]
+fn k_closest_points_returns_nearest_points_to_origin() {
+    let points = vec![
+        Point::new(1, 3),
+        Point::new(-2, 2),
+        Point::new(5, 8),
+        Point::new(0, 1),
+    ];
+
+    assert_eq!(
+        sorted_points(k_closest_points(points, 2)),
+        vec![Point::new(-2, 2), Point::new(0, 1)]
+    );
+}
+
+#[test]
+fn k_closest_points_breaks_ties_by_coordinates() {
+    let points = vec![
+        Point::new(1, 1),
+        Point::new(-1, -1),
+        Point::new(1, -1),
+        Point::new(-1, 1),
+    ];
+
+    assert_eq!(
+        k_closest_points(points, 3),
+        vec![Point::new(-1, -1), Point::new(-1, 1), Point::new(1, -1)]
+    );
+}
+
+#[test]
+fn k_closest_points_handles_large_k_and_empty_input() {
+    assert_eq!(
+        k_closest_points(vec![Point::new(3, 4)], 3),
+        vec![Point::new(3, 4)]
+    );
+    assert_eq!(k_closest_points(Vec::new(), 2), Vec::<Point>::new());
 }
