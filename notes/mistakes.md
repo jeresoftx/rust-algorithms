@@ -6,7 +6,7 @@
 | 2026-07-11 | Group Anagrams | Hashing | El orden de `HashMap` no es estable para asserts | Ordenar grupos y resultado en el test antes de comparar | 2026-07-14 |
 | 2026-07-12 | Subarray Sum Equals K | Prefix sum | Es fácil olvidar el prefijo inicial `0` | Inicializar el mapa con `{0: 1}` para contar subarreglos que empiezan en índice `0` | 2026-07-14 |
 | 2026-07-12 | 3Sum | Two pointers | Es fácil devolver triplets duplicados | Saltar duplicados del índice fijo y de ambos punteros después de encontrar una solución | 2026-07-15 |
-| 2026-07-12 | Minimum Window Substring | Sliding window | Contraer la ventana demasiado pronto rompe los conteos requeridos | Solo contraer mientras `missing == 0` y ajustar conteos al mover `left` | 2026-07-16 |
+| 2026-07-12 | Minimum Window Substring | Sliding window | Contraer la ventana demasiado pronto rompe los conteos requeridos | Solo contraer mientras `missing == 0` y ajustar conteos al mover `left` | repetido 2026-07-12; revisar 2026-07-26 |
 | 2026-07-12 | Largest Rectangle in Histogram | Stack monotónico | Sin centinela final quedan barras pendientes sin cerrar | Agregar altura `0` al final para vaciar la pila | 2026-07-16 |
 | 2026-07-12 | Binary Search | Búsqueda binaria | Mezclar rangos cerrados y semiabiertos produce off-by-one | Elegir una convención por función y actualizar `left`/`right` de forma consistente | 2026-07-17 |
 | 2026-07-12 | Koko Eating Bananas | Búsqueda sobre respuesta | Dividir con truncamiento subestima las horas necesarias | Usar división redondeando hacia arriba: `(value + divisor - 1) / divisor` | 2026-07-17 |

@@ -144,7 +144,7 @@ Páginas destacadas:
 
 - Semana documentada: 27-28
 - Problemas implementados: 114
-- Tests automatizados: 281
+- Tests automatizados: 283
 - Ruta avanzada: fase 6 iniciada
 - Lenguaje: Rust
 
