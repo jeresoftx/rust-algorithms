@@ -232,6 +232,8 @@ Criterio de cierre:
 
 Duración sugerida: semana 26.
 
+Estado: iniciada.
+
 Temas:
 
 - Producto cruz.
@@ -252,6 +254,12 @@ Problemas sugeridos:
 - K Closest Points to Origin.
 - Max Points on a Line.
 - The Skyline Problem como reto opcional.
+
+Avance acumulado:
+
+- Problemas implementados: 3.
+- Tests agregados: 5.
+- Funciones y estructuras principales: `Point`, `Orientation`, `cross_product`, `orientation` y `convex_hull`.
 
 Criterio de cierre:
 

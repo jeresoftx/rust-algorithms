@@ -136,14 +136,15 @@ Páginas destacadas:
 - [Semanas 19 y 20: Tries y Cadenas](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-19-y-20-Tries-y-Cadenas)
 - [Semanas 21 a 23: Grafos Ponderados](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-21-a-23-Grafos-Ponderados)
 - [Semanas 24 y 25: Consultas por Rangos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-24-y-25-Consultas-por-Rangos)
+- [Semana 26: Geometría y Temas Selectivos](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-26-Geometria-y-Temas-Selectivos)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 24-25
-- Problemas implementados: 108
-- Tests automatizados: 261
-- Ruta avanzada: fase 4 completada
+- Semana documentada: 26
+- Problemas implementados: 111
+- Tests automatizados: 266
+- Ruta avanzada: fase 5 iniciada
 - Lenguaje: Rust
 
 ## Enfoque de Estudio
