@@ -20,3 +20,6 @@
 | 2026-07-12 | Rotting Oranges | Grafos | Correr BFS separado por cada naranja podrida rompe el tiempo mínimo global | Usar BFS multisource con todas las fuentes iniciales en la misma cola | 2026-07-22 |
 | 2026-07-12 | Course Schedule | Grafos | Detectar ciclo solo con conteo de aristas no prueba prerequisitos pendientes | Usar indegrees y verificar si el orden procesó todos los cursos | 2026-07-23 |
 | 2026-07-12 | Redundant Connection | Grafos | Agregar la arista antes de revisar ciclo oculta la conexión redundante | Revisar `union`; si devuelve falso, esa arista cierra el ciclo | 2026-07-23 |
+| 2026-07-12 | MedianFinder | Montículos | Insertar en el montículo correcto no basta si las mitades quedan desbalanceadas | Rebalancear después de cada inserción y consultar la mediana desde las raíces | 2026-07-24 |
+| 2026-07-12 | Meeting Rooms II | Intervalos | Contar solapamientos sin liberar salas ya terminadas infla el resultado | Usar min heap de finales y liberar todo final `<= start` antes de asignar sala | 2026-07-24 |
+| 2026-07-12 | Task Scheduler | Greedy | Calcular huecos solo para una tarea máxima falla cuando hay empate de frecuencia | Sumar cuántas tareas comparten `max_count` en el marco mínimo | 2026-07-25 |

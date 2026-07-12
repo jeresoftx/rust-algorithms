@@ -304,7 +304,7 @@ Criterio de avance:
 
 ---
 
-## Semana 13: Heaps, Intervals y Greedy
+## Semana 13: Montículos, Intervalos y Greedy
 
 **Meta:** resolver scheduling, prioridades y decisiones locales justificadas.
 

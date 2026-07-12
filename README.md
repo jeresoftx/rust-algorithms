@@ -19,7 +19,10 @@ src/
   patterns/
     binary_search.rs
     graphs.rs
+    greedy.rs
     hashing.rs
+    heaps.rs
+    intervals.rs
     linked_lists.rs
     recursion_backtracking.rs
     sliding_window.rs
@@ -29,7 +32,10 @@ src/
 tests/
   binary_search_test.rs
   graphs_test.rs
+  greedy_test.rs
   hashing_test.rs
+  heaps_test.rs
+  intervals_test.rs
   linked_lists_test.rs
   recursion_backtracking_test.rs
   sliding_window_test.rs
@@ -44,6 +50,7 @@ notes/
   week-07-08.md
   week-09-10.md
   week-11-12.md
+  week-13.md
   rust-interview-patterns.md
   mistakes.md
 plan/
@@ -88,13 +95,14 @@ Páginas destacadas:
 - [Semanas 7 y 8: Recursión, Backtracking y Listas Enlazadas](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-7-y-8-Recursion-Backtracking-y-Linked-Lists)
 - [Semanas 9 y 10: Árboles](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-9-y-10-Arboles)
 - [Semanas 11 y 12: Grafos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-11-y-12-Grafos)
+- [Semana 13: Montículos, Intervalos y Greedy](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-13-Monticulos-Intervalos-y-Greedy)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 12
-- Problemas implementados: 52
-- Tests automatizados: 122
+- Semana documentada: 13
+- Problemas implementados: 60
+- Tests automatizados: 142
 - Lenguaje: Rust
 
 ## Enfoque de Estudio

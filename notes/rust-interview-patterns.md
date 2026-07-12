@@ -160,3 +160,83 @@ fn find(parent: &mut Vec<usize>, value: usize) -> usize {
 - Componentes conectados dinámicos.
 - Detección de ciclos en grafos no dirigidos.
 - Agrupar elementos equivalentes.
+
+## Montículo Mínimo con Reverse
+
+```rust
+let mut heap = BinaryHeap::new();
+
+for value in values {
+    heap.push(Reverse(value));
+
+    if heap.len() > k {
+        heap.pop();
+    }
+}
+```
+
+Útil para:
+
+- Kth largest.
+- Mantener solo los mejores `k` candidatos.
+- Modelar prioridades mínimas con `BinaryHeap`.
+
+## Dos Montículos para Mediana
+
+```rust
+let mut lower = BinaryHeap::new();
+let mut upper = BinaryHeap::new();
+
+lower.push(value);
+
+if lower.len() > upper.len() + 1 {
+    upper.push(Reverse(lower.pop().unwrap()));
+}
+```
+
+Útil para:
+
+- Median stream.
+- Mantener dos mitades balanceadas.
+- Consultar mediana en O(1).
+
+## Fusionar Intervalos
+
+```rust
+intervals.sort_unstable_by_key(|&(start, end)| (start, end));
+
+for (start, end) in intervals {
+    match merged.last_mut() {
+        Some((_, previous_end)) if start <= *previous_end => {
+            *previous_end = (*previous_end).max(end);
+        }
+        _ => merged.push((start, end)),
+    }
+}
+```
+
+Útil para:
+
+- Merge intervals.
+- Insert interval.
+- Normalizar rangos antes de analizarlos.
+
+## Greedy por Fin Más Temprano
+
+```rust
+intervals.sort_unstable_by_key(|&(start, end)| (end, start));
+
+let mut last_end = intervals[0].1;
+
+for (start, end) in intervals.into_iter().skip(1) {
+    if start >= last_end {
+        last_end = end;
+    }
+}
+```
+
+Útil para:
+
+- Intervalos no solapados.
+- Selección máxima de eventos compatibles.
+- Minimizar remociones.
