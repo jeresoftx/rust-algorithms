@@ -107,3 +107,136 @@ impl RangeSumQuery {
         self.tree.range_sum(left, right)
     }
 }
+
+#[derive(Debug, Clone)]
+pub struct SegmentTree {
+    size: usize,
+    tree: Vec<i32>,
+}
+
+impl SegmentTree {
+    pub fn from_values(values: &[i32]) -> Self {
+        if values.is_empty() {
+            return Self {
+                size: 0,
+                tree: Vec::new(),
+            };
+        }
+
+        let mut tree = vec![i32::MAX; values.len() * 4];
+        build_segment_tree(values, &mut tree, 1, 0, values.len() - 1);
+
+        Self {
+            size: values.len(),
+            tree,
+        }
+    }
+
+    pub fn update(&mut self, index: usize, value: i32) -> bool {
+        if index >= self.size {
+            return false;
+        }
+
+        update_segment_tree(&mut self.tree, 1, 0, self.size - 1, index, value);
+        true
+    }
+
+    pub fn range_min(&self, left: usize, right: usize) -> Option<i32> {
+        if self.size == 0 || left > right || right >= self.size {
+            return None;
+        }
+
+        Some(query_segment_tree(
+            &self.tree,
+            1,
+            0,
+            self.size - 1,
+            left,
+            right,
+        ))
+    }
+
+    pub fn len(&self) -> usize {
+        self.size
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.size == 0
+    }
+}
+
+fn build_segment_tree(values: &[i32], tree: &mut [i32], node: usize, left: usize, right: usize) {
+    if left == right {
+        tree[node] = values[left];
+        return;
+    }
+
+    let middle = left + (right - left) / 2;
+    build_segment_tree(values, tree, node * 2, left, middle);
+    build_segment_tree(values, tree, node * 2 + 1, middle + 1, right);
+    tree[node] = tree[node * 2].min(tree[node * 2 + 1]);
+}
+
+fn update_segment_tree(
+    tree: &mut [i32],
+    node: usize,
+    left: usize,
+    right: usize,
+    index: usize,
+    value: i32,
+) {
+    if left == right {
+        tree[node] = value;
+        return;
+    }
+
+    let middle = left + (right - left) / 2;
+
+    if index <= middle {
+        update_segment_tree(tree, node * 2, left, middle, index, value);
+    } else {
+        update_segment_tree(tree, node * 2 + 1, middle + 1, right, index, value);
+    }
+
+    tree[node] = tree[node * 2].min(tree[node * 2 + 1]);
+}
+
+fn query_segment_tree(
+    tree: &[i32],
+    node: usize,
+    left: usize,
+    right: usize,
+    query_left: usize,
+    query_right: usize,
+) -> i32 {
+    if query_left <= left && right <= query_right {
+        return tree[node];
+    }
+
+    let middle = left + (right - left) / 2;
+    let mut best = i32::MAX;
+
+    if query_left <= middle {
+        best = best.min(query_segment_tree(
+            tree,
+            node * 2,
+            left,
+            middle,
+            query_left,
+            query_right,
+        ));
+    }
+
+    if query_right > middle {
+        best = best.min(query_segment_tree(
+            tree,
+            node * 2 + 1,
+            middle + 1,
+            right,
+            query_left,
+            query_right,
+        ));
+    }
+
+    best
+}

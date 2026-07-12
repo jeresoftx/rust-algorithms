@@ -1,4 +1,4 @@
-use rust_algorithms::patterns::range_queries::{FenwickTree, RangeSumQuery};
+use rust_algorithms::patterns::range_queries::{FenwickTree, RangeSumQuery, SegmentTree};
 
 #[test]
 fn fenwick_tree_returns_prefix_and_range_sums() {
@@ -47,4 +47,41 @@ fn range_sum_query_rejects_invalid_indexes() {
     assert_eq!(query.sum_range(2, 1), None);
     assert_eq!(query.sum_range(0, 3), None);
     assert!(!query.update(3, 10));
+}
+
+#[test]
+fn segment_tree_returns_range_minimums() {
+    let tree = SegmentTree::from_values(&[5, 2, 6, 3, 1, 7]);
+
+    assert_eq!(tree.range_min(0, 5), Some(1));
+    assert_eq!(tree.range_min(1, 3), Some(2));
+    assert_eq!(tree.range_min(3, 5), Some(1));
+}
+
+#[test]
+fn segment_tree_updates_values_and_refreshes_minimums() {
+    let mut tree = SegmentTree::from_values(&[5, 2, 6, 3, 1, 7]);
+
+    assert!(tree.update(4, 8));
+
+    assert_eq!(tree.range_min(0, 5), Some(2));
+    assert_eq!(tree.range_min(3, 5), Some(3));
+}
+
+#[test]
+fn segment_tree_handles_single_value() {
+    let mut tree = SegmentTree::from_values(&[42]);
+
+    assert_eq!(tree.range_min(0, 0), Some(42));
+    assert!(tree.update(0, -7));
+    assert_eq!(tree.range_min(0, 0), Some(-7));
+}
+
+#[test]
+fn segment_tree_rejects_invalid_ranges_and_updates() {
+    let mut tree = SegmentTree::from_values(&[3, 1, 4]);
+
+    assert_eq!(tree.range_min(2, 1), None);
+    assert_eq!(tree.range_min(0, 3), None);
+    assert!(!tree.update(3, 9));
 }
