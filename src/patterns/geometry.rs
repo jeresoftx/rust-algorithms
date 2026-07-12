@@ -1,4 +1,4 @@
-use std::collections::BTreeSet;
+use std::collections::{BTreeSet, HashMap};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Point {
@@ -83,4 +83,68 @@ pub fn k_closest_points(mut points: Vec<Point>, k: usize) -> Vec<Point> {
 
 fn squared_distance_to_origin(point: Point) -> i64 {
     point.x * point.x + point.y * point.y
+}
+
+pub fn max_points_on_a_line(points: Vec<Point>) -> i32 {
+    if points.len() <= 2 {
+        return points.len() as i32;
+    }
+
+    let mut best = 0;
+
+    for (anchor_index, &anchor) in points.iter().enumerate() {
+        let mut slopes = HashMap::new();
+        let mut duplicates = 1;
+        let mut best_from_anchor = 0;
+
+        for &point in points.iter().skip(anchor_index + 1) {
+            if point == anchor {
+                duplicates += 1;
+                continue;
+            }
+
+            let slope = normalized_slope(anchor, point);
+            let count = slopes.entry(slope).or_insert(0);
+            *count += 1;
+            best_from_anchor = best_from_anchor.max(*count);
+        }
+
+        best = best.max(best_from_anchor + duplicates);
+    }
+
+    best
+}
+
+fn normalized_slope(first: Point, second: Point) -> (i64, i64) {
+    let mut dy = second.y - first.y;
+    let mut dx = second.x - first.x;
+
+    if dx == 0 {
+        return (1, 0);
+    }
+
+    if dy == 0 {
+        return (0, 1);
+    }
+
+    let divisor = gcd(dy.abs(), dx.abs());
+    dy /= divisor;
+    dx /= divisor;
+
+    if dx < 0 {
+        dy = -dy;
+        dx = -dx;
+    }
+
+    (dy, dx)
+}
+
+fn gcd(mut left: i64, mut right: i64) -> i64 {
+    while right != 0 {
+        let remainder = left % right;
+        left = right;
+        right = remainder;
+    }
+
+    left.abs()
 }
