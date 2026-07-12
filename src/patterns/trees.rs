@@ -1,4 +1,5 @@
 use std::cell::RefCell;
+use std::collections::HashMap;
 use std::collections::VecDeque;
 use std::rc::Rc;
 
@@ -260,4 +261,126 @@ pub fn level_order(root: TreeLink) -> Vec<Vec<i32>> {
     }
 
     result
+}
+
+/// Validate Binary Search Tree
+///
+/// Pattern: DFS with bounds.
+/// Idea: every node must fit within the strict min/max range inherited from ancestors.
+///
+/// Time: O(n)
+/// Space: O(h)
+pub fn is_valid_bst(root: TreeLink) -> bool {
+    validate_bst(root, None, None)
+}
+
+fn validate_bst(root: TreeLink, lower: Option<i32>, upper: Option<i32>) -> bool {
+    match root {
+        None => true,
+        Some(node) => {
+            let node = node.borrow();
+
+            if lower.is_some_and(|limit| node.val <= limit)
+                || upper.is_some_and(|limit| node.val >= limit)
+            {
+                return false;
+            }
+
+            validate_bst(node.left.clone(), lower, Some(node.val))
+                && validate_bst(node.right.clone(), Some(node.val), upper)
+        }
+    }
+}
+
+/// Lowest Common Ancestor of a BST
+///
+/// Pattern: BST-guided search.
+/// Idea: if both values are smaller or larger than current, move that way;
+/// otherwise current is the split point.
+///
+/// Time: O(h)
+/// Space: O(1)
+pub fn lowest_common_ancestor_bst(root: TreeLink, first: i32, second: i32) -> Option<i32> {
+    let low = first.min(second);
+    let high = first.max(second);
+    let mut current = root;
+
+    while let Some(node) = current {
+        let node = node.borrow();
+
+        if high < node.val {
+            current = node.left.clone();
+        } else if low > node.val {
+            current = node.right.clone();
+        } else {
+            return Some(node.val);
+        }
+    }
+
+    None
+}
+
+/// Construct Binary Tree from Preorder and Inorder Traversal
+///
+/// Pattern: recursive split by root.
+/// Idea: preorder gives the root; inorder tells how many nodes belong left/right.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn build_tree_preorder_inorder(preorder: Vec<i32>, inorder: Vec<i32>) -> TreeLink {
+    if preorder.is_empty() || inorder.is_empty() {
+        return None;
+    }
+
+    let inorder_index: HashMap<i32, usize> = inorder
+        .iter()
+        .enumerate()
+        .map(|(index, &value)| (value, index))
+        .collect();
+
+    build_tree_range(
+        &preorder,
+        0,
+        preorder.len(),
+        0,
+        inorder.len(),
+        &inorder_index,
+    )
+}
+
+fn build_tree_range(
+    preorder: &[i32],
+    pre_start: usize,
+    pre_end: usize,
+    in_start: usize,
+    in_end: usize,
+    inorder_index: &HashMap<i32, usize>,
+) -> TreeLink {
+    if pre_start >= pre_end || in_start >= in_end {
+        return None;
+    }
+
+    let root_value = preorder[pre_start];
+    let root_inorder_index = inorder_index[&root_value];
+    let left_len = root_inorder_index - in_start;
+
+    let root = Rc::new(RefCell::new(TreeNode::new(root_value)));
+    root.borrow_mut().left = build_tree_range(
+        preorder,
+        pre_start + 1,
+        pre_start + 1 + left_len,
+        in_start,
+        root_inorder_index,
+        inorder_index,
+    );
+    root.borrow_mut().right = build_tree_range(
+        preorder,
+        pre_start + 1 + left_len,
+        pre_end,
+        root_inorder_index + 1,
+        in_end,
+        inorder_index,
+    );
+
+    Some(root)
 }
