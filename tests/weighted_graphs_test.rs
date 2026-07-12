@@ -172,8 +172,20 @@ fn minimum_effort_path_minimizes_largest_step() {
 }
 
 #[test]
+fn minimum_effort_path_accepts_alternate_route_with_lower_effort() {
+    let heights = vec![vec![1, 2, 3], vec![3, 8, 4], vec![5, 3, 5]];
+
+    assert_eq!(minimum_effort_path(heights), 1);
+}
+
+#[test]
 fn minimum_effort_path_returns_zero_for_single_cell() {
     assert_eq!(minimum_effort_path(vec![vec![7]]), 0);
+}
+
+#[test]
+fn minimum_effort_path_returns_zero_for_empty_grid() {
+    assert_eq!(minimum_effort_path(Vec::new()), 0);
 }
 
 #[test]
