@@ -13,3 +13,6 @@
 | 2026-07-12 | Backtracking | Recursión | Olvidar deshacer una decisión contamina otras ramas | Hacer `push`, recursión y `pop` siempre juntos | 2026-07-18 |
 | 2026-07-12 | Word Search | DFS | Reutilizar una celda en el mismo camino produce falsos positivos | Marcar visitado temporalmente y restaurar al volver | 2026-07-18 |
 | 2026-07-12 | Linked Lists | Ownership | Manipular `next` directamente puede mover valores inesperadamente | Usar `take()` para transferir propiedad del siguiente nodo | 2026-07-19 |
+| 2026-07-12 | Validate BST | Trees | Comparar solo contra el padre no detecta descendientes inválidos | Pasar límites inferior/superior heredados por ancestros | 2026-07-20 |
+| 2026-07-12 | Diameter of Binary Tree | Trees | Confundir altura en nodos con diámetro en aristas | Devolver altura y actualizar diámetro con `left + right` | 2026-07-20 |
+| 2026-07-12 | Construct Binary Tree | Trees | Buscar raíz en inorder en cada llamada vuelve la solución O(n^2) | Crear `HashMap<valor, índice>` antes de recursar | 2026-07-21 |

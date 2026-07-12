@@ -23,6 +23,7 @@ src/
     recursion_backtracking.rs
     sliding_window.rs
     stack_queue.rs
+    trees.rs
     two_pointers.rs
 tests/
   binary_search_test.rs
@@ -31,6 +32,7 @@ tests/
   recursion_backtracking_test.rs
   sliding_window_test.rs
   stack_queue_test.rs
+  trees_test.rs
   two_pointers_test.rs
 notes/
   week-01.md
@@ -38,6 +40,7 @@ notes/
   week-04-05.md
   week-06.md
   week-07-08.md
+  week-09-10.md
   rust-interview-patterns.md
   mistakes.md
 plan/
@@ -80,13 +83,14 @@ Páginas destacadas:
 - [Semanas 4 y 5: Two Pointers, Sliding Window y Stack](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-4-y-5-Two-Pointers-Sliding-Window-y-Stack)
 - [Semana 6: Búsqueda Binaria](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-6-Busqueda-Binaria)
 - [Semanas 7 y 8: Recursión, Backtracking y Linked Lists](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-7-y-8-Recursion-Backtracking-y-Linked-Lists)
+- [Semanas 9 y 10: Trees](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-9-y-10-Trees)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 8
-- Problemas implementados: 32
-- Tests automatizados: 85
+- Semana documentada: 10
+- Problemas implementados: 42
+- Tests automatizados: 102
 - Lenguaje: Rust
 
 ## Enfoque de Estudio
