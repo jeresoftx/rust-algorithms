@@ -28,5 +28,5 @@ Estados:
 | Pendiente | Course Schedule | Grafos | Sin evaluar | Ejecutar `notes/simulations/simulacro-02-course-schedule.md` |
 | Pendiente | Coin Change | Programación dinámica | Sin evaluar | Ejecutar `notes/simulations/simulacro-03-coin-change.md` |
 | 2026-07-12 | Path With Minimum Effort | Grafos ponderados | 22/25 | Repetir explicación sin consultar notas el 2026-07-19 |
-| Pendiente | Longest Duplicate Substring | Cadenas avanzadas | Sin evaluar | Ejecutar `notes/simulations/simulacro-05-strings-avanzados.md` |
+| 2026-07-12 | Longest Duplicate Substring | Cadenas avanzadas | 21/25 | Repetir con rolling hash o suffix array el 2026-07-20 |
 | Pendiente | Range Query Mix | Consultas por rangos | Sin evaluar | Ejecutar `notes/simulations/simulacro-06-range-queries.md` |

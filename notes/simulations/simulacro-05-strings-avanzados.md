@@ -62,16 +62,16 @@ fn returns_empty_when_no_duplicate_exists() {
 
 | Dimensión | Puntaje 1-5 | Evidencia |
 | --- | --- | --- |
-| Clarificación |  |  |
-| Enfoque |  |  |
-| Implementación |  |  |
-| Pruebas |  |  |
-| Comunicación |  |  |
+| Clarificación | 4 | Se asumió entrada ASCII para trabajar por bytes y se cubrieron cadenas vacías y de un carácter. |
+| Enfoque | 4 | Se eligió búsqueda binaria sobre longitud con verificación por ventanas repetidas. |
+| Implementación | 4 | La función es correcta para práctica, pero no usa rolling hash ni suffix array. |
+| Pruebas | 5 | Se cubrieron `banana`, ausencia de duplicados, repetición completa y entradas pequeñas. |
+| Comunicación | 4 | Quedó explícito el trade-off de complejidad y la mejora recomendada. |
 
 Notas:
 
-- Qué salió bien:
-- Qué falló:
-- Error que se repite:
-- Acción de repaso:
-- Fecha para repetir:
+- Qué salió bien: la búsqueda binaria sobre longitud separó bien decisión y optimización.
+- Qué falló: la verificación con `HashSet` de ventanas sigue pagando costo por comparar contenido.
+- Error que se repite: aceptar una solución clara sin anotar de inmediato la alternativa óptima.
+- Acción de repaso: repetir con rolling hash doble o suffix array.
+- Fecha para repetir: 2026-07-20.

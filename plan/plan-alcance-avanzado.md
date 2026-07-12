@@ -129,11 +129,11 @@ Problemas sugeridos:
 - Longest Duplicate Substring.
 - Multi-pattern Search.
 
-Primer avance:
+Avance acumulado:
 
-- Problemas implementados: 6.
-- Tests agregados: 19.
-- Funciones y estructuras principales: `Trie`, `WordDictionary`, `replace_words`, `find_pattern_positions`, `find_anagram_starts` y `repeated_substring_pattern`.
+- Problemas implementados: 7.
+- Tests agregados: 23.
+- Funciones y estructuras principales: `Trie`, `WordDictionary`, `replace_words`, `find_pattern_positions`, `find_anagram_starts`, `repeated_substring_pattern` y `longest_duplicate_substring`.
 
 Criterio de cierre:
 
