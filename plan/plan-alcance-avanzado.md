@@ -145,7 +145,7 @@ Criterio de cierre:
 
 Duración sugerida: semanas 21 a 23.
 
-Estado: iniciada.
+Estado: completada.
 
 Temas:
 
@@ -257,9 +257,9 @@ Problemas sugeridos:
 
 Avance acumulado:
 
-- Problemas implementados: 4.
-- Tests agregados: 8.
-- Funciones y estructuras principales: `Point`, `Orientation`, `cross_product`, `orientation`, `convex_hull` y `k_closest_points`.
+- Problemas implementados: 5.
+- Tests agregados: 12.
+- Funciones y estructuras principales: `Point`, `Orientation`, `cross_product`, `orientation`, `convex_hull`, `k_closest_points` y `max_points_on_a_line`.
 
 Criterio de cierre:
 

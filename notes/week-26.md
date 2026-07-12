@@ -6,8 +6,8 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 
 ## Estado del Avance Actual
 
-- Problemas implementados acumulados: 112.
-- Tests automatizados acumulados: 269.
+- Problemas implementados acumulados: 113.
+- Tests automatizados acumulados: 273.
 - Módulo agregado: `src/patterns/geometry.rs`.
 - Tests agregados: `tests/geometry_test.rs`.
 
@@ -19,6 +19,7 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 | Orientación de puntos | Producto cruz | `orientation` | implementado |
 | Convex Hull / Erect the Fence | Monotonic chain | `convex_hull` | implementado |
 | K Closest Points to Origin | Ordenamiento por distancia | `k_closest_points` | implementado |
+| Max Points on a Line | Pendiente normalizada | `max_points_on_a_line` | implementado |
 
 ## Ideas Clave
 
@@ -28,6 +29,8 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 - El resultado de `convex_hull` se devuelve sin duplicados para que sea estable y fácil de comparar.
 - Para puntos cercanos al origen basta comparar distancia cuadrada; no hace falta calcular raíces.
 - En empates de distancia, ordenar por coordenadas vuelve el resultado determinista.
+- Max Points on a Line usa pendientes reducidas por `gcd` para evitar errores de precisión.
+- Las líneas verticales se normalizan como `(1, 0)` y las horizontales como `(0, 1)`.
 
 ## Complejidad
 
@@ -37,6 +40,7 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 | `orientation` | `O(1)` | `O(1)` |
 | `convex_hull` | `O(n log n)` | `O(n)` |
 | `k_closest_points` | `O(n log n)` | `O(n)` |
+| `max_points_on_a_line` | `O(n^2)` | `O(n)` |
 
 ## Criterio de Cierre
 
@@ -45,9 +49,10 @@ Practicar geometría computacional con una base pequeña, explicable y reusable 
 - Convex Hull conserva puntos colineales en el borde.
 - Convex Hull maneja duplicados, entrada vacía y entradas pequeñas.
 - K Closest Points maneja empates, `k` mayor al tamaño y entrada vacía.
+- Max Points on a Line maneja duplicados, líneas verticales, líneas horizontales y entradas pequeñas.
 - README y wiki apuntan al bloque.
 - `cargo fmt` y `cargo test` pasan.
 
 ## Siguiente Paso
 
-Implementar `Max Points on a Line` y reforzar normalización de pendientes.
+Iniciar la fase 6 con simulacros avanzados y repetición dirigida.
