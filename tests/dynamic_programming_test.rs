@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::dynamic_programming::{
-    climb_stairs, coin_change, decode_ways, house_robber,
+    can_partition, climb_stairs, coin_change, decode_ways, house_robber,
+    longest_common_subsequence, longest_increasing_subsequence, unique_paths, word_break,
 };
 
 #[test]
@@ -53,4 +54,62 @@ fn decode_ways_rejects_invalid_zero_prefix() {
 #[test]
 fn decode_ways_handles_embedded_zero() {
     assert_eq!(decode_ways("2101"), 1);
+}
+
+#[test]
+fn longest_increasing_subsequence_returns_best_length() {
+    assert_eq!(
+        longest_increasing_subsequence(vec![10, 9, 2, 5, 3, 7, 101, 18]),
+        4
+    );
+}
+
+#[test]
+fn longest_increasing_subsequence_handles_decreasing_input() {
+    assert_eq!(longest_increasing_subsequence(vec![5, 4, 3, 2, 1]), 1);
+}
+
+#[test]
+fn word_break_returns_true_when_string_can_be_segmented() {
+    assert!(word_break("leetcode", vec!["leet", "code"]));
+    assert!(word_break("applepenapple", vec!["apple", "pen"]));
+}
+
+#[test]
+fn word_break_returns_false_when_suffix_cannot_be_segmented() {
+    assert!(!word_break(
+        "catsandog",
+        vec!["cats", "dog", "sand", "and", "cat"]
+    ));
+}
+
+#[test]
+fn unique_paths_counts_paths_in_grid() {
+    assert_eq!(unique_paths(3, 7), 28);
+    assert_eq!(unique_paths(3, 2), 3);
+}
+
+#[test]
+fn unique_paths_returns_zero_for_empty_dimension() {
+    assert_eq!(unique_paths(0, 3), 0);
+}
+
+#[test]
+fn longest_common_subsequence_returns_shared_subsequence_length() {
+    assert_eq!(longest_common_subsequence("abcde", "ace"), 3);
+}
+
+#[test]
+fn longest_common_subsequence_returns_zero_when_no_characters_match() {
+    assert_eq!(longest_common_subsequence("abc", "def"), 0);
+}
+
+#[test]
+fn can_partition_returns_true_when_array_can_split_equal_sum() {
+    assert!(can_partition(vec![1, 5, 11, 5]));
+}
+
+#[test]
+fn can_partition_returns_false_when_total_sum_is_odd() {
+    assert!(!can_partition(vec![1, 2, 3, 5]));
 }
