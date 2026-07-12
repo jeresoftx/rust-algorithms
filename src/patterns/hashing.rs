@@ -177,3 +177,30 @@ pub fn longest_consecutive(nums: Vec<i32>) -> usize {
 
     best
 }
+
+/// Subarray Sum Equals K
+///
+/// Pattern: prefix sum with frequency map.
+/// Idea: if current_prefix - target was seen before, every occurrence marks
+/// a contiguous subarray ending at the current index with sum equal to target.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn subarray_sum_equals_k(nums: Vec<i32>, target: i32) -> i32 {
+    let mut prefix_counts = HashMap::from([(0, 1)]);
+    let mut prefix_sum = 0;
+    let mut matches = 0;
+
+    for value in nums {
+        prefix_sum += value;
+        let needed_prefix = prefix_sum - target;
+
+        if let Some(count) = prefix_counts.get(&needed_prefix) {
+            matches += count;
+        }
+
+        *prefix_counts.entry(prefix_sum).or_insert(0) += 1;
+    }
+
+    matches
+}

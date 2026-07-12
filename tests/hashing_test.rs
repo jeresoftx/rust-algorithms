@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::hashing::{
-    contains_duplicate, group_anagrams, longest_consecutive, product_except_self, top_k_frequent,
-    two_sum, valid_anagram,
+    contains_duplicate, group_anagrams, longest_consecutive, product_except_self,
+    subarray_sum_equals_k, top_k_frequent, two_sum, valid_anagram,
 };
 
 #[test]
@@ -144,4 +144,32 @@ fn longest_consecutive_handles_duplicates() {
 #[test]
 fn longest_consecutive_returns_zero_for_empty_input() {
     assert_eq!(longest_consecutive(vec![]), 0);
+}
+
+#[test]
+fn subarray_sum_equals_k_counts_contiguous_subarrays_matching_target() {
+    let result = subarray_sum_equals_k(vec![1, 1, 1], 2);
+
+    assert_eq!(result, 2);
+}
+
+#[test]
+fn subarray_sum_equals_k_counts_single_element_and_multi_element_matches() {
+    let result = subarray_sum_equals_k(vec![1, 2, 3], 3);
+
+    assert_eq!(result, 2);
+}
+
+#[test]
+fn subarray_sum_equals_k_handles_negative_numbers() {
+    let result = subarray_sum_equals_k(vec![1, -1, 0], 0);
+
+    assert_eq!(result, 3);
+}
+
+#[test]
+fn subarray_sum_equals_k_returns_zero_when_no_subarray_matches() {
+    let result = subarray_sum_equals_k(vec![2, 4, 6], 5);
+
+    assert_eq!(result, 0);
 }
