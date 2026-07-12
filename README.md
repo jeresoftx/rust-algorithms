@@ -18,6 +18,7 @@ El objetivo es que este proyecto sirva como material de estudio reutilizable: ca
 src/
   patterns/
     binary_search.rs
+    dynamic_programming.rs
     graphs.rs
     greedy.rs
     hashing.rs
@@ -31,6 +32,7 @@ src/
     two_pointers.rs
 tests/
   binary_search_test.rs
+  dynamic_programming_test.rs
   graphs_test.rs
   greedy_test.rs
   hashing_test.rs
@@ -51,6 +53,7 @@ notes/
   week-09-10.md
   week-11-12.md
   week-13.md
+  week-14-15.md
   rust-interview-patterns.md
   mistakes.md
 plan/
@@ -96,13 +99,14 @@ Páginas destacadas:
 - [Semanas 9 y 10: Árboles](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-9-y-10-Arboles)
 - [Semanas 11 y 12: Grafos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-11-y-12-Grafos)
 - [Semana 13: Montículos, Intervalos y Greedy](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-13-Monticulos-Intervalos-y-Greedy)
+- [Semanas 14 y 15: Programación Dinámica](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-14-y-15-Programacion-Dinamica)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 13
-- Problemas implementados: 60
-- Tests automatizados: 142
+- Semana documentada: 15
+- Problemas implementados: 69
+- Tests automatizados: 162
 - Lenguaje: Rust
 
 ## Enfoque de Estudio

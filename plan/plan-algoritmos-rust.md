@@ -332,7 +332,7 @@ Criterio de avance:
 
 ---
 
-## Semanas 14 y 15: Dynamic Programming
+## Semanas 14 y 15: Programación Dinámica
 
 **Meta:** pasar de recursión a memoización y tabulación cuando convenga.
 

@@ -240,3 +240,85 @@ for (start, end) in intervals.into_iter().skip(1) {
 - Intervalos no solapados.
 - Selección máxima de eventos compatibles.
 - Minimizar remociones.
+
+## DP 1D con Compresión
+
+```rust
+let mut two_back = base_two_back;
+let mut one_back = base_one_back;
+
+for item in items {
+    let current = transition(two_back, one_back, item);
+    two_back = one_back;
+    one_back = current;
+}
+```
+
+Útil para:
+
+- Escaleras.
+- Robo de casas.
+- Decodificación.
+
+## DP de Minimización
+
+```rust
+let unreachable = target + 1;
+let mut dp = vec![unreachable; target + 1];
+dp[0] = 0;
+
+for amount in 1..=target {
+    for coin in &coins {
+        if *coin <= amount {
+            dp[amount] = dp[amount].min(dp[amount - *coin] + 1);
+        }
+    }
+}
+```
+
+Útil para:
+
+- Coin Change.
+- Costos mínimos.
+- Caminos mínimos sin pesos negativos.
+
+## Knapsack 0/1
+
+```rust
+let mut dp = vec![false; target + 1];
+dp[0] = true;
+
+for value in values {
+    for current in (value..=target).rev() {
+        dp[current] = dp[current] || dp[current - value];
+    }
+}
+```
+
+Útil para:
+
+- Partition Equal Subset Sum.
+- Subset sum.
+- Decisiones donde cada elemento se usa una vez.
+
+## DP 2D con Fila Comprimida
+
+```rust
+let mut previous = vec![0; cols + 1];
+
+for row in rows {
+    let mut current = vec![0; cols + 1];
+
+    for col in 0..cols {
+        current[col + 1] = transition(&previous, &current, row, col);
+    }
+
+    previous = current;
+}
+```
+
+Útil para:
+
+- Longest Common Subsequence.
+- Problemas de grid.
+- Comparación de dos secuencias.

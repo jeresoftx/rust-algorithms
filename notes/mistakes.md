@@ -23,3 +23,7 @@
 | 2026-07-12 | MedianFinder | Montículos | Insertar en el montículo correcto no basta si las mitades quedan desbalanceadas | Rebalancear después de cada inserción y consultar la mediana desde las raíces | 2026-07-24 |
 | 2026-07-12 | Meeting Rooms II | Intervalos | Contar solapamientos sin liberar salas ya terminadas infla el resultado | Usar min heap de finales y liberar todo final `<= start` antes de asignar sala | 2026-07-24 |
 | 2026-07-12 | Task Scheduler | Greedy | Calcular huecos solo para una tarea máxima falla cuando hay empate de frecuencia | Sumar cuántas tareas comparten `max_count` en el marco mínimo | 2026-07-25 |
+| 2026-07-12 | Coin Change | Programación dinámica | No usar centinela hace difícil distinguir montos inalcanzables | Inicializar con `amount + 1` y convertir a `-1` al final si no mejora | 2026-07-26 |
+| 2026-07-12 | Decode Ways | Programación dinámica | Tratar `0` como dígito válido produce decodificaciones falsas | Permitir `0` solo cuando forma un número de 10 a 26 con el dígito anterior | 2026-07-26 |
+| 2026-07-12 | Partition Equal Subset Sum | Knapsack | Recorrer el target hacia adelante reutiliza el mismo número más de una vez | Recorrer en reversa para modelar selección 0/1 | 2026-07-27 |
+| 2026-07-12 | Longest Common Subsequence | Programación dinámica | Sobrescribir una fila antes de leerla rompe la transición | Separar fila previa y fila actual, o controlar cuidadosamente los temporales | 2026-07-27 |
