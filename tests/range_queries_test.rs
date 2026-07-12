@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::range_queries::{
-    corporate_flight_bookings, DifferenceArray, FenwickTree, MyCalendar, MyCalendarTwo,
-    RangeSumQuery, SegmentTree,
+    corporate_flight_bookings, count_smaller_numbers_after_self, DifferenceArray, FenwickTree,
+    MyCalendar, MyCalendarTwo, RangeSumQuery, SegmentTree,
 };
 
 #[test]
@@ -123,6 +123,30 @@ fn corporate_flight_bookings_ignores_invalid_bookings() {
     let bookings = vec![(0, 2, 10), (2, 4, 20), (3, 2, 30), (1, 3, 5)];
 
     assert_eq!(corporate_flight_bookings(&bookings, 3), vec![5, 5, 5]);
+}
+
+#[test]
+fn count_smaller_numbers_after_self_counts_right_side_values() {
+    assert_eq!(
+        count_smaller_numbers_after_self(vec![5, 2, 6, 1]),
+        vec![2, 1, 1, 0]
+    );
+}
+
+#[test]
+fn count_smaller_numbers_after_self_handles_duplicates_and_negatives() {
+    assert_eq!(
+        count_smaller_numbers_after_self(vec![-1, -1, -2, 0]),
+        vec![1, 1, 0, 0]
+    );
+}
+
+#[test]
+fn count_smaller_numbers_after_self_handles_empty_input() {
+    assert_eq!(
+        count_smaller_numbers_after_self(Vec::new()),
+        Vec::<i32>::new()
+    );
 }
 
 #[test]

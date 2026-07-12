@@ -303,6 +303,31 @@ pub fn corporate_flight_bookings(
     difference.values()
 }
 
+pub fn count_smaller_numbers_after_self(values: Vec<i32>) -> Vec<i32> {
+    let mut sorted_values = values.clone();
+    sorted_values.sort_unstable();
+    sorted_values.dedup();
+
+    let mut tree = FenwickTree::new(sorted_values.len());
+    let mut counts = vec![0; values.len()];
+
+    for (index, value) in values.iter().enumerate().rev() {
+        let rank = sorted_values
+            .binary_search(value)
+            .expect("value comes from the compressed coordinate set");
+
+        counts[index] = if rank == 0 {
+            0
+        } else {
+            tree.prefix_sum(rank - 1).unwrap_or(0)
+        };
+
+        tree.add(rank, 1);
+    }
+
+    counts
+}
+
 #[derive(Debug, Clone, Default)]
 pub struct MyCalendar {
     events: BTreeMap<i32, i32>,
