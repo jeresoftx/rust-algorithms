@@ -172,6 +172,15 @@ fn is_valid_bst_returns_false_for_invalid_descendant() {
 }
 
 #[test]
+fn is_valid_bst_rejects_duplicate_values_on_either_side() {
+    let duplicate_on_left = tree_from_level_order(vec![Some(2), Some(2), Some(3)]);
+    let duplicate_on_right = tree_from_level_order(vec![Some(2), Some(1), Some(2)]);
+
+    assert!(!is_valid_bst(duplicate_on_left));
+    assert!(!is_valid_bst(duplicate_on_right));
+}
+
+#[test]
 fn lowest_common_ancestor_bst_returns_split_node() {
     let tree = tree_from_level_order(vec![
         Some(6),

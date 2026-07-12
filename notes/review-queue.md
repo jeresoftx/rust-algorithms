@@ -15,7 +15,7 @@ Estados:
 | Problema | Patrón | Motivo | Estado | Repetir |
 | --- | --- | --- | --- | --- |
 | Minimum Window Substring | Sliding window | Ventana y conteos suelen romperse al contraer | repetido | 2026-07-26 |
-| Validate Binary Search Tree | Árboles | Requiere límites heredados, no solo comparar padre | pendiente | 2026-07-20 |
+| Validate Binary Search Tree | Árboles | Requiere límites heredados, no solo comparar padre | repetido | 2026-07-20 |
 | Course Schedule | Grafos | Topological sort y ciclos dirigidos | repetido | 2026-07-23 |
 | Coin Change | Programación dinámica | Estado de minimización con centinela | repetido | 2026-07-26 |
 | Partition Equal Subset Sum | Knapsack | Recorrido inverso para 0/1 | pendiente | 2026-07-27 |
