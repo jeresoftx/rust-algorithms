@@ -46,3 +46,13 @@ fn min_window_returns_empty_when_target_cannot_be_covered() {
 fn min_window_handles_single_character_match() {
     assert_eq!(min_window("a", "a"), "a");
 }
+
+#[test]
+fn min_window_respects_repeated_target_characters() {
+    assert_eq!(min_window("AAABBC", "AABC"), "AABBC");
+}
+
+#[test]
+fn min_window_returns_empty_for_empty_target() {
+    assert_eq!(min_window("abc", ""), "");
+}
