@@ -62,16 +62,16 @@ fn handles_single_cell() {
 
 | Dimensión | Puntaje 1-5 | Evidencia |
 | --- | --- | --- |
-| Clarificación |  |  |
-| Enfoque |  |  |
-| Implementación |  |  |
-| Pruebas |  |  |
-| Comunicación |  |  |
+| Clarificación | 4 | Se cubrieron matriz vacía, celda única, movimientos sin diagonal y retorno de esfuerzo mínimo. |
+| Enfoque | 5 | Se eligió Dijkstra con costo minimax y se explicó por qué BFS simple no modela pesos. |
+| Implementación | 4 | La solución existente ya cubría el patrón; se reforzó la suite con el segundo ejemplo y matriz vacía. |
+| Pruebas | 5 | Quedaron cubiertos ejemplo principal, ruta alternativa, celda única y grid vacío. |
+| Comunicación | 4 | La retro deja invariantes y siguiente repetición, pero conviene practicar explicación verbal cronometrada. |
 
 Notas:
 
-- Qué salió bien:
-- Qué falló:
-- Error que se repite:
-- Acción de repaso:
-- Fecha para repetir:
+- Qué salió bien: la selección de Dijkstra minimax fue directa y las pruebas capturan los bordes principales.
+- Qué falló: faltaba registrar el segundo ejemplo del enunciado en la suite.
+- Error que se repite: dejar casos de clarificación como texto sin convertirlos en tests.
+- Acción de repaso: repetir la explicación de Dijkstra minimax sin consultar notas.
+- Fecha para repetir: 2026-07-19.
