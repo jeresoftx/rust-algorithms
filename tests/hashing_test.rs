@@ -1,5 +1,5 @@
 use rust_algorithms::patterns::hashing::{
-    contains_duplicate, group_anagrams, two_sum, valid_anagram,
+    contains_duplicate, group_anagrams, product_except_self, two_sum, valid_anagram,
 };
 
 #[test]
@@ -90,4 +90,25 @@ fn group_anagrams_handles_empty_string_group() {
     let result = group_anagrams(vec![String::from("")]);
 
     assert_eq!(result, vec![vec![String::from("")]]);
+}
+
+#[test]
+fn product_except_self_returns_product_of_all_other_values() {
+    let result = product_except_self(vec![1, 2, 3, 4]);
+
+    assert_eq!(result, vec![24, 12, 8, 6]);
+}
+
+#[test]
+fn product_except_self_handles_one_zero() {
+    let result = product_except_self(vec![-1, 1, 0, -3, 3]);
+
+    assert_eq!(result, vec![0, 0, 9, 0, 0]);
+}
+
+#[test]
+fn product_except_self_handles_two_values() {
+    let result = product_except_self(vec![4, 5]);
+
+    assert_eq!(result, vec![5, 4]);
 }

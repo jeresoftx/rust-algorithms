@@ -95,3 +95,30 @@ pub fn group_anagrams(words: Vec<String>) -> Vec<Vec<String>> {
 
     groups.into_values().collect()
 }
+
+/// Product of Array Except Self
+///
+/// Pattern: prefix and suffix products.
+/// Idea: store the product before each index, then multiply by the product
+/// after each index in a reverse pass.
+///
+/// Time: O(n)
+/// Space: O(1) extra space, excluding the returned vector.
+pub fn product_except_self(nums: Vec<i32>) -> Vec<i32> {
+    let mut result = vec![1; nums.len()];
+    let mut prefix = 1;
+
+    for (index, value) in nums.iter().enumerate() {
+        result[index] = prefix;
+        prefix *= value;
+    }
+
+    let mut suffix = 1;
+
+    for (index, value) in nums.iter().enumerate().rev() {
+        result[index] *= suffix;
+        suffix *= value;
+    }
+
+    result
+}
