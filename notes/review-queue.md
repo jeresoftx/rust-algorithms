@@ -27,6 +27,6 @@ Estados:
 | 2026-07-12 | Minimum Window Substring | Sliding window | 24/25 | Repetir sin mirar notas el 2026-07-26 |
 | 2026-07-12 | Course Schedule | Grafos | 23/25 | Repetir `find_course_order` desde cero el 2026-07-23 |
 | 2026-07-12 | Coin Change | Programación dinámica | 24/25 | Repetir con monedas no positivas y monto grande el 2026-07-26 |
-| 2026-07-12 | Path With Minimum Effort | Grafos ponderados | 22/25 | Repetir explicación sin consultar notas el 2026-07-19 |
+| 2026-07-12 | Path With Minimum Effort | Grafos ponderados | 24/25 | Repetido con matriz de una sola fila; explicar Dijkstra minimax el 2026-07-19 |
 | 2026-07-12 | Longest Duplicate Substring | Cadenas avanzadas | 21/25 | Repetir con rolling hash o suffix array el 2026-07-20 |
 | 2026-07-12 | Range Query Mix | Consultas por rangos | 24/25 | Repetir `RangeSumQuery` desde cero el 2026-07-21 |

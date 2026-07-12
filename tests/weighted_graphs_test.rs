@@ -185,6 +185,13 @@ fn minimum_effort_path_returns_zero_for_single_cell() {
 }
 
 #[test]
+fn minimum_effort_path_handles_single_row() {
+    let heights = vec![vec![1, 10, 6, 7, 9, 10]];
+
+    assert_eq!(minimum_effort_path(heights), 9);
+}
+
+#[test]
 fn minimum_effort_path_returns_zero_for_empty_grid() {
     assert_eq!(minimum_effort_path(Vec::new()), 0);
 }
