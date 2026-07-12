@@ -18,11 +18,18 @@ El objetivo es que este proyecto sirva como material de estudio reutilizable: ca
 src/
   patterns/
     hashing.rs
+    sliding_window.rs
+    stack_queue.rs
+    two_pointers.rs
 tests/
   hashing_test.rs
+  sliding_window_test.rs
+  stack_queue_test.rs
+  two_pointers_test.rs
 notes/
   week-01.md
   week-02-03.md
+  week-04-05.md
   rust-interview-patterns.md
   mistakes.md
 plan/
@@ -62,13 +69,14 @@ Páginas destacadas:
 
 - [Semana 1: Rust, Hashing, Arrays y Strings](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-1-Rust-Hashing-Arrays-y-Strings)
 - [Semanas 2 y 3: Arrays, Strings, Hashing y Sumas de Prefijos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-2-y-3-Arrays-Strings-Hashing-y-Sumas-de-Prefijos)
+- [Semanas 4 y 5: Two Pointers, Sliding Window y Stack](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-4-y-5-Two-Pointers-Sliding-Window-y-Stack)
 - [Patrones de Rust para Entrevista](https://github.com/jeresoftx/rust-algorithms/wiki/Patrones-Rust-para-Entrevista)
 
 ## Estado Actual
 
-- Semana documentada: 3
-- Problemas implementados: 8
-- Tests automatizados: 22
+- Semana documentada: 5
+- Problemas implementados: 17
+- Tests automatizados: 49
 - Lenguaje: Rust
 
 ## Enfoque de Estudio
