@@ -10,6 +10,7 @@ pub mod math_bit;
 pub mod recursion_backtracking;
 pub mod sliding_window;
 pub mod stack_queue;
+pub mod string_algorithms;
 pub mod trees;
 pub mod tries;
 pub mod two_pointers;
