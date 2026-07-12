@@ -66,16 +66,16 @@ fn rejects_invalid_ranges() {
 
 | Dimensión | Puntaje 1-5 | Evidencia |
 | --- | --- | --- |
-| Clarificación |  |  |
-| Enfoque |  |  |
-| Implementación |  |  |
-| Pruebas |  |  |
-| Comunicación |  |  |
+| Clarificación | 5 | Se cubrieron rango inclusivo, índices inválidos, entrada vacía y valores negativos. |
+| Enfoque | 5 | Se eligió Fenwick Tree porque hay actualizaciones puntuales y consultas de suma. |
+| Implementación | 5 | La estructura existente conserva valores originales y actualiza por delta. |
+| Pruebas | 5 | Se reforzó con valores negativos, múltiples actualizaciones y operaciones sobre arreglo vacío. |
+| Comunicación | 4 | La explicación de Fenwick quedó clara; conviene practicarla sin mirar el código. |
 
 Notas:
 
-- Qué salió bien:
-- Qué falló:
-- Error que se repite:
-- Acción de repaso:
-- Fecha para repetir:
+- Qué salió bien: la elección de Fenwick fue directa y los bordes se convirtieron en pruebas.
+- Qué falló: faltaban pruebas explícitas para negativos y entrada vacía.
+- Error que se repite: la suite cubría el caso principal, pero no todas las preguntas de clarificación.
+- Acción de repaso: reimplementar `RangeSumQuery` desde cero con pruebas primero.
+- Fecha para repetir: 2026-07-21.

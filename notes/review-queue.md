@@ -29,4 +29,4 @@ Estados:
 | Pendiente | Coin Change | Programación dinámica | Sin evaluar | Ejecutar `notes/simulations/simulacro-03-coin-change.md` |
 | 2026-07-12 | Path With Minimum Effort | Grafos ponderados | 22/25 | Repetir explicación sin consultar notas el 2026-07-19 |
 | 2026-07-12 | Longest Duplicate Substring | Cadenas avanzadas | 21/25 | Repetir con rolling hash o suffix array el 2026-07-20 |
-| Pendiente | Range Query Mix | Consultas por rangos | Sin evaluar | Ejecutar `notes/simulations/simulacro-06-range-queries.md` |
+| 2026-07-12 | Range Query Mix | Consultas por rangos | 24/25 | Repetir `RangeSumQuery` desde cero el 2026-07-21 |
