@@ -8,3 +8,5 @@
 | 2026-07-12 | 3Sum | Two pointers | Es fácil devolver triplets duplicados | Saltar duplicados del índice fijo y de ambos punteros después de encontrar una solución | 2026-07-15 |
 | 2026-07-12 | Minimum Window Substring | Sliding window | Contraer la ventana demasiado pronto rompe los conteos requeridos | Solo contraer mientras `missing == 0` y ajustar conteos al mover `left` | 2026-07-16 |
 | 2026-07-12 | Largest Rectangle in Histogram | Stack monotónico | Sin centinela final quedan barras pendientes sin cerrar | Agregar altura `0` al final para vaciar la pila | 2026-07-16 |
+| 2026-07-12 | Binary Search | Búsqueda binaria | Mezclar rangos cerrados y semiabiertos produce off-by-one | Elegir una convención por función y actualizar `left`/`right` de forma consistente | 2026-07-17 |
+| 2026-07-12 | Koko Eating Bananas | Búsqueda sobre respuesta | Dividir con truncamiento subestima las horas necesarias | Usar división redondeando hacia arriba: `(value + divisor - 1) / divisor` | 2026-07-17 |
