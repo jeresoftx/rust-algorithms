@@ -21,10 +21,10 @@ Queda fuera de este plan:
 
 ## Estado Inicial
 
-- Problemas implementados: 137.
-- Tests automatizados: 342.
+- Problemas implementados: 140.
+- Tests automatizados: 348.
 - Meta inmediata: 140 problemas.
-- Faltan: 3 problemas.
+- Faltan: 0 problemas.
 
 ## Bloques de Trabajo
 
@@ -34,7 +34,7 @@ Queda fuera de este plan:
 | 2 | Búsqueda binaria y arreglos | 4 | Completado: 129 problemas |
 | 3 | Two pointers y arreglos | 4 | Completado: 133 problemas |
 | 4 | Programación dinámica compacta | 4 | Completado: 137 problemas |
-| 5 | Grafos, árboles o hashing selectivo | 3 | Cerrar 140 problemas |
+| 5 | Hashing y cadenas selectivas | 3 | Completado: hito 140 cerrado |
 
 ## Rutina por Bloque
 
@@ -64,3 +64,10 @@ Queda fuera de este plan:
 | Búsqueda binaria y arreglos | 4 | 12 | completado |
 | Two pointers y arreglos | 4 | 8 | completado |
 | Programación dinámica compacta | 4 | 8 | completado |
+| Hashing y cadenas selectivas | 3 | 6 | completado |
+
+## Resultado
+
+- Hito mínimo cerrado: 140 problemas implementados.
+- Tests automatizados al cierre: 348.
+- Las repeticiones dirigidas quedan fuera de este cierre porque corresponden al entrenamiento personal.

@@ -300,8 +300,9 @@ Avance acumulado:
 - Simulacros avanzados creados: 3.
 - Simulacros acumulados ejecutados: 6 de 6.
 - Problemas repetidos: 6 de 20.
-- Problemas implementados: 137 de 140 como mínimo.
-- Faltan para cierre mínimo del repositorio: 3 problemas implementados.
+- Problemas implementados: 140 de 140 como mínimo.
+- Faltan para cierre mínimo del repositorio: 0 problemas implementados.
+- Estado del cierre autónomo del repositorio: completado.
 - Repeticiones dirigidas: fuera del alcance de este cierre autónomo.
 - Archivos creados: `notes/week-27-28.md`, `notes/simulations/simulacro-04-grafos-ponderados.md`, `notes/simulations/simulacro-05-strings-avanzados.md` y `notes/simulations/simulacro-06-range-queries.md`.
 - Enfoque: práctica cronometrada, explicación verbal y repetición dirigida.
@@ -310,7 +311,7 @@ Criterio de cierre:
 
 - Completar 6 simulacros acumulados.
 - Tener al menos 20 problemas repetidos.
-- Llegar a 140 problemas implementados como mínimo.
+- Llegar a 140 problemas implementados como mínimo. Completado.
 - Mantener `cargo test` pasando.
 
 ## Orden Recomendado de Implementación

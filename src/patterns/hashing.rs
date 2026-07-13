@@ -75,6 +75,75 @@ pub fn contains_duplicate(nums: Vec<i32>) -> bool {
     false
 }
 
+/// Isomorphic Strings
+///
+/// Pattern: bidirectional mapping.
+/// Idea: each source character must map to exactly one target character and
+/// each target character must be claimed by only one source character.
+///
+/// Time: O(n)
+/// Space: O(k), where k is the number of distinct characters.
+pub fn is_isomorphic(source: &str, target: &str) -> bool {
+    if source.chars().count() != target.chars().count() {
+        return false;
+    }
+
+    let mut forward = HashMap::new();
+    let mut backward = HashMap::new();
+
+    for (left, right) in source.chars().zip(target.chars()) {
+        if let Some(&mapped) = forward.get(&left) {
+            if mapped != right {
+                return false;
+            }
+        } else {
+            forward.insert(left, right);
+        }
+
+        if let Some(&mapped) = backward.get(&right) {
+            if mapped != left {
+                return false;
+            }
+        } else {
+            backward.insert(right, left);
+        }
+    }
+
+    true
+}
+
+/// Word Pattern
+///
+/// Pattern: bidirectional mapping between pattern characters and words.
+/// Idea: the character-to-word relation must be a bijection.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn word_pattern(pattern: &str, text: &str) -> bool {
+    let words: Vec<&str> = text.split_whitespace().collect();
+
+    if pattern.chars().count() != words.len() {
+        return false;
+    }
+
+    let mut forward = HashMap::new();
+    let mut used_words = HashSet::new();
+
+    for (character, word) in pattern.chars().zip(words) {
+        if let Some(&mapped_word) = forward.get(&character) {
+            if mapped_word != word {
+                return false;
+            }
+        } else if !used_words.insert(word) {
+            return false;
+        } else {
+            forward.insert(character, word);
+        }
+    }
+
+    true
+}
+
 /// Group Anagrams
 ///
 /// Pattern: canonical hash key.
@@ -146,6 +215,24 @@ pub fn top_k_frequent(nums: Vec<i32>, k: usize) -> Vec<i32> {
         .take(k)
         .map(|(value, _)| value)
         .collect()
+}
+
+/// First Unique Character in a String
+///
+/// Pattern: frequency counting.
+/// Idea: count first, then scan in original order to preserve "first".
+///
+/// Time: O(n)
+/// Space: O(k), where k is the number of distinct characters.
+pub fn first_unique_char(text: &str) -> Option<usize> {
+    let mut counts = HashMap::new();
+
+    for character in text.chars() {
+        *counts.entry(character).or_insert(0) += 1;
+    }
+
+    text.char_indices()
+        .find_map(|(index, character)| (counts[&character] == 1).then_some(index))
 }
 
 /// Longest Consecutive Sequence

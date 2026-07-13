@@ -1,6 +1,7 @@
 use rust_algorithms::patterns::hashing::{
-    contains_duplicate, group_anagrams, longest_consecutive, product_except_self,
-    subarray_sum_equals_k, top_k_frequent, two_sum, valid_anagram,
+    contains_duplicate, first_unique_char, group_anagrams, is_isomorphic, longest_consecutive,
+    product_except_self, subarray_sum_equals_k, top_k_frequent, two_sum, valid_anagram,
+    word_pattern,
 };
 
 #[test]
@@ -53,6 +54,29 @@ fn contains_duplicate_returns_true_when_value_repeats() {
 #[test]
 fn contains_duplicate_returns_false_when_all_values_are_unique() {
     assert!(!contains_duplicate(vec![1, 2, 3, 4]));
+}
+
+#[test]
+fn is_isomorphic_accepts_consistent_character_mapping() {
+    assert!(is_isomorphic("egg", "add"));
+    assert!(is_isomorphic("paper", "title"));
+}
+
+#[test]
+fn is_isomorphic_rejects_conflicting_character_mapping() {
+    assert!(!is_isomorphic("foo", "bar"));
+    assert!(!is_isomorphic("ab", "aa"));
+}
+
+#[test]
+fn word_pattern_accepts_matching_bijection() {
+    assert!(word_pattern("abba", "dog cat cat dog"));
+}
+
+#[test]
+fn word_pattern_rejects_reused_word_or_pattern_slot() {
+    assert!(!word_pattern("abba", "dog cat cat fish"));
+    assert!(!word_pattern("aaaa", "dog cat cat dog"));
 }
 
 #[test]
@@ -125,6 +149,17 @@ fn top_k_frequent_returns_most_common_values() {
 #[test]
 fn top_k_frequent_handles_single_requested_value() {
     assert_eq!(top_k_frequent(vec![4, 4, 4, 6, 6, 7], 1), vec![4]);
+}
+
+#[test]
+fn first_unique_char_returns_first_non_repeated_character_index() {
+    assert_eq!(first_unique_char("leetcode"), Some(0));
+    assert_eq!(first_unique_char("loveleetcode"), Some(2));
+}
+
+#[test]
+fn first_unique_char_returns_none_when_every_character_repeats() {
+    assert_eq!(first_unique_char("aabb"), None);
 }
 
 #[test]
