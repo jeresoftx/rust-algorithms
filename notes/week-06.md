@@ -10,10 +10,14 @@ Usar búsqueda binaria no solo para encontrar índices exactos, sino también pa
 | --- | --- | --- | --- |
 | Binary Search | Búsqueda exacta | `binary_search` | 3 |
 | Search Insert Position | Lower bound | `search_insert` | 3 |
+| Find First and Last Position | Lower bound doble | `search_range` | 3 |
 | Search in Rotated Sorted Array | Mitad ordenada | `search_rotated` | 3 |
 | Find Minimum in Rotated Sorted Array | Búsqueda de pivote | `find_min_rotated` | 3 |
 | Koko Eating Bananas | Búsqueda sobre respuesta | `min_eating_speed` | 3 |
 | Capacity To Ship Packages Within D Days | Búsqueda sobre respuesta | `ship_within_days` | 3 |
+| Search a 2D Matrix | Matriz a arreglo virtual | `search_matrix` | 3 |
+| Find Peak Element | Búsqueda sobre pendiente | `find_peak_element` | 3 |
+| Arranging Coins | Búsqueda sobre respuesta | `arrange_coins` | 3 |
 
 ## Patrones Trabajados
 
@@ -36,6 +40,7 @@ Busca el primer índice cuyo valor es mayor o igual al objetivo.
 - Posición de inserción.
 - Primer valor que cumple una condición.
 - Evitar ramas especiales cuando el valor no existe.
+- Rango de ocurrencias usando `lower_bound` y `upper_bound`.
 
 ### Arreglo Rotado
 
@@ -55,6 +60,7 @@ Ejemplos:
 
 - Si una velocidad permite terminar a tiempo, toda velocidad mayor también.
 - Si una capacidad permite enviar a tiempo, toda capacidad mayor también.
+- Si una cantidad de filas completas cabe con `n` monedas, toda cantidad menor también.
 
 Pasos:
 
@@ -70,6 +76,7 @@ Pasos:
 - No probar objetivos ausentes.
 - Definir mal la condición monótona.
 - No hacer división redondeando hacia arriba en problemas de capacidad o velocidad.
+- Olvidar usar enteros amplios al calcular productos o números triangulares.
 
 ## Verificación
 
@@ -80,7 +87,7 @@ cargo test
 Resultado esperado al cerrar el bloque:
 
 ```text
-67 passed; 0 failed
+326 passed; 0 failed
 ```
 
 ## Siguiente Bloque

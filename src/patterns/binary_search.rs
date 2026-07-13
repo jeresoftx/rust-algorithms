@@ -50,6 +50,24 @@ pub fn search_insert(nums: Vec<i32>, target: i32) -> usize {
     left
 }
 
+/// Find First and Last Position of Element in Sorted Array
+///
+/// Pattern: lower bound twice.
+/// Idea: first find the first target, then the first value greater than target.
+///
+/// Time: O(log n)
+/// Space: O(1)
+pub fn search_range(nums: Vec<i32>, target: i32) -> Option<(usize, usize)> {
+    let first = lower_bound(&nums, target);
+
+    if first == nums.len() || nums[first] != target {
+        return None;
+    }
+
+    let after_last = upper_bound(&nums, target);
+    Some((first, after_last - 1))
+}
+
 /// Search in Rotated Sorted Array
 ///
 /// Pattern: binary search with sorted-half detection.
@@ -179,6 +197,137 @@ pub fn ship_within_days(weights: Vec<i32>, days: i32) -> i32 {
             right = capacity;
         } else {
             left = capacity + 1;
+        }
+    }
+
+    left
+}
+
+/// Search a 2D Matrix
+///
+/// Pattern: binary search over a flattened sorted matrix.
+/// Idea: map a virtual index to row and column without allocating.
+///
+/// Time: O(log(m*n))
+/// Space: O(1)
+pub fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
+    if matrix.is_empty() || matrix[0].is_empty() {
+        return false;
+    }
+
+    let rows = matrix.len();
+    let cols = matrix[0].len();
+    let mut left = 0;
+    let mut right = rows * cols;
+
+    while left < right {
+        let middle = left + (right - left) / 2;
+        let value = matrix[middle / cols][middle % cols];
+
+        if value == target {
+            return true;
+        }
+
+        if value < target {
+            left = middle + 1;
+        } else {
+            right = middle;
+        }
+    }
+
+    false
+}
+
+/// Find Peak Element
+///
+/// Pattern: binary search on slope.
+/// Idea: if mid is lower than mid + 1, a peak exists to the right.
+///
+/// Time: O(log n)
+/// Space: O(1)
+pub fn find_peak_element(nums: Vec<i32>) -> Option<usize> {
+    if nums.is_empty() {
+        return None;
+    }
+
+    let mut left = 0;
+    let mut right = nums.len() - 1;
+
+    while left < right {
+        let middle = left + (right - left) / 2;
+
+        if nums[middle] < nums[middle + 1] {
+            left = middle + 1;
+        } else {
+            right = middle;
+        }
+    }
+
+    Some(left)
+}
+
+/// Arranging Coins
+///
+/// Pattern: binary search on answer.
+/// Idea: row count is monotonic because triangular numbers only increase.
+///
+/// Time: O(log n)
+/// Space: O(1)
+pub fn arrange_coins(coins: i32) -> i32 {
+    if coins <= 0 {
+        return 0;
+    }
+
+    let total = coins as i64;
+    let mut left = 1_i64;
+    let mut right = total;
+
+    while left <= right {
+        let rows = left + (right - left) / 2;
+        let needed = rows * (rows + 1) / 2;
+
+        if needed == total {
+            return rows as i32;
+        }
+
+        if needed < total {
+            left = rows + 1;
+        } else {
+            right = rows - 1;
+        }
+    }
+
+    right as i32
+}
+
+fn lower_bound(nums: &[i32], target: i32) -> usize {
+    let mut left = 0;
+    let mut right = nums.len();
+
+    while left < right {
+        let middle = left + (right - left) / 2;
+
+        if nums[middle] < target {
+            left = middle + 1;
+        } else {
+            right = middle;
+        }
+    }
+
+    left
+}
+
+fn upper_bound(nums: &[i32], target: i32) -> usize {
+    let mut left = 0;
+    let mut right = nums.len();
+
+    while left < right {
+        let middle = left + (right - left) / 2;
+
+        if nums[middle] <= target {
+            left = middle + 1;
+        } else {
+            right = middle;
         }
     }
 

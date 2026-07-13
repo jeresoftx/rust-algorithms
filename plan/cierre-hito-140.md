@@ -21,17 +21,17 @@ Queda fuera de este plan:
 
 ## Estado Inicial
 
-- Problemas implementados: 125.
-- Tests automatizados: 314.
+- Problemas implementados: 129.
+- Tests automatizados: 326.
 - Meta inmediata: 140 problemas.
-- Faltan: 15 problemas.
+- Faltan: 11 problemas.
 
 ## Bloques de Trabajo
 
 | Bloque | Tema | Problemas estimados | Resultado |
 | --- | --- | ---: | --- |
 | 1 | Matemáticas y bits compactos | 4 | Completado: 125 problemas |
-| 2 | Búsqueda binaria y arreglos | 4 | Subir a 129 problemas |
+| 2 | Búsqueda binaria y arreglos | 4 | Completado: 129 problemas |
 | 3 | Two pointers y sliding window | 4 | Subir a 133 problemas |
 | 4 | Programación dinámica compacta | 4 | Subir a 137 problemas |
 | 5 | Grafos, árboles o hashing selectivo | 3 | Cerrar 140 problemas |
@@ -61,3 +61,4 @@ Queda fuera de este plan:
 | Bloque | Problemas agregados | Tests agregados | Estado |
 | --- | ---: | ---: | --- |
 | Matemáticas y bits compactos | 4 | 8 | completado |
+| Búsqueda binaria y arreglos | 4 | 12 | completado |
