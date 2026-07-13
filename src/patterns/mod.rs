@@ -8,6 +8,7 @@ pub mod heaps;
 pub mod intervals;
 pub mod linked_lists;
 pub mod math_bit;
+pub mod matrices;
 pub mod range_queries;
 pub mod recursion_backtracking;
 pub mod sliding_window;

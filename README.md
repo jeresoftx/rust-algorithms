@@ -26,6 +26,7 @@ src/
     heaps.rs
     intervals.rs
     linked_lists.rs
+    matrices.rs
     math_bit.rs
     range_queries.rs
     recursion_backtracking.rs
@@ -45,6 +46,7 @@ tests/
   heaps_test.rs
   intervals_test.rs
   linked_lists_test.rs
+  matrices_test.rs
   math_bit_test.rs
   range_queries_test.rs
   recursion_backtracking_test.rs
@@ -146,9 +148,9 @@ Páginas destacadas:
 ## Estado Actual
 
 - Semana documentada: 27-28
-- Problemas implementados: 182
-- Tests automatizados: 433
-- Ruta avanzada: hito 190 en progreso; repeticiones personales fuera del avance autónomo
+- Problemas implementados: 190
+- Tests automatizados: 449
+- Ruta avanzada: hito 190 completado; repeticiones personales fuera del avance autónomo
 - Lenguaje: Rust
 
 ## Enfoque de Estudio

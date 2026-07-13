@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 182.
-- Tests automatizados: 433.
+- Problemas implementados: 190.
+- Tests automatizados: 449.
 - Meta del hito: 190 problemas.
-- Faltan: 8 problemas.
+- Faltan: 0 problemas.
 
 ## Enfoque
 
@@ -34,7 +34,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | 5 | Heaps, intervalos y greedy | 6 | Completado: 171 |
 | 6 | Range queries y estructuras | 6 | Completado: 177 |
 | 7 | Backtracking y combinatoria | 5 | Completado: 182 |
-| 8 | Geometría, matrices y selección final | 8 | 190 |
+| 8 | Geometría, matrices y selección final | 8 | Completado: 190 |
 
 ## Bloque 1: Strings Avanzados
 
@@ -183,14 +183,21 @@ Objetivo: cerrar el hito con problemas selectivos de alto valor.
 
 Problemas sugeridos:
 
-- Rotate Image.
-- Spiral Matrix.
-- Set Matrix Zeroes.
-- Word Search reforzado.
-- Valid Sudoku.
-- Game of Life.
-- Maximal Square.
-- Insert Delete GetRandom O(1).
+- Rotate Image. Implementado.
+- Spiral Matrix. Implementado.
+- Set Matrix Zeroes. Implementado.
+- Search a 2D Matrix II. Implementado.
+- Valid Sudoku. Implementado.
+- Game of Life. Implementado.
+- Maximal Square. Implementado.
+- Insert Delete GetRandom O(1). Implementado.
+
+Avance:
+
+- Problemas agregados: 8 de 8.
+- Tests agregados: 16.
+- Módulo agregado: `src/patterns/matrices.rs`.
+- APIs agregadas: `rotate_image`, `spiral_order`, `set_matrix_zeroes`, `search_matrix_ii`, `is_valid_sudoku`, `game_of_life`, `maximal_square` y `RandomizedSet`.
 
 ## Rutina por Bloque
 
@@ -215,11 +222,12 @@ Problemas sugeridos:
 | Heaps, intervalos y greedy | 6 | 12 | completado |
 | Range queries y estructuras | 6 | 12 | completado |
 | Backtracking y combinatoria | 5 | 10 | completado |
+| Geometría, matrices y selección final | 8 | 16 | completado |
 
 ## Criterio de Cierre del Hito
 
-- `README.md` reporta 190 problemas.
-- `plan/plan-alcance-avanzado.md` marca el hito 190 como completado.
-- La wiki refleja el mismo estado.
-- La suite completa pasa.
+- `README.md` reporta 190 problemas. Completado.
+- `plan/plan-alcance-avanzado.md` marca el hito 190 como completado. Completado.
+- La wiki refleja el mismo estado. Completado.
+- La suite completa pasa. Completado.
 - Las repeticiones personales siguen separadas del avance del repo.
