@@ -118,10 +118,12 @@ Planes locales:
 - [Plan base de algoritmos en Rust](plan/plan-algoritmos-rust.md)
 - [Plan de alcance avanzado](plan/plan-alcance-avanzado.md)
 - [Cierre del hito de 140 problemas](plan/cierre-hito-140.md)
+- [Cierre del hito de 190 problemas](plan/cierre-hito-190.md)
 
 Páginas destacadas:
 
 - [Plan de Alcance Avanzado](https://github.com/jeresoftx/rust-algorithms/wiki/Plan-de-Alcance-Avanzado)
+- [Cierre del Hito de 190 Problemas](https://github.com/jeresoftx/rust-algorithms/wiki/Cierre-del-Hito-190)
 - [Guía de Complejidad](https://github.com/jeresoftx/rust-algorithms/wiki/Guia-de-Complejidad)
 - [Semana 1: Rust, Hashing, Arrays y Strings](https://github.com/jeresoftx/rust-algorithms/wiki/Semana-1-Rust-Hashing-Arrays-y-Strings)
 - [Semanas 2 y 3: Arrays, Strings, Hashing y Sumas de Prefijos](https://github.com/jeresoftx/rust-algorithms/wiki/Semanas-2-y-3-Arrays-Strings-Hashing-y-Sumas-de-Prefijos)

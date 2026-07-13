@@ -48,6 +48,8 @@ El plan base sigue siendo el núcleo. La expansión agrega una ruta gradual:
 
 La meta de 400 problemas queda como horizonte opcional de largo plazo. Para este repo conviene llegar primero a 190 problemas bien probados y documentados.
 
+El hito mínimo de 140 problemas ya quedó cerrado. La meta activa del repositorio es el hito de 190 problemas, detallado en `plan/cierre-hito-190.md`.
+
 ## Fase 1: Complejidad, Matemáticas y Bits
 
 Duración sugerida: semanas 17 y 18.
