@@ -1,8 +1,11 @@
 use rust_algorithms::patterns::dynamic_programming::{
-    can_partition, climb_stairs, coin_change, decode_ways, edit_distance, house_robber,
-    house_robber_circular, longest_common_subsequence, longest_increasing_subsequence,
-    longest_palindromic_subsequence, min_cost_climbing_stairs, unique_paths, word_break,
+    can_partition, climb_stairs, coin_change, combination_sum_iv, decode_ways,
+    distinct_subsequences, edit_distance, house_robber, house_robber_circular, house_robber_tree,
+    longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
+    max_profit_with_cooldown, maximum_product_subarray, min_cost_climbing_stairs, minimum_path_sum,
+    target_sum_ways, unique_paths, word_break,
 };
+use rust_algorithms::patterns::trees::tree_from_level_order;
 
 #[test]
 fn climb_stairs_counts_ways_to_reach_top() {
@@ -169,4 +172,88 @@ fn can_partition_returns_false_when_total_sum_is_odd() {
 fn can_partition_does_not_reuse_values_more_than_once() {
     assert!(!can_partition(vec![1, 2, 5]));
     assert!(can_partition(vec![0, 0]));
+}
+
+#[test]
+fn max_profit_with_cooldown_respects_rest_day_after_sale() {
+    assert_eq!(max_profit_with_cooldown(vec![1, 2, 3, 0, 2]), 3);
+}
+
+#[test]
+fn max_profit_with_cooldown_handles_descending_prices() {
+    assert_eq!(max_profit_with_cooldown(vec![5, 4, 3, 2, 1]), 0);
+}
+
+#[test]
+fn house_robber_tree_skips_adjacent_tree_nodes() {
+    let tree = tree_from_level_order(vec![
+        Some(3),
+        Some(2),
+        Some(3),
+        None,
+        Some(3),
+        None,
+        Some(1),
+    ]);
+
+    assert_eq!(house_robber_tree(tree), 7);
+}
+
+#[test]
+fn house_robber_tree_handles_empty_tree() {
+    assert_eq!(house_robber_tree(None), 0);
+}
+
+#[test]
+fn target_sum_ways_counts_sign_assignments() {
+    assert_eq!(target_sum_ways(vec![1, 1, 1, 1, 1], 3), 5);
+}
+
+#[test]
+fn target_sum_ways_handles_zero_values() {
+    assert_eq!(target_sum_ways(vec![0, 0, 1], 1), 4);
+}
+
+#[test]
+fn combination_sum_iv_counts_ordered_combinations() {
+    assert_eq!(combination_sum_iv(vec![1, 2, 3], 4), 7);
+}
+
+#[test]
+fn combination_sum_iv_returns_zero_when_target_is_unreachable() {
+    assert_eq!(combination_sum_iv(vec![2, 4], 7), 0);
+}
+
+#[test]
+fn maximum_product_subarray_tracks_negative_flip() {
+    assert_eq!(maximum_product_subarray(vec![2, 3, -2, 4]), 6);
+    assert_eq!(maximum_product_subarray(vec![-2, 3, -4]), 24);
+}
+
+#[test]
+fn maximum_product_subarray_handles_zero_separator() {
+    assert_eq!(maximum_product_subarray(vec![-2, 0, -1]), 0);
+}
+
+#[test]
+fn minimum_path_sum_accumulates_cheapest_grid_path() {
+    let grid = vec![vec![1, 3, 1], vec![1, 5, 1], vec![4, 2, 1]];
+
+    assert_eq!(minimum_path_sum(grid), 7);
+}
+
+#[test]
+fn minimum_path_sum_handles_single_row() {
+    assert_eq!(minimum_path_sum(vec![vec![1, 2, 3]]), 6);
+}
+
+#[test]
+fn distinct_subsequences_counts_target_occurrences() {
+    assert_eq!(distinct_subsequences("rabbbit", "rabbit"), 3);
+    assert_eq!(distinct_subsequences("babgbag", "bag"), 5);
+}
+
+#[test]
+fn distinct_subsequences_handles_empty_target() {
+    assert_eq!(distinct_subsequences("abc", ""), 1);
 }

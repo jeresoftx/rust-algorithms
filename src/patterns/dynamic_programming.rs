@@ -1,5 +1,7 @@
 use std::collections::HashSet;
 
+use crate::patterns::trees::TreeLink;
+
 /// Climbing Stairs
 ///
 /// Pattern: 1D DP with state compression.
@@ -350,4 +352,199 @@ pub fn can_partition(nums: Vec<i32>) -> bool {
     }
 
     dp[target]
+}
+
+/// Best Time to Buy and Sell Stock with Cooldown
+///
+/// Pattern: finite-state DP.
+/// Idea: each day ends holding stock, resting, or cooling down after a sale.
+///
+/// Time: O(n)
+/// Space: O(1)
+pub fn max_profit_with_cooldown(prices: Vec<i32>) -> i32 {
+    let mut hold = i32::MIN / 2;
+    let mut rest = 0;
+    let mut cooldown = 0;
+
+    for price in prices {
+        let previous_hold = hold;
+        let previous_rest = rest;
+        let previous_cooldown = cooldown;
+
+        hold = previous_hold.max(previous_rest - price);
+        rest = previous_rest.max(previous_cooldown);
+        cooldown = previous_hold + price;
+    }
+
+    rest.max(cooldown)
+}
+
+/// House Robber III
+///
+/// Pattern: tree DP.
+/// Idea: for each node, keep two answers: rob this node or skip it.
+///
+/// Time: O(n)
+/// Space: O(h)
+pub fn house_robber_tree(root: TreeLink) -> i32 {
+    let (rob, skip) = rob_tree_states(root);
+    rob.max(skip)
+}
+
+fn rob_tree_states(root: TreeLink) -> (i32, i32) {
+    let Some(node) = root else {
+        return (0, 0);
+    };
+
+    let node = node.borrow();
+    let (left_rob, left_skip) = rob_tree_states(node.left.clone());
+    let (right_rob, right_skip) = rob_tree_states(node.right.clone());
+
+    let rob_current = node.val + left_skip + right_skip;
+    let skip_current = left_rob.max(left_skip) + right_rob.max(right_skip);
+
+    (rob_current, skip_current)
+}
+
+/// Target Sum
+///
+/// Pattern: subset-count transformation.
+/// Idea: assigning signs is equivalent to choosing positives that sum to
+/// `(sum + target) / 2`.
+///
+/// Time: O(n * target)
+/// Space: O(target)
+pub fn target_sum_ways(nums: Vec<i32>, target: i32) -> i32 {
+    if nums.iter().any(|&value| value < 0) {
+        return 0;
+    }
+
+    let sum: i32 = nums.iter().sum();
+    let transformed = sum + target;
+    if transformed < 0 || transformed % 2 != 0 {
+        return 0;
+    }
+
+    let target = (transformed / 2) as usize;
+    let mut dp = vec![0_i32; target + 1];
+    dp[0] = 1;
+
+    for value in nums {
+        let value = value as usize;
+        for current in (value..=target).rev() {
+            dp[current] += dp[current - value];
+        }
+    }
+
+    dp[target]
+}
+
+/// Combination Sum IV
+///
+/// Pattern: ordered counting DP.
+/// Idea: dp[amount] counts all sequences ending with each candidate.
+///
+/// Time: O(target * n)
+/// Space: O(target)
+pub fn combination_sum_iv(nums: Vec<i32>, target: usize) -> i32 {
+    let nums: Vec<usize> = nums
+        .into_iter()
+        .filter(|&value| value > 0)
+        .map(|value| value as usize)
+        .collect();
+    let mut dp = vec![0_i64; target + 1];
+    dp[0] = 1;
+
+    for amount in 1..=target {
+        for &value in &nums {
+            if value <= amount {
+                dp[amount] += dp[amount - value];
+            }
+        }
+    }
+
+    dp[target] as i32
+}
+
+/// Maximum Product Subarray
+///
+/// Pattern: DP with max/min state.
+/// Idea: a negative value swaps the role of best and worst product ending here.
+///
+/// Time: O(n)
+/// Space: O(1)
+pub fn maximum_product_subarray(nums: Vec<i32>) -> i32 {
+    let Some((&first, rest)) = nums.split_first() else {
+        return 0;
+    };
+
+    let mut best_ending = first;
+    let mut worst_ending = first;
+    let mut best = first;
+
+    for &value in rest {
+        let candidates = [value, best_ending * value, worst_ending * value];
+        best_ending = *candidates.iter().max().expect("three candidates");
+        worst_ending = *candidates.iter().min().expect("three candidates");
+        best = best.max(best_ending);
+    }
+
+    best
+}
+
+/// Minimum Path Sum
+///
+/// Pattern: 2D grid DP with row compression.
+/// Idea: the cheapest path to a cell comes from top or left.
+///
+/// Time: O(m * n)
+/// Space: O(n)
+pub fn minimum_path_sum(grid: Vec<Vec<i32>>) -> i32 {
+    let Some(first_row) = grid.first() else {
+        return 0;
+    };
+    if first_row.is_empty() {
+        return 0;
+    }
+
+    let cols = first_row.len();
+    let mut dp = vec![0; cols];
+
+    for (row_index, row) in grid.iter().enumerate() {
+        for col in 0..cols {
+            dp[col] = match (row_index, col) {
+                (0, 0) => row[col],
+                (0, _) => dp[col - 1] + row[col],
+                (_, 0) => dp[col] + row[col],
+                _ => dp[col].min(dp[col - 1]) + row[col],
+            };
+        }
+    }
+
+    dp[cols - 1]
+}
+
+/// Distinct Subsequences
+///
+/// Pattern: 2D counting DP with state compression.
+/// Idea: matching characters may either be used or skipped; non-matches can
+/// only be skipped from the source.
+///
+/// Time: O(m * n)
+/// Space: O(n)
+pub fn distinct_subsequences(source: &str, target: &str) -> usize {
+    let source: Vec<char> = source.chars().collect();
+    let target: Vec<char> = target.chars().collect();
+    let mut dp = vec![0_usize; target.len() + 1];
+    dp[0] = 1;
+
+    for source_char in source {
+        for target_index in (0..target.len()).rev() {
+            if source_char == target[target_index] {
+                dp[target_index + 1] += dp[target_index];
+            }
+        }
+    }
+
+    dp[target.len()]
 }

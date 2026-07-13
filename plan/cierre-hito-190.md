@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 158.
-- Tests automatizados: 385.
+- Problemas implementados: 165.
+- Tests automatizados: 399.
 - Meta del hito: 190 problemas.
-- Faltan: 32 problemas.
+- Faltan: 25 problemas.
 
 ## Enfoque
 
@@ -30,7 +30,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | 1 | Strings avanzados | 5 | Completado: 145 |
 | 2 | Grafos y Union-Find | 7 | Completado: 152 |
 | 3 | Árboles y BST | 6 | Completado: 158 |
-| 4 | Programación dinámica avanzada | 7 | 165 |
+| 4 | Programación dinámica avanzada | 7 | Completado: 165 |
 | 5 | Heaps, intervalos y greedy | 6 | 171 |
 | 6 | Range queries y estructuras | 6 | 177 |
 | 7 | Backtracking y combinatoria | 5 | 182 |
@@ -105,13 +105,21 @@ Objetivo: practicar estados 2D, intervalos, conteos y decisiones con restriccion
 
 Problemas sugeridos:
 
-- Palindromic Substrings.
-- Longest Palindromic Substring.
-- Best Time to Buy and Sell Stock with Cooldown.
-- House Robber III.
-- Target Sum.
-- Combination Sum IV.
-- Maximum Product Subarray.
+- Best Time to Buy and Sell Stock with Cooldown. Implementado.
+- House Robber III. Implementado.
+- Target Sum. Implementado.
+- Combination Sum IV. Implementado.
+- Maximum Product Subarray. Implementado.
+- Minimum Path Sum. Implementado.
+- Distinct Subsequences. Implementado.
+
+Nota: `count_palindromic_substrings` y `longest_palindromic_substring` ya están cubiertos en el módulo de cadenas avanzadas.
+
+Avance:
+
+- Problemas agregados: 7 de 7.
+- Tests agregados: 14.
+- APIs agregadas: `max_profit_with_cooldown`, `house_robber_tree`, `target_sum_ways`, `combination_sum_iv`, `maximum_product_subarray`, `minimum_path_sum` y `distinct_subsequences`.
 
 ## Bloque 5: Heaps, Intervalos y Greedy
 
@@ -185,6 +193,7 @@ Problemas sugeridos:
 | Strings avanzados | 5 | 11 | completado |
 | Grafos y Union-Find | 7 | 14 | completado |
 | Árboles y BST | 6 | 12 | completado |
+| Programación dinámica avanzada | 7 | 14 | completado |
 
 ## Criterio de Cierre del Hito
 
