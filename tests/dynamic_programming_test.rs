@@ -1,6 +1,7 @@
 use rust_algorithms::patterns::dynamic_programming::{
-    can_partition, climb_stairs, coin_change, decode_ways, house_robber,
-    longest_common_subsequence, longest_increasing_subsequence, unique_paths, word_break,
+    can_partition, climb_stairs, coin_change, decode_ways, edit_distance, house_robber,
+    house_robber_circular, longest_common_subsequence, longest_increasing_subsequence,
+    longest_palindromic_subsequence, min_cost_climbing_stairs, unique_paths, word_break,
 };
 
 #[test]
@@ -23,6 +24,33 @@ fn house_robber_returns_best_non_adjacent_sum() {
 #[test]
 fn house_robber_handles_empty_input() {
     assert_eq!(house_robber(Vec::new()), 0);
+}
+
+#[test]
+fn min_cost_climbing_stairs_returns_cheapest_top_cost() {
+    assert_eq!(min_cost_climbing_stairs(vec![10, 15, 20]), 15);
+    assert_eq!(
+        min_cost_climbing_stairs(vec![1, 100, 1, 1, 1, 100, 1, 1, 100, 1]),
+        6
+    );
+}
+
+#[test]
+fn min_cost_climbing_stairs_handles_short_inputs() {
+    assert_eq!(min_cost_climbing_stairs(vec![7]), 0);
+    assert_eq!(min_cost_climbing_stairs(Vec::new()), 0);
+}
+
+#[test]
+fn house_robber_circular_returns_best_non_adjacent_sum_in_cycle() {
+    assert_eq!(house_robber_circular(vec![2, 3, 2]), 3);
+    assert_eq!(house_robber_circular(vec![1, 2, 3, 1]), 4);
+}
+
+#[test]
+fn house_robber_circular_handles_small_inputs() {
+    assert_eq!(house_robber_circular(vec![5]), 5);
+    assert_eq!(house_robber_circular(Vec::new()), 0);
 }
 
 #[test]
@@ -102,6 +130,29 @@ fn longest_common_subsequence_returns_shared_subsequence_length() {
 #[test]
 fn longest_common_subsequence_returns_zero_when_no_characters_match() {
     assert_eq!(longest_common_subsequence("abc", "def"), 0);
+}
+
+#[test]
+fn edit_distance_counts_minimum_insert_delete_replace_operations() {
+    assert_eq!(edit_distance("horse", "ros"), 3);
+    assert_eq!(edit_distance("intention", "execution"), 5);
+}
+
+#[test]
+fn edit_distance_handles_empty_side() {
+    assert_eq!(edit_distance("", "abc"), 3);
+    assert_eq!(edit_distance("abc", ""), 3);
+}
+
+#[test]
+fn longest_palindromic_subsequence_returns_best_length() {
+    assert_eq!(longest_palindromic_subsequence("bbbab"), 4);
+    assert_eq!(longest_palindromic_subsequence("cbbd"), 2);
+}
+
+#[test]
+fn longest_palindromic_subsequence_handles_empty_input() {
+    assert_eq!(longest_palindromic_subsequence(""), 0);
 }
 
 #[test]

@@ -28,10 +28,53 @@ pub fn climb_stairs(n: usize) -> i32 {
 /// Time: O(n)
 /// Space: O(1)
 pub fn house_robber(nums: Vec<i32>) -> i32 {
+    house_robber_linear(&nums)
+}
+
+/// Min Cost Climbing Stairs
+///
+/// Pattern: 1D minimization DP with state compression.
+/// Idea: cost to reach the top comes from one or two steps below.
+///
+/// Time: O(n)
+/// Space: O(1)
+pub fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {
+    if cost.len() < 2 {
+        return 0;
+    }
+
+    let mut two_back = 0;
+    let mut one_back = 0;
+
+    for step in 2..=cost.len() {
+        let current = (one_back + cost[step - 1]).min(two_back + cost[step - 2]);
+        two_back = one_back;
+        one_back = current;
+    }
+
+    one_back
+}
+
+/// House Robber II
+///
+/// Pattern: split circular dependency into two linear ranges.
+/// Idea: the first and last houses cannot both be selected.
+///
+/// Time: O(n)
+/// Space: O(1)
+pub fn house_robber_circular(nums: Vec<i32>) -> i32 {
+    match nums.len() {
+        0 => 0,
+        1 => nums[0],
+        _ => house_robber_linear(&nums[..nums.len() - 1]).max(house_robber_linear(&nums[1..])),
+    }
+}
+
+fn house_robber_linear(nums: &[i32]) -> i32 {
     let mut skip_previous = 0;
     let mut best_previous = 0;
 
-    for value in nums {
+    for &value in nums {
         let best_current = best_previous.max(skip_previous + value);
         skip_previous = best_previous;
         best_previous = best_current;
@@ -213,6 +256,69 @@ pub fn longest_common_subsequence(first: &str, second: &str) -> usize {
     }
 
     previous[second.len()]
+}
+
+/// Edit Distance
+///
+/// Pattern: 2D string DP with row compression.
+/// Idea: replace, insert and delete each depend on adjacent solved prefixes.
+///
+/// Time: O(m * n)
+/// Space: O(n)
+pub fn edit_distance(first: &str, second: &str) -> usize {
+    let first: Vec<char> = first.chars().collect();
+    let second: Vec<char> = second.chars().collect();
+    let mut previous: Vec<usize> = (0..=second.len()).collect();
+
+    for (first_index, &first_char) in first.iter().enumerate() {
+        let mut current = vec![first_index + 1; second.len() + 1];
+
+        for (second_index, &second_char) in second.iter().enumerate() {
+            current[second_index + 1] = if first_char == second_char {
+                previous[second_index]
+            } else {
+                1 + previous[second_index]
+                    .min(previous[second_index + 1])
+                    .min(current[second_index])
+            };
+        }
+
+        previous = current;
+    }
+
+    previous[second.len()]
+}
+
+/// Longest Palindromic Subsequence
+///
+/// Pattern: interval DP.
+/// Idea: matching ends extend the best inner palindrome.
+///
+/// Time: O(n^2)
+/// Space: O(n^2)
+pub fn longest_palindromic_subsequence(input: &str) -> usize {
+    let chars: Vec<char> = input.chars().collect();
+    let length = chars.len();
+
+    if length == 0 {
+        return 0;
+    }
+
+    let mut dp = vec![vec![0; length]; length];
+
+    for left in (0..length).rev() {
+        dp[left][left] = 1;
+
+        for right in left + 1..length {
+            dp[left][right] = if chars[left] == chars[right] {
+                2 + dp[left + 1][right - 1]
+            } else {
+                dp[left + 1][right].max(dp[left][right - 1])
+            };
+        }
+    }
+
+    dp[0][length - 1]
 }
 
 /// Partition Equal Subset Sum
