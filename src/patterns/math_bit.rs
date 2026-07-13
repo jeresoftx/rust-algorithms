@@ -46,6 +46,10 @@ pub fn reverse_bits(mut value: u32) -> u32 {
     reversed
 }
 
+pub fn hamming_distance(left: u32, right: u32) -> u32 {
+    count_ones(left ^ right)
+}
+
 pub fn is_power_of_two(value: i32) -> bool {
     value > 0 && (value & (value - 1)) == 0
 }
@@ -85,6 +89,42 @@ pub fn fast_pow(base: f64, exponent: i32) -> f64 {
     pow_positive(base, exponent as i64)
 }
 
+pub fn add_binary(left: &str, right: &str) -> String {
+    let mut left_digits = left.as_bytes().iter().rev();
+    let mut right_digits = right.as_bytes().iter().rev();
+    let mut carry = 0_u8;
+    let mut result = Vec::new();
+
+    loop {
+        let left_bit = left_digits.next().map(|digit| digit - b'0');
+        let right_bit = right_digits.next().map(|digit| digit - b'0');
+
+        if left_bit.is_none() && right_bit.is_none() && carry == 0 {
+            break;
+        }
+
+        let sum = left_bit.unwrap_or(0) + right_bit.unwrap_or(0) + carry;
+        result.push(char::from(b'0' + sum % 2));
+        carry = sum / 2;
+    }
+
+    result.into_iter().rev().collect()
+}
+
+pub fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
+    for index in (0..digits.len()).rev() {
+        if digits[index] < 9 {
+            digits[index] += 1;
+            return digits;
+        }
+
+        digits[index] = 0;
+    }
+
+    digits.insert(0, 1);
+    digits
+}
+
 pub fn gcd(left: i64, right: i64) -> i64 {
     let mut a = left.abs();
     let mut b = right.abs();
@@ -104,6 +144,17 @@ pub fn lcm(left: i64, right: i64) -> i64 {
     }
 
     (left / gcd(left, right) * right).abs()
+}
+
+pub fn trailing_zeroes(mut value: i32) -> i32 {
+    let mut zeroes = 0;
+
+    while value > 0 {
+        value /= 5;
+        zeroes += value;
+    }
+
+    zeroes
 }
 
 pub fn sieve(limit: usize) -> Vec<usize> {

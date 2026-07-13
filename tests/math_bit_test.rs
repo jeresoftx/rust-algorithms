@@ -1,6 +1,7 @@
 use rust_algorithms::patterns::math_bit::{
-    count_bits, count_ones, fast_pow, gcd, is_perfect_square, is_power_of_two, lcm,
-    majority_element, maximum_subarray, missing_number, reverse_bits, sieve, single_number,
+    add_binary, count_bits, count_ones, fast_pow, gcd, hamming_distance, is_perfect_square,
+    is_power_of_two, lcm, majority_element, maximum_subarray, missing_number, plus_one,
+    reverse_bits, sieve, single_number, trailing_zeroes,
 };
 
 fn assert_close(actual: f64, expected: f64) {
@@ -70,6 +71,16 @@ fn reverse_bits_preserves_zero() {
 }
 
 #[test]
+fn hamming_distance_counts_different_bit_positions() {
+    assert_eq!(hamming_distance(1, 4), 2);
+}
+
+#[test]
+fn hamming_distance_returns_zero_for_equal_values() {
+    assert_eq!(hamming_distance(7, 7), 0);
+}
+
+#[test]
 fn is_power_of_two_accepts_positive_single_bit_values() {
     assert!(is_power_of_two(1024));
 }
@@ -114,6 +125,26 @@ fn fast_pow_handles_zero_exponent() {
 }
 
 #[test]
+fn add_binary_sums_two_binary_strings() {
+    assert_eq!(add_binary("1010", "1011"), "10101");
+}
+
+#[test]
+fn add_binary_carries_across_all_digits() {
+    assert_eq!(add_binary("111", "1"), "1000");
+}
+
+#[test]
+fn plus_one_increments_without_carrying_all_digits() {
+    assert_eq!(plus_one(vec![1, 2, 3]), vec![1, 2, 4]);
+}
+
+#[test]
+fn plus_one_expands_when_all_digits_are_nines() {
+    assert_eq!(plus_one(vec![9, 9, 9]), vec![1, 0, 0, 0]);
+}
+
+#[test]
 fn gcd_returns_greatest_common_divisor() {
     assert_eq!(gcd(54, 24), 6);
 }
@@ -132,6 +163,16 @@ fn lcm_returns_least_common_multiple() {
 #[test]
 fn lcm_returns_zero_when_any_value_is_zero() {
     assert_eq!(lcm(0, 9), 0);
+}
+
+#[test]
+fn trailing_zeroes_counts_factor_fives_in_factorial() {
+    assert_eq!(trailing_zeroes(25), 6);
+}
+
+#[test]
+fn trailing_zeroes_returns_zero_for_small_factorials() {
+    assert_eq!(trailing_zeroes(4), 0);
 }
 
 #[test]

@@ -117,6 +117,7 @@ Planes locales:
 
 - [Plan base de algoritmos en Rust](plan/plan-algoritmos-rust.md)
 - [Plan de alcance avanzado](plan/plan-alcance-avanzado.md)
+- [Cierre del hito de 140 problemas](plan/cierre-hito-140.md)
 
 Páginas destacadas:
 
@@ -143,8 +144,8 @@ Páginas destacadas:
 ## Estado Actual
 
 - Semana documentada: 27-28
-- Problemas implementados: 121
-- Tests automatizados: 306
+- Problemas implementados: 125
+- Tests automatizados: 314
 - Ruta avanzada: fase 6 en progreso; simulacros acumulados completos
 - Lenguaje: Rust
 
