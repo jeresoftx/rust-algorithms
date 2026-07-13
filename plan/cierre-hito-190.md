@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 165.
-- Tests automatizados: 399.
+- Problemas implementados: 171.
+- Tests automatizados: 411.
 - Meta del hito: 190 problemas.
-- Faltan: 25 problemas.
+- Faltan: 19 problemas.
 
 ## Enfoque
 
@@ -31,7 +31,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | 2 | Grafos y Union-Find | 7 | Completado: 152 |
 | 3 | Árboles y BST | 6 | Completado: 158 |
 | 4 | Programación dinámica avanzada | 7 | Completado: 165 |
-| 5 | Heaps, intervalos y greedy | 6 | 171 |
+| 5 | Heaps, intervalos y greedy | 6 | Completado: 171 |
 | 6 | Range queries y estructuras | 6 | 177 |
 | 7 | Backtracking y combinatoria | 5 | 182 |
 | 8 | Geometría, matrices y selección final | 8 | 190 |
@@ -127,12 +127,18 @@ Objetivo: fortalecer selección incremental, planificación y estructuras de pri
 
 Problemas sugeridos:
 
-- Merge K Sorted Lists.
-- K Closest Points reforzado con heap.
-- Meeting Rooms II reforzado.
-- Non-overlapping Intervals reforzado.
-- Minimum Number of Arrows to Burst Balloons.
-- Jump Game II.
+- Merge K Sorted Lists. Implementado.
+- K Closest Points reforzado con heap. Implementado.
+- Last Stone Weight. Implementado.
+- Minimum Number of Arrows to Burst Balloons. Implementado.
+- Jump Game II. Implementado.
+- Gas Station. Implementado.
+
+Avance:
+
+- Problemas agregados: 6 de 6.
+- Tests agregados: 12.
+- APIs agregadas: `merge_k_sorted_lists`, `k_closest_points_heap`, `last_stone_weight`, `min_arrows_to_burst_balloons`, `jump_game_ii` y `can_complete_circuit`.
 
 ## Bloque 6: Range Queries y Estructuras
 
@@ -194,6 +200,7 @@ Problemas sugeridos:
 | Grafos y Union-Find | 7 | 14 | completado |
 | Árboles y BST | 6 | 12 | completado |
 | Programación dinámica avanzada | 7 | 14 | completado |
+| Heaps, intervalos y greedy | 6 | 12 | completado |
 
 ## Criterio de Cierre del Hito
 

@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::intervals::{
     can_attend_meetings, erase_overlap_intervals, insert_interval, merge_intervals,
-    min_meeting_rooms,
+    min_arrows_to_burst_balloons, min_meeting_rooms,
 };
 
 #[test]
@@ -74,4 +74,16 @@ fn erase_overlap_intervals_removes_all_but_one_when_all_overlap() {
     let intervals = vec![(1, 2), (1, 2), (1, 2)];
 
     assert_eq!(erase_overlap_intervals(intervals), 2);
+}
+
+#[test]
+fn min_arrows_to_burst_balloons_groups_overlapping_ranges() {
+    let balloons = vec![(10, 16), (2, 8), (1, 6), (7, 12)];
+
+    assert_eq!(min_arrows_to_burst_balloons(balloons), 2);
+}
+
+#[test]
+fn min_arrows_to_burst_balloons_handles_empty_input() {
+    assert_eq!(min_arrows_to_burst_balloons(Vec::new()), 0);
 }

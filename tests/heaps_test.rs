@@ -1,4 +1,7 @@
-use rust_algorithms::patterns::heaps::{kth_largest, MedianFinder};
+use rust_algorithms::patterns::heaps::{
+    k_closest_points_heap, kth_largest, last_stone_weight, merge_k_sorted_lists, MedianFinder,
+};
+use rust_algorithms::patterns::linked_lists::{list_from_vec, list_to_vec};
 
 #[test]
 fn kth_largest_returns_second_largest_value() {
@@ -50,4 +53,52 @@ fn median_finder_returns_none_when_empty() {
     let finder = MedianFinder::new();
 
     assert_eq!(finder.find_median(), None);
+}
+
+#[test]
+fn merge_k_sorted_lists_merges_values_from_all_lists() {
+    let lists = vec![
+        list_from_vec(vec![1, 4, 5]),
+        list_from_vec(vec![1, 3, 4]),
+        list_from_vec(vec![2, 6]),
+    ];
+
+    let merged = merge_k_sorted_lists(lists);
+
+    assert_eq!(list_to_vec(&merged), vec![1, 1, 2, 3, 4, 4, 5, 6]);
+}
+
+#[test]
+fn merge_k_sorted_lists_handles_empty_lists() {
+    let lists = vec![None, list_from_vec(vec![0]), None];
+
+    let merged = merge_k_sorted_lists(lists);
+
+    assert_eq!(list_to_vec(&merged), vec![0]);
+}
+
+#[test]
+fn k_closest_points_heap_keeps_nearest_points() {
+    let mut result = k_closest_points_heap(vec![(1, 3), (-2, 2), (5, 8)], 2);
+    result.sort_unstable();
+
+    assert_eq!(result, vec![(-2, 2), (1, 3)]);
+}
+
+#[test]
+fn k_closest_points_heap_returns_all_when_k_exceeds_length() {
+    let mut result = k_closest_points_heap(vec![(3, 3), (1, 1)], 5);
+    result.sort_unstable();
+
+    assert_eq!(result, vec![(1, 1), (3, 3)]);
+}
+
+#[test]
+fn last_stone_weight_smashes_two_largest_stones() {
+    assert_eq!(last_stone_weight(vec![2, 7, 4, 1, 8, 1]), 1);
+}
+
+#[test]
+fn last_stone_weight_returns_zero_when_all_stones_cancel() {
+    assert_eq!(last_stone_weight(vec![3, 3]), 0);
 }

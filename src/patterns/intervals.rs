@@ -111,3 +111,29 @@ pub fn erase_overlap_intervals(mut intervals: Vec<(i32, i32)>) -> i32 {
 
     removals
 }
+
+/// Minimum Number of Arrows to Burst Balloons
+///
+/// Pattern: greedy by earliest end.
+/// Idea: one arrow can burst every balloon that overlaps the current end point.
+///
+/// Time: O(n log n)
+/// Space: O(1) extra space
+pub fn min_arrows_to_burst_balloons(mut balloons: Vec<(i32, i32)>) -> i32 {
+    if balloons.is_empty() {
+        return 0;
+    }
+
+    balloons.sort_unstable_by_key(|&(start, end)| (end, start));
+    let mut arrows = 1;
+    let mut current_end = balloons[0].1;
+
+    for (start, end) in balloons.into_iter().skip(1) {
+        if start > current_end {
+            arrows += 1;
+            current_end = end;
+        }
+    }
+
+    arrows
+}
