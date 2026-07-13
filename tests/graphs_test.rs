@@ -1,7 +1,8 @@
 use rust_algorithms::patterns::graphs::{
-    accounts_merge, can_finish, clone_graph, count_connected_components, find_circle_num,
-    find_course_order, graph_valid_tree, is_bipartite, max_area_of_island, number_of_islands,
-    oranges_rotting, pacific_atlantic, redundant_connection, walls_and_gates,
+    accounts_merge, alien_order, can_finish, clone_graph, count_connected_components,
+    evaluate_division, find_circle_num, find_course_order, graph_valid_tree, is_bipartite,
+    max_area_of_island, number_of_islands, oranges_rotting, pacific_atlantic, possible_bipartition,
+    redundant_connection, walls_and_gates,
 };
 
 #[test]
@@ -207,6 +208,51 @@ fn find_circle_num_handles_all_isolated_cities() {
 }
 
 #[test]
+fn possible_bipartition_accepts_two_group_assignment() {
+    let dislikes = vec![(1, 2), (1, 3), (2, 4)];
+
+    assert!(possible_bipartition(4, dislikes));
+}
+
+#[test]
+fn possible_bipartition_rejects_odd_conflict_cycle() {
+    let dislikes = vec![(1, 2), (1, 3), (2, 3)];
+
+    assert!(!possible_bipartition(3, dislikes));
+}
+
+#[test]
+fn evaluate_division_answers_reachable_ratios() {
+    let equations = vec![("a", "b", 2.0), ("b", "c", 3.0)];
+    let result = evaluate_division(equations, vec![("a", "c"), ("c", "a"), ("a", "a")]);
+
+    assert_close(result[0], Some(6.0));
+    assert_close(result[1], Some(1.0 / 6.0));
+    assert_close(result[2], Some(1.0));
+}
+
+#[test]
+fn evaluate_division_returns_none_for_unknown_or_disconnected_variables() {
+    let equations = vec![("a", "b", 2.0), ("x", "y", 4.0)];
+    let result = evaluate_division(equations, vec![("a", "x"), ("a", "missing")]);
+
+    assert_eq!(result, vec![None, None]);
+}
+
+#[test]
+fn alien_order_returns_valid_character_order() {
+    let order = alien_order(vec!["wrt", "wrf", "er", "ett", "rftt"]);
+
+    assert_eq!(order, Some("wertf".to_string()));
+}
+
+#[test]
+fn alien_order_rejects_invalid_prefix_and_cycles() {
+    assert_eq!(alien_order(vec!["abc", "ab"]), None);
+    assert_eq!(alien_order(vec!["z", "x", "z"]), None);
+}
+
+#[test]
 fn accounts_merge_groups_accounts_connected_by_email() {
     let accounts = vec![
         vec![
@@ -256,6 +302,15 @@ fn clone_graph_rebuilds_adjacency_for_connected_component() {
 #[test]
 fn clone_graph_handles_empty_graph() {
     assert!(clone_graph(Vec::new()).is_empty());
+}
+
+fn assert_close(actual: Option<f64>, expected: Option<f64>) {
+    match (actual, expected) {
+        (Some(actual), Some(expected)) => {
+            assert!((actual - expected).abs() < 1e-10);
+        }
+        (actual, expected) => assert_eq!(actual, expected),
+    }
 }
 
 fn assert_topological_order(order: &[usize], prerequisites: &[(usize, usize)]) {

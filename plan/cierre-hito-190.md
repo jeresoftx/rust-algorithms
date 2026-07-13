@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 149.
-- Tests automatizados: 367.
+- Problemas implementados: 152.
+- Tests automatizados: 373.
 - Meta del hito: 190 problemas.
-- Faltan: 41 problemas.
+- Faltan: 38 problemas.
 
 ## Enfoque
 
@@ -28,7 +28,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | Bloque | Tema | Problemas estimados | Meta acumulada |
 | --- | --- | ---: | ---: |
 | 1 | Strings avanzados | 5 | Completado: 145 |
-| 2 | Grafos y Union-Find | 7 | En progreso: 149 |
+| 2 | Grafos y Union-Find | 7 | Completado: 152 |
 | 3 | Árboles y BST | 6 | 158 |
 | 4 | Programación dinámica avanzada | 7 | 165 |
 | 5 | Heaps, intervalos y greedy | 6 | 171 |
@@ -69,16 +69,16 @@ Problemas sugeridos:
 - Number of Connected Components. Implementado.
 - Graph Valid Tree. Implementado.
 - Is Graph Bipartite. Implementado.
-- Possible Bipartition.
+- Possible Bipartition. Implementado.
 - Number of Provinces. Implementado.
-- Evaluate Division.
-- Alien Dictionary.
+- Evaluate Division. Implementado.
+- Alien Dictionary. Implementado.
 
 Avance:
 
-- Problemas agregados: 4 de 7.
-- Tests agregados: 8.
-- APIs agregadas: `count_connected_components`, `graph_valid_tree`, `is_bipartite` y `find_circle_num`.
+- Problemas agregados: 7 de 7.
+- Tests agregados: 14.
+- APIs agregadas: `count_connected_components`, `graph_valid_tree`, `is_bipartite`, `find_circle_num`, `possible_bipartition`, `evaluate_division` y `alien_order`.
 
 ## Bloque 3: Árboles y BST
 
@@ -177,7 +177,7 @@ Problemas sugeridos:
 | Bloque | Problemas agregados | Tests agregados | Estado |
 | --- | ---: | ---: | --- |
 | Strings avanzados | 5 | 11 | completado |
-| Grafos y Union-Find | 4 | 8 | en progreso |
+| Grafos y Union-Find | 7 | 14 | completado |
 
 ## Criterio de Cierre del Hito
 

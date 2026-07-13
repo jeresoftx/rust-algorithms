@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::{BTreeSet, HashMap, HashSet, VecDeque};
 
 const DIRECTIONS: [(isize, isize); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
@@ -418,6 +418,185 @@ pub fn find_circle_num(is_connected: Vec<Vec<i32>>) -> i32 {
     }
 
     provinces
+}
+
+/// Possible Bipartition
+///
+/// Pattern: BFS coloring over a 1-indexed graph.
+/// Idea: people who dislike each other must receive opposite colors.
+///
+/// Time: O(n + e)
+/// Space: O(n + e)
+pub fn possible_bipartition(person_count: usize, dislikes: Vec<(usize, usize)>) -> bool {
+    let mut graph = vec![Vec::new(); person_count + 1];
+
+    for (left, right) in dislikes {
+        if left == 0 || right == 0 || left > person_count || right > person_count {
+            return false;
+        }
+
+        graph[left].push(right);
+        graph[right].push(left);
+    }
+
+    let mut colors: Vec<Option<bool>> = vec![None; person_count + 1];
+
+    for person in 1..=person_count {
+        if colors[person].is_some() {
+            continue;
+        }
+
+        colors[person] = Some(false);
+        let mut queue = VecDeque::from([person]);
+
+        while let Some(current) = queue.pop_front() {
+            let current_color = colors[current].expect("queued people are colored");
+
+            for &neighbor in &graph[current] {
+                match colors[neighbor] {
+                    Some(neighbor_color) if neighbor_color == current_color => return false,
+                    Some(_) => {}
+                    None => {
+                        colors[neighbor] = Some(!current_color);
+                        queue.push_back(neighbor);
+                    }
+                }
+            }
+        }
+    }
+
+    true
+}
+
+/// Evaluate Division
+///
+/// Pattern: weighted graph traversal.
+/// Idea: each equation creates two directed edges with reciprocal weights.
+///
+/// Time: O(q * (v + e))
+/// Space: O(v + e)
+pub fn evaluate_division(
+    equations: Vec<(&str, &str, f64)>,
+    queries: Vec<(&str, &str)>,
+) -> Vec<Option<f64>> {
+    let mut graph: HashMap<String, Vec<(String, f64)>> = HashMap::new();
+
+    for (left, right, value) in equations {
+        graph
+            .entry(left.to_string())
+            .or_default()
+            .push((right.to_string(), value));
+        graph
+            .entry(right.to_string())
+            .or_default()
+            .push((left.to_string(), 1.0 / value));
+    }
+
+    queries
+        .into_iter()
+        .map(|(start, target)| evaluate_ratio(&graph, start, target))
+        .collect()
+}
+
+fn evaluate_ratio(
+    graph: &HashMap<String, Vec<(String, f64)>>,
+    start: &str,
+    target: &str,
+) -> Option<f64> {
+    if !graph.contains_key(start) || !graph.contains_key(target) {
+        return None;
+    }
+
+    if start == target {
+        return Some(1.0);
+    }
+
+    let mut visited = HashSet::from([start.to_string()]);
+    let mut queue = VecDeque::from([(start.to_string(), 1.0)]);
+
+    while let Some((current, product)) = queue.pop_front() {
+        if let Some(neighbors) = graph.get(&current) {
+            for (neighbor, weight) in neighbors {
+                if !visited.insert(neighbor.clone()) {
+                    continue;
+                }
+
+                let next_product = product * weight;
+                if neighbor == target {
+                    return Some(next_product);
+                }
+
+                queue.push_back((neighbor.clone(), next_product));
+            }
+        }
+    }
+
+    None
+}
+
+/// Alien Dictionary
+///
+/// Pattern: topological sort over characters.
+/// Idea: the first differing character between adjacent words defines an edge.
+///
+/// Time: O(total characters + edges)
+/// Space: O(unique characters + edges)
+pub fn alien_order(words: Vec<&str>) -> Option<String> {
+    let mut graph: HashMap<char, BTreeSet<char>> = HashMap::new();
+    let mut indegrees: HashMap<char, usize> = HashMap::new();
+
+    for word in &words {
+        for character in word.chars() {
+            graph.entry(character).or_default();
+            indegrees.entry(character).or_insert(0);
+        }
+    }
+
+    for pair in words.windows(2) {
+        let first: Vec<char> = pair[0].chars().collect();
+        let second: Vec<char> = pair[1].chars().collect();
+
+        if first.len() > second.len() && first.starts_with(&second) {
+            return None;
+        }
+
+        if let Some((left, right)) = first
+            .iter()
+            .zip(second.iter())
+            .find_map(|(&left, &right)| (left != right).then_some((left, right)))
+        {
+            let neighbors = graph.entry(left).or_default();
+            if neighbors.insert(right) {
+                *indegrees.entry(right).or_insert(0) += 1;
+            }
+        }
+    }
+
+    let mut ready: BTreeSet<char> = indegrees
+        .iter()
+        .filter_map(|(&character, &indegree)| (indegree == 0).then_some(character))
+        .collect();
+    let mut order = String::new();
+
+    while let Some(&character) = ready.iter().next() {
+        ready.remove(&character);
+        order.push(character);
+
+        if let Some(neighbors) = graph.get(&character) {
+            for &neighbor in neighbors {
+                let indegree = indegrees
+                    .get_mut(&neighbor)
+                    .expect("every neighbor has an indegree");
+                *indegree -= 1;
+
+                if *indegree == 0 {
+                    ready.insert(neighbor);
+                }
+            }
+        }
+    }
+
+    (order.chars().count() == indegrees.len()).then_some(order)
 }
 
 /// Accounts Merge
