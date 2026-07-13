@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 140.
-- Tests automatizados: 348.
+- Problemas implementados: 145.
+- Tests automatizados: 359.
 - Meta del hito: 190 problemas.
-- Faltan: 50 problemas.
+- Faltan: 45 problemas.
 
 ## Enfoque
 
@@ -27,7 +27,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 
 | Bloque | Tema | Problemas estimados | Meta acumulada |
 | --- | --- | ---: | ---: |
-| 1 | Strings avanzados | 5 | 145 |
+| 1 | Strings avanzados | 5 | Completado: 145 |
 | 2 | Grafos y Union-Find | 7 | 152 |
 | 3 | Árboles y BST | 6 | 158 |
 | 4 | Programación dinámica avanzada | 7 | 165 |
@@ -53,6 +53,12 @@ Criterio de cierre:
 - Tests con coincidencias superpuestas.
 - Tests con entradas vacías o sin coincidencias.
 - Notas comparando KMP, rolling hash y expansión por centros.
+
+Avance:
+
+- Problemas agregados: 5.
+- Tests agregados: 11.
+- APIs agregadas: `rabin_karp_positions`, `z_function`, `longest_palindromic_substring`, `count_palindromic_substrings` y `shortest_palindrome`.
 
 ## Bloque 2: Grafos y Union-Find
 
@@ -159,6 +165,12 @@ Problemas sugeridos:
 7. Ejecutar `cargo test`.
 8. Crear commit pequeño.
 9. Empujar repo y wiki.
+
+## Avances Registrados
+
+| Bloque | Problemas agregados | Tests agregados | Estado |
+| --- | ---: | ---: | --- |
+| Strings avanzados | 5 | 11 | completado |
 
 ## Criterio de Cierre del Hito
 

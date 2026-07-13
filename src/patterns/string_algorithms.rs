@@ -29,6 +29,71 @@ pub fn find_pattern_positions(text: &str, pattern: &str) -> Vec<usize> {
     matches
 }
 
+pub fn rabin_karp_positions(text: &str, pattern: &str) -> Vec<usize> {
+    if pattern.is_empty() || pattern.len() > text.len() {
+        return Vec::new();
+    }
+
+    const BASE: u64 = 257;
+    const MODULUS: u64 = 1_000_000_007;
+
+    let text_bytes = text.as_bytes();
+    let pattern_bytes = pattern.as_bytes();
+    let window_size = pattern_bytes.len();
+    let mut highest_power = 1;
+    let mut pattern_hash = 0;
+    let mut window_hash = 0;
+
+    for index in 0..window_size {
+        pattern_hash = (pattern_hash * BASE + pattern_bytes[index] as u64) % MODULUS;
+        window_hash = (window_hash * BASE + text_bytes[index] as u64) % MODULUS;
+
+        if index + 1 < window_size {
+            highest_power = (highest_power * BASE) % MODULUS;
+        }
+    }
+
+    let mut matches = Vec::new();
+
+    for start in 0..=text_bytes.len() - window_size {
+        if pattern_hash == window_hash && &text_bytes[start..start + window_size] == pattern_bytes {
+            matches.push(start);
+        }
+
+        if start + window_size < text_bytes.len() {
+            let outgoing = (text_bytes[start] as u64 * highest_power) % MODULUS;
+            window_hash = (window_hash + MODULUS - outgoing) % MODULUS;
+            window_hash = (window_hash * BASE + text_bytes[start + window_size] as u64) % MODULUS;
+        }
+    }
+
+    matches
+}
+
+pub fn z_function(text: &str) -> Vec<usize> {
+    let bytes = text.as_bytes();
+    let mut z = vec![0; bytes.len()];
+    let mut left = 0;
+    let mut right = 0;
+
+    for index in 1..bytes.len() {
+        if index <= right {
+            z[index] = (right - index + 1).min(z[index - left]);
+        }
+
+        while index + z[index] < bytes.len() && bytes[z[index]] == bytes[index + z[index]] {
+            z[index] += 1;
+        }
+
+        if z[index] > 0 && index + z[index] - 1 > right {
+            left = index;
+            right = index + z[index] - 1;
+        }
+    }
+
+    z
+}
+
 pub fn find_multi_pattern_positions(text: &str, patterns: Vec<&str>) -> Vec<(String, Vec<usize>)> {
     let pattern_lengths: Vec<usize> = patterns.iter().map(|pattern| pattern.len()).collect();
     let mut matches = vec![Vec::new(); patterns.len()];
@@ -166,6 +231,83 @@ pub fn longest_duplicate_substring(text: &str) -> String {
     }
 
     String::from_utf8(bytes[best_start..best_start + best_length].to_vec()).unwrap_or_default()
+}
+
+pub fn longest_palindromic_substring(text: &str) -> String {
+    let chars: Vec<char> = text.chars().collect();
+
+    if chars.is_empty() {
+        return String::new();
+    }
+
+    let mut best_start = 0;
+    let mut best_len = 1;
+
+    for center in 0..chars.len() {
+        let (odd_start, odd_len) = expand_palindrome(&chars, center as isize, center as isize);
+        if odd_len > best_len {
+            best_start = odd_start;
+            best_len = odd_len;
+        }
+
+        let (even_start, even_len) =
+            expand_palindrome(&chars, center as isize, center as isize + 1);
+        if even_len > best_len {
+            best_start = even_start;
+            best_len = even_len;
+        }
+    }
+
+    chars[best_start..best_start + best_len].iter().collect()
+}
+
+pub fn count_palindromic_substrings(text: &str) -> usize {
+    let chars: Vec<char> = text.chars().collect();
+    let mut total = 0;
+
+    for center in 0..chars.len() {
+        total += count_palindromes_from_center(&chars, center as isize, center as isize);
+        total += count_palindromes_from_center(&chars, center as isize, center as isize + 1);
+    }
+
+    total
+}
+
+pub fn shortest_palindrome(text: &str) -> String {
+    if text.len() < 2 {
+        return text.to_string();
+    }
+
+    let reversed: String = text.chars().rev().collect();
+    let combined = format!("{text}#{reversed}");
+    let prefix = prefix_table(combined.as_bytes());
+    let palindromic_prefix_len = prefix.last().copied().unwrap_or(0);
+    let suffix_to_add: String = text[palindromic_prefix_len..].chars().rev().collect();
+
+    format!("{suffix_to_add}{text}")
+}
+
+fn expand_palindrome(chars: &[char], mut left: isize, mut right: isize) -> (usize, usize) {
+    while left >= 0 && right < chars.len() as isize && chars[left as usize] == chars[right as usize]
+    {
+        left -= 1;
+        right += 1;
+    }
+
+    ((left + 1) as usize, (right - left - 1) as usize)
+}
+
+fn count_palindromes_from_center(chars: &[char], mut left: isize, mut right: isize) -> usize {
+    let mut total = 0;
+
+    while left >= 0 && right < chars.len() as isize && chars[left as usize] == chars[right as usize]
+    {
+        total += 1;
+        left -= 1;
+        right += 1;
+    }
+
+    total
 }
 
 fn duplicate_start_of_length(bytes: &[u8], length: usize) -> Option<usize> {
