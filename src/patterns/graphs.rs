@@ -313,6 +313,113 @@ pub fn redundant_connection(edges: Vec<(usize, usize)>) -> Option<(usize, usize)
     None
 }
 
+/// Number of Connected Components in an Undirected Graph
+///
+/// Pattern: Union-Find.
+/// Idea: start with every node as its own component and merge endpoints.
+///
+/// Time: O((v + e) * alpha(v))
+/// Space: O(v)
+pub fn count_connected_components(node_count: usize, edges: Vec<(usize, usize)>) -> i32 {
+    let mut union_find = UnionFind::new(node_count);
+    let mut components = node_count as i32;
+
+    for (left, right) in edges {
+        if left < node_count && right < node_count && union_find.union(left, right) {
+            components -= 1;
+        }
+    }
+
+    components
+}
+
+/// Graph Valid Tree
+///
+/// Pattern: Union-Find.
+/// Idea: a tree with n nodes must have n - 1 edges, be connected and have no cycles.
+///
+/// Time: O(e * alpha(v))
+/// Space: O(v)
+pub fn graph_valid_tree(node_count: usize, edges: Vec<(usize, usize)>) -> bool {
+    if node_count == 0 || edges.len() != node_count - 1 {
+        return false;
+    }
+
+    let mut union_find = UnionFind::new(node_count);
+
+    for (left, right) in edges {
+        if left >= node_count || right >= node_count || !union_find.union(left, right) {
+            return false;
+        }
+    }
+
+    true
+}
+
+/// Is Graph Bipartite?
+///
+/// Pattern: BFS coloring.
+/// Idea: every edge must connect nodes with opposite colors.
+///
+/// Time: O(v + e)
+/// Space: O(v)
+pub fn is_bipartite(graph: Vec<Vec<usize>>) -> bool {
+    let mut colors: Vec<Option<bool>> = vec![None; graph.len()];
+
+    for start in 0..graph.len() {
+        if colors[start].is_some() {
+            continue;
+        }
+
+        colors[start] = Some(false);
+        let mut queue = VecDeque::from([start]);
+
+        while let Some(node) = queue.pop_front() {
+            let current_color = colors[node].expect("queued nodes are colored");
+
+            for &neighbor in &graph[node] {
+                if neighbor >= graph.len() {
+                    return false;
+                }
+
+                match colors[neighbor] {
+                    Some(neighbor_color) if neighbor_color == current_color => return false,
+                    Some(_) => {}
+                    None => {
+                        colors[neighbor] = Some(!current_color);
+                        queue.push_back(neighbor);
+                    }
+                }
+            }
+        }
+    }
+
+    true
+}
+
+/// Number of Provinces
+///
+/// Pattern: Union-Find over an adjacency matrix.
+/// Idea: every direct connection merges two cities into one province.
+///
+/// Time: O(n^2 * alpha(n))
+/// Space: O(n)
+pub fn find_circle_num(is_connected: Vec<Vec<i32>>) -> i32 {
+    let city_count = is_connected.len();
+    let mut union_find = UnionFind::new(city_count);
+    let mut provinces = city_count as i32;
+
+    for row in 0..city_count {
+        for col in row + 1..city_count {
+            if is_connected[row].get(col) == Some(&1) && union_find.union(row, col) {
+                provinces -= 1;
+            }
+        }
+    }
+
+    provinces
+}
+
 /// Accounts Merge
 ///
 /// Pattern: connected components in an email graph.

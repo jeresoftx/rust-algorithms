@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 145.
-- Tests automatizados: 359.
+- Problemas implementados: 149.
+- Tests automatizados: 367.
 - Meta del hito: 190 problemas.
-- Faltan: 45 problemas.
+- Faltan: 41 problemas.
 
 ## Enfoque
 
@@ -28,7 +28,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | Bloque | Tema | Problemas estimados | Meta acumulada |
 | --- | --- | ---: | ---: |
 | 1 | Strings avanzados | 5 | Completado: 145 |
-| 2 | Grafos y Union-Find | 7 | 152 |
+| 2 | Grafos y Union-Find | 7 | En progreso: 149 |
 | 3 | Árboles y BST | 6 | 158 |
 | 4 | Programación dinámica avanzada | 7 | 165 |
 | 5 | Heaps, intervalos y greedy | 6 | 171 |
@@ -66,13 +66,19 @@ Objetivo: completar variantes frecuentes de conectividad, ordenamiento topológi
 
 Problemas sugeridos:
 
-- Number of Connected Components.
-- Graph Valid Tree.
-- Is Graph Bipartite.
+- Number of Connected Components. Implementado.
+- Graph Valid Tree. Implementado.
+- Is Graph Bipartite. Implementado.
 - Possible Bipartition.
-- Number of Provinces.
+- Number of Provinces. Implementado.
 - Evaluate Division.
 - Alien Dictionary.
+
+Avance:
+
+- Problemas agregados: 4 de 7.
+- Tests agregados: 8.
+- APIs agregadas: `count_connected_components`, `graph_valid_tree`, `is_bipartite` y `find_circle_num`.
 
 ## Bloque 3: Árboles y BST
 
@@ -171,6 +177,7 @@ Problemas sugeridos:
 | Bloque | Problemas agregados | Tests agregados | Estado |
 | --- | ---: | ---: | --- |
 | Strings avanzados | 5 | 11 | completado |
+| Grafos y Union-Find | 4 | 8 | en progreso |
 
 ## Criterio de Cierre del Hito
 

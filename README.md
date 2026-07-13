@@ -146,8 +146,8 @@ Páginas destacadas:
 ## Estado Actual
 
 - Semana documentada: 27-28
-- Problemas implementados: 145
-- Tests automatizados: 359
+- Problemas implementados: 149
+- Tests automatizados: 367
 - Ruta avanzada: hito 190 en progreso; repeticiones personales fuera del avance autónomo
 - Lenguaje: Rust
 

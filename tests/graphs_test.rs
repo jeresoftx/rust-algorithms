@@ -1,6 +1,7 @@
 use rust_algorithms::patterns::graphs::{
-    accounts_merge, can_finish, clone_graph, find_course_order, max_area_of_island,
-    number_of_islands, oranges_rotting, pacific_atlantic, redundant_connection, walls_and_gates,
+    accounts_merge, can_finish, clone_graph, count_connected_components, find_circle_num,
+    find_course_order, graph_valid_tree, is_bipartite, max_area_of_island, number_of_islands,
+    oranges_rotting, pacific_atlantic, redundant_connection, walls_and_gates,
 };
 
 #[test]
@@ -150,6 +151,59 @@ fn redundant_connection_returns_none_for_tree_edges() {
     let edges = vec![(1, 2), (2, 3), (3, 4)];
 
     assert_eq!(redundant_connection(edges), None);
+}
+
+#[test]
+fn count_connected_components_counts_disconnected_groups() {
+    let edges = vec![(0, 1), (1, 2), (3, 4)];
+
+    assert_eq!(count_connected_components(5, edges), 2);
+}
+
+#[test]
+fn count_connected_components_counts_isolated_nodes() {
+    assert_eq!(count_connected_components(4, Vec::new()), 4);
+}
+
+#[test]
+fn graph_valid_tree_accepts_connected_acyclic_graph() {
+    let edges = vec![(0, 1), (0, 2), (0, 3), (1, 4)];
+
+    assert!(graph_valid_tree(5, edges));
+}
+
+#[test]
+fn graph_valid_tree_rejects_cycle_or_disconnected_graph() {
+    assert!(!graph_valid_tree(5, vec![(0, 1), (1, 2), (2, 0), (3, 4)]));
+    assert!(!graph_valid_tree(4, vec![(0, 1), (2, 3)]));
+}
+
+#[test]
+fn is_bipartite_accepts_two_colorable_graph() {
+    let graph = vec![vec![1, 3], vec![0, 2], vec![1, 3], vec![0, 2]];
+
+    assert!(is_bipartite(graph));
+}
+
+#[test]
+fn is_bipartite_rejects_odd_cycle() {
+    let graph = vec![vec![1, 2], vec![0, 2], vec![0, 1]];
+
+    assert!(!is_bipartite(graph));
+}
+
+#[test]
+fn find_circle_num_counts_connected_city_groups() {
+    let connected = vec![vec![1, 1, 0], vec![1, 1, 0], vec![0, 0, 1]];
+
+    assert_eq!(find_circle_num(connected), 2);
+}
+
+#[test]
+fn find_circle_num_handles_all_isolated_cities() {
+    let connected = vec![vec![1, 0, 0], vec![0, 1, 0], vec![0, 0, 1]];
+
+    assert_eq!(find_circle_num(connected), 3);
 }
 
 #[test]
