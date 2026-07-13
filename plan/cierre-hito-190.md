@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 177.
-- Tests automatizados: 423.
+- Problemas implementados: 182.
+- Tests automatizados: 433.
 - Meta del hito: 190 problemas.
-- Faltan: 13 problemas.
+- Faltan: 8 problemas.
 
 ## Enfoque
 
@@ -33,7 +33,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | 4 | Programación dinámica avanzada | 7 | Completado: 165 |
 | 5 | Heaps, intervalos y greedy | 6 | Completado: 171 |
 | 6 | Range queries y estructuras | 6 | Completado: 177 |
-| 7 | Backtracking y combinatoria | 5 | 182 |
+| 7 | Backtracking y combinatoria | 5 | Completado: 182 |
 | 8 | Geometría, matrices y selección final | 8 | 190 |
 
 ## Bloque 1: Strings Avanzados
@@ -165,11 +165,17 @@ Objetivo: cubrir generación, poda y conteo sin repetir estados accidentalmente.
 
 Problemas sugeridos:
 
-- Combination Sum II.
-- Palindrome Partitioning.
-- Letter Combinations of a Phone Number.
-- N-Queens.
-- Subsets II.
+- Combination Sum II. Implementado.
+- Palindrome Partitioning. Implementado.
+- Letter Combinations of a Phone Number. Implementado.
+- N-Queens. Implementado.
+- Subsets II. Implementado.
+
+Avance:
+
+- Problemas agregados: 5 de 5.
+- Tests agregados: 10.
+- APIs agregadas: `combination_sum_ii`, `palindrome_partitioning`, `letter_combinations`, `n_queens_solutions` y `subsets_with_dup`.
 
 ## Bloque 8: Geometría, Matrices y Selección Final
 
@@ -208,6 +214,7 @@ Problemas sugeridos:
 | Programación dinámica avanzada | 7 | 14 | completado |
 | Heaps, intervalos y greedy | 6 | 12 | completado |
 | Range queries y estructuras | 6 | 12 | completado |
+| Backtracking y combinatoria | 5 | 10 | completado |
 
 ## Criterio de Cierre del Hito
 

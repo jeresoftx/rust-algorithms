@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::recursion_backtracking::{
-    combination_sum, generate_parentheses, permute, subsets, word_search,
+    combination_sum, combination_sum_ii, generate_parentheses, letter_combinations,
+    n_queens_solutions, palindrome_partitioning, permute, subsets, subsets_with_dup, word_search,
 };
 
 #[test]
@@ -99,4 +100,110 @@ fn word_search_returns_false_when_cell_reuse_would_be_required() {
     ];
 
     assert!(!word_search(board, "ABCB"));
+}
+
+#[test]
+fn combination_sum_ii_returns_unique_combinations_without_reuse() {
+    let mut result = combination_sum_ii(vec![10, 1, 2, 7, 6, 1, 5], 8);
+    result.sort();
+
+    assert_eq!(
+        result,
+        vec![vec![1, 1, 6], vec![1, 2, 5], vec![1, 7], vec![2, 6]]
+    );
+}
+
+#[test]
+fn combination_sum_ii_skips_duplicate_combinations() {
+    assert_eq!(combination_sum_ii(vec![1, 1, 1], 2), vec![vec![1, 1]]);
+}
+
+#[test]
+fn palindrome_partitioning_returns_all_palindrome_cuts() {
+    let mut result = palindrome_partitioning("aab");
+    result.sort();
+
+    assert_eq!(
+        result,
+        vec![
+            vec!["a".to_string(), "a".to_string(), "b".to_string()],
+            vec!["aa".to_string(), "b".to_string()]
+        ]
+    );
+}
+
+#[test]
+fn palindrome_partitioning_handles_empty_input() {
+    assert_eq!(palindrome_partitioning(""), vec![Vec::<String>::new()]);
+}
+
+#[test]
+fn letter_combinations_returns_phone_mnemonics() {
+    let mut result = letter_combinations("23");
+    result.sort();
+
+    assert_eq!(
+        result,
+        vec!["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+    );
+}
+
+#[test]
+fn letter_combinations_ignores_digits_without_letters() {
+    assert_eq!(letter_combinations("10"), Vec::<String>::new());
+}
+
+#[test]
+fn n_queens_solutions_returns_all_boards_for_four() {
+    let mut result = n_queens_solutions(4);
+    result.sort();
+
+    assert_eq!(
+        result,
+        vec![
+            vec![
+                "..Q.".to_string(),
+                "Q...".to_string(),
+                "...Q".to_string(),
+                ".Q..".to_string()
+            ],
+            vec![
+                ".Q..".to_string(),
+                "...Q".to_string(),
+                "Q...".to_string(),
+                "..Q.".to_string()
+            ],
+        ]
+    );
+}
+
+#[test]
+fn n_queens_solutions_handles_single_queen() {
+    assert_eq!(n_queens_solutions(1), vec![vec!["Q".to_string()]]);
+}
+
+#[test]
+fn subsets_with_dup_returns_unique_subsets() {
+    let mut result = subsets_with_dup(vec![1, 2, 2]);
+    result.sort();
+
+    assert_eq!(
+        result,
+        vec![
+            vec![],
+            vec![1],
+            vec![1, 2],
+            vec![1, 2, 2],
+            vec![2],
+            vec![2, 2]
+        ]
+    );
+}
+
+#[test]
+fn subsets_with_dup_handles_all_duplicates() {
+    assert_eq!(
+        subsets_with_dup(vec![2, 2]),
+        vec![vec![], vec![2], vec![2, 2]]
+    );
 }
