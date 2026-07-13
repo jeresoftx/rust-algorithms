@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 152.
-- Tests automatizados: 373.
+- Problemas implementados: 158.
+- Tests automatizados: 385.
 - Meta del hito: 190 problemas.
-- Faltan: 38 problemas.
+- Faltan: 32 problemas.
 
 ## Enfoque
 
@@ -29,7 +29,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | --- | --- | ---: | ---: |
 | 1 | Strings avanzados | 5 | Completado: 145 |
 | 2 | Grafos y Union-Find | 7 | Completado: 152 |
-| 3 | Árboles y BST | 6 | 158 |
+| 3 | Árboles y BST | 6 | Completado: 158 |
 | 4 | Programación dinámica avanzada | 7 | 165 |
 | 5 | Heaps, intervalos y greedy | 6 | 171 |
 | 6 | Range queries y estructuras | 6 | 177 |
@@ -86,12 +86,18 @@ Objetivo: ampliar recorridos, consultas y serialización de árboles.
 
 Problemas sugeridos:
 
-- Kth Smallest Element in a BST.
-- Binary Tree Right Side View.
-- Path Sum.
-- Path Sum II.
-- Serialize and Deserialize Binary Tree.
-- Construct Binary Tree from Inorder and Postorder.
+- Kth Smallest Element in a BST. Implementado.
+- Binary Tree Right Side View. Implementado.
+- Path Sum. Implementado.
+- Path Sum II. Implementado.
+- Serialize and Deserialize Binary Tree. Implementado.
+- Construct Binary Tree from Inorder and Postorder. Implementado.
+
+Avance:
+
+- Problemas agregados: 6 de 6.
+- Tests agregados: 12.
+- APIs agregadas: `kth_smallest_bst`, `right_side_view`, `has_path_sum`, `path_sum_ii`, `serialize_tree`, `deserialize_tree` y `build_tree_inorder_postorder`.
 
 ## Bloque 4: Programación Dinámica Avanzada
 
@@ -178,6 +184,7 @@ Problemas sugeridos:
 | --- | ---: | ---: | --- |
 | Strings avanzados | 5 | 11 | completado |
 | Grafos y Union-Find | 7 | 14 | completado |
+| Árboles y BST | 6 | 12 | completado |
 
 ## Criterio de Cierre del Hito
 

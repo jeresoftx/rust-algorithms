@@ -384,3 +384,244 @@ fn build_tree_range(
 
     Some(root)
 }
+
+/// Kth Smallest Element in a BST
+///
+/// Pattern: inorder traversal.
+/// Idea: BST inorder traversal visits values in sorted order.
+///
+/// Time: O(h + k)
+/// Space: O(h)
+pub fn kth_smallest_bst(root: TreeLink, k: usize) -> Option<i32> {
+    if k == 0 {
+        return None;
+    }
+
+    let mut remaining = k;
+    let mut current = root;
+    let mut stack = Vec::new();
+
+    while current.is_some() || !stack.is_empty() {
+        while let Some(node) = current {
+            current = node.borrow().left.clone();
+            stack.push(node);
+        }
+
+        let node = stack.pop().expect("stack is not empty");
+        let node_ref = node.borrow();
+        remaining -= 1;
+        if remaining == 0 {
+            return Some(node_ref.val);
+        }
+        current = node_ref.right.clone();
+    }
+
+    None
+}
+
+/// Binary Tree Right Side View
+///
+/// Pattern: BFS by levels.
+/// Idea: the last node read in each level is visible from the right side.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn right_side_view(root: TreeLink) -> Vec<i32> {
+    let Some(root) = root else {
+        return Vec::new();
+    };
+
+    let mut result = Vec::new();
+    let mut queue = VecDeque::from([root]);
+
+    while !queue.is_empty() {
+        let level_len = queue.len();
+        let mut rightmost = 0;
+
+        for _ in 0..level_len {
+            let node = queue.pop_front().expect("queue length was captured");
+            let node = node.borrow();
+            rightmost = node.val;
+
+            if let Some(left) = node.left.clone() {
+                queue.push_back(left);
+            }
+
+            if let Some(right) = node.right.clone() {
+                queue.push_back(right);
+            }
+        }
+
+        result.push(rightmost);
+    }
+
+    result
+}
+
+/// Path Sum
+///
+/// Pattern: DFS with remaining target.
+/// Idea: only root-to-leaf paths count; subtract each visited value.
+///
+/// Time: O(n)
+/// Space: O(h)
+pub fn has_path_sum(root: TreeLink, target_sum: i32) -> bool {
+    let Some(node) = root else {
+        return false;
+    };
+
+    let node = node.borrow();
+    let remaining = target_sum - node.val;
+    if node.left.is_none() && node.right.is_none() {
+        return remaining == 0;
+    }
+
+    has_path_sum(node.left.clone(), remaining) || has_path_sum(node.right.clone(), remaining)
+}
+
+/// Path Sum II
+///
+/// Pattern: DFS backtracking.
+/// Idea: keep the current root-to-node path and clone it only at matching leaves.
+///
+/// Time: O(n * h) in the worst case due to cloning output paths
+/// Space: O(h) excluding output
+pub fn path_sum_ii(root: TreeLink, target_sum: i32) -> Vec<Vec<i32>> {
+    let mut result = Vec::new();
+    let mut path = Vec::new();
+    collect_path_sums(root, target_sum, &mut path, &mut result);
+    result
+}
+
+fn collect_path_sums(
+    root: TreeLink,
+    remaining: i32,
+    path: &mut Vec<i32>,
+    result: &mut Vec<Vec<i32>>,
+) {
+    let Some(node) = root else {
+        return;
+    };
+
+    let node = node.borrow();
+    path.push(node.val);
+    let next_remaining = remaining - node.val;
+
+    if node.left.is_none() && node.right.is_none() && next_remaining == 0 {
+        result.push(path.clone());
+    } else {
+        collect_path_sums(node.left.clone(), next_remaining, path, result);
+        collect_path_sums(node.right.clone(), next_remaining, path, result);
+    }
+
+    path.pop();
+}
+
+/// Serialize Binary Tree
+///
+/// Pattern: level-order encoding.
+/// Idea: reuse the compact level-order representation and mark missing children.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn serialize_tree(root: TreeLink) -> String {
+    tree_to_level_order(root)
+        .into_iter()
+        .map(|value| match value {
+            Some(value) => value.to_string(),
+            None => "#".to_string(),
+        })
+        .collect::<Vec<_>>()
+        .join(",")
+}
+
+/// Deserialize Binary Tree
+///
+/// Pattern: level-order decoding.
+/// Idea: parse the compact tokens and delegate reconstruction to the shared helper.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn deserialize_tree(data: &str) -> TreeLink {
+    if data.trim().is_empty() {
+        return None;
+    }
+
+    let values = data
+        .split(',')
+        .map(|token| {
+            if token == "#" {
+                None
+            } else {
+                token.parse::<i32>().ok()
+            }
+        })
+        .collect();
+
+    tree_from_level_order(values)
+}
+
+/// Construct Binary Tree from Inorder and Postorder Traversal
+///
+/// Pattern: recursive split by root.
+/// Idea: postorder gives the root at the end; inorder gives subtree sizes.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn build_tree_inorder_postorder(inorder: Vec<i32>, postorder: Vec<i32>) -> TreeLink {
+    if inorder.is_empty() || postorder.is_empty() {
+        return None;
+    }
+
+    let inorder_index: HashMap<i32, usize> = inorder
+        .iter()
+        .enumerate()
+        .map(|(index, &value)| (value, index))
+        .collect();
+
+    build_tree_postorder_range(
+        &postorder,
+        0,
+        postorder.len(),
+        0,
+        inorder.len(),
+        &inorder_index,
+    )
+}
+
+fn build_tree_postorder_range(
+    postorder: &[i32],
+    post_start: usize,
+    post_end: usize,
+    in_start: usize,
+    in_end: usize,
+    inorder_index: &HashMap<i32, usize>,
+) -> TreeLink {
+    if post_start >= post_end || in_start >= in_end {
+        return None;
+    }
+
+    let root_value = postorder[post_end - 1];
+    let root_inorder_index = inorder_index[&root_value];
+    let left_len = root_inorder_index - in_start;
+
+    let root = Rc::new(RefCell::new(TreeNode::new(root_value)));
+    root.borrow_mut().left = build_tree_postorder_range(
+        postorder,
+        post_start,
+        post_start + left_len,
+        in_start,
+        root_inorder_index,
+        inorder_index,
+    );
+    root.borrow_mut().right = build_tree_postorder_range(
+        postorder,
+        post_start + left_len,
+        post_end - 1,
+        root_inorder_index + 1,
+        in_end,
+        inorder_index,
+    );
+
+    Some(root)
+}

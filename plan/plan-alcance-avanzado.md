@@ -50,7 +50,7 @@ La meta de 400 problemas queda como horizonte opcional de largo plazo. Para este
 
 El hito mínimo de 140 problemas ya quedó cerrado. La meta activa del repositorio es el hito de 190 problemas, detallado en `plan/cierre-hito-190.md`.
 
-Avance del hito 190: 152 de 190 problemas implementados; faltan 38 problemas.
+Avance del hito 190: 158 de 190 problemas implementados; faltan 32 problemas.
 
 ## Fase 1: Complejidad, Matemáticas y Bits
 
