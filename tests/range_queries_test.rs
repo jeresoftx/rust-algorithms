@@ -1,7 +1,8 @@
 use rust_algorithms::patterns::range_queries::{
-    car_pooling, corporate_flight_bookings, count_smaller_numbers_after_self, reverse_pairs,
+    car_pooling, corporate_flight_bookings, count_range_sum, count_smaller_numbers_after_self,
+    queue_reconstruction_by_height, range_addition, reverse_pairs, sliding_window_maximum,
     DifferenceArray, FenwickTree, LazySegmentTree, MyCalendar, MyCalendarTwo, RangeSumQuery,
-    SegmentTree,
+    RangeSumQuery2D, SegmentTree, SnapshotArray,
 };
 
 #[test]
@@ -303,4 +304,106 @@ fn my_calendar_two_rejects_empty_or_reversed_ranges() {
     assert!(!calendar.book(5, 5));
     assert!(!calendar.book(9, 4));
     assert!(calendar.book(1, 3));
+}
+
+#[test]
+fn range_sum_query_2d_returns_submatrix_sums() {
+    let matrix = RangeSumQuery2D::new(vec![
+        vec![3, 0, 1, 4, 2],
+        vec![5, 6, 3, 2, 1],
+        vec![1, 2, 0, 1, 5],
+        vec![4, 1, 0, 1, 7],
+        vec![1, 0, 3, 0, 5],
+    ]);
+
+    assert_eq!(matrix.sum_region(2, 1, 4, 3), Some(8));
+    assert_eq!(matrix.sum_region(1, 1, 2, 2), Some(11));
+}
+
+#[test]
+fn range_sum_query_2d_rejects_invalid_regions() {
+    let matrix = RangeSumQuery2D::new(vec![vec![1, 2], vec![3, 4]]);
+
+    assert_eq!(matrix.sum_region(1, 0, 0, 1), None);
+    assert_eq!(matrix.sum_region(0, 0, 2, 1), None);
+}
+
+#[test]
+fn range_addition_applies_multiple_updates() {
+    let updates = vec![(1, 3, 2), (2, 4, 3), (0, 2, -2)];
+
+    assert_eq!(range_addition(5, &updates), vec![-2, 0, 3, 5, 3]);
+}
+
+#[test]
+fn range_addition_ignores_invalid_updates() {
+    let updates = vec![(0, 1, 3), (3, 2, 5), (1, 4, 7)];
+
+    assert_eq!(range_addition(3, &updates), vec![3, 3, 0]);
+}
+
+#[test]
+fn sliding_window_maximum_returns_each_window_peak() {
+    assert_eq!(
+        sliding_window_maximum(vec![1, 3, -1, -3, 5, 3, 6, 7], 3),
+        vec![3, 3, 5, 5, 6, 7]
+    );
+}
+
+#[test]
+fn sliding_window_maximum_handles_empty_or_oversized_window() {
+    assert_eq!(sliding_window_maximum(Vec::new(), 3), Vec::<i32>::new());
+    assert_eq!(sliding_window_maximum(vec![1, 2], 3), Vec::<i32>::new());
+}
+
+#[test]
+fn queue_reconstruction_by_height_restores_people_order() {
+    let people = vec![(7, 0), (4, 4), (7, 1), (5, 0), (6, 1), (5, 2)];
+
+    assert_eq!(
+        queue_reconstruction_by_height(people),
+        vec![(5, 0), (7, 0), (5, 2), (6, 1), (4, 4), (7, 1)]
+    );
+}
+
+#[test]
+fn queue_reconstruction_by_height_handles_empty_input() {
+    assert_eq!(
+        queue_reconstruction_by_height(Vec::new()),
+        Vec::<(i32, i32)>::new()
+    );
+}
+
+#[test]
+fn snapshot_array_reads_values_at_each_snapshot() {
+    let mut snapshots = SnapshotArray::new(3);
+    snapshots.set(0, 5);
+    let first = snapshots.snap();
+    snapshots.set(0, 6);
+
+    assert_eq!(snapshots.get(0, first), Some(5));
+    assert_eq!(snapshots.get(0, first + 1), None);
+}
+
+#[test]
+fn snapshot_array_keeps_latest_value_before_snapshot() {
+    let mut snapshots = SnapshotArray::new(2);
+    snapshots.set(1, 4);
+    let first = snapshots.snap();
+    snapshots.set(1, 7);
+    let second = snapshots.snap();
+
+    assert_eq!(snapshots.get(1, first), Some(4));
+    assert_eq!(snapshots.get(1, second), Some(7));
+}
+
+#[test]
+fn count_range_sum_counts_prefix_pairs_inside_bounds() {
+    assert_eq!(count_range_sum(vec![-2, 5, -1], -2, 2), 3);
+}
+
+#[test]
+fn count_range_sum_handles_zero_ranges_and_empty_input() {
+    assert_eq!(count_range_sum(vec![0, 0], 0, 0), 3);
+    assert_eq!(count_range_sum(Vec::new(), -1, 1), 0);
 }

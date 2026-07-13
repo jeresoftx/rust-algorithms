@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, VecDeque};
 
 #[derive(Debug, Clone)]
 pub struct FenwickTree {
@@ -107,6 +107,54 @@ impl RangeSumQuery {
 
     pub fn sum_range(&self, left: usize, right: usize) -> Option<i32> {
         self.tree.range_sum(left, right)
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct RangeSumQuery2D {
+    prefix: Vec<Vec<i32>>,
+    rows: usize,
+    cols: usize,
+}
+
+impl RangeSumQuery2D {
+    /// Range Sum Query 2D Immutable
+    ///
+    /// Pattern: 2D prefix sum.
+    /// Idea: each region is four prefix rectangles combined by inclusion-exclusion.
+    ///
+    /// Time:
+    /// - `new`: O(m * n)
+    /// - `sum_region`: O(1)
+    ///
+    /// Space: O(m * n)
+    pub fn new(matrix: Vec<Vec<i32>>) -> Self {
+        let rows = matrix.len();
+        let cols = matrix.first().map_or(0, Vec::len);
+        let mut prefix = vec![vec![0; cols + 1]; rows + 1];
+
+        for row in 0..rows {
+            for col in 0..cols {
+                prefix[row + 1][col + 1] =
+                    matrix[row][col] + prefix[row][col + 1] + prefix[row + 1][col]
+                        - prefix[row][col];
+            }
+        }
+
+        Self { prefix, rows, cols }
+    }
+
+    pub fn sum_region(&self, row1: usize, col1: usize, row2: usize, col2: usize) -> Option<i32> {
+        if row1 > row2 || col1 > col2 || row2 >= self.rows || col2 >= self.cols {
+            return None;
+        }
+
+        Some(
+            self.prefix[row2 + 1][col2 + 1]
+                - self.prefix[row1][col2 + 1]
+                - self.prefix[row2 + 1][col1]
+                + self.prefix[row1][col1],
+        )
     }
 }
 
@@ -503,6 +551,23 @@ pub fn corporate_flight_bookings(
     difference.values()
 }
 
+/// Range Addition
+///
+/// Pattern: difference array.
+/// Idea: mark the start and the position after the end, then prefix-scan once.
+///
+/// Time: O(n + u)
+/// Space: O(n)
+pub fn range_addition(length: usize, updates: &[(usize, usize, i32)]) -> Vec<i32> {
+    let mut difference = DifferenceArray::new(length);
+
+    for &(left, right, delta) in updates {
+        difference.increment_range(left, right, delta);
+    }
+
+    difference.values()
+}
+
 pub fn car_pooling(trips: &[(i32, usize, usize)], capacity: i32) -> bool {
     if capacity < 0 {
         return false;
@@ -558,6 +623,180 @@ pub fn reverse_pairs(values: Vec<i32>) -> i32 {
     let mut buffer = values.clone();
 
     count_reverse_pairs(&mut values, &mut buffer) as i32
+}
+
+/// Count of Range Sum
+///
+/// Pattern: prefix sums + modified merge sort.
+/// Idea: for each left prefix, count right prefixes whose difference is in range.
+///
+/// Time: O(n log n)
+/// Space: O(n)
+pub fn count_range_sum(nums: Vec<i32>, lower: i64, upper: i64) -> i32 {
+    let mut prefix = Vec::with_capacity(nums.len() + 1);
+    let mut running = 0_i64;
+    prefix.push(running);
+
+    for value in nums {
+        running += i64::from(value);
+        prefix.push(running);
+    }
+
+    let mut buffer = prefix.clone();
+    count_range_sum_sorted(&mut prefix, &mut buffer, lower, upper) as i32
+}
+
+fn count_range_sum_sorted(prefix: &mut [i64], buffer: &mut [i64], lower: i64, upper: i64) -> i64 {
+    if prefix.len() <= 1 {
+        return 0;
+    }
+
+    let middle = prefix.len() / 2;
+    let (left_prefix, right_prefix) = prefix.split_at_mut(middle);
+    let (left_buffer, right_buffer) = buffer.split_at_mut(middle);
+
+    let mut total = count_range_sum_sorted(left_prefix, left_buffer, lower, upper);
+    total += count_range_sum_sorted(right_prefix, right_buffer, lower, upper);
+
+    let mut lower_index = 0;
+    let mut upper_index = 0;
+    for &left_value in left_prefix.iter() {
+        while lower_index < right_prefix.len() && right_prefix[lower_index] - left_value < lower {
+            lower_index += 1;
+        }
+        while upper_index < right_prefix.len() && right_prefix[upper_index] - left_value <= upper {
+            upper_index += 1;
+        }
+        total += (upper_index - lower_index) as i64;
+    }
+
+    merge_sorted_slices(left_prefix, right_prefix, buffer);
+    prefix.copy_from_slice(&buffer[..prefix.len()]);
+
+    total
+}
+
+/// Sliding Window Maximum
+///
+/// Pattern: monotonic deque.
+/// Idea: keep candidate indexes with values in decreasing order.
+///
+/// Time: O(n)
+/// Space: O(k)
+pub fn sliding_window_maximum(values: Vec<i32>, window_size: usize) -> Vec<i32> {
+    if window_size == 0 || values.len() < window_size {
+        return Vec::new();
+    }
+
+    let mut deque = VecDeque::new();
+    let mut result = Vec::new();
+
+    for index in 0..values.len() {
+        while deque
+            .front()
+            .is_some_and(|&front| front + window_size <= index)
+        {
+            deque.pop_front();
+        }
+
+        while deque
+            .back()
+            .is_some_and(|&back| values[back] <= values[index])
+        {
+            deque.pop_back();
+        }
+
+        deque.push_back(index);
+
+        if index + 1 >= window_size {
+            let front = *deque.front().expect("window has at least one candidate");
+            result.push(values[front]);
+        }
+    }
+
+    result
+}
+
+/// Queue Reconstruction by Height
+///
+/// Pattern: sort tall people first, then insert by k.
+/// Idea: shorter people inserted later do not affect the count of taller people.
+///
+/// Time: O(n^2)
+/// Space: O(n)
+pub fn queue_reconstruction_by_height(mut people: Vec<(i32, i32)>) -> Vec<(i32, i32)> {
+    people.sort_unstable_by(|&(left_height, left_k), &(right_height, right_k)| {
+        right_height
+            .cmp(&left_height)
+            .then_with(|| left_k.cmp(&right_k))
+    });
+
+    let mut queue = Vec::with_capacity(people.len());
+
+    for person @ (_, k) in people {
+        let index = (k as usize).min(queue.len());
+        queue.insert(index, person);
+    }
+
+    queue
+}
+
+#[derive(Debug, Clone)]
+pub struct SnapshotArray {
+    current_snap: usize,
+    values: Vec<Vec<(usize, i32)>>,
+}
+
+impl SnapshotArray {
+    /// Snapshot Array
+    ///
+    /// Pattern: versioned values per index.
+    /// Idea: store only changes and binary-search the latest value at a snapshot.
+    ///
+    /// Time:
+    /// - `set`: O(1)
+    /// - `snap`: O(1)
+    /// - `get`: O(log c)
+    ///
+    /// Space: O(length + changes)
+    pub fn new(length: usize) -> Self {
+        Self {
+            current_snap: 0,
+            values: vec![vec![(0, 0)]; length],
+        }
+    }
+
+    pub fn set(&mut self, index: usize, value: i32) -> bool {
+        let Some(changes) = self.values.get_mut(index) else {
+            return false;
+        };
+
+        if let Some(last) = changes.last_mut() {
+            if last.0 == self.current_snap {
+                last.1 = value;
+                return true;
+            }
+        }
+
+        changes.push((self.current_snap, value));
+        true
+    }
+
+    pub fn snap(&mut self) -> usize {
+        let id = self.current_snap;
+        self.current_snap += 1;
+        id
+    }
+
+    pub fn get(&self, index: usize, snap_id: usize) -> Option<i32> {
+        if snap_id >= self.current_snap {
+            return None;
+        }
+
+        let changes = self.values.get(index)?;
+        let position = changes.partition_point(|&(id, _)| id <= snap_id);
+        Some(changes[position.saturating_sub(1)].1)
+    }
 }
 
 fn count_reverse_pairs(values: &mut [i64], buffer: &mut [i64]) -> i64 {

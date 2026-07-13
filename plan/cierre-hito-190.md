@@ -8,10 +8,10 @@ Este hito es contenido del repo/curso. No incluye repeticiones personales, simul
 
 ## Estado Inicial
 
-- Problemas implementados: 171.
-- Tests automatizados: 411.
+- Problemas implementados: 177.
+- Tests automatizados: 423.
 - Meta del hito: 190 problemas.
-- Faltan: 19 problemas.
+- Faltan: 13 problemas.
 
 ## Enfoque
 
@@ -32,7 +32,7 @@ La meta no es solo aumentar volumen. Cada bloque debe reforzar un patrón que co
 | 3 | Árboles y BST | 6 | Completado: 158 |
 | 4 | Programación dinámica avanzada | 7 | Completado: 165 |
 | 5 | Heaps, intervalos y greedy | 6 | Completado: 171 |
-| 6 | Range queries y estructuras | 6 | 177 |
+| 6 | Range queries y estructuras | 6 | Completado: 177 |
 | 7 | Backtracking y combinatoria | 5 | 182 |
 | 8 | Geometría, matrices y selección final | 8 | 190 |
 
@@ -146,12 +146,18 @@ Objetivo: profundizar en consultas, actualizaciones y estructuras para rangos.
 
 Problemas sugeridos:
 
-- Range Sum Query 2D Immutable.
-- Range Addition.
-- Count Range Sum.
-- Sliding Window Maximum.
-- Queue Reconstruction by Height.
-- Snapshot Array.
+- Range Sum Query 2D Immutable. Implementado.
+- Range Addition. Implementado.
+- Count Range Sum. Implementado.
+- Sliding Window Maximum. Implementado.
+- Queue Reconstruction by Height. Implementado.
+- Snapshot Array. Implementado.
+
+Avance:
+
+- Problemas agregados: 6 de 6.
+- Tests agregados: 12.
+- APIs agregadas: `RangeSumQuery2D`, `range_addition`, `count_range_sum`, `sliding_window_maximum`, `queue_reconstruction_by_height` y `SnapshotArray`.
 
 ## Bloque 7: Backtracking y Combinatoria
 
@@ -201,6 +207,7 @@ Problemas sugeridos:
 | Árboles y BST | 6 | 12 | completado |
 | Programación dinámica avanzada | 7 | 14 | completado |
 | Heaps, intervalos y greedy | 6 | 12 | completado |
+| Range queries y estructuras | 6 | 12 | completado |
 
 ## Criterio de Cierre del Hito
 
