@@ -13,6 +13,41 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
+/// Returns words that can be formed by concatenating at least two shorter words.
+pub fn concatenated_words(words: &[&str]) -> Vec<String> {
+    let mut ordered = words.to_vec();
+    ordered.sort_unstable_by_key(|word| word.len());
+    let mut dictionary = BTreeSet::new();
+    let mut result = Vec::new();
+
+    for word in ordered {
+        if !word.is_empty() && can_concatenate(word, &dictionary) {
+            result.push(word.to_string());
+        }
+        if !word.is_empty() {
+            dictionary.insert(word);
+        }
+    }
+    result.sort_unstable();
+    result
+}
+
+fn can_concatenate(word: &str, dictionary: &BTreeSet<&str>) -> bool {
+    let mut parts = vec![usize::MAX; word.len() + 1];
+    parts[0] = 0;
+    for start in 0..word.len() {
+        if parts[start] == usize::MAX || !word.is_char_boundary(start) {
+            continue;
+        }
+        for end in start + 1..=word.len() {
+            if word.is_char_boundary(end) && dictionary.contains(&word[start..end]) {
+                parts[end] = parts[end].min(parts[start] + 1);
+            }
+        }
+    }
+    parts[word.len()] >= 2 && parts[word.len()] != usize::MAX
+}
+
 #[derive(Default)]
 struct TrieNode {
     children: BTreeMap<char, TrieNode>,

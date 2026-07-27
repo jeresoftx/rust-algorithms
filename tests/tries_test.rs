@@ -1,4 +1,6 @@
-use rust_algorithms::patterns::tries::{find_words, replace_words, Trie, WordDictionary};
+use rust_algorithms::patterns::tries::{
+    concatenated_words, find_words, replace_words, Trie, WordDictionary,
+};
 
 #[test]
 fn trie_searches_inserted_words_exactly() {
@@ -8,6 +10,30 @@ fn trie_searches_inserted_words_exactly() {
 
     assert!(trie.search("apple"));
     assert!(!trie.search("app"));
+}
+
+#[test]
+fn concatenated_words_finds_words_built_from_shorter_dictionary_words() {
+    let words = [
+        "cat",
+        "cats",
+        "catsdogcats",
+        "dog",
+        "dogcatsdog",
+        "hippopotamuses",
+        "rat",
+        "ratcatdogcat",
+    ];
+    assert_eq!(
+        concatenated_words(&words),
+        vec!["catsdogcats", "dogcatsdog", "ratcatdogcat"]
+    );
+}
+
+#[test]
+fn concatenated_words_rejects_single_words_and_empty_input() {
+    assert!(concatenated_words(&["cat", "dog"]).is_empty());
+    assert!(concatenated_words(&[]).is_empty());
 }
 
 #[test]
