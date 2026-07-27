@@ -4,6 +4,9 @@
 
 Copiar esta plantilla después de cada simulacro y completar la evaluación en `notes/review-queue.md`.
 
+Para preparar la explicación antes del simulacro, usar la
+[`Guía de explicación avanzada para simulacros`](./explicacion-avanzada-trade-offs.md).
+
 ## Plantilla
 
 ```markdown
