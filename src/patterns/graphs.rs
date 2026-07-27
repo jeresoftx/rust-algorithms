@@ -763,3 +763,52 @@ fn neighbors(row: usize, col: usize, rows: usize, cols: usize) -> Vec<(usize, us
 
     result
 }
+
+/// Word Ladder.
+///
+/// Pattern: breadth-first search over one-character transformations.
+/// Time: O(n * l^2), where `n` is the dictionary size and `l` word length.
+/// Space: O(n * l).
+pub fn word_ladder_length(begin: &str, end: &str, words: &[&str]) -> Option<usize> {
+    if begin.len() != end.len() {
+        return None;
+    }
+
+    let dictionary: HashSet<&str> = words
+        .iter()
+        .copied()
+        .filter(|word| word.len() == begin.len())
+        .collect();
+    if !dictionary.contains(end) {
+        return None;
+    }
+
+    let mut patterns: HashMap<String, Vec<&str>> = HashMap::new();
+    for &word in dictionary.iter().chain(std::iter::once(&begin)) {
+        for index in 0..word.len() {
+            let mut pattern = word.to_string();
+            pattern.replace_range(index..=index, "*");
+            patterns.entry(pattern).or_default().push(word);
+        }
+    }
+
+    let mut queue = VecDeque::from([(begin, 1_usize)]);
+    let mut visited = HashSet::from([begin]);
+    while let Some((word, distance)) = queue.pop_front() {
+        if word == end {
+            return Some(distance);
+        }
+        for index in 0..word.len() {
+            let mut pattern = word.to_string();
+            pattern.replace_range(index..=index, "*");
+            if let Some(neighbors) = patterns.remove(&pattern) {
+                for neighbor in neighbors {
+                    if visited.insert(neighbor) {
+                        queue.push_back((neighbor, distance + 1));
+                    }
+                }
+            }
+        }
+    }
+    None
+}
