@@ -295,6 +295,51 @@ pub fn minimum_days_to_make_bouquets(
     Some(low)
 }
 
+/// Split Array Largest Sum.
+///
+/// Pattern: binary search on the answer plus greedy feasibility.
+/// Idea: for a candidate maximum sum, greedily extend each partition until
+/// adding the next non-negative value would exceed that limit. If the result
+/// uses at most `parts` partitions, the limit is feasible.
+///
+/// Time: O(n log s), where `s` is the sum of the values.
+/// Space: O(1).
+pub fn split_array_largest_sum(values: &[i32], parts: usize) -> Option<i32> {
+    if values.is_empty()
+        || parts == 0
+        || parts > values.len()
+        || values.iter().any(|&value| value < 0)
+    {
+        return None;
+    }
+
+    let mut low = *values.iter().max()?;
+    let mut high: i32 = values.iter().sum();
+
+    while low < high {
+        let limit = low + (high - low) / 2;
+        let mut partitions = 1;
+        let mut current_sum = 0;
+
+        for &value in values {
+            if current_sum + value > limit {
+                partitions += 1;
+                current_sum = value;
+            } else {
+                current_sum += value;
+            }
+        }
+
+        if partitions <= parts {
+            high = limit;
+        } else {
+            low = limit + 1;
+        }
+    }
+
+    Some(low)
+}
+
 /// Search a 2D Matrix
 ///
 /// Pattern: binary search over a flattened sorted matrix.

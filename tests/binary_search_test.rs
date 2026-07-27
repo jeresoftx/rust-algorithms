@@ -1,7 +1,7 @@
 use rust_algorithms::patterns::binary_search::{
     arrange_coins, binary_search, find_min_rotated, find_peak_element, min_eating_speed,
     minimum_days_to_make_bouquets, search_insert, search_matrix, search_range, search_rotated,
-    search_rotated_with_duplicates, ship_within_days,
+    search_rotated_with_duplicates, ship_within_days, split_array_largest_sum,
 };
 
 #[test]
@@ -142,6 +142,18 @@ fn minimum_days_to_make_bouquets_handles_impossible_and_consecutive_runs() {
         minimum_days_to_make_bouquets(&[7, 7, 7, 7, 12, 7, 7], 2, 3),
         Some(12)
     );
+}
+
+#[test]
+fn split_array_largest_sum_minimizes_the_largest_partition() {
+    assert_eq!(split_array_largest_sum(&[7, 2, 5, 10, 8], 2), Some(18));
+}
+
+#[test]
+fn split_array_largest_sum_handles_one_value_per_partition_and_invalid_parts() {
+    assert_eq!(split_array_largest_sum(&[1, 4, 4], 3), Some(4));
+    assert_eq!(split_array_largest_sum(&[], 2), None);
+    assert_eq!(split_array_largest_sum(&[1, 2], 3), None);
 }
 
 #[test]
