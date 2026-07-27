@@ -105,6 +105,9 @@ El flujo operativo para cada issue y PR vive en
 El primer bloque de consolidación vive en
 [`consolidacion-191-220.md`](./consolidacion-191-220.md).
 
+El bloque de simulacros cronometrados vive en
+[`simulacros-221-240.md`](./simulacros-221-240.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
