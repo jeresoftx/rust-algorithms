@@ -103,6 +103,7 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | 270: Minimum Days to Make M Bouquets | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #73, función `minimum_days_to_make_bouquets` y tests de día mínimo, imposibilidad y rachas. |
 | 274: Course Schedule III | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #78, función `schedule_courses` y tests de selección factible, reemplazo de duración y entradas inválidas. |
 | 275: Meeting Rooms III | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #79, función `most_booked_room` y tests de retraso, desempate por índice y cero salas. |
+| 277: My Calendar III | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #82, estructura `MyCalendarThree` y tests de concurrencia, límites semiabiertos e intervalos inválidos. |
 | 266: Reorganize String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #70, función `reorganize_string` y tests de reorganización posible, imposible y vacío. |
 
 ## Distribución de señal

@@ -1152,6 +1152,48 @@ impl MyCalendarTwo {
     }
 }
 
+/// Calendar that records the maximum number of concurrent bookings.
+///
+/// Pattern: ordered event sweep with difference counts.
+/// Idea: every half-open booking contributes `+1` at its start and `-1` at
+/// its end. Traversing the ordered changes reconstructs the active booking
+/// count and its maximum.
+///
+/// Time: O(n) per booking, where `n` is the number of event boundaries.
+/// Space: O(n).
+#[derive(Debug, Clone, Default)]
+pub struct MyCalendarThree {
+    changes: BTreeMap<i32, i32>,
+}
+
+impl MyCalendarThree {
+    /// Creates an empty calendar.
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    /// Books a half-open interval `[start, end)` and returns the peak overlap.
+    /// Invalid intervals leave the calendar unchanged.
+    pub fn book(&mut self, start: i32, end: i32) -> Option<i32> {
+        if start >= end {
+            return None;
+        }
+
+        *self.changes.entry(start).or_insert(0) += 1;
+        *self.changes.entry(end).or_insert(0) -= 1;
+
+        let mut active = 0;
+        let mut peak = 0;
+
+        for &change in self.changes.values() {
+            active += change;
+            peak = peak.max(active);
+        }
+
+        Some(peak)
+    }
+}
+
 fn intervals_overlap(left_start: i32, left_end: i32, right_start: i32, right_end: i32) -> bool {
     left_start < right_end && right_start < left_end
 }
