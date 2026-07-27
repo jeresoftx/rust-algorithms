@@ -128,6 +128,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 203: Contiguous Array | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #50, función `contiguous_array` y tests de balance total, entradas mínimas y ausencia de balance. |
 | 204: Longest Repeating Character Replacement | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #52, función `longest_repeating_character_replacement` y tests de presupuesto, contracción y texto vacío. |
 | 205: Permutation in String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #51, función `permutation_in_string` y tests de coincidencia, ausencia y patrón vacío. |
+| 207: Minimum Size Subarray Sum | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #56, función `minimum_size_subarray_sum` y tests de ventana mínima, ausencia y objetivo no positivo. |
 
 ## Relación con el milestone
 

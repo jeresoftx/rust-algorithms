@@ -16,9 +16,9 @@ estudio.
 
 | Aspecto | Estado |
 | --- | --- |
-| Catálogo funcional | 202 problemas implementados y probados. |
+| Catálogo funcional | 203 problemas implementados y probados. |
 | Familias de patrones | 19 módulos de patrones. |
-| Tests automatizados | 490 pruebas deterministas/property y 9 doctests. |
+| Tests automatizados | 492 pruebas deterministas/property y 9 doctests. |
 | Simulacros documentados | 6 acumulados. |
 | Horizonte 400 | Planeado y organizado; no ejecutado como catálogo funcional. |
 | Contenido publicado o revisado | Ningún bloque 191-400 se marca como publicado o revisado. |
@@ -29,7 +29,7 @@ individuales con TDD y evidencia revisable; hasta ahora, Valid Palindrome II e
 Is Subsequence, Merge Sorted Array, Find Pivot Index, Backspace String Compare
 y Baseball Game, Remove Duplicates from Sorted Array II, Sort Colors y
 Continuous Subarray Sum y Contiguous Array (candidatos 192-195, 197-200 y
-202-205) elevaron el conteo de 190 a 202.
+202-205 y 207) elevaron el conteo de 190 a 203.
 
 ## Evidencia preparada
 
@@ -61,7 +61,7 @@ corrección.
 
 ## Deuda visible y límites
 
-- Los candidatos 196 y 206-400 todavía no son implementaciones funcionales nuevas.
+- Los candidatos 196, 206 y 208-400 todavía no son implementaciones funcionales nuevas.
 - La dificultad del catálogo histórico de 190 problemas sigue sin normalizarse
   retroactivamente, por decisión de la matriz de cobertura.
 - Las repeticiones necesitan ejecución real antes de pasar a `dominado`.
