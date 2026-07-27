@@ -1,5 +1,5 @@
 use std::cmp::Reverse;
-use std::collections::BinaryHeap;
+use std::collections::{BinaryHeap, HashMap};
 
 use crate::patterns::linked_lists::{list_from_vec, Link};
 
@@ -140,6 +140,42 @@ pub fn minimum_cost_to_connect_sticks(sticks: Vec<i32>) -> i32 {
     }
 
     total_cost
+}
+
+/// Reorganize String
+///
+/// Pattern: frequency max heap.
+/// Idea: hold the previously used character out of the heap until another
+/// character is chosen, preventing equal adjacent characters.
+///
+/// Time: O(n log k)
+/// Space: O(k)
+pub fn reorganize_string(text: &str) -> String {
+    let mut counts = HashMap::new();
+    for character in text.chars() {
+        *counts.entry(character).or_insert(0_usize) += 1;
+    }
+
+    let mut available: BinaryHeap<(usize, char)> =
+        counts.into_iter().map(|(c, n)| (n, c)).collect();
+    let mut previous = None;
+    let mut result = String::new();
+
+    while let Some((count, character)) = available.pop() {
+        result.push(character);
+        if let Some((previous_count, previous_character)) = previous.take() {
+            available.push((previous_count, previous_character));
+        }
+        if count > 1 {
+            previous = Some((count - 1, character));
+        }
+    }
+
+    if previous.is_some() {
+        String::new()
+    } else {
+        result
+    }
 }
 
 /// K Closest Points to Origin
