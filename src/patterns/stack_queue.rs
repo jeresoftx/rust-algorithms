@@ -108,6 +108,49 @@ pub fn daily_temperatures(temperatures: Vec<i32>) -> Vec<i32> {
     result
 }
 
+/// Asteroid Collision
+///
+/// Pattern: stack of unresolved survivors.
+/// Idea: collisions are possible only when a positive survivor is immediately
+/// before a negative incoming asteroid, so the stack resolves that frontier.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn asteroid_collision(asteroids: Vec<i32>) -> Vec<i32> {
+    let mut survivors = Vec::new();
+
+    for asteroid in asteroids {
+        let mut survives = true;
+
+        while survives && asteroid < 0 {
+            let Some(&previous) = survivors.last() else {
+                break;
+            };
+
+            if previous < 0 {
+                break;
+            }
+
+            let incoming_magnitude = -i64::from(asteroid);
+
+            if i64::from(previous) < incoming_magnitude {
+                survivors.pop();
+            } else {
+                if i64::from(previous) == incoming_magnitude {
+                    survivors.pop();
+                }
+                survives = false;
+            }
+        }
+
+        if survives {
+            survivors.push(asteroid);
+        }
+    }
+
+    survivors
+}
+
 /// Online Stock Span
 ///
 /// Pattern: monotonic decreasing stack with accumulated spans.
