@@ -102,6 +102,9 @@ La distribución por dificultad y familia vive en
 El flujo operativo para cada issue y PR vive en
 [`plantilla-bloque-autonomo-191-plus.md`](./plantilla-bloque-autonomo-191-plus.md).
 
+El primer bloque de consolidación vive en
+[`consolidacion-191-220.md`](./consolidacion-191-220.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
