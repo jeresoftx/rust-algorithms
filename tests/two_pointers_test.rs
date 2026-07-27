@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::two_pointers::{
-    is_subsequence, max_area, move_zeroes, remove_duplicates_sorted, sorted_squares, three_sum,
-    two_sum_sorted, valid_palindrome, valid_palindrome_with_one_removal,
+    is_subsequence, max_area, merge_sorted_array, move_zeroes, remove_duplicates_sorted,
+    sorted_squares, three_sum, two_sum_sorted, valid_palindrome, valid_palindrome_with_one_removal,
 };
 
 #[test]
@@ -61,6 +61,31 @@ fn is_subsequence_handles_empty_inputs() {
 fn is_subsequence_advances_past_repeated_text_characters() {
     assert!(is_subsequence("aab", "aaab"));
     assert!(!is_subsequence("aaaa", "aaab"));
+}
+
+#[test]
+fn merge_sorted_array_merges_interleaved_values_in_place() {
+    let mut destination = vec![1, 2, 3, 0, 0, 0];
+    merge_sorted_array(&mut destination, 3, &[2, 5, 6]);
+    assert_eq!(destination, vec![1, 2, 2, 3, 5, 6]);
+}
+
+#[test]
+fn merge_sorted_array_handles_empty_source_or_destination_prefix() {
+    let mut destination = vec![1];
+    merge_sorted_array(&mut destination, 1, &[]);
+    assert_eq!(destination, vec![1]);
+
+    let mut destination = vec![0];
+    merge_sorted_array(&mut destination, 0, &[1]);
+    assert_eq!(destination, vec![1]);
+}
+
+#[test]
+fn merge_sorted_array_preserves_duplicate_values() {
+    let mut destination = vec![1, 2, 2, 0, 0];
+    merge_sorted_array(&mut destination, 3, &[2, 2]);
+    assert_eq!(destination, vec![1, 2, 2, 2, 2]);
 }
 
 #[test]
