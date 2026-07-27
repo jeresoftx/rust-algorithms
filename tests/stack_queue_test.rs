@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::stack_queue::{
-    backspace_compare, baseball_game, daily_temperatures, largest_rectangle_area, valid_parentheses,
+    backspace_compare, baseball_game, daily_temperatures, largest_rectangle_area,
+    valid_parentheses, StockSpanner,
 };
 
 #[test]
@@ -70,6 +71,28 @@ fn daily_temperatures_returns_zero_when_no_warmer_day_exists() {
 #[test]
 fn daily_temperatures_handles_single_temperature() {
     assert_eq!(daily_temperatures(vec![70]), vec![0]);
+}
+
+#[test]
+fn stock_spanner_accumulates_spans_for_a_typical_sequence() {
+    let mut spanner = StockSpanner::new();
+
+    let spans: Vec<usize> = [100, 80, 60, 70, 60, 75, 85]
+        .into_iter()
+        .map(|price| spanner.next(price))
+        .collect();
+
+    assert_eq!(spans, vec![1, 1, 1, 2, 1, 4, 6]);
+}
+
+#[test]
+fn stock_spanner_handles_equal_prices_and_descending_state() {
+    let mut spanner = StockSpanner::new();
+
+    assert_eq!(spanner.next(50), 1);
+    assert_eq!(spanner.next(50), 2);
+    assert_eq!(spanner.next(40), 1);
+    assert_eq!(spanner.next(30), 1);
 }
 
 #[test]

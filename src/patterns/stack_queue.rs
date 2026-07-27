@@ -108,6 +108,43 @@ pub fn daily_temperatures(temperatures: Vec<i32>) -> Vec<i32> {
     result
 }
 
+/// Online Stock Span
+///
+/// Pattern: monotonic decreasing stack with accumulated spans.
+/// Idea: each stack entry absorbs consecutive earlier prices no greater than
+/// its price, so every price is pushed and popped at most once.
+///
+/// Time: amortized O(1) per `next` call.
+/// Space: O(n)
+#[derive(Default)]
+pub struct StockSpanner {
+    prices: Vec<(i32, usize)>,
+}
+
+impl StockSpanner {
+    /// Creates an empty price stream.
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    /// Records `price` and returns its consecutive span.
+    pub fn next(&mut self, price: i32) -> usize {
+        let mut span = 1;
+
+        while let Some(&(previous_price, previous_span)) = self.prices.last() {
+            if previous_price > price {
+                break;
+            }
+
+            self.prices.pop();
+            span += previous_span;
+        }
+
+        self.prices.push((price, span));
+        span
+    }
+}
+
 /// Largest Rectangle in Histogram
 ///
 /// Pattern: monotonic increasing stack.
