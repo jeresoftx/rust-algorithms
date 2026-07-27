@@ -183,6 +183,46 @@ pub fn longest_increasing_subsequence(nums: Vec<i32>) -> usize {
     tails.len()
 }
 
+/// Number of Longest Increasing Subsequence.
+///
+/// Pattern: dynamic programming with length and count states.
+/// Idea: each position records the longest increasing subsequence ending there
+/// and how many predecessors achieve that length.
+///
+/// Time: O(n^2).
+/// Space: O(n).
+pub fn number_of_longest_increasing_subsequences(nums: Vec<i32>) -> i32 {
+    if nums.is_empty() {
+        return 0;
+    }
+
+    let mut lengths = vec![1_i32; nums.len()];
+    let mut counts = vec![1_i32; nums.len()];
+
+    for end in 0..nums.len() {
+        for start in 0..end {
+            if nums[start] >= nums[end] {
+                continue;
+            }
+
+            let candidate_length = lengths[start] + 1;
+            if candidate_length > lengths[end] {
+                lengths[end] = candidate_length;
+                counts[end] = counts[start];
+            } else if candidate_length == lengths[end] {
+                counts[end] += counts[start];
+            }
+        }
+    }
+
+    let longest = lengths.iter().copied().max().unwrap_or(0);
+    lengths
+        .iter()
+        .zip(counts)
+        .filter_map(|(&length, count)| (length == longest).then_some(count))
+        .sum()
+}
+
 /// Word Break
 ///
 /// Pattern: decision DP over prefixes.
