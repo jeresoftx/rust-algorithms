@@ -32,6 +32,42 @@ pub fn rotate_image(matrix: &mut [Vec<i32>]) -> bool {
     true
 }
 
+/// Kth Smallest Element in a Sorted Matrix.
+///
+/// Pattern: binary search over values with monotonic matrix counting.
+/// Time: O((rows + columns) * log(range)). Space: O(1).
+pub fn kth_smallest_in_sorted_matrix(matrix: &[Vec<i32>], k: usize) -> Option<i32> {
+    if matrix.is_empty()
+        || matrix[0].is_empty()
+        || matrix.iter().any(|row| row.len() != matrix[0].len())
+        || k == 0
+        || k > matrix.len() * matrix[0].len()
+    {
+        return None;
+    }
+    let (mut low, mut high) = (matrix[0][0], matrix[matrix.len() - 1][matrix[0].len() - 1]);
+    while low < high {
+        let mid = low + (high - low) / 2;
+        let mut count = 0_usize;
+        let mut row = matrix.len();
+        let mut col = 0;
+        while row > 0 && col < matrix[0].len() {
+            if matrix[row - 1][col] <= mid {
+                count += row;
+                col += 1;
+            } else {
+                row -= 1;
+            }
+        }
+        if count < k {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    Some(low)
+}
+
 /// Spiral Matrix
 ///
 /// Pattern: shrinking boundaries.

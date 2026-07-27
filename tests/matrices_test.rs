@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::matrices::{
-    game_of_life, is_valid_sudoku, maximal_square, rotate_image, search_matrix_ii,
-    set_matrix_zeroes, spiral_order, RandomizedSet,
+    game_of_life, is_valid_sudoku, kth_smallest_in_sorted_matrix, maximal_square, rotate_image,
+    search_matrix_ii, set_matrix_zeroes, spiral_order, RandomizedSet,
 };
 
 #[test]
@@ -17,6 +17,20 @@ fn rotate_image_rejects_non_square_matrix() {
     let mut matrix = vec![vec![1, 2, 3], vec![4, 5, 6]];
 
     assert!(!rotate_image(&mut matrix));
+}
+
+#[test]
+fn kth_smallest_in_sorted_matrix_counts_values_across_rows_and_columns() {
+    let matrix = vec![vec![1, 5, 9], vec![10, 11, 13], vec![12, 13, 15]];
+    assert_eq!(kth_smallest_in_sorted_matrix(&matrix, 8), Some(13));
+}
+
+#[test]
+fn kth_smallest_in_sorted_matrix_handles_edges_and_minimal_matrix() {
+    let matrix = vec![vec![1, 2], vec![1, 3]];
+    assert_eq!(kth_smallest_in_sorted_matrix(&matrix, 1), Some(1));
+    assert_eq!(kth_smallest_in_sorted_matrix(&matrix, 4), Some(3));
+    assert_eq!(kth_smallest_in_sorted_matrix(&[vec![7]], 1), Some(7));
 }
 
 #[test]
