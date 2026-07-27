@@ -35,6 +35,49 @@ pub fn valid_palindrome(text: &str) -> bool {
     true
 }
 
+/// Valid Palindrome II
+///
+/// Pattern: two pointers with one controlled branch.
+/// Idea: on the first mismatch, only skipping the left or right character can
+/// restore a palindrome. Validate both remaining ranges instead of exploring
+/// every deletion.
+///
+/// Time: O(n)
+/// Space: O(n), to index Unicode scalar values safely.
+pub fn valid_palindrome_with_one_removal(text: &str) -> bool {
+    let characters: Vec<char> = text.chars().collect();
+    let mut left = 0;
+    let mut right = characters.len();
+
+    while left < right.saturating_sub(1) {
+        let last = right - 1;
+
+        if characters[left] != characters[last] {
+            return is_palindrome_range(&characters, left + 1, right)
+                || is_palindrome_range(&characters, left, last);
+        }
+
+        left += 1;
+        right -= 1;
+    }
+
+    true
+}
+
+fn is_palindrome_range(characters: &[char], mut left: usize, mut right: usize) -> bool {
+    while left < right.saturating_sub(1) {
+        right -= 1;
+
+        if characters[left] != characters[right] {
+            return false;
+        }
+
+        left += 1;
+    }
+
+    true
+}
+
 /// 3Sum
 ///
 /// Pattern: sort + two pointers.

@@ -16,16 +16,17 @@ estudio.
 
 | Aspecto | Estado |
 | --- | --- |
-| Catálogo funcional | 190 problemas implementados y probados. |
+| Catálogo funcional | 191 problemas implementados y probados. |
 | Familias de patrones | 19 módulos de patrones. |
-| Tests automatizados | 454 pruebas deterministas/property y 9 doctests. |
+| Tests automatizados | 458 pruebas deterministas/property y 9 doctests. |
 | Simulacros documentados | 6 acumulados. |
 | Horizonte 400 | Planeado y organizado; no ejecutado como catálogo funcional. |
 | Contenido publicado o revisado | Ningún bloque 191-400 se marca como publicado o revisado. |
 
 Los rangos 191-400 son candidatos, repeticiones, simulacros y protocolos de
-trabajo. No incrementan el conteo de 190 hasta que entren implementaciones
-individuales con TDD y evidencia revisable.
+trabajo. Solo incrementan el catálogo cuando entran implementaciones
+individuales con TDD y evidencia revisable; hasta ahora, Valid Palindrome II
+(candidato 192) elevó el conteo de 190 a 191.
 
 ## Evidencia preparada
 
@@ -57,7 +58,7 @@ corrección.
 
 ## Deuda visible y límites
 
-- Los candidatos 191-400 todavía no son implementaciones funcionales nuevas.
+- Los candidatos 193-400 todavía no son implementaciones funcionales nuevas.
 - La dificultad del catálogo histórico de 190 problemas sigue sin normalizarse
   retroactivamente, por decisión de la matriz de cobertura.
 - Las repeticiones necesitan ejecución real antes de pasar a `dominado`.

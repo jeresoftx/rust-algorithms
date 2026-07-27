@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::two_pointers::{
     max_area, move_zeroes, remove_duplicates_sorted, sorted_squares, three_sum, two_sum_sorted,
-    valid_palindrome,
+    valid_palindrome, valid_palindrome_with_one_removal,
 };
 
 #[test]
@@ -16,6 +16,28 @@ fn valid_palindrome_returns_false_when_cleaned_text_is_not_palindrome() {
 #[test]
 fn valid_palindrome_accepts_empty_cleaned_text() {
     assert!(valid_palindrome(".,"));
+}
+
+#[test]
+fn valid_palindrome_with_one_removal_accepts_already_valid_text() {
+    assert!(valid_palindrome_with_one_removal("racecar"));
+}
+
+#[test]
+fn valid_palindrome_with_one_removal_accepts_left_or_right_removal() {
+    assert!(valid_palindrome_with_one_removal("abca"));
+    assert!(valid_palindrome_with_one_removal("deeee"));
+}
+
+#[test]
+fn valid_palindrome_with_one_removal_rejects_two_required_removals() {
+    assert!(!valid_palindrome_with_one_removal("abc"));
+}
+
+#[test]
+fn valid_palindrome_with_one_removal_handles_short_text() {
+    assert!(valid_palindrome_with_one_removal("a"));
+    assert!(valid_palindrome_with_one_removal(""));
 }
 
 #[test]

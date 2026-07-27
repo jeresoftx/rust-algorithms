@@ -112,6 +112,12 @@ Cada candidato se ejecutará en un PR posterior con:
 - conteo actualizado solo si hay evidencia nueva;
 - validaciones locales y remotas en verde.
 
+## Ejecución registrada
+
+| Candidato | Estado | Evidencia |
+| --- | --- | --- |
+| 192: Valid Palindrome II | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #32, función `valid_palindrome_with_one_removal` y tests de bifurcación izquierda/derecha. |
+
 ## Relación con el milestone
 
 Este bloque abre el milestone `Horizonte 400 — Consolidación 191-260`. Los
