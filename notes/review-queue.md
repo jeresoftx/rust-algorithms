@@ -41,3 +41,17 @@ Estados:
 Este bloque se detalla en
 [`plan/repeticiones-241-260.md`](../plan/repeticiones-241-260.md). Ningún
 problema pendiente debe marcarse como dominado sin retro y validación.
+
+## Profundización 261-330
+
+| Rango | Enfoque | Estado | Acción |
+| --- | --- | --- | --- |
+| 261-290 | Patrones compuestos | Pendiente | Seleccionar una combinación, defender la alternativa simple y registrar su invariante. |
+| 291-315 | Medium y Hard con alta señal | Pendiente | Ejecutar bajo TDD y cubrir el caso borde propio de la familia. |
+| 316-330 | Patrones mixtos y brechas | Pendiente | Priorizar strings, grafos, DP, rangos o greedy según la señal de simulacro. |
+
+Los tres rangos están formalizados como práctica futura; no representan
+problemas dominados ni contenido publicado. Los detalles viven en
+[`plan/profundizacion-261-290.md`](../plan/profundizacion-261-290.md),
+[`plan/profundizacion-291-315.md`](../plan/profundizacion-291-315.md) y
+[`plan/profundizacion-316-330.md`](../plan/profundizacion-316-330.md).

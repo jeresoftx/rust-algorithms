@@ -117,6 +117,9 @@ El primer bloque de patrones compuestos de profundización vive en
 El bloque Medium y Hard con alta señal vive en
 [`profundizacion-291-315.md`](./profundizacion-291-315.md).
 
+El cierre de profundización con patrones mixtos vive en
+[`profundizacion-316-330.md`](./profundizacion-316-330.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
