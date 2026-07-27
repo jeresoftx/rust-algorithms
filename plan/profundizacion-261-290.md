@@ -106,6 +106,7 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | 277: My Calendar III | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #82, estructura `MyCalendarThree` y tests de concurrencia, límites semiabiertos e intervalos inválidos. |
 | 280: Number of Longest Increasing Subsequence | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #84, función `number_of_longest_increasing_subsequences` y tests de rutas óptimas, duplicados y entrada vacía. |
 | 281: Russian Doll Envelopes | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #85, función `max_russian_doll_envelopes` y tests de anidamiento, empate de ancho y entrada vacía. |
+| 282: Longest Increasing Path in a Matrix | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #88, función `longest_increasing_path` y tests de memoización, matriz mínima e irregularidad. |
 | 266: Reorganize String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #70, función `reorganize_string` y tests de reorganización posible, imposible y vacío. |
 
 ## Distribución de señal

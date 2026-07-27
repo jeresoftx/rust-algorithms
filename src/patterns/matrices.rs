@@ -68,6 +68,56 @@ pub fn kth_smallest_in_sorted_matrix(matrix: &[Vec<i32>], k: usize) -> Option<i3
     Some(low)
 }
 
+/// Longest Increasing Path in a Matrix.
+///
+/// Pattern: DFS with memoization over an implicit graph.
+/// Time: O(rows * columns). Space: O(rows * columns).
+pub fn longest_increasing_path(matrix: &[Vec<i32>]) -> Option<usize> {
+    let columns = matrix.first()?.len();
+    if columns == 0 || matrix.iter().any(|row| row.len() != columns) {
+        return None;
+    }
+
+    let mut memo = vec![vec![0; columns]; matrix.len()];
+    let mut longest = 0;
+
+    for row in 0..matrix.len() {
+        for column in 0..columns {
+            longest = longest.max(longest_path_from(matrix, &mut memo, row, column));
+        }
+    }
+
+    Some(longest)
+}
+
+fn longest_path_from(
+    matrix: &[Vec<i32>],
+    memo: &mut [Vec<usize>],
+    row: usize,
+    column: usize,
+) -> usize {
+    if memo[row][column] != 0 {
+        return memo[row][column];
+    }
+
+    let mut best = 1;
+    for (row_offset, column_offset) in [(1_isize, 0_isize), (-1, 0), (0, 1), (0, -1)] {
+        let next_row = row as isize + row_offset;
+        let next_column = column as isize + column_offset;
+        if next_row >= 0
+            && next_column >= 0
+            && (next_row as usize) < matrix.len()
+            && (next_column as usize) < matrix[0].len()
+            && matrix[next_row as usize][next_column as usize] > matrix[row][column]
+        {
+            best = best
+                .max(1 + longest_path_from(matrix, memo, next_row as usize, next_column as usize));
+        }
+    }
+    memo[row][column] = best;
+    best
+}
+
 /// Spiral Matrix
 ///
 /// Pattern: shrinking boundaries.
