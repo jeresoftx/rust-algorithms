@@ -96,6 +96,9 @@ pero se valida en un issue separado antes de usarla como guía operativa.
 La puerta de entrada para aceptar o descartar candidatos vive en
 [`criterios-seleccion-191-plus.md`](./criterios-seleccion-191-plus.md).
 
+La distribución por dificultad y familia vive en
+[`matriz-cobertura-400.md`](./matriz-cobertura-400.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
