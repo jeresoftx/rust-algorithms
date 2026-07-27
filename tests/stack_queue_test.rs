@@ -1,5 +1,5 @@
 use rust_algorithms::patterns::stack_queue::{
-    backspace_compare, daily_temperatures, largest_rectangle_area, valid_parentheses,
+    backspace_compare, baseball_game, daily_temperatures, largest_rectangle_area, valid_parentheses,
 };
 
 #[test]
@@ -16,6 +16,26 @@ fn backspace_compare_rejects_different_effective_text() {
 fn backspace_compare_handles_chained_and_leading_backspaces() {
     assert!(backspace_compare("ab##", "c#d#"));
     assert!(backspace_compare("##a", "a"));
+}
+
+#[test]
+fn baseball_game_sums_a_composed_history() {
+    assert_eq!(baseball_game(&["5", "2", "C", "D", "+"]), Some(30));
+}
+
+#[test]
+fn baseball_game_handles_duplicate_and_sum_operations() {
+    assert_eq!(
+        baseball_game(&["5", "-2", "4", "C", "D", "9", "+", "+"]),
+        Some(27)
+    );
+}
+
+#[test]
+fn baseball_game_rejects_operations_without_required_history() {
+    assert_eq!(baseball_game(&["C"]), None);
+    assert_eq!(baseball_game(&["5", "+"]), None);
+    assert_eq!(baseball_game(&["invalid"]), None);
 }
 
 #[test]

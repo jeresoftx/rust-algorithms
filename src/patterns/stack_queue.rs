@@ -49,6 +49,38 @@ fn effective_text(text: &str) -> Vec<char> {
     characters
 }
 
+/// Baseball Game
+///
+/// Pattern: stack simulation.
+/// Idea: the stack keeps every valid round, so cancel, duplicate and sum
+/// operations can inspect only the latest scores.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn baseball_game(operations: &[&str]) -> Option<i32> {
+    let mut scores = Vec::new();
+
+    for &operation in operations {
+        match operation {
+            "C" => {
+                scores.pop()?;
+            }
+            "D" => {
+                let score = scores.last()? * 2;
+                scores.push(score);
+            }
+            "+" => {
+                let (&previous, &last) =
+                    (scores.get(scores.len().checked_sub(2)?)?, scores.last()?);
+                scores.push(previous + last);
+            }
+            value => scores.push(value.parse().ok()?),
+        }
+    }
+
+    Some(scores.iter().sum())
+}
+
 /// Daily Temperatures
 ///
 /// Pattern: monotonic decreasing stack.
