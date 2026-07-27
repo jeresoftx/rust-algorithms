@@ -111,6 +111,9 @@ El bloque de simulacros cronometrados vive en
 El cierre por repeticiones dirigidas vive en
 [`repeticiones-241-260.md`](./repeticiones-241-260.md).
 
+El primer bloque de patrones compuestos de profundización vive en
+[`profundizacion-261-290.md`](./profundizacion-261-290.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,

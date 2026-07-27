@@ -172,6 +172,7 @@ Planes locales:
 - [Plantilla de bloque autónomo para problemas 191+](plan/plantilla-bloque-autonomo-191-plus.md)
 - [Repeticiones 241-260](plan/repeticiones-241-260.md)
 - [Simulacros 221-240](plan/simulacros-221-240.md)
+- [Profundización 261-290](plan/profundizacion-261-290.md)
 - [Cierre del hito de 140 problemas](plan/cierre-hito-140.md)
 - [Cierre del hito de 190 problemas](plan/cierre-hito-190.md)
 
