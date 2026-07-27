@@ -254,6 +254,47 @@ pub fn ship_within_days(weights: Vec<i32>, days: i32) -> i32 {
     left
 }
 
+/// Minimum Days to Make M Bouquets.
+///
+/// Pattern: binary search on feasible days.
+/// Time: O(n log range). Space: O(1).
+pub fn minimum_days_to_make_bouquets(
+    days: &[i32],
+    bouquets: usize,
+    flowers_per_bouquet: usize,
+) -> Option<i32> {
+    if bouquets == 0
+        || flowers_per_bouquet == 0
+        || bouquets.saturating_mul(flowers_per_bouquet) > days.len()
+    {
+        return None;
+    }
+    let mut low = *days.iter().min()?;
+    let mut high = *days.iter().max()?;
+    while low < high {
+        let day = low + (high - low) / 2;
+        let mut made = 0;
+        let mut run = 0;
+        for &bloom in days {
+            if bloom <= day {
+                run += 1;
+                if run == flowers_per_bouquet {
+                    made += 1;
+                    run = 0;
+                }
+            } else {
+                run = 0;
+            }
+        }
+        if made >= bouquets {
+            high = day;
+        } else {
+            low = day + 1;
+        }
+    }
+    Some(low)
+}
+
 /// Search a 2D Matrix
 ///
 /// Pattern: binary search over a flattened sorted matrix.
