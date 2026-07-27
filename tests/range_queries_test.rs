@@ -1,8 +1,8 @@
 use rust_algorithms::patterns::range_queries::{
-    car_pooling, corporate_flight_bookings, count_range_sum, count_smaller_numbers_after_self,
-    pivot_index, queue_reconstruction_by_height, range_addition, reverse_pairs,
-    sliding_window_maximum, DifferenceArray, FenwickTree, LazySegmentTree, MyCalendar,
-    MyCalendarTwo, RangeSumQuery, RangeSumQuery2D, SegmentTree, SnapshotArray,
+    car_pooling, contiguous_array, corporate_flight_bookings, count_range_sum,
+    count_smaller_numbers_after_self, pivot_index, queue_reconstruction_by_height, range_addition,
+    reverse_pairs, sliding_window_maximum, DifferenceArray, FenwickTree, LazySegmentTree,
+    MyCalendar, MyCalendarTwo, RangeSumQuery, RangeSumQuery2D, SegmentTree, SnapshotArray,
 };
 
 #[test]
@@ -25,6 +25,19 @@ fn pivot_index_returns_none_when_sides_never_balance() {
 fn pivot_index_handles_empty_and_negative_values() {
     assert_eq!(pivot_index(&[]), None);
     assert_eq!(pivot_index(&[-1, -1, -1, 0, 1, 1]), Some(0));
+}
+
+#[test]
+fn contiguous_array_finds_the_longest_balanced_binary_subarray() {
+    assert_eq!(contiguous_array(&[0, 1, 0]), 2);
+    assert_eq!(contiguous_array(&[0, 1, 0, 1]), 4);
+}
+
+#[test]
+fn contiguous_array_handles_minimal_and_unbalanced_inputs() {
+    assert_eq!(contiguous_array(&[]), 0);
+    assert_eq!(contiguous_array(&[1]), 0);
+    assert_eq!(contiguous_array(&[0, 0, 0]), 0);
 }
 
 #[test]
