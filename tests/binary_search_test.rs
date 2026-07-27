@@ -1,6 +1,7 @@
 use rust_algorithms::patterns::binary_search::{
     arrange_coins, binary_search, find_min_rotated, find_peak_element, min_eating_speed,
-    search_insert, search_matrix, search_range, search_rotated, ship_within_days,
+    search_insert, search_matrix, search_range, search_rotated, search_rotated_with_duplicates,
+    ship_within_days,
 };
 
 #[test]
@@ -61,6 +62,21 @@ fn search_rotated_returns_none_when_target_is_absent() {
 #[test]
 fn search_rotated_handles_single_value() {
     assert_eq!(search_rotated(vec![1], 1), Some(0));
+}
+
+#[test]
+fn search_rotated_with_duplicates_finds_present_target() {
+    assert!(search_rotated_with_duplicates(vec![2, 5, 6, 0, 0, 1, 2], 0));
+    assert!(search_rotated_with_duplicates(vec![1, 0, 1, 1, 1], 0));
+}
+
+#[test]
+fn search_rotated_with_duplicates_rejects_absent_and_uniform_inputs() {
+    assert!(!search_rotated_with_duplicates(
+        vec![2, 5, 6, 0, 0, 1, 2],
+        3
+    ));
+    assert!(!search_rotated_with_duplicates(vec![1, 1, 1, 1], 2));
 }
 
 #[test]

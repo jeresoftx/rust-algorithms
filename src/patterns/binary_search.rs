@@ -113,6 +113,57 @@ pub fn search_rotated(nums: Vec<i32>, target: i32) -> Option<usize> {
     None
 }
 
+/// Search in Rotated Sorted Array II
+///
+/// Pattern: binary search with duplicate ambiguity.
+/// Idea: when both ends equal the midpoint, neither half is distinguishable;
+/// discard both ends and otherwise apply sorted-half detection as usual.
+///
+/// Time: O(log n) on average, O(n) with repeated ambiguous duplicates.
+/// Space: O(1)
+pub fn search_rotated_with_duplicates(nums: Vec<i32>, target: i32) -> bool {
+    if nums.is_empty() {
+        return false;
+    }
+
+    let mut left = 0;
+    let mut right = nums.len() - 1;
+
+    while left <= right {
+        let middle = left + (right - left) / 2;
+
+        if nums[middle] == target {
+            return true;
+        }
+
+        if nums[left] == nums[middle] && nums[middle] == nums[right] {
+            left += 1;
+            if right == 0 {
+                break;
+            }
+            right -= 1;
+        } else if nums[left] <= nums[middle] {
+            if nums[left] <= target && target < nums[middle] {
+                if middle == 0 {
+                    break;
+                }
+                right = middle - 1;
+            } else {
+                left = middle + 1;
+            }
+        } else if nums[middle] < target && target <= nums[right] {
+            left = middle + 1;
+        } else {
+            if middle == 0 {
+                break;
+            }
+            right = middle - 1;
+        }
+    }
+
+    false
+}
+
 /// Find Minimum in Rotated Sorted Array
 ///
 /// Pattern: binary search on pivot.
