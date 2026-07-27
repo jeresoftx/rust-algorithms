@@ -108,6 +108,9 @@ El primer bloque de consolidación vive en
 El bloque de simulacros cronometrados vive en
 [`simulacros-221-240.md`](./simulacros-221-240.md).
 
+El cierre por repeticiones dirigidas vive en
+[`repeticiones-241-260.md`](./repeticiones-241-260.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,

@@ -106,6 +106,7 @@ plan/
   matriz-cobertura-400.md
   plantilla-bloque-autonomo-191-plus.md
   plan-alcance-avanzado.md
+  repeticiones-241-260.md
   simulacros-221-240.md
   plan-algoritmos-rust.md
 ```
@@ -169,6 +170,7 @@ Planes locales:
 - [Consolidación 191-220](plan/consolidacion-191-220.md)
 - [Matriz de cobertura Easy, Medium y Hard](plan/matriz-cobertura-400.md)
 - [Plantilla de bloque autónomo para problemas 191+](plan/plantilla-bloque-autonomo-191-plus.md)
+- [Repeticiones 241-260](plan/repeticiones-241-260.md)
 - [Simulacros 221-240](plan/simulacros-221-240.md)
 - [Cierre del hito de 140 problemas](plan/cierre-hito-140.md)
 - [Cierre del hito de 190 problemas](plan/cierre-hito-190.md)
@@ -208,7 +210,7 @@ Páginas destacadas:
 ## Benchmarks y Property Testing
 
 Las dependencias `criterion` y `proptest` son solo de desarrollo. Se agregan
-porque el repo no solo comprueba respuestas: tambien enseña complejidad,
+porque el repo no solo comprueba respuestas: también enseña complejidad,
 invariantes y regresiones de rendimiento donde la señal es real.
 
 | Familia | Benchmarks | Property testing | Decision |

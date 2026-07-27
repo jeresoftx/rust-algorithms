@@ -30,3 +30,14 @@ Estados:
 | 2026-07-12 | Path With Minimum Effort | Grafos ponderados | 24/25 | Repetido con matriz de una sola fila; explicar Dijkstra minimax el 2026-07-19 |
 | 2026-07-12 | Longest Duplicate Substring | Cadenas avanzadas | 21/25 | Repetir con rolling hash o suffix array el 2026-07-20 |
 | 2026-07-12 | Range Query Mix | Consultas por rangos | 24/25 | Repetir `RangeSumQuery` desde cero el 2026-07-21 |
+
+## Bloque 241-260
+
+| Rango | Fuente | Estado | Acción |
+| --- | --- | --- | --- |
+| 241-246 | Repeticiones y simulacros existentes | Evidencia parcial documentada | Revisar notas existentes y crear notas individuales donde falte trazabilidad. |
+| 247-260 | Simulacros con acción pendiente y candidatos reservados | Pendiente | Ejecutar como repeticiones dirigidas sin mirar solución antes de comparar. |
+
+Este bloque se detalla en
+[`plan/repeticiones-241-260.md`](../plan/repeticiones-241-260.md). Ningún
+problema pendiente debe marcarse como dominado sin retro y validación.
