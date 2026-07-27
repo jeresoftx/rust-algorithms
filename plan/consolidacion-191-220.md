@@ -122,6 +122,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 195: Find Pivot Index | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #36, función `pivot_index` y tests de centro, extremos, ausencia y negativos. |
 | 197: Backspace String Compare | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #40, función `backspace_compare` y tests de coincidencia, diferencia y retrocesos encadenados. |
 | 198: Baseball Game | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #39, función `baseball_game` y tests de historial compuesto, operaciones y entradas inválidas. |
+| 199: Remove Duplicates from Sorted Array II | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #44, función `remove_duplicates_sorted_at_most_twice` y tests de repetidos, cortos y distintos. |
 
 ## Relación con el milestone
 

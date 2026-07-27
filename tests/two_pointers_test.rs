@@ -1,6 +1,7 @@
 use rust_algorithms::patterns::two_pointers::{
     is_subsequence, max_area, merge_sorted_array, move_zeroes, remove_duplicates_sorted,
-    sorted_squares, three_sum, two_sum_sorted, valid_palindrome, valid_palindrome_with_one_removal,
+    remove_duplicates_sorted_at_most_twice, sorted_squares, three_sum, two_sum_sorted,
+    valid_palindrome, valid_palindrome_with_one_removal,
 };
 
 #[test]
@@ -86,6 +87,35 @@ fn merge_sorted_array_preserves_duplicate_values() {
     let mut destination = vec![1, 2, 2, 0, 0];
     merge_sorted_array(&mut destination, 3, &[2, 2]);
     assert_eq!(destination, vec![1, 2, 2, 2, 2]);
+}
+
+#[test]
+fn remove_duplicates_sorted_at_most_twice_keeps_two_copies() {
+    assert_eq!(
+        remove_duplicates_sorted_at_most_twice(vec![0, 0, 1, 1, 1, 1, 2, 3, 3]),
+        vec![0, 0, 1, 1, 2, 3, 3]
+    );
+}
+
+#[test]
+fn remove_duplicates_sorted_at_most_twice_handles_short_inputs() {
+    assert_eq!(
+        remove_duplicates_sorted_at_most_twice(vec![]),
+        Vec::<i32>::new()
+    );
+    assert_eq!(remove_duplicates_sorted_at_most_twice(vec![4]), vec![4]);
+    assert_eq!(
+        remove_duplicates_sorted_at_most_twice(vec![4, 4]),
+        vec![4, 4]
+    );
+}
+
+#[test]
+fn remove_duplicates_sorted_at_most_twice_keeps_distinct_values() {
+    assert_eq!(
+        remove_duplicates_sorted_at_most_twice(vec![1, 2, 3]),
+        vec![1, 2, 3]
+    );
 }
 
 #[test]

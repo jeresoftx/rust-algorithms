@@ -261,6 +261,32 @@ pub fn remove_duplicates_sorted(nums: Vec<i32>) -> Vec<i32> {
     unique
 }
 
+/// Remove Duplicates from Sorted Array II
+///
+/// Pattern: slow writer pointer.
+/// Idea: after preserving two values, accept a new value only when it differs
+/// from the value two output positions behind the writer.
+///
+/// Time: O(n)
+/// Space: O(1) extra space, excluding the returned compact vector.
+pub fn remove_duplicates_sorted_at_most_twice(mut nums: Vec<i32>) -> Vec<i32> {
+    if nums.len() <= 2 {
+        return nums;
+    }
+
+    let mut write = 2;
+
+    for read in 2..nums.len() {
+        if nums[read] != nums[write - 2] {
+            nums[write] = nums[read];
+            write += 1;
+        }
+    }
+
+    nums.truncate(write);
+    nums
+}
+
 /// Move Zeroes
 ///
 /// Pattern: stable writer pointer.
