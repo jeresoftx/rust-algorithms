@@ -43,6 +43,40 @@ pub fn length_of_longest_substring(text: &str) -> usize {
     best
 }
 
+/// Longest Repeating Character Replacement
+///
+/// Pattern: variable-size sliding window with frequency maximum.
+/// Idea: a window is repairable when its non-majority characters fit inside the
+/// replacement budget, so shrink only when that budget is exceeded.
+///
+/// Time: O(n)
+/// Space: O(k), where k is the number of distinct characters in the window.
+pub fn longest_repeating_character_replacement(text: &str, replacements: usize) -> usize {
+    let characters: Vec<char> = text.chars().collect();
+    let mut counts = HashMap::new();
+    let mut left = 0;
+    let mut highest_frequency = 0;
+    let mut longest = 0;
+
+    for (right, &character) in characters.iter().enumerate() {
+        let count = counts.entry(character).or_insert(0_usize);
+        *count += 1;
+        highest_frequency = highest_frequency.max(*count);
+
+        while right - left + 1 - highest_frequency > replacements {
+            let left_character = characters[left];
+            *counts
+                .get_mut(&left_character)
+                .expect("window character exists") -= 1;
+            left += 1;
+        }
+
+        longest = longest.max(right - left + 1);
+    }
+
+    longest
+}
+
 /// Minimum Window Substring
 ///
 /// Pattern: variable-size sliding window.
