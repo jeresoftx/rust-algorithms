@@ -78,6 +78,36 @@ fn is_palindrome_range(characters: &[char], mut left: usize, mut right: usize) -
     true
 }
 
+/// Is Subsequence
+///
+/// Pattern: asymmetric two pointers.
+/// Idea: scan the text once and advance the subsequence pointer only when its
+/// next required character appears. A matched position is never reused.
+///
+/// Time: O(n + m), where `n` is the text length and `m` is the subsequence
+/// length.
+/// Space: O(1).
+pub fn is_subsequence(subsequence: &str, text: &str) -> bool {
+    let mut required = subsequence.chars();
+    let Some(mut next_required) = required.next() else {
+        return true;
+    };
+
+    for character in text.chars() {
+        if character != next_required {
+            continue;
+        }
+
+        let Some(next) = required.next() else {
+            return true;
+        };
+
+        next_required = next;
+    }
+
+    false
+}
+
 /// 3Sum
 ///
 /// Pattern: sort + two pointers.
