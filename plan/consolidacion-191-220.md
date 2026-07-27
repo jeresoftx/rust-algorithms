@@ -132,6 +132,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 209: Online Stock Span | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #58, tipo `StockSpanner` y tests de estado incremental, precios iguales y descenso. |
 | 210: Asteroid Collision | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #60, función `asteroid_collision` y tests de choque simple, mutuo, encadenado y ausencia. |
 | 211: Decode String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #62, función `decode_string` y tests de repetición, anidamiento, fragmentos y entrada vacía. |
+| 212: Search in Rotated Sorted Array II | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #64, función `search_rotated_with_duplicates` y tests de presencia, ausencia y duplicados ambiguos. |
 
 ## Relación con el milestone
 
