@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::sliding_window::{
     length_of_longest_substring, longest_repeating_character_replacement, max_profit, min_window,
+    permutation_in_string,
 };
 
 #[test]
@@ -32,6 +33,18 @@ fn character_replacement_finds_the_longest_repairable_window() {
 fn character_replacement_handles_zero_budget_and_empty_text() {
     assert_eq!(longest_repeating_character_replacement("AAB", 0), 2);
     assert_eq!(longest_repeating_character_replacement("", 3), 0);
+}
+
+#[test]
+fn permutation_in_string_finds_a_permuted_fixed_window() {
+    assert!(permutation_in_string("ab", "eidbaooo"));
+    assert!(permutation_in_string("aab", "eidaaboo"));
+}
+
+#[test]
+fn permutation_in_string_rejects_absent_and_handles_empty_pattern() {
+    assert!(!permutation_in_string("ab", "eidboaoo"));
+    assert!(permutation_in_string("", "anything"));
 }
 
 #[test]

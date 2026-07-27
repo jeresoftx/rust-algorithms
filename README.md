@@ -208,8 +208,8 @@ Páginas destacadas:
 ## Estado Actual
 
 - Semana documentada: 27-28
-- Problemas implementados: 201
-- Tests automatizados: 488 pruebas deterministas/property + 9 doctests
+- Problemas implementados: 202
+- Tests automatizados: 490 pruebas deterministas/property + 9 doctests
 - Ruta avanzada: hito 190 completado; horizonte 400 documentado como plan
   opcional futuro
 - Lenguaje: Rust
