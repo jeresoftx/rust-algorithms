@@ -77,6 +77,60 @@ pub fn longest_repeating_character_replacement(text: &str, replacements: usize) 
     longest
 }
 
+/// Permutation in String
+///
+/// Pattern: fixed-size sliding window with frequency deficit.
+/// Idea: move a window as long as the pattern and track how many required
+/// characters are still missing, instead of generating any permutation.
+///
+/// Time: O(n + m)
+/// Space: O(k), where k is the number of distinct pattern characters.
+pub fn permutation_in_string(pattern: &str, text: &str) -> bool {
+    let pattern_length = pattern.chars().count();
+    if pattern_length == 0 {
+        return true;
+    }
+
+    let characters: Vec<char> = text.chars().collect();
+    if pattern_length > characters.len() {
+        return false;
+    }
+
+    let mut needed = HashMap::new();
+    for character in pattern.chars() {
+        *needed.entry(character).or_insert(0_i32) += 1;
+    }
+
+    let mut missing = pattern_length as i32;
+    let mut left = 0;
+
+    for (right, &character) in characters.iter().enumerate() {
+        if let Some(count) = needed.get_mut(&character) {
+            if *count > 0 {
+                missing -= 1;
+            }
+            *count -= 1;
+        }
+
+        if right - left + 1 > pattern_length {
+            let left_character = characters[left];
+            if let Some(count) = needed.get_mut(&left_character) {
+                *count += 1;
+                if *count > 0 {
+                    missing += 1;
+                }
+            }
+            left += 1;
+        }
+
+        if right - left + 1 == pattern_length && missing == 0 {
+            return true;
+        }
+    }
+
+    false
+}
+
 /// Minimum Window Substring
 ///
 /// Pattern: variable-size sliding window.
