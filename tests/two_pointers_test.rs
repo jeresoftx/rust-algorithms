@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::two_pointers::{
     is_subsequence, max_area, merge_sorted_array, move_zeroes, remove_duplicates_sorted,
-    remove_duplicates_sorted_at_most_twice, sorted_squares, three_sum, two_sum_sorted,
+    remove_duplicates_sorted_at_most_twice, sort_colors, sorted_squares, three_sum, two_sum_sorted,
     valid_palindrome, valid_palindrome_with_one_removal,
 };
 
@@ -116,6 +116,18 @@ fn remove_duplicates_sorted_at_most_twice_keeps_distinct_values() {
         remove_duplicates_sorted_at_most_twice(vec![1, 2, 3]),
         vec![1, 2, 3]
     );
+}
+
+#[test]
+fn sort_colors_partitions_all_three_values() {
+    assert_eq!(sort_colors(vec![2, 0, 2, 1, 1, 0]), vec![0, 0, 1, 1, 2, 2]);
+}
+
+#[test]
+fn sort_colors_handles_repeated_and_minimal_inputs() {
+    assert_eq!(sort_colors(vec![2, 2, 2]), vec![2, 2, 2]);
+    assert_eq!(sort_colors(vec![1]), vec![1]);
+    assert!(sort_colors(Vec::new()).is_empty());
 }
 
 #[test]
