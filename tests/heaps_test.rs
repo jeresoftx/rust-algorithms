@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::heaps::{
     k_closest_points_heap, kth_largest, last_stone_weight, merge_k_sorted_lists,
-    minimum_cost_to_connect_sticks, MedianFinder,
+    minimum_cost_to_connect_sticks, reorganize_string, MedianFinder,
 };
 use rust_algorithms::patterns::linked_lists::{list_from_vec, list_to_vec};
 
@@ -89,6 +89,19 @@ fn minimum_cost_to_connect_sticks_handles_empty_single_and_repeated_lengths() {
     assert_eq!(minimum_cost_to_connect_sticks(Vec::new()), 0);
     assert_eq!(minimum_cost_to_connect_sticks(vec![7]), 0);
     assert_eq!(minimum_cost_to_connect_sticks(vec![1, 1, 1, 1]), 8);
+}
+
+#[test]
+fn reorganize_string_avoids_equal_adjacent_characters() {
+    let result = reorganize_string("aab");
+    assert_eq!(result.len(), 3);
+    assert!(result.as_bytes().windows(2).all(|pair| pair[0] != pair[1]));
+}
+
+#[test]
+fn reorganize_string_rejects_impossible_and_handles_empty_input() {
+    assert_eq!(reorganize_string("aaab"), "");
+    assert_eq!(reorganize_string(""), "");
 }
 
 #[test]

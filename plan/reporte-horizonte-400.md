@@ -16,9 +16,9 @@ estudio.
 
 | Aspecto | Estado |
 | --- | --- |
-| Catálogo funcional | 209 problemas implementados y probados. |
+| Catálogo funcional | 210 problemas implementados y probados. |
 | Familias de patrones | 19 módulos de patrones. |
-| Tests automatizados | 504 pruebas deterministas/property y 9 doctests. |
+| Tests automatizados | 506 pruebas deterministas/property y 9 doctests. |
 | Simulacros documentados | 6 acumulados. |
 | Horizonte 400 | Planeado y organizado; no ejecutado como catálogo funcional. |
 | Contenido publicado o revisado | Ningún bloque 191-400 se marca como publicado o revisado. |
