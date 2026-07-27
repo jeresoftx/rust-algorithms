@@ -1,8 +1,9 @@
 use rust_algorithms::patterns::range_queries::{
     car_pooling, contiguous_array, corporate_flight_bookings, count_range_sum,
     count_smaller_numbers_after_self, pivot_index, queue_reconstruction_by_height, range_addition,
-    reverse_pairs, sliding_window_maximum, DifferenceArray, FenwickTree, LazySegmentTree,
-    MyCalendar, MyCalendarTwo, RangeSumQuery, RangeSumQuery2D, SegmentTree, SnapshotArray,
+    reverse_pairs, shortest_subarray_at_least_k, sliding_window_maximum, DifferenceArray,
+    FenwickTree, LazySegmentTree, MyCalendar, MyCalendarTwo, RangeSumQuery, RangeSumQuery2D,
+    SegmentTree, SnapshotArray,
 };
 
 #[test]
@@ -38,6 +39,21 @@ fn contiguous_array_handles_minimal_and_unbalanced_inputs() {
     assert_eq!(contiguous_array(&[]), 0);
     assert_eq!(contiguous_array(&[1]), 0);
     assert_eq!(contiguous_array(&[0, 0, 0]), 0);
+}
+
+#[test]
+fn shortest_subarray_at_least_k_handles_negative_values() {
+    assert_eq!(shortest_subarray_at_least_k(&[2, -1, 2], 3), Some(3));
+    assert_eq!(
+        shortest_subarray_at_least_k(&[84, -37, 32, 40, 95], 167),
+        Some(3)
+    );
+}
+
+#[test]
+fn shortest_subarray_at_least_k_handles_absence_and_single_value_windows() {
+    assert_eq!(shortest_subarray_at_least_k(&[1, 2], 4), None);
+    assert_eq!(shortest_subarray_at_least_k(&[5, -2], 5), Some(1));
 }
 
 #[test]

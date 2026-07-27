@@ -63,6 +63,50 @@ pub fn contiguous_array(values: &[i32]) -> usize {
     longest
 }
 
+/// Shortest Subarray with Sum at Least K
+///
+/// Pattern: prefix sums with a monotonic deque.
+/// Idea: negative values prevent ordinary window contraction. Increasing prefix
+/// sums in the deque retain only starts that can still produce a shorter window.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn shortest_subarray_at_least_k(values: &[i32], target: i32) -> Option<usize> {
+    let mut prefixes = Vec::with_capacity(values.len() + 1);
+    prefixes.push(0_i64);
+
+    for &value in values {
+        prefixes.push(prefixes.last().copied().unwrap_or(0) + i64::from(value));
+    }
+
+    let target = i64::from(target);
+    let mut candidates = VecDeque::new();
+    let mut shortest = usize::MAX;
+
+    for (index, &prefix) in prefixes.iter().enumerate() {
+        while let Some(&start) = candidates.front() {
+            if prefix - prefixes[start] < target {
+                break;
+            }
+
+            shortest = shortest.min(index - start);
+            candidates.pop_front();
+        }
+
+        while let Some(&last) = candidates.back() {
+            if prefixes[last] < prefix {
+                break;
+            }
+
+            candidates.pop_back();
+        }
+
+        candidates.push_back(index);
+    }
+
+    (shortest != usize::MAX).then_some(shortest)
+}
+
 /// Fenwick tree for prefix and range sums over point updates.
 ///
 /// Time:
