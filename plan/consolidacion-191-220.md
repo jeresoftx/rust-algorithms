@@ -120,6 +120,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 193: Is Subsequence | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #31, función `is_subsequence` y tests de orden, vacío y repetidos. |
 | 194: Merge Sorted Array | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #35, función `merge_sorted_array` y tests de mezcla, vacíos y duplicados. |
 | 195: Find Pivot Index | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #36, función `pivot_index` y tests de centro, extremos, ausencia y negativos. |
+| 197: Backspace String Compare | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #40, función `backspace_compare` y tests de coincidencia, diferencia y retrocesos encadenados. |
 
 ## Relación con el milestone
 

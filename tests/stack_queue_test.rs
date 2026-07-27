@@ -1,6 +1,22 @@
 use rust_algorithms::patterns::stack_queue::{
-    daily_temperatures, largest_rectangle_area, valid_parentheses,
+    backspace_compare, daily_temperatures, largest_rectangle_area, valid_parentheses,
 };
+
+#[test]
+fn backspace_compare_accepts_equal_effective_text() {
+    assert!(backspace_compare("ab#c", "ad#c"));
+}
+
+#[test]
+fn backspace_compare_rejects_different_effective_text() {
+    assert!(!backspace_compare("a#c", "b"));
+}
+
+#[test]
+fn backspace_compare_handles_chained_and_leading_backspaces() {
+    assert!(backspace_compare("ab##", "c#d#"));
+    assert!(backspace_compare("##a", "a"));
+}
 
 #[test]
 fn valid_parentheses_accepts_balanced_brackets() {

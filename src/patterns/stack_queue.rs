@@ -23,6 +23,32 @@ pub fn valid_parentheses(text: &str) -> bool {
     expected.is_empty()
 }
 
+/// Backspace String Compare
+///
+/// Pattern: stack simulation.
+/// Idea: build each effective text by removing the latest character for every
+/// backspace, then compare the resulting character stacks.
+///
+/// Time: O(n + m)
+/// Space: O(n + m)
+pub fn backspace_compare(left: &str, right: &str) -> bool {
+    effective_text(left) == effective_text(right)
+}
+
+fn effective_text(text: &str) -> Vec<char> {
+    let mut characters = Vec::new();
+
+    for character in text.chars() {
+        if character == '#' {
+            characters.pop();
+        } else {
+            characters.push(character);
+        }
+    }
+
+    characters
+}
+
 /// Daily Temperatures
 ///
 /// Pattern: monotonic decreasing stack.
