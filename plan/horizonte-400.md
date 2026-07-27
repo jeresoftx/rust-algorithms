@@ -114,6 +114,9 @@ El cierre por repeticiones dirigidas vive en
 El primer bloque de patrones compuestos de profundización vive en
 [`profundizacion-261-290.md`](./profundizacion-261-290.md).
 
+El bloque Medium y Hard con alta señal vive en
+[`profundizacion-291-315.md`](./profundizacion-291-315.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
