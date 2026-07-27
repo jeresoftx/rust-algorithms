@@ -121,6 +121,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 194: Merge Sorted Array | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #35, función `merge_sorted_array` y tests de mezcla, vacíos y duplicados. |
 | 195: Find Pivot Index | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #36, función `pivot_index` y tests de centro, extremos, ausencia y negativos. |
 | 197: Backspace String Compare | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #40, función `backspace_compare` y tests de coincidencia, diferencia y retrocesos encadenados. |
+| 198: Baseball Game | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #39, función `baseball_game` y tests de historial compuesto, operaciones y entradas inválidas. |
 
 ## Relación con el milestone
 
