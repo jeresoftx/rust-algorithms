@@ -125,6 +125,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 199: Remove Duplicates from Sorted Array II | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #44, función `remove_duplicates_sorted_at_most_twice` y tests de repetidos, cortos y distintos. |
 | 200: Sort Colors | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #43, función `sort_colors` y tests de partición, repetidos y entradas mínimas. |
 | 202: Continuous Subarray Sum | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #48, función `continuous_subarray_sum` y tests de múltiplo, longitud mínima, negativos y divisor cero. |
+| 203: Contiguous Array | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #50, función `contiguous_array` y tests de balance total, entradas mínimas y ausencia de balance. |
 
 ## Relación con el milestone
 

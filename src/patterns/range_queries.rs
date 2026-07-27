@@ -36,6 +36,33 @@ pub fn pivot_index(values: &[i32]) -> Option<usize> {
     None
 }
 
+/// Contiguous Array
+///
+/// Pattern: prefix balance with first-seen positions.
+/// Idea: treat zero as -1 and one as +1. Equal balances delimit a subarray
+/// containing the same number of zeros and ones.
+///
+/// Time: O(n)
+/// Space: O(n)
+pub fn contiguous_array(values: &[i32]) -> usize {
+    let mut first_seen = BTreeMap::from([(0_i32, -1_i64)]);
+    let mut balance = 0_i32;
+    let mut longest = 0_usize;
+
+    for (index, &value) in values.iter().enumerate() {
+        balance += if value == 0 { -1 } else { 1 };
+        let index = index as i64;
+
+        if let Some(&first_index) = first_seen.get(&balance) {
+            longest = longest.max((index - first_index) as usize);
+        } else {
+            first_seen.insert(balance, index);
+        }
+    }
+
+    longest
+}
+
 /// Fenwick tree for prefix and range sums over point updates.
 ///
 /// Time:
