@@ -1,5 +1,19 @@
+//! String matching, rolling-hash and palindrome algorithms.
+//!
+//! # Example
+//!
+//! ```
+//! use rust_algorithms::patterns::string_algorithms::find_pattern_positions;
+//!
+//! assert_eq!(find_pattern_positions("abracadabra", "abra"), vec![0, 7]);
+//! ```
+
 use std::collections::{BTreeMap, HashSet, VecDeque};
 
+/// Finds all starting positions of a pattern with Knuth-Morris-Pratt.
+///
+/// Time: O(n + m)
+/// Space: O(m)
 pub fn find_pattern_positions(text: &str, pattern: &str) -> Vec<usize> {
     if pattern.is_empty() || pattern.len() > text.len() {
         return Vec::new();
@@ -29,6 +43,10 @@ pub fn find_pattern_positions(text: &str, pattern: &str) -> Vec<usize> {
     matches
 }
 
+/// Finds all starting positions of a pattern with Rabin-Karp.
+///
+/// Time: O(n + m) expected, with verification on hash matches.
+/// Space: O(1)
 pub fn rabin_karp_positions(text: &str, pattern: &str) -> Vec<usize> {
     if pattern.is_empty() || pattern.len() > text.len() {
         return Vec::new();
@@ -70,6 +88,10 @@ pub fn rabin_karp_positions(text: &str, pattern: &str) -> Vec<usize> {
     matches
 }
 
+/// Computes the Z-array for a string.
+///
+/// Time: O(n)
+/// Space: O(n)
 pub fn z_function(text: &str) -> Vec<usize> {
     let bytes = text.as_bytes();
     let mut z = vec![0; bytes.len()];
@@ -94,6 +116,10 @@ pub fn z_function(text: &str) -> Vec<usize> {
     z
 }
 
+/// Finds positions for multiple patterns with Aho-Corasick.
+///
+/// Time: O(text length + total pattern length + matches)
+/// Space: O(total pattern length)
 pub fn find_multi_pattern_positions(text: &str, patterns: Vec<&str>) -> Vec<(String, Vec<usize>)> {
     let pattern_lengths: Vec<usize> = patterns.iter().map(|pattern| pattern.len()).collect();
     let mut matches = vec![Vec::new(); patterns.len()];
@@ -143,6 +169,12 @@ pub fn find_multi_pattern_positions(text: &str, patterns: Vec<&str>) -> Vec<(Str
         .collect()
 }
 
+/// Finds all starts whose window is an anagram of `pattern`.
+///
+/// Assumes lowercase ASCII letters, matching the canonical problem statement.
+///
+/// Time: O(n)
+/// Space: O(1)
 pub fn find_anagram_starts(text: &str, pattern: &str) -> Vec<usize> {
     if pattern.is_empty() || pattern.len() > text.len() {
         return Vec::new();
@@ -174,6 +206,10 @@ pub fn find_anagram_starts(text: &str, pattern: &str) -> Vec<usize> {
     starts
 }
 
+/// Checks whether a string is built by repeating one proper substring.
+///
+/// Time: O(n^2) due substring search on the doubled string.
+/// Space: O(n)
 pub fn repeated_substring_pattern(text: &str) -> bool {
     let length = text.len();
 
@@ -185,6 +221,10 @@ pub fn repeated_substring_pattern(text: &str) -> bool {
     doubled[1..doubled.len() - 1].contains(text)
 }
 
+/// Returns the longest common prefix across all words.
+///
+/// Time: O(total characters inspected)
+/// Space: O(prefix length)
 pub fn longest_common_prefix(words: Vec<String>) -> String {
     if words.is_empty() {
         return String::new();
@@ -209,6 +249,11 @@ pub fn longest_common_prefix(words: Vec<String>) -> String {
     prefix.into_iter().collect()
 }
 
+/// Returns the longest duplicated substring.
+///
+/// Pattern: binary search over length with duplicate-window detection.
+/// Time: O(n^2 log n) in this straightforward implementation.
+/// Space: O(n)
 pub fn longest_duplicate_substring(text: &str) -> String {
     let bytes = text.as_bytes();
     let mut left = 1;
@@ -233,6 +278,10 @@ pub fn longest_duplicate_substring(text: &str) -> String {
     String::from_utf8(bytes[best_start..best_start + best_length].to_vec()).unwrap_or_default()
 }
 
+/// Returns one longest palindromic substring by expanding around centers.
+///
+/// Time: O(n^2)
+/// Space: O(n)
 pub fn longest_palindromic_substring(text: &str) -> String {
     let chars: Vec<char> = text.chars().collect();
 
@@ -261,6 +310,10 @@ pub fn longest_palindromic_substring(text: &str) -> String {
     chars[best_start..best_start + best_len].iter().collect()
 }
 
+/// Counts all palindromic substrings.
+///
+/// Time: O(n^2)
+/// Space: O(n)
 pub fn count_palindromic_substrings(text: &str) -> usize {
     let chars: Vec<char> = text.chars().collect();
     let mut total = 0;
@@ -273,6 +326,11 @@ pub fn count_palindromic_substrings(text: &str) -> usize {
     total
 }
 
+/// Prepends the fewest characters needed to make the string a palindrome.
+///
+/// Pattern: KMP prefix table over `text#reverse(text)`.
+/// Time: O(n)
+/// Space: O(n)
 pub fn shortest_palindrome(text: &str) -> String {
     if text.len() < 2 {
         return text.to_string();

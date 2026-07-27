@@ -1,3 +1,16 @@
+//! Trie and prefix-tree algorithms.
+//!
+//! # Example
+//!
+//! ```
+//! use rust_algorithms::patterns::tries::Trie;
+//!
+//! let mut trie = Trie::new();
+//! trie.insert("rust");
+//! assert!(trie.starts_with("ru"));
+//! assert!(trie.search("rust"));
+//! ```
+
 use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Default)]
@@ -6,17 +19,20 @@ struct TrieNode {
     is_word: bool,
 }
 
+/// Prefix tree for exact-word and prefix lookup.
 pub struct Trie {
     root: TrieNode,
 }
 
 impl Trie {
+    /// Creates an empty trie.
     pub fn new() -> Self {
         Self {
             root: TrieNode::default(),
         }
     }
 
+    /// Inserts a word.
     pub fn insert(&mut self, word: &str) {
         let mut current = &mut self.root;
 
@@ -27,10 +43,12 @@ impl Trie {
         current.is_word = true;
     }
 
+    /// Returns whether `word` was inserted exactly.
     pub fn search(&self, word: &str) -> bool {
         self.node_for(word).is_some_and(|node| node.is_word)
     }
 
+    /// Returns whether any inserted word starts with `prefix`.
     pub fn starts_with(&self, prefix: &str) -> bool {
         self.node_for(prefix).is_some()
     }
@@ -68,17 +86,20 @@ impl Default for Trie {
     }
 }
 
+/// Word dictionary that supports `.` as a single-character wildcard.
 pub struct WordDictionary {
     root: TrieNode,
 }
 
 impl WordDictionary {
+    /// Creates an empty dictionary.
     pub fn new() -> Self {
         Self {
             root: TrieNode::default(),
         }
     }
 
+    /// Adds one word.
     pub fn add_word(&mut self, word: &str) {
         let mut current = &mut self.root;
 
@@ -89,6 +110,7 @@ impl WordDictionary {
         current.is_word = true;
     }
 
+    /// Searches for an exact word or a pattern containing `.` wildcards.
     pub fn search(&self, pattern: &str) -> bool {
         let characters: Vec<char> = pattern.chars().collect();
         wildcard_search(&self.root, &characters, 0)
@@ -101,6 +123,10 @@ impl Default for WordDictionary {
     }
 }
 
+/// Replaces words in a sentence with the shortest matching dictionary root.
+///
+/// Time: O(total characters)
+/// Space: O(total dictionary characters)
 pub fn replace_words(dictionary: Vec<&str>, sentence: &str) -> String {
     let mut trie = Trie::new();
 
@@ -115,6 +141,11 @@ pub fn replace_words(dictionary: Vec<&str>, sentence: &str) -> String {
         .join(" ")
 }
 
+/// Finds dictionary words that can be formed on a character board.
+///
+/// Pattern: trie-guided DFS.
+/// Time: O(rows * cols * 4^word length) worst case
+/// Space: O(total dictionary characters)
 pub fn find_words(mut board: Vec<Vec<char>>, words: Vec<&str>) -> Vec<String> {
     if board.is_empty() || board[0].is_empty() || words.is_empty() {
         return Vec::new();

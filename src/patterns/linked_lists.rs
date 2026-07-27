@@ -1,15 +1,31 @@
+//! Linked-list helpers and classic pointer rewiring problems.
+//!
+//! # Example
+//!
+//! ```
+//! use rust_algorithms::patterns::linked_lists::{list_from_vec, list_to_vec, reverse_list};
+//!
+//! let list = list_from_vec(vec![1, 2, 3]);
+//! assert_eq!(list_to_vec(&reverse_list(list)), vec![3, 2, 1]);
+//! ```
+
+/// Node in a singly linked list.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ListNode {
+    /// Stored integer value.
     pub val: i32,
+    /// Next node in the list.
     pub next: Option<Box<ListNode>>,
 }
 
 impl ListNode {
+    /// Creates a node without a successor.
     pub fn new(val: i32) -> Self {
         Self { val, next: None }
     }
 }
 
+/// Convenient alias for an owned singly linked list.
 pub type Link = Option<Box<ListNode>>;
 
 /// Build a linked list from values.

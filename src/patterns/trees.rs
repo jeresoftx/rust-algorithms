@@ -3,16 +3,22 @@ use std::collections::HashMap;
 use std::collections::VecDeque;
 use std::rc::Rc;
 
+/// Shared optional tree link used by the binary-tree examples.
 pub type TreeLink = Option<Rc<RefCell<TreeNode>>>;
 
+/// Binary tree node with shared interior mutability for problem-style APIs.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
+    /// Stored integer value.
     pub val: i32,
+    /// Left child.
     pub left: TreeLink,
+    /// Right child.
     pub right: TreeLink,
 }
 
 impl TreeNode {
+    /// Creates a leaf node.
     pub fn new(val: i32) -> Self {
         Self {
             val,

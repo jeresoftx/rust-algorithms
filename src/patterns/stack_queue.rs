@@ -14,11 +14,8 @@ pub fn valid_parentheses(text: &str) -> bool {
             '(' => expected.push(')'),
             '[' => expected.push(']'),
             '{' => expected.push('}'),
-            ')' | ']' | '}' => {
-                if expected.pop() != Some(character) {
-                    return false;
-                }
-            }
+            ')' | ']' | '}' if expected.pop() != Some(character) => return false,
+            ')' | ']' | '}' => {}
             _ => {}
         }
     }

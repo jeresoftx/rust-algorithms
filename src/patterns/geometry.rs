@@ -1,24 +1,50 @@
+//! Computational geometry helpers.
+//!
+//! # Example
+//!
+//! ```
+//! use rust_algorithms::patterns::geometry::{orientation, Orientation, Point};
+//!
+//! let a = Point::new(0, 0);
+//! let b = Point::new(1, 0);
+//! let c = Point::new(1, 1);
+//! assert_eq!(orientation(a, b, c), Orientation::CounterClockwise);
+//! ```
+
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
+/// Integer point in a two-dimensional plane.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Point {
+    /// Horizontal coordinate.
     pub x: i64,
+    /// Vertical coordinate.
     pub y: i64,
 }
 
 impl Point {
+    /// Creates a point from integer coordinates.
     pub fn new(x: i64, y: i64) -> Self {
         Self { x, y }
     }
 }
 
+/// Orientation of an ordered triple of points.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Orientation {
+    /// The turn goes clockwise.
     Clockwise,
+    /// The turn goes counter-clockwise.
     CounterClockwise,
+    /// All three points lie on the same line.
     Collinear,
 }
 
+/// Returns the signed cross product of vectors `origin -> first` and
+/// `origin -> second`.
+///
+/// Time: O(1)
+/// Space: O(1)
 pub fn cross_product(origin: Point, first: Point, second: Point) -> i64 {
     let first_x = first.x - origin.x;
     let first_y = first.y - origin.y;
@@ -28,6 +54,10 @@ pub fn cross_product(origin: Point, first: Point, second: Point) -> i64 {
     first_x * second_y - first_y * second_x
 }
 
+/// Classifies the turn made by three points.
+///
+/// Time: O(1)
+/// Space: O(1)
 pub fn orientation(first: Point, second: Point, third: Point) -> Orientation {
     match cross_product(first, second, third).cmp(&0) {
         std::cmp::Ordering::Greater => Orientation::CounterClockwise,
@@ -36,6 +66,12 @@ pub fn orientation(first: Point, second: Point, third: Point) -> Orientation {
     }
 }
 
+/// Computes the convex hull with the monotonic-chain algorithm.
+///
+/// Boundary collinear points are preserved.
+///
+/// Time: O(n log n)
+/// Space: O(n)
 pub fn convex_hull(points: Vec<Point>) -> Vec<Point> {
     let mut points = points;
     points.sort_unstable();
@@ -75,6 +111,10 @@ pub fn convex_hull(points: Vec<Point>) -> Vec<Point> {
         .collect()
 }
 
+/// Returns the `k` points closest to the origin by squared distance.
+///
+/// Time: O(n log n)
+/// Space: O(1) excluding the input vector.
 pub fn k_closest_points(mut points: Vec<Point>, k: usize) -> Vec<Point> {
     points.sort_unstable_by_key(|point| (squared_distance_to_origin(*point), point.x, point.y));
     points.truncate(k.min(points.len()));
@@ -85,6 +125,10 @@ fn squared_distance_to_origin(point: Point) -> i64 {
     point.x * point.x + point.y * point.y
 }
 
+/// Counts the largest number of points that lie on one line.
+///
+/// Time: O(n^2)
+/// Space: O(n)
 pub fn max_points_on_a_line(points: Vec<Point>) -> i32 {
     if points.len() <= 2 {
         return points.len() as i32;
@@ -115,6 +159,10 @@ pub fn max_points_on_a_line(points: Vec<Point>) -> i32 {
     best
 }
 
+/// Computes the skyline key points for axis-aligned buildings.
+///
+/// Time: O(n log n)
+/// Space: O(n)
 pub fn get_skyline(buildings: Vec<(i32, i32, i32)>) -> Vec<(i32, i32)> {
     let mut events = Vec::new();
 

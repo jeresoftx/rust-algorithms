@@ -8,12 +8,15 @@ use std::collections::HashMap;
 ///
 /// Time: O(n^2)
 /// Space: O(1)
+#[allow(clippy::needless_range_loop)]
 pub fn rotate_image(matrix: &mut [Vec<i32>]) -> bool {
     let size = matrix.len();
     if size == 0 || matrix.iter().any(|row| row.len() != size) {
         return false;
     }
 
+    // The explicit paired indexes make the diagonal swap visible: (row, col)
+    // exchanges with (col, row) during the in-place transpose.
     for row in 0..size {
         for col in row + 1..size {
             let temp = matrix[row][col];
@@ -319,6 +322,7 @@ pub struct RandomizedSet {
 }
 
 impl RandomizedSet {
+    /// Creates an empty set.
     pub fn new() -> Self {
         Self {
             values: Vec::new(),
@@ -327,6 +331,7 @@ impl RandomizedSet {
         }
     }
 
+    /// Inserts `value` when it is not already present.
     pub fn insert(&mut self, value: i32) -> bool {
         if self.indexes.contains_key(&value) {
             return false;
@@ -337,6 +342,7 @@ impl RandomizedSet {
         true
     }
 
+    /// Removes `value` when it is present.
     pub fn remove(&mut self, value: i32) -> bool {
         let Some(index) = self.indexes.remove(&value) else {
             return false;
@@ -351,6 +357,7 @@ impl RandomizedSet {
         true
     }
 
+    /// Returns a pseudo-random stored value, or `None` when empty.
     pub fn get_random(&mut self) -> Option<i32> {
         if self.values.is_empty() {
             return None;
@@ -362,10 +369,12 @@ impl RandomizedSet {
         Some(self.values[index])
     }
 
+    /// Returns the number of stored values.
     pub fn len(&self) -> usize {
         self.values.len()
     }
 
+    /// Returns whether the set has no values.
     pub fn is_empty(&self) -> bool {
         self.values.is_empty()
     }
