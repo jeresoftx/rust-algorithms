@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::intervals::{
     can_attend_meetings, erase_overlap_intervals, insert_interval, merge_intervals,
-    min_arrows_to_burst_balloons, min_meeting_rooms,
+    min_arrows_to_burst_balloons, min_meeting_rooms, most_booked_room,
 };
 
 #[test]
@@ -86,4 +86,17 @@ fn min_arrows_to_burst_balloons_groups_overlapping_ranges() {
 #[test]
 fn min_arrows_to_burst_balloons_handles_empty_input() {
     assert_eq!(min_arrows_to_burst_balloons(Vec::new()), 0);
+}
+
+#[test]
+fn most_booked_room_delays_meetings_when_every_room_is_busy() {
+    let meetings = vec![(0, 10), (1, 5), (2, 7), (3, 4)];
+
+    assert_eq!(most_booked_room(2, meetings), Some(0));
+}
+
+#[test]
+fn most_booked_room_respects_lowest_index_ties_and_rejects_zero_rooms() {
+    assert_eq!(most_booked_room(1, vec![(0, 10), (1, 2)]), Some(0));
+    assert_eq!(most_booked_room(0, vec![(0, 1)]), None);
 }
