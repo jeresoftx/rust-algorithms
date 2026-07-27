@@ -126,6 +126,9 @@ El bloque de Hard selectivos del cierre vive en
 El bloque final de práctica, repaso y revisión vive en
 [`cierre-361-400.md`](./cierre-361-400.md).
 
+El reporte de cierre de planeación vive en
+[`reporte-horizonte-400.md`](./reporte-horizonte-400.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
