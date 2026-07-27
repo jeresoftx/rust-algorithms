@@ -2,8 +2,8 @@ use rust_algorithms::patterns::range_queries::{
     car_pooling, contiguous_array, corporate_flight_bookings, count_range_sum,
     count_smaller_numbers_after_self, pivot_index, queue_reconstruction_by_height, range_addition,
     reverse_pairs, shortest_subarray_at_least_k, sliding_window_maximum, DifferenceArray,
-    FenwickTree, LazySegmentTree, MyCalendar, MyCalendarTwo, RangeSumQuery, RangeSumQuery2D,
-    SegmentTree, SnapshotArray,
+    FenwickTree, LazySegmentTree, MyCalendar, MyCalendarThree, MyCalendarTwo, RangeSumQuery,
+    RangeSumQuery2D, SegmentTree, SnapshotArray,
 };
 
 #[test]
@@ -355,6 +355,28 @@ fn my_calendar_two_rejects_empty_or_reversed_ranges() {
     assert!(!calendar.book(5, 5));
     assert!(!calendar.book(9, 4));
     assert!(calendar.book(1, 3));
+}
+
+#[test]
+fn my_calendar_three_reports_the_peak_after_each_booking() {
+    let mut calendar = MyCalendarThree::new();
+
+    assert_eq!(calendar.book(10, 20), Some(1));
+    assert_eq!(calendar.book(50, 60), Some(1));
+    assert_eq!(calendar.book(10, 40), Some(2));
+    assert_eq!(calendar.book(5, 15), Some(3));
+    assert_eq!(calendar.book(5, 10), Some(3));
+    assert_eq!(calendar.book(25, 55), Some(3));
+}
+
+#[test]
+fn my_calendar_three_respects_half_open_boundaries_and_invalid_ranges() {
+    let mut calendar = MyCalendarThree::new();
+
+    assert_eq!(calendar.book(10, 20), Some(1));
+    assert_eq!(calendar.book(20, 30), Some(1));
+    assert_eq!(calendar.book(8, 8), None);
+    assert_eq!(calendar.book(12, 9), None);
 }
 
 #[test]
