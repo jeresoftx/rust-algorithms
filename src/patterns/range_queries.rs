@@ -11,6 +11,31 @@
 
 use std::collections::{BTreeMap, VecDeque};
 
+/// Find Pivot Index
+///
+/// Pattern: prefix sum.
+/// Idea: keep the sum to the left while deriving the right sum from the total,
+/// so each index is checked in one pass without an auxiliary prefix array.
+///
+/// Time: O(n)
+/// Space: O(1)
+pub fn pivot_index(values: &[i32]) -> Option<usize> {
+    let total: i64 = values.iter().map(|&value| i64::from(value)).sum();
+    let mut left_sum = 0_i64;
+
+    for (index, &value) in values.iter().enumerate() {
+        let right_sum = total - left_sum - i64::from(value);
+
+        if left_sum == right_sum {
+            return Some(index);
+        }
+
+        left_sum += i64::from(value);
+    }
+
+    None
+}
+
 /// Fenwick tree for prefix and range sums over point updates.
 ///
 /// Time:
