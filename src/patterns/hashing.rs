@@ -291,3 +291,38 @@ pub fn subarray_sum_equals_k(nums: Vec<i32>, target: i32) -> i32 {
 
     matches
 }
+
+/// Continuous Subarray Sum
+///
+/// Pattern: prefix sum with first-seen remainders.
+/// Idea: equal prefix remainders differ by a multiple of `k`; keeping only the
+/// first position of each remainder preserves the longest eligible subarray.
+/// When `k` is zero, equal prefix sums play the same role.
+///
+/// Time: O(n)
+/// Space: O(n), or O(min(n, |k|)) when `k` is non-zero.
+pub fn continuous_subarray_sum(nums: Vec<i32>, k: i32) -> bool {
+    let divisor = i64::from(k);
+    let mut first_seen = HashMap::from([(0_i64, -1_i64)]);
+    let mut prefix_sum = 0_i64;
+
+    for (index, value) in nums.into_iter().enumerate() {
+        prefix_sum += i64::from(value);
+        let key = if divisor == 0 {
+            prefix_sum
+        } else {
+            prefix_sum.rem_euclid(divisor.abs())
+        };
+        let index = index as i64;
+
+        if let Some(&first_index) = first_seen.get(&key) {
+            if index - first_index >= 2 {
+                return true;
+            }
+        } else {
+            first_seen.insert(key, index);
+        }
+    }
+
+    false
+}
