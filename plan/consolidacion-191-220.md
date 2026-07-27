@@ -131,6 +131,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 207: Minimum Size Subarray Sum | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #56, función `minimum_size_subarray_sum` y tests de ventana mínima, ausencia y objetivo no positivo. |
 | 209: Online Stock Span | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #58, tipo `StockSpanner` y tests de estado incremental, precios iguales y descenso. |
 | 210: Asteroid Collision | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #60, función `asteroid_collision` y tests de choque simple, mutuo, encadenado y ausencia. |
+| 211: Decode String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #62, función `decode_string` y tests de repetición, anidamiento, fragmentos y entrada vacía. |
 
 ## Relación con el milestone
 
