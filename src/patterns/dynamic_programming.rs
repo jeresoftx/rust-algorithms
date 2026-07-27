@@ -88,7 +88,7 @@ fn house_robber_linear(nums: &[i32]) -> i32 {
 /// Coin Change
 ///
 /// Pattern: 1D minimization DP.
-/// Idea: dp[amount] is the fewest coins needed to build that amount.
+/// Idea: `dp[amount]` is the fewest coins needed to build that amount.
 ///
 /// Time: O(amount * coins)
 /// Space: O(amount)
@@ -160,7 +160,7 @@ pub fn decode_ways(input: &str) -> i32 {
 /// Longest Increasing Subsequence
 ///
 /// Pattern: patience sorting with binary search.
-/// Idea: tails[len] stores the smallest possible tail for an increasing
+/// Idea: `tails[len]` stores the smallest possible tail for an increasing
 /// subsequence of length len + 1.
 ///
 /// Time: O(n log n)
@@ -186,7 +186,7 @@ pub fn longest_increasing_subsequence(nums: Vec<i32>) -> usize {
 /// Word Break
 ///
 /// Pattern: decision DP over prefixes.
-/// Idea: dp[i] is true when s[..i] can be segmented into dictionary words.
+/// Idea: `dp[i]` is true when `s[..i]` can be segmented into dictionary words.
 ///
 /// Time: O(n^2)
 /// Space: O(n + d)
@@ -442,7 +442,7 @@ pub fn target_sum_ways(nums: Vec<i32>, target: i32) -> i32 {
 /// Combination Sum IV
 ///
 /// Pattern: ordered counting DP.
-/// Idea: dp[amount] counts all sequences ending with each candidate.
+/// Idea: `dp[amount]` counts all sequences ending with each candidate.
 ///
 /// Time: O(target * n)
 /// Space: O(target)

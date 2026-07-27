@@ -45,10 +45,12 @@ pub struct MedianFinder {
 }
 
 impl MedianFinder {
+    /// Creates an empty streaming median structure.
     pub fn new() -> Self {
         Self::default()
     }
 
+    /// Inserts one value into the stream.
     pub fn add_num(&mut self, value: i32) {
         if self.lower.peek().is_none_or(|&top| value <= top) {
             self.lower.push(value);
@@ -59,6 +61,7 @@ impl MedianFinder {
         self.rebalance();
     }
 
+    /// Returns the current median, or `None` when the stream is empty.
     pub fn find_median(&self) -> Option<f64> {
         match (self.lower.peek(), self.upper.peek()) {
             (None, None) => None,

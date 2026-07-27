@@ -1,7 +1,26 @@
+//! Number theory, arithmetic and bit-manipulation routines.
+//!
+//! # Example
+//!
+//! ```
+//! use rust_algorithms::patterns::math_bit::{gcd, is_power_of_two};
+//!
+//! assert_eq!(gcd(54, 24), 6);
+//! assert!(is_power_of_two(64));
+//! ```
+
+/// Finds the value that appears once when every other value appears twice.
+///
+/// Time: O(n)
+/// Space: O(1)
 pub fn single_number(nums: Vec<i32>) -> i32 {
     nums.into_iter().fold(0, |unique, value| unique ^ value)
 }
 
+/// Finds the missing value from a permutation of `0..=n`.
+///
+/// Time: O(n)
+/// Space: O(1)
 pub fn missing_number(nums: Vec<i32>) -> i32 {
     let mut missing = nums.len() as i32;
 
@@ -13,6 +32,10 @@ pub fn missing_number(nums: Vec<i32>) -> i32 {
     missing
 }
 
+/// Counts set bits using Brian Kernighan's trick.
+///
+/// Time: O(number of set bits)
+/// Space: O(1)
 pub fn count_ones(mut value: u32) -> u32 {
     let mut count = 0;
 
@@ -24,6 +47,10 @@ pub fn count_ones(mut value: u32) -> u32 {
     count
 }
 
+/// Returns the bit counts for all values from `0` to `limit`.
+///
+/// Time: O(n)
+/// Space: O(n)
 pub fn count_bits(limit: usize) -> Vec<u32> {
     let mut counts = vec![0; limit + 1];
 
@@ -34,6 +61,10 @@ pub fn count_bits(limit: usize) -> Vec<u32> {
     counts
 }
 
+/// Reverses all 32 bits in an unsigned integer.
+///
+/// Time: O(32)
+/// Space: O(1)
 pub fn reverse_bits(mut value: u32) -> u32 {
     let mut reversed = 0;
 
@@ -46,14 +77,26 @@ pub fn reverse_bits(mut value: u32) -> u32 {
     reversed
 }
 
+/// Counts bit positions where two values differ.
+///
+/// Time: O(number of set bits in xor)
+/// Space: O(1)
 pub fn hamming_distance(left: u32, right: u32) -> u32 {
     count_ones(left ^ right)
 }
 
+/// Checks whether a positive integer has exactly one bit set.
+///
+/// Time: O(1)
+/// Space: O(1)
 pub fn is_power_of_two(value: i32) -> bool {
     value > 0 && (value & (value - 1)) == 0
 }
 
+/// Checks whether a positive integer is a perfect square.
+///
+/// Time: O(log n)
+/// Space: O(1)
 pub fn is_perfect_square(value: i32) -> bool {
     if value <= 0 {
         return false;
@@ -81,6 +124,10 @@ pub fn is_perfect_square(value: i32) -> bool {
     false
 }
 
+/// Computes `base.powi(exponent)` by exponentiation by squaring.
+///
+/// Time: O(log |exponent|)
+/// Space: O(1)
 pub fn fast_pow(base: f64, exponent: i32) -> f64 {
     if exponent < 0 {
         return 1.0 / pow_positive(base, -(exponent as i64));
@@ -89,6 +136,10 @@ pub fn fast_pow(base: f64, exponent: i32) -> f64 {
     pow_positive(base, exponent as i64)
 }
 
+/// Adds two binary strings and returns the binary representation of the sum.
+///
+/// Time: O(n + m)
+/// Space: O(n + m)
 pub fn add_binary(left: &str, right: &str) -> String {
     let mut left_digits = left.as_bytes().iter().rev();
     let mut right_digits = right.as_bytes().iter().rev();
@@ -111,6 +162,10 @@ pub fn add_binary(left: &str, right: &str) -> String {
     result.into_iter().rev().collect()
 }
 
+/// Adds one to a decimal number represented as digits.
+///
+/// Time: O(n)
+/// Space: O(1) amortized, excluding possible growth by one digit.
 pub fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
     for index in (0..digits.len()).rev() {
         if digits[index] < 9 {
@@ -125,6 +180,10 @@ pub fn plus_one(mut digits: Vec<i32>) -> Vec<i32> {
     digits
 }
 
+/// Computes the greatest common divisor with Euclid's algorithm.
+///
+/// Time: O(log min(a, b))
+/// Space: O(1)
 pub fn gcd(left: i64, right: i64) -> i64 {
     let mut a = left.abs();
     let mut b = right.abs();
@@ -138,6 +197,10 @@ pub fn gcd(left: i64, right: i64) -> i64 {
     a
 }
 
+/// Computes the least common multiple.
+///
+/// Time: O(log min(a, b))
+/// Space: O(1)
 pub fn lcm(left: i64, right: i64) -> i64 {
     if left == 0 || right == 0 {
         return 0;
@@ -146,6 +209,10 @@ pub fn lcm(left: i64, right: i64) -> i64 {
     (left / gcd(left, right) * right).abs()
 }
 
+/// Counts trailing zeroes in `value!`.
+///
+/// Time: O(log_5 n)
+/// Space: O(1)
 pub fn trailing_zeroes(mut value: i32) -> i32 {
     let mut zeroes = 0;
 
@@ -157,6 +224,10 @@ pub fn trailing_zeroes(mut value: i32) -> i32 {
     zeroes
 }
 
+/// Lists all prime numbers up to `limit` with the sieve of Eratosthenes.
+///
+/// Time: O(n log log n)
+/// Space: O(n)
 pub fn sieve(limit: usize) -> Vec<usize> {
     if limit < 2 {
         return Vec::new();
@@ -187,6 +258,10 @@ pub fn sieve(limit: usize) -> Vec<usize> {
         .collect()
 }
 
+/// Returns the maximum sum over any non-empty contiguous subarray.
+///
+/// Time: O(n)
+/// Space: O(1)
 pub fn maximum_subarray(nums: Vec<i32>) -> Option<i32> {
     let mut values = nums.into_iter();
     let first = values.next()?;
@@ -201,6 +276,13 @@ pub fn maximum_subarray(nums: Vec<i32>) -> Option<i32> {
     Some(best)
 }
 
+/// Finds the majority candidate with Boyer-Moore voting.
+///
+/// The function assumes the input follows the majority-element problem
+/// contract: when non-empty, a value appears more than half the time.
+///
+/// Time: O(n)
+/// Space: O(1)
 pub fn majority_element(nums: Vec<i32>) -> Option<i32> {
     let mut candidate = None;
     let mut count = 0;

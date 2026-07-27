@@ -1,0 +1,12 @@
+flowchart TD
+    recursion[Recursion / Backtracking]
+    trees[Trees]
+    tries[Tries]
+    graphs[Graphs]
+    weighted[Weighted Graphs]
+
+    recursion --> trees
+    recursion --> tries
+    graphs --> weighted
+    trees --> graphs
+    tries --> string_algorithms[String Algorithms]

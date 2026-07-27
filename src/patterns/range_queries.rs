@@ -1,17 +1,38 @@
+//! Range-query and range-update data structures.
+//!
+//! # Example
+//!
+//! ```
+//! use rust_algorithms::patterns::range_queries::FenwickTree;
+//!
+//! let tree = FenwickTree::from_values(&[2, 4, 6]);
+//! assert_eq!(tree.range_sum(1, 2), Some(10));
+//! ```
+
 use std::collections::{BTreeMap, VecDeque};
 
+/// Fenwick tree for prefix and range sums over point updates.
+///
+/// Time:
+/// - `add`: O(log n)
+/// - `prefix_sum`: O(log n)
+/// - `range_sum`: O(log n)
+///
+/// Space: O(n)
 #[derive(Debug, Clone)]
 pub struct FenwickTree {
     tree: Vec<i32>,
 }
 
 impl FenwickTree {
+    /// Creates an empty tree with `size` logical positions.
     pub fn new(size: usize) -> Self {
         Self {
             tree: vec![0; size + 1],
         }
     }
 
+    /// Builds a Fenwick tree from initial values.
     pub fn from_values(values: &[i32]) -> Self {
         let mut tree = Self::new(values.len());
 
@@ -22,6 +43,7 @@ impl FenwickTree {
         tree
     }
 
+    /// Adds `delta` to one position.
     pub fn add(&mut self, index: usize, delta: i32) -> bool {
         if index >= self.len() {
             return false;
@@ -37,6 +59,7 @@ impl FenwickTree {
         true
     }
 
+    /// Returns the sum from index `0` through `index`.
     pub fn prefix_sum(&self, index: usize) -> Option<i32> {
         if index >= self.len() {
             return None;
@@ -53,6 +76,7 @@ impl FenwickTree {
         Some(total)
     }
 
+    /// Returns the inclusive range sum from `left` through `right`.
     pub fn range_sum(&self, left: usize, right: usize) -> Option<i32> {
         if left > right || right >= self.len() {
             return None;
@@ -68,10 +92,12 @@ impl FenwickTree {
         Some(right_sum - left_prefix)
     }
 
+    /// Returns the number of logical positions.
     pub fn len(&self) -> usize {
         self.tree.len().saturating_sub(1)
     }
 
+    /// Returns whether the tree has no logical positions.
     pub fn is_empty(&self) -> bool {
         self.len() == 0
     }
@@ -81,6 +107,13 @@ fn lowbit(value: usize) -> usize {
     value & value.wrapping_neg()
 }
 
+/// Mutable range-sum query backed by a Fenwick tree.
+///
+/// Time:
+/// - `update`: O(log n)
+/// - `sum_range`: O(log n)
+///
+/// Space: O(n)
 #[derive(Debug, Clone)]
 pub struct RangeSumQuery {
     values: Vec<i32>,
@@ -88,6 +121,7 @@ pub struct RangeSumQuery {
 }
 
 impl RangeSumQuery {
+    /// Builds the structure from initial values.
     pub fn new(values: Vec<i32>) -> Self {
         Self {
             tree: FenwickTree::from_values(&values),
@@ -95,6 +129,7 @@ impl RangeSumQuery {
         }
     }
 
+    /// Replaces one value.
     pub fn update(&mut self, index: usize, value: i32) -> bool {
         let Some(current) = self.values.get_mut(index) else {
             return false;
@@ -105,11 +140,13 @@ impl RangeSumQuery {
         self.tree.add(index, delta)
     }
 
+    /// Returns the inclusive range sum from `left` through `right`.
     pub fn sum_range(&self, left: usize, right: usize) -> Option<i32> {
         self.tree.range_sum(left, right)
     }
 }
 
+/// Immutable two-dimensional range-sum query.
 #[derive(Debug, Clone)]
 pub struct RangeSumQuery2D {
     prefix: Vec<Vec<i32>>,
@@ -144,6 +181,7 @@ impl RangeSumQuery2D {
         Self { prefix, rows, cols }
     }
 
+    /// Returns the sum inside the inclusive rectangle.
     pub fn sum_region(&self, row1: usize, col1: usize, row2: usize, col2: usize) -> Option<i32> {
         if row1 > row2 || col1 > col2 || row2 >= self.rows || col2 >= self.cols {
             return None;
@@ -158,6 +196,13 @@ impl RangeSumQuery2D {
     }
 }
 
+/// Segment tree for point updates and range minimum queries.
+///
+/// Time:
+/// - `update`: O(log n)
+/// - `range_min`: O(log n)
+///
+/// Space: O(n)
 #[derive(Debug, Clone)]
 pub struct SegmentTree {
     size: usize,
@@ -165,6 +210,7 @@ pub struct SegmentTree {
 }
 
 impl SegmentTree {
+    /// Builds a segment tree from initial values.
     pub fn from_values(values: &[i32]) -> Self {
         if values.is_empty() {
             return Self {
@@ -182,6 +228,7 @@ impl SegmentTree {
         }
     }
 
+    /// Replaces one value.
     pub fn update(&mut self, index: usize, value: i32) -> bool {
         if index >= self.size {
             return false;
@@ -191,6 +238,7 @@ impl SegmentTree {
         true
     }
 
+    /// Returns the minimum value in an inclusive range.
     pub fn range_min(&self, left: usize, right: usize) -> Option<i32> {
         if self.size == 0 || left > right || right >= self.size {
             return None;
@@ -206,10 +254,12 @@ impl SegmentTree {
         ))
     }
 
+    /// Returns the number of logical positions.
     pub fn len(&self) -> usize {
         self.size
     }
 
+    /// Returns whether the tree has no values.
     pub fn is_empty(&self) -> bool {
         self.size == 0
     }
@@ -291,6 +341,13 @@ fn query_segment_tree(
     best
 }
 
+/// Lazy segment tree for range additions and range sums.
+///
+/// Time:
+/// - `range_add`: O(log n)
+/// - `range_sum`: O(log n)
+///
+/// Space: O(n)
 #[derive(Debug, Clone)]
 pub struct LazySegmentTree {
     size: usize,
@@ -299,6 +356,7 @@ pub struct LazySegmentTree {
 }
 
 impl LazySegmentTree {
+    /// Builds a lazy segment tree from initial values.
     pub fn from_values(values: &[i32]) -> Self {
         if values.is_empty() {
             return Self {
@@ -318,6 +376,7 @@ impl LazySegmentTree {
         }
     }
 
+    /// Adds `delta` to every value in an inclusive range.
     pub fn range_add(&mut self, left: usize, right: usize, delta: i32) -> bool {
         if self.size == 0 || left > right || right >= self.size {
             return false;
@@ -336,6 +395,7 @@ impl LazySegmentTree {
         true
     }
 
+    /// Returns the inclusive range sum, pushing pending updates as needed.
     pub fn range_sum(&mut self, left: usize, right: usize) -> Option<i32> {
         if self.size == 0 || left > right || right >= self.size {
             return None;
@@ -352,10 +412,12 @@ impl LazySegmentTree {
         ))
     }
 
+    /// Returns the number of logical positions.
     pub fn len(&self) -> usize {
         self.size
     }
 
+    /// Returns whether the tree has no values.
     pub fn is_empty(&self) -> bool {
         self.size == 0
     }
@@ -491,18 +553,27 @@ fn apply_lazy_delta(
     lazy[node] += delta;
 }
 
+/// Difference array for batched inclusive range increments.
+///
+/// Time:
+/// - `increment_range`: O(1)
+/// - `values`: O(n)
+///
+/// Space: O(n)
 #[derive(Debug, Clone)]
 pub struct DifferenceArray {
     difference: Vec<i32>,
 }
 
 impl DifferenceArray {
+    /// Creates a zero-filled difference array of `size` values.
     pub fn new(size: usize) -> Self {
         Self {
             difference: vec![0; size + 1],
         }
     }
 
+    /// Adds `delta` to every value in an inclusive range.
     pub fn increment_range(&mut self, left: usize, right: usize, delta: i32) -> bool {
         if left > right || right >= self.len() {
             return false;
@@ -513,6 +584,7 @@ impl DifferenceArray {
         true
     }
 
+    /// Materializes the values represented by the difference array.
     pub fn values(&self) -> Vec<i32> {
         let mut current = 0;
         let mut result = Vec::with_capacity(self.len());
@@ -525,15 +597,22 @@ impl DifferenceArray {
         result
     }
 
+    /// Returns the number of logical values.
     pub fn len(&self) -> usize {
         self.difference.len().saturating_sub(1)
     }
 
+    /// Returns whether there are no logical values.
     pub fn is_empty(&self) -> bool {
         self.len() == 0
     }
 }
 
+/// Applies seat-booking increments to flights numbered from `1`.
+///
+/// Pattern: difference array.
+/// Time: O(n + b)
+/// Space: O(n)
 pub fn corporate_flight_bookings(
     bookings: &[(usize, usize, i32)],
     flight_count: usize,
@@ -568,6 +647,11 @@ pub fn range_addition(length: usize, updates: &[(usize, usize, i32)]) -> Vec<i32
     difference.values()
 }
 
+/// Checks whether all car-pooling trips fit within capacity.
+///
+/// Pattern: difference array over route positions.
+/// Time: O(n + max destination)
+/// Space: O(max destination)
 pub fn car_pooling(trips: &[(i32, usize, usize)], capacity: i32) -> bool {
     if capacity < 0 {
         return false;
@@ -593,6 +677,11 @@ pub fn car_pooling(trips: &[(i32, usize, usize)], capacity: i32) -> bool {
         .all(|passengers| passengers <= capacity)
 }
 
+/// Counts, for each value, how many smaller values appear to its right.
+///
+/// Pattern: coordinate compression + Fenwick tree.
+/// Time: O(n log n)
+/// Space: O(n)
 pub fn count_smaller_numbers_after_self(values: Vec<i32>) -> Vec<i32> {
     let mut sorted_values = values.clone();
     sorted_values.sort_unstable();
@@ -618,6 +707,11 @@ pub fn count_smaller_numbers_after_self(values: Vec<i32>) -> Vec<i32> {
     counts
 }
 
+/// Counts reverse pairs where `left > 2 * right`.
+///
+/// Pattern: modified merge sort.
+/// Time: O(n log n)
+/// Space: O(n)
 pub fn reverse_pairs(values: Vec<i32>) -> i32 {
     let mut values: Vec<i64> = values.into_iter().map(i64::from).collect();
     let mut buffer = values.clone();
@@ -741,6 +835,7 @@ pub fn queue_reconstruction_by_height(mut people: Vec<(i32, i32)>) -> Vec<(i32, 
     queue
 }
 
+/// Versioned array with point updates and snapshot reads.
 #[derive(Debug, Clone)]
 pub struct SnapshotArray {
     current_snap: usize,
@@ -766,6 +861,7 @@ impl SnapshotArray {
         }
     }
 
+    /// Sets a value for the current snapshot version.
     pub fn set(&mut self, index: usize, value: i32) -> bool {
         let Some(changes) = self.values.get_mut(index) else {
             return false;
@@ -782,12 +878,14 @@ impl SnapshotArray {
         true
     }
 
+    /// Freezes the current version and returns its snapshot id.
     pub fn snap(&mut self) -> usize {
         let id = self.current_snap;
         self.current_snap += 1;
         id
     }
 
+    /// Reads the latest value at or before `snap_id`.
     pub fn get(&self, index: usize, snap_id: usize) -> Option<i32> {
         if snap_id >= self.current_snap {
             return None;
@@ -856,16 +954,22 @@ fn merge_sorted_slices(left: &[i64], right: &[i64], output: &mut [i64]) {
     }
 }
 
+/// Calendar that accepts only non-overlapping bookings.
+///
+/// Time: O(log n) per booking.
+/// Space: O(n)
 #[derive(Debug, Clone, Default)]
 pub struct MyCalendar {
     events: BTreeMap<i32, i32>,
 }
 
 impl MyCalendar {
+    /// Creates an empty calendar.
     pub fn new() -> Self {
         Self::default()
     }
 
+    /// Attempts to book a half-open interval `[start, end)`.
     pub fn book(&mut self, start: i32, end: i32) -> bool {
         if start >= end {
             return false;
@@ -887,15 +991,21 @@ impl MyCalendar {
         true
     }
 
+    /// Returns the number of accepted bookings.
     pub fn len(&self) -> usize {
         self.events.len()
     }
 
+    /// Returns whether the calendar has no bookings.
     pub fn is_empty(&self) -> bool {
         self.events.is_empty()
     }
 }
 
+/// Calendar that allows double bookings but rejects triple bookings.
+///
+/// Time: O(n) per booking.
+/// Space: O(n)
 #[derive(Debug, Clone, Default)]
 pub struct MyCalendarTwo {
     bookings: Vec<(i32, i32)>,
@@ -903,10 +1013,12 @@ pub struct MyCalendarTwo {
 }
 
 impl MyCalendarTwo {
+    /// Creates an empty calendar.
     pub fn new() -> Self {
         Self::default()
     }
 
+    /// Attempts to book a half-open interval `[start, end)`.
     pub fn book(&mut self, start: i32, end: i32) -> bool {
         if start >= end {
             return false;
@@ -933,10 +1045,12 @@ impl MyCalendarTwo {
         true
     }
 
+    /// Returns the number of accepted bookings.
     pub fn len(&self) -> usize {
         self.bookings.len()
     }
 
+    /// Returns whether the calendar has no bookings.
     pub fn is_empty(&self) -> bool {
         self.bookings.is_empty()
     }

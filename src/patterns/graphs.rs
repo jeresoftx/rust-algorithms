@@ -170,9 +170,9 @@ pub fn oranges_rotting(mut grid: Vec<Vec<i32>>) -> i32 {
     let mut fresh = 0;
     let mut queue = VecDeque::new();
 
-    for row in 0..rows {
-        for col in 0..cols {
-            match grid[row][col] {
+    for (row, cells) in grid.iter().enumerate() {
+        for (col, &cell) in cells.iter().enumerate() {
+            match cell {
                 1 => fresh += 1,
                 2 => queue.push_back((row, col, 0)),
                 _ => {}
@@ -208,7 +208,7 @@ pub fn oranges_rotting(mut grid: Vec<Vec<i32>>) -> i32 {
 ///
 /// Time: O(m * n)
 /// Space: O(m * n)
-pub fn walls_and_gates(rooms: &mut Vec<Vec<i32>>) {
+pub fn walls_and_gates(rooms: &mut [Vec<i32>]) {
     if rooms.is_empty() || rooms[0].is_empty() {
         return;
     }
@@ -217,9 +217,9 @@ pub fn walls_and_gates(rooms: &mut Vec<Vec<i32>>) {
     let cols = rooms[0].len();
     let mut queue = VecDeque::new();
 
-    for row in 0..rows {
-        for col in 0..cols {
-            if rooms[row][col] == 0 {
+    for (row, cells) in rooms.iter().enumerate() {
+        for (col, &cell) in cells.iter().enumerate() {
+            if cell == 0 {
                 queue.push_back((row, col));
             }
         }
@@ -409,9 +409,9 @@ pub fn find_circle_num(is_connected: Vec<Vec<i32>>) -> i32 {
     let mut union_find = UnionFind::new(city_count);
     let mut provinces = city_count as i32;
 
-    for row in 0..city_count {
+    for (row, connections) in is_connected.iter().enumerate() {
         for col in row + 1..city_count {
-            if is_connected[row].get(col) == Some(&1) && union_find.union(row, col) {
+            if connections.get(col) == Some(&1) && union_find.union(row, col) {
                 provinces -= 1;
             }
         }

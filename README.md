@@ -16,6 +16,15 @@ El objetivo es que este proyecto sirva como material de estudio reutilizable: ca
 ## Estructura
 
 ```text
+AGENTS.md
+ROADMAP.md
+LICENSE.md
+LICENSE-MIT
+LICENSE-APACHE
+LICENSE-CC-BY-SA-4.0.md
+.github/
+  workflows/
+    ci.yml
 src/
   patterns/
     binary_search.rs
@@ -57,6 +66,14 @@ tests/
   tries_test.rs
   two_pointers_test.rs
   weighted_graphs_test.rs
+  property_algorithms_test.rs
+benches/
+  algorithm_families.rs
+diagrams/
+  core-patterns.mmd
+  math-geometry.mmd
+  optimization-patterns.mmd
+  recursive-structures.mmd
 notes/
   week-01.md
   week-02-03.md
@@ -82,9 +99,17 @@ notes/
   rust-interview-patterns.md
   mistakes.md
 plan/
+  estandar-rfc-0001.md
   plan-alcance-avanzado.md
   plan-algoritmos-rust.md
 ```
+
+## Gobernanza
+
+- `AGENTS.md` es la guía de arranque para humanos e IA en este repositorio.
+- `ROADMAP.md` apunta al plan vivo sin duplicarlo.
+- `plan/estandar-rfc-0001.md` registra la alineación de este repo con el Manual Fundacional RFC-0001.
+- `LICENSE.md` resume la doble licencia: código bajo `MIT OR Apache-2.0`; contenido educativo bajo `CC BY-SA 4.0`.
 
 ## Cómo Usarlo
 
@@ -98,6 +123,20 @@ Formatear el código:
 
 ```bash
 cargo fmt
+```
+
+Lint y verificación completa:
+
+```bash
+cargo fmt --check
+cargo clippy --all-targets
+cargo test
+```
+
+Compilar benchmarks sin ejecutarlos:
+
+```bash
+cargo bench --no-run
 ```
 
 Para estudiar un problema:
@@ -149,9 +188,25 @@ Páginas destacadas:
 
 - Semana documentada: 27-28
 - Problemas implementados: 190
-- Tests automatizados: 449
+- Tests automatizados: 454 pruebas deterministas/property + 9 doctests
 - Ruta avanzada: hito 190 completado; repeticiones personales fuera del avance autónomo
 - Lenguaje: Rust
+
+## Benchmarks y Property Testing
+
+Las dependencias `criterion` y `proptest` son solo de desarrollo. Se agregan
+porque el repo no solo comprueba respuestas: tambien enseña complejidad,
+invariantes y regresiones de rendimiento donde la señal es real.
+
+| Familia | Benchmarks | Property testing | Decision |
+| --- | --- | --- | --- |
+| `binary_search` | Si | Si | Bench para `search_insert`; property contra `partition_point`, porque la invariante de lower-bound es generativa. |
+| `dynamic_programming` | Si | No por ahora | Bench para LIS; property tests requieren oraculos exponenciales acotados y se posponen para no agregar ruido. |
+| `range_queries` | Si | Si | Bench de Fenwick; property compara prefijos contra un vector ingenuo tras actualizaciones. |
+| `string_algorithms` | Si | No por ahora | Bench de KMP; property testing queda fuera hasta definir generadores ASCII/Unicode por algoritmo. |
+| `weighted_graphs` | Si | No por ahora | Bench de Dijkstra; propiedades de grafos requieren generadores conectados/ponderados especificos. |
+| `two_pointers` | No por ahora | Si | `sorted_squares` se prueba por multiconjunto ordenado; no se mide porque el coste O(n) ya queda claro y barato. |
+| Resto de familias | No por ahora | No por ahora | La cobertura determinista actual expresa mejor los casos borde; se agregaran benches/properties solo cuando haya una invariante o regresion concreta que medir. |
 
 ## Enfoque de Estudio
 

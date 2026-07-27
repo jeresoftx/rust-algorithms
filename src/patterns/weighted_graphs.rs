@@ -1,13 +1,32 @@
+//! Weighted graph algorithms and connectivity routines.
+//!
+//! # Example
+//!
+//! ```
+//! use rust_algorithms::patterns::weighted_graphs::dijkstra_shortest_paths;
+//!
+//! let edges = [(0, 1, 4), (0, 2, 1), (2, 1, 2)];
+//! assert_eq!(dijkstra_shortest_paths(3, &edges, 0), vec![Some(0), Some(3), Some(1)]);
+//! ```
+
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
 
 const GRID_DIRECTIONS: [(isize, isize); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
+/// Error returned by Bellman-Ford when a reachable negative cycle exists.
 #[derive(Debug, PartialEq, Eq)]
 pub enum BellmanFordError {
+    /// A reachable cycle can reduce path cost indefinitely.
     NegativeCycle,
 }
 
+/// Computes shortest paths from `start` with Dijkstra's algorithm.
+///
+/// Edge weights must be non-negative.
+///
+/// Time: O((v + e) log v)
+/// Space: O(v + e)
 pub fn dijkstra_shortest_paths(
     node_count: usize,
     edges: &[(usize, usize, i32)],
@@ -45,6 +64,10 @@ pub fn dijkstra_shortest_paths(
         .collect()
 }
 
+/// Solves the network-delay problem over 1-indexed directed weighted edges.
+///
+/// Time: O((v + e) log v)
+/// Space: O(v + e)
 pub fn network_delay_time(times: Vec<(usize, usize, i32)>, node_count: usize, start: usize) -> i32 {
     if start == 0 || start > node_count {
         return -1;
@@ -70,6 +93,10 @@ pub fn network_delay_time(times: Vec<(usize, usize, i32)>, node_count: usize, st
     delay
 }
 
+/// Computes shortest paths from `start` and detects reachable negative cycles.
+///
+/// Time: O(v * e)
+/// Space: O(v)
 pub fn bellman_ford_shortest_paths(
     node_count: usize,
     edges: &[(usize, usize, i32)],
@@ -119,6 +146,10 @@ pub fn bellman_ford_shortest_paths(
         .collect())
 }
 
+/// Computes all-pairs shortest paths with Floyd-Warshall.
+///
+/// Time: O(v^3)
+/// Space: O(v^2)
 pub fn floyd_warshall_all_pairs(
     node_count: usize,
     edges: &[(usize, usize, i32)],
@@ -158,6 +189,12 @@ pub fn floyd_warshall_all_pairs(
         .collect()
 }
 
+/// Returns the total weight of a minimum spanning tree using Prim's algorithm.
+///
+/// Returns `None` when the graph is disconnected.
+///
+/// Time: O(e log v)
+/// Space: O(v + e)
 pub fn prim_minimum_spanning_tree_weight(
     node_count: usize,
     edges: &[(usize, usize, i32)],
@@ -193,6 +230,12 @@ pub fn prim_minimum_spanning_tree_weight(
     (visited_count == node_count).then_some(total_weight)
 }
 
+/// Returns the total weight of a minimum spanning tree using Kruskal's algorithm.
+///
+/// Returns `None` when the graph is disconnected.
+///
+/// Time: O(e log e)
+/// Space: O(v + e)
 pub fn kruskal_minimum_spanning_tree_weight(
     node_count: usize,
     edges: &[(usize, usize, i32)],
@@ -222,6 +265,10 @@ pub fn kruskal_minimum_spanning_tree_weight(
     (edges_used == node_count - 1).then_some(total_weight)
 }
 
+/// Finds the cheapest flight route using at most `max_stops` intermediate stops.
+///
+/// Time: O(k * e)
+/// Space: O(v)
 pub fn cheapest_flight_within_k_stops(
     node_count: usize,
     flights: &[(usize, usize, i32)],
@@ -258,6 +305,11 @@ pub fn cheapest_flight_within_k_stops(
     (distances[destination] != i32::MAX).then_some(distances[destination])
 }
 
+/// Minimizes the largest step effort along a grid path.
+///
+/// Pattern: Dijkstra over cells.
+/// Time: O(m * n log(m * n))
+/// Space: O(m * n)
 pub fn minimum_effort_path(heights: Vec<Vec<i32>>) -> i32 {
     if heights.is_empty() || heights[0].is_empty() {
         return 0;
@@ -294,6 +346,11 @@ pub fn minimum_effort_path(heights: Vec<Vec<i32>>) -> i32 {
     0
 }
 
+/// Finds all bridges in an undirected graph.
+///
+/// Pattern: Tarjan low-link values.
+/// Time: O(v + e)
+/// Space: O(v + e)
 pub fn critical_connections(
     node_count: usize,
     connections: &[(usize, usize)],
@@ -330,6 +387,11 @@ pub fn critical_connections(
     bridges
 }
 
+/// Groups directed graph nodes into strongly connected components.
+///
+/// Pattern: Tarjan stack and low-link values.
+/// Time: O(v + e)
+/// Space: O(v + e)
 pub fn strongly_connected_components(
     node_count: usize,
     edges: &[(usize, usize)],
@@ -342,35 +404,28 @@ pub fn strongly_connected_components(
         }
     }
 
-    let mut discovery = vec![None; node_count];
-    let mut low = vec![0; node_count];
-    let mut stack = Vec::new();
-    let mut on_stack = vec![false; node_count];
-    let mut time = 0;
-    let mut components = Vec::new();
+    let mut state = TarjanState::new(node_count);
 
     for node in 0..node_count {
-        if discovery[node].is_none() {
-            collect_strongly_connected_components(
-                node,
-                &graph,
-                &mut discovery,
-                &mut low,
-                &mut stack,
-                &mut on_stack,
-                &mut time,
-                &mut components,
-            );
+        if state.discovery[node].is_none() {
+            collect_strongly_connected_components(node, &graph, &mut state);
         }
     }
 
-    for component in &mut components {
+    for component in &mut state.components {
         component.sort_unstable();
     }
-    components.sort_unstable_by_key(|component| component[0]);
-    components
+    state
+        .components
+        .sort_unstable_by_key(|component| component[0]);
+    state.components
 }
 
+/// Connects all points with minimum total Manhattan distance.
+///
+/// Pattern: dense Prim-style MST.
+/// Time: O(n^2)
+/// Space: O(n)
 pub fn min_cost_connect_points(points: &[(i32, i32)]) -> i32 {
     if points.len() <= 1 {
         return 0;
@@ -406,6 +461,11 @@ pub fn min_cost_connect_points(points: &[(i32, i32)]) -> i32 {
     total_cost
 }
 
+/// Classifies MST edges as critical or pseudo-critical.
+///
+/// Pattern: constrained Kruskal runs.
+/// Time: O(e^2 log e)
+/// Space: O(v + e)
 pub fn find_critical_and_pseudo_critical_edges(
     node_count: usize,
     edges: &[(usize, usize, i32)],
@@ -548,38 +608,53 @@ fn collect_bridges(
     }
 }
 
+struct TarjanState {
+    discovery: Vec<Option<usize>>,
+    low: Vec<usize>,
+    stack: Vec<usize>,
+    on_stack: Vec<bool>,
+    time: usize,
+    components: Vec<Vec<usize>>,
+}
+
+impl TarjanState {
+    fn new(node_count: usize) -> Self {
+        Self {
+            discovery: vec![None; node_count],
+            low: vec![0; node_count],
+            stack: Vec::new(),
+            on_stack: vec![false; node_count],
+            time: 0,
+            components: Vec::new(),
+        }
+    }
+}
+
 fn collect_strongly_connected_components(
     node: usize,
     graph: &[Vec<usize>],
-    discovery: &mut [Option<usize>],
-    low: &mut [usize],
-    stack: &mut Vec<usize>,
-    on_stack: &mut [bool],
-    time: &mut usize,
-    components: &mut Vec<Vec<usize>>,
+    state: &mut TarjanState,
 ) {
-    *time += 1;
-    discovery[node] = Some(*time);
-    low[node] = *time;
-    stack.push(node);
-    on_stack[node] = true;
+    state.time += 1;
+    state.discovery[node] = Some(state.time);
+    state.low[node] = state.time;
+    state.stack.push(node);
+    state.on_stack[node] = true;
 
     for &neighbor in &graph[node] {
-        if discovery[neighbor].is_none() {
-            collect_strongly_connected_components(
-                neighbor, graph, discovery, low, stack, on_stack, time, components,
-            );
-            low[node] = low[node].min(low[neighbor]);
-        } else if on_stack[neighbor] {
-            low[node] = low[node].min(discovery[neighbor].unwrap());
+        if state.discovery[neighbor].is_none() {
+            collect_strongly_connected_components(neighbor, graph, state);
+            state.low[node] = state.low[node].min(state.low[neighbor]);
+        } else if state.on_stack[neighbor] {
+            state.low[node] = state.low[node].min(state.discovery[neighbor].unwrap());
         }
     }
 
-    if low[node] == discovery[node].unwrap() {
+    if state.low[node] == state.discovery[node].unwrap() {
         let mut component = Vec::new();
 
-        while let Some(member) = stack.pop() {
-            on_stack[member] = false;
+        while let Some(member) = state.stack.pop() {
+            state.on_stack[member] = false;
             component.push(member);
 
             if member == node {
@@ -587,7 +662,7 @@ fn collect_strongly_connected_components(
             }
         }
 
-        components.push(component);
+        state.components.push(component);
     }
 }
 
