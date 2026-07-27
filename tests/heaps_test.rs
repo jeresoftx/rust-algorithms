@@ -1,5 +1,6 @@
 use rust_algorithms::patterns::heaps::{
-    k_closest_points_heap, kth_largest, last_stone_weight, merge_k_sorted_lists, MedianFinder,
+    k_closest_points_heap, kth_largest, last_stone_weight, merge_k_sorted_lists,
+    minimum_cost_to_connect_sticks, MedianFinder,
 };
 use rust_algorithms::patterns::linked_lists::{list_from_vec, list_to_vec};
 
@@ -75,6 +76,19 @@ fn merge_k_sorted_lists_handles_empty_lists() {
     let merged = merge_k_sorted_lists(lists);
 
     assert_eq!(list_to_vec(&merged), vec![0]);
+}
+
+#[test]
+fn minimum_cost_to_connect_sticks_joins_smallest_lengths_first() {
+    assert_eq!(minimum_cost_to_connect_sticks(vec![2, 4, 3]), 14);
+    assert_eq!(minimum_cost_to_connect_sticks(vec![1, 8, 3, 5]), 30);
+}
+
+#[test]
+fn minimum_cost_to_connect_sticks_handles_empty_single_and_repeated_lengths() {
+    assert_eq!(minimum_cost_to_connect_sticks(Vec::new()), 0);
+    assert_eq!(minimum_cost_to_connect_sticks(vec![7]), 0);
+    assert_eq!(minimum_cost_to_connect_sticks(vec![1, 1, 1, 1]), 8);
 }
 
 #[test]

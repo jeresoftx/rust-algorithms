@@ -97,6 +97,7 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | Candidato | Estado | Evidencia |
 | --- | --- | --- |
 | 264: Shortest Subarray with Sum at Least K | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #66, función `shortest_subarray_at_least_k` y tests de negativos, ausencia y ventana mínima. |
+| 265: Minimum Cost to Connect Sticks | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #68, función `minimum_cost_to_connect_sticks` y tests de caso típico, extremos y repetidos. |
 
 ## Distribución de señal
 

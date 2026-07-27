@@ -9,7 +9,7 @@ solo orienta; el tablero detallado vive en
 
 ## Estado actual
 
-El catálogo funcional de práctica contiene 208 problemas implementados y
+El catálogo funcional de práctica contiene 209 problemas implementados y
 probados, organizados por familias de patrones algorítmicos:
 
 - Arrays, strings, hashing, two pointers y sliding window.

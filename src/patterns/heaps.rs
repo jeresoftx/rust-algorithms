@@ -118,6 +118,30 @@ pub fn merge_k_sorted_lists(mut lists: Vec<Link>) -> Link {
     list_from_vec(values)
 }
 
+/// Minimum Cost to Connect Sticks
+///
+/// Pattern: min heap with greedy merge.
+/// Idea: every merged length is paid again in later merges, so combining the
+/// two shortest available sticks first minimizes their repeated contribution.
+///
+/// Time: O(n log n)
+/// Space: O(n)
+pub fn minimum_cost_to_connect_sticks(sticks: Vec<i32>) -> i32 {
+    let mut sticks: BinaryHeap<Reverse<i32>> = sticks.into_iter().map(Reverse).collect();
+    let mut total_cost = 0;
+
+    while sticks.len() > 1 {
+        let first = sticks.pop().map(|Reverse(value)| value).unwrap_or(0);
+        let second = sticks.pop().map(|Reverse(value)| value).unwrap_or(0);
+        let combined = first + second;
+
+        total_cost += combined;
+        sticks.push(Reverse(combined));
+    }
+
+    total_cost
+}
+
 /// K Closest Points to Origin
 ///
 /// Pattern: bounded max heap by distance.
