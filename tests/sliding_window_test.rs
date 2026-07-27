@@ -1,5 +1,5 @@
 use rust_algorithms::patterns::sliding_window::{
-    length_of_longest_substring, max_profit, min_window,
+    length_of_longest_substring, longest_repeating_character_replacement, max_profit, min_window,
 };
 
 #[test]
@@ -20,6 +20,18 @@ fn max_profit_returns_zero_for_empty_prices() {
 #[test]
 fn length_of_longest_substring_counts_longest_window_without_repeats() {
     assert_eq!(length_of_longest_substring("abcabcbb"), 3);
+}
+
+#[test]
+fn character_replacement_finds_the_longest_repairable_window() {
+    assert_eq!(longest_repeating_character_replacement("AABABBA", 1), 4);
+    assert_eq!(longest_repeating_character_replacement("ABAB", 2), 4);
+}
+
+#[test]
+fn character_replacement_handles_zero_budget_and_empty_text() {
+    assert_eq!(longest_repeating_character_replacement("AAB", 0), 2);
+    assert_eq!(longest_repeating_character_replacement("", 3), 0);
 }
 
 #[test]

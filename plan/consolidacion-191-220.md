@@ -126,6 +126,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 200: Sort Colors | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #43, función `sort_colors` y tests de partición, repetidos y entradas mínimas. |
 | 202: Continuous Subarray Sum | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #48, función `continuous_subarray_sum` y tests de múltiplo, longitud mínima, negativos y divisor cero. |
 | 203: Contiguous Array | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #50, función `contiguous_array` y tests de balance total, entradas mínimas y ausencia de balance. |
+| 204: Longest Repeating Character Replacement | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #52, función `longest_repeating_character_replacement` y tests de presupuesto, contracción y texto vacío. |
 
 ## Relación con el milestone
 
