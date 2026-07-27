@@ -1,7 +1,7 @@
 use rust_algorithms::patterns::two_pointers::{
     is_subsequence, max_area, merge_sorted_array, move_zeroes, remove_duplicates_sorted,
-    remove_duplicates_sorted_at_most_twice, sort_colors, sorted_squares, three_sum, two_sum_sorted,
-    valid_palindrome, valid_palindrome_with_one_removal,
+    remove_duplicates_sorted_at_most_twice, sort_colors, sorted_squares, three_sum,
+    trap_rain_water, two_sum_sorted, valid_palindrome, valid_palindrome_with_one_removal,
 };
 
 #[test]
@@ -12,6 +12,12 @@ fn valid_palindrome_ignores_case_and_non_alphanumeric_characters() {
 #[test]
 fn valid_palindrome_returns_false_when_cleaned_text_is_not_palindrome() {
     assert!(!valid_palindrome("race a car"));
+}
+
+#[test]
+fn trap_rain_water_counts_basins_between_boundaries() {
+    assert_eq!(trap_rain_water(&[0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]), 6);
+    assert_eq!(trap_rain_water(&[]), 0);
 }
 
 #[test]

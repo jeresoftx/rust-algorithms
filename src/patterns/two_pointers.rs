@@ -35,6 +35,30 @@ pub fn valid_palindrome(text: &str) -> bool {
     true
 }
 
+/// Trapping Rain Water.
+///
+/// Pattern: two pointers with running boundary maxima.
+/// Time: O(n). Space: O(1).
+pub fn trap_rain_water(heights: &[i32]) -> i32 {
+    if heights.len() < 3 {
+        return 0;
+    }
+    let (mut left, mut right) = (0, heights.len() - 1);
+    let (mut left_max, mut right_max, mut trapped) = (0, 0, 0);
+    while left < right {
+        if heights[left] <= heights[right] {
+            left_max = left_max.max(heights[left]);
+            trapped += left_max - heights[left];
+            left += 1;
+        } else {
+            right_max = right_max.max(heights[right]);
+            trapped += right_max - heights[right];
+            right -= 1;
+        }
+    }
+    trapped
+}
+
 /// Valid Palindrome II
 ///
 /// Pattern: two pointers with one controlled branch.
