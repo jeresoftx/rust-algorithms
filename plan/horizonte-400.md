@@ -93,6 +93,9 @@ y PRs revisables.
 La distribución 120/220/60 por dificultad se conserva como hipótesis de trabajo,
 pero se valida en un issue separado antes de usarla como guía operativa.
 
+La puerta de entrada para aceptar o descartar candidatos vive en
+[`criterios-seleccion-191-plus.md`](./criterios-seleccion-191-plus.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
