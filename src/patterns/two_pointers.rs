@@ -287,6 +287,38 @@ pub fn remove_duplicates_sorted_at_most_twice(mut nums: Vec<i32>) -> Vec<i32> {
     nums
 }
 
+/// Sort Colors
+///
+/// Pattern: Dutch national flag partitioning.
+/// Idea: keep zeroes before `low`, ones before `current`, and twos after the
+/// exclusive `high` boundary while shrinking the unknown middle region.
+///
+/// Time: O(n)
+/// Space: O(1) extra space.
+pub fn sort_colors(mut nums: Vec<i32>) -> Vec<i32> {
+    let mut low = 0;
+    let mut current = 0;
+    let mut high = nums.len();
+
+    while current < high {
+        match nums[current] {
+            0 => {
+                nums.swap(low, current);
+                low += 1;
+                current += 1;
+            }
+            1 => current += 1,
+            2 => {
+                high -= 1;
+                nums.swap(current, high);
+            }
+            _ => current += 1,
+        }
+    }
+
+    nums
+}
+
 /// Move Zeroes
 ///
 /// Pattern: stable writer pointer.
