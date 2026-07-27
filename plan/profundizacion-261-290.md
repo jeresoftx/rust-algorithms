@@ -92,6 +92,12 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | 289 | Concatenated Words | Hard | Trie/DP + segmentación | Probar combinaciones de palabras | El prefijo y los cortes comparten subproblemas. |
 | 290 | Longest Duplicate Substring | Hard | Búsqueda binaria + rolling hash | Comparar todos los substrings | La longitud candidata es monótona y el hash evita comparar cada texto completo. |
 
+## Ejecución registrada
+
+| Candidato | Estado | Evidencia |
+| --- | --- | --- |
+| 264: Shortest Subarray with Sum at Least K | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #66, función `shortest_subarray_at_least_k` y tests de negativos, ausencia y ventana mínima. |
+
 ## Distribución de señal
 
 | Familia principal | Candidatos | Pregunta recurrente |
