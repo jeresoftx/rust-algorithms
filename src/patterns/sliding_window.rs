@@ -131,6 +131,36 @@ pub fn permutation_in_string(pattern: &str, text: &str) -> bool {
     false
 }
 
+/// Minimum Size Subarray Sum
+///
+/// Pattern: positive-value sliding window.
+/// Idea: once a positive window reaches the target, shrinking it is the only
+/// way to find a shorter valid window ending at the same right boundary.
+///
+/// Time: O(n)
+/// Space: O(1)
+pub fn minimum_size_subarray_sum(target: i32, values: &[i32]) -> usize {
+    if target <= 0 {
+        return 0;
+    }
+    let mut left = 0;
+    let mut sum = 0_i64;
+    let mut best = usize::MAX;
+    for (right, &value) in values.iter().enumerate() {
+        sum += i64::from(value);
+        while sum >= i64::from(target) {
+            best = best.min(right - left + 1);
+            sum -= i64::from(values[left]);
+            left += 1;
+        }
+    }
+    if best == usize::MAX {
+        0
+    } else {
+        best
+    }
+}
+
 /// Minimum Window Substring
 ///
 /// Pattern: variable-size sliding window.

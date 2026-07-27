@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::sliding_window::{
     length_of_longest_substring, longest_repeating_character_replacement, max_profit, min_window,
-    permutation_in_string,
+    minimum_size_subarray_sum, permutation_in_string,
 };
 
 #[test]
@@ -45,6 +45,18 @@ fn permutation_in_string_finds_a_permuted_fixed_window() {
 fn permutation_in_string_rejects_absent_and_handles_empty_pattern() {
     assert!(!permutation_in_string("ab", "eidboaoo"));
     assert!(permutation_in_string("", "anything"));
+}
+
+#[test]
+fn minimum_size_subarray_sum_finds_shortest_positive_window() {
+    assert_eq!(minimum_size_subarray_sum(7, &[2, 3, 1, 2, 4, 3]), 2);
+}
+
+#[test]
+fn minimum_size_subarray_sum_handles_absence_and_boundary_targets() {
+    assert_eq!(minimum_size_subarray_sum(100, &[1, 2, 3]), 0);
+    assert_eq!(minimum_size_subarray_sum(1, &[1]), 1);
+    assert_eq!(minimum_size_subarray_sum(0, &[1, 2]), 0);
 }
 
 #[test]
