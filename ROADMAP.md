@@ -34,6 +34,11 @@ reemplaza el plan base ni cambia el estado actual del repo: solo registra una
 ruta opcional para crecer de 190 a 400 problemas mediante milestones, issues y
 PRs revisables.
 
+La evidencia de cierre de planeación vive en
+[`plan/reporte-horizonte-400.md`](plan/reporte-horizonte-400.md). El horizonte
+sigue siendo futuro: no cambia el catálogo funcional de 190 problemas ni marca
+material como revisado o publicado.
+
 ## Fuera de alcance por ahora
 
 Problemas 191+, una nueva fase temática o cambios de fondo al plan de estudio no
