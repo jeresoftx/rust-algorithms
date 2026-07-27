@@ -16,9 +16,9 @@ estudio.
 
 | Aspecto | Estado |
 | --- | --- |
-| Catálogo funcional | 217 problemas implementados y probados. |
+| Catálogo funcional | 218 problemas implementados y probados. |
 | Familias de patrones | 19 módulos de patrones. |
-| Tests automatizados | 520 pruebas deterministas/property y 9 doctests. |
+| Tests automatizados | 522 pruebas deterministas/property y 9 doctests. |
 | Simulacros documentados | 6 acumulados. |
 | Horizonte 400 | Planeado y organizado; no ejecutado como catálogo funcional. |
 | Contenido publicado o revisado | Ningún bloque 191-400 se marca como publicado o revisado. |
@@ -32,8 +32,9 @@ Continuous Subarray Sum, Contiguous Array, Shortest Subarray with Sum at Least
 K, Minimum Cost to Connect Sticks, Reorganize String, Kth Smallest Element in
 a Sorted Matrix, Split Array Largest Sum, Minimum Days to Make M Bouquets y
 Course Schedule III, Meeting Rooms III, My Calendar III y Number of Longest
-Increasing Subsequence (candidatos 192-195, 197-200, 202-205, 207, 209-212,
-264-266, 268-270, 274-275, 277 y 280) elevaron el conteo de 190 a 217.
+Increasing Subsequence y Russian Doll Envelopes (candidatos 192-195, 197-200,
+202-205, 207, 209-212, 264-266, 268-270, 274-275, 277 y 280-281) elevaron el
+conteo de 190 a 218.
 
 ## Evidencia preparada
 
@@ -65,7 +66,7 @@ corrección.
 
 ## Deuda visible y límites
 
-- Los candidatos 196, 206, 208, 213-263, 267, 271-273 y 276, 278-279, 281-400 todavía no son
+- Los candidatos 196, 206, 208, 213-263, 267, 271-273 y 276, 278-279, 282-400 todavía no son
   implementaciones funcionales nuevas.
 - La dificultad del catálogo histórico de 190 problemas sigue sin normalizarse
   retroactivamente, por decisión de la matriz de cobertura.
