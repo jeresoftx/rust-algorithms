@@ -120,6 +120,9 @@ El bloque Medium y Hard con alta señal vive en
 El cierre de profundización con patrones mixtos vive en
 [`profundizacion-316-330.md`](./profundizacion-316-330.md).
 
+El bloque de Hard selectivos del cierre vive en
+[`cierre-331-360.md`](./cierre-331-360.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,
