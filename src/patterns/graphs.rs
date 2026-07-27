@@ -812,3 +812,45 @@ pub fn word_ladder_length(begin: &str, end: &str, words: &[&str]) -> Option<usiz
     }
     None
 }
+
+/// Minimum Genetic Mutation.
+///
+/// Pattern: breadth-first search over generated one-base mutations.
+/// Time: O(b * l * 4), where `b` is the bank size and `l` gene length.
+/// Space: O(b).
+pub fn minimum_genetic_mutation(start: &str, end: &str, bank: &[&str]) -> Option<usize> {
+    if start.len() != end.len() {
+        return None;
+    }
+    let mut available: HashSet<String> = bank
+        .iter()
+        .filter(|gene| gene.len() == start.len())
+        .map(|gene| (*gene).to_string())
+        .collect();
+    if !available.contains(end) {
+        return None;
+    }
+
+    let mut queue = VecDeque::from([(start.to_string(), 0_usize)]);
+    while let Some((gene, mutations)) = queue.pop_front() {
+        let mut bytes = gene.into_bytes();
+        for index in 0..bytes.len() {
+            let original = bytes[index];
+            for base in b"ACGT" {
+                if *base == original {
+                    continue;
+                }
+                bytes[index] = *base;
+                let candidate = String::from_utf8(bytes.clone()).ok()?;
+                if candidate == end {
+                    return Some(mutations + 1);
+                }
+                if available.remove(&candidate) {
+                    queue.push_back((candidate, mutations + 1));
+                }
+            }
+            bytes[index] = original;
+        }
+    }
+    None
+}
