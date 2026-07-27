@@ -2,7 +2,7 @@ use rust_algorithms::patterns::graphs::{
     accounts_merge, alien_order, can_finish, clone_graph, count_connected_components,
     evaluate_division, find_circle_num, find_course_order, graph_valid_tree, is_bipartite,
     max_area_of_island, number_of_islands, oranges_rotting, pacific_atlantic, possible_bipartition,
-    redundant_connection, walls_and_gates,
+    redundant_connection, walls_and_gates, word_ladder_length,
 };
 
 #[test]
@@ -20,6 +20,18 @@ fn number_of_islands_counts_disconnected_land_groups() {
 #[test]
 fn number_of_islands_returns_zero_for_empty_grid() {
     assert_eq!(number_of_islands(Vec::new()), 0);
+}
+
+#[test]
+fn word_ladder_length_finds_the_shortest_transformation() {
+    assert_eq!(
+        word_ladder_length("hit", "cog", &["hot", "dot", "dog", "lot", "log", "cog"]),
+        Some(5)
+    );
+    assert_eq!(
+        word_ladder_length("hit", "cog", &["hot", "dot", "dog"]),
+        None
+    );
 }
 
 #[test]
