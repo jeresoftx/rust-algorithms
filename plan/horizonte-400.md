@@ -123,6 +123,9 @@ El cierre de profundización con patrones mixtos vive en
 El bloque de Hard selectivos del cierre vive en
 [`cierre-331-360.md`](./cierre-331-360.md).
 
+El bloque final de práctica, repaso y revisión vive en
+[`cierre-361-400.md`](./cierre-361-400.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,

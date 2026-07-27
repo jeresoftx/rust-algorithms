@@ -55,3 +55,15 @@ problemas dominados ni contenido publicado. Los detalles viven en
 [`plan/profundizacion-261-290.md`](../plan/profundizacion-261-290.md),
 [`plan/profundizacion-291-315.md`](../plan/profundizacion-291-315.md) y
 [`plan/profundizacion-316-330.md`](../plan/profundizacion-316-330.md).
+
+## Cierre 331-400
+
+| Rango | Enfoque | Estado | Acción |
+| --- | --- | --- | --- |
+| 331-360 | Hard selectivos | Pendiente | Elegir por técnica transferible y explicar la reducción antes de implementar. |
+| 361-390 | Práctica, repeticiones y simulacros | Pendiente | Ejecutar bajo TDD; documentar puntaje y retro si se usa como simulacro. |
+| 391-400 | Auditoría y revisión humana | Pendiente | Registrar evidencia real y separar plan, práctica y contenido publicable. |
+
+El bloque final se detalla en [`plan/cierre-361-400.md`](../plan/cierre-361-400.md).
+Nada de este tramo debe marcarse como dominado, revisado o publicado sin la
+evidencia y la revisión correspondientes.
