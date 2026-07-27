@@ -117,6 +117,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | Candidato | Estado | Evidencia |
 | --- | --- | --- |
 | 192: Valid Palindrome II | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #32, función `valid_palindrome_with_one_removal` y tests de bifurcación izquierda/derecha. |
+| 193: Is Subsequence | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #31, función `is_subsequence` y tests de orden, vacío y repetidos. |
 
 ## Relación con el milestone
 

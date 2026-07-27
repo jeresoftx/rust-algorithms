@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::two_pointers::{
-    max_area, move_zeroes, remove_duplicates_sorted, sorted_squares, three_sum, two_sum_sorted,
-    valid_palindrome, valid_palindrome_with_one_removal,
+    is_subsequence, max_area, move_zeroes, remove_duplicates_sorted, sorted_squares, three_sum,
+    two_sum_sorted, valid_palindrome, valid_palindrome_with_one_removal,
 };
 
 #[test]
@@ -38,6 +38,29 @@ fn valid_palindrome_with_one_removal_rejects_two_required_removals() {
 fn valid_palindrome_with_one_removal_handles_short_text() {
     assert!(valid_palindrome_with_one_removal("a"));
     assert!(valid_palindrome_with_one_removal(""));
+}
+
+#[test]
+fn is_subsequence_accepts_characters_in_relative_order() {
+    assert!(is_subsequence("ace", "abcde"));
+}
+
+#[test]
+fn is_subsequence_rejects_missing_or_reordered_characters() {
+    assert!(!is_subsequence("aec", "abcde"));
+    assert!(!is_subsequence("axc", "abcde"));
+}
+
+#[test]
+fn is_subsequence_handles_empty_inputs() {
+    assert!(is_subsequence("", "abc"));
+    assert!(!is_subsequence("a", ""));
+}
+
+#[test]
+fn is_subsequence_advances_past_repeated_text_characters() {
+    assert!(is_subsequence("aab", "aaab"));
+    assert!(!is_subsequence("aaaa", "aaab"));
 }
 
 #[test]
