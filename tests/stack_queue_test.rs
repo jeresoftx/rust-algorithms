@@ -1,5 +1,5 @@
 use rust_algorithms::patterns::stack_queue::{
-    asteroid_collision, backspace_compare, baseball_game, daily_temperatures,
+    asteroid_collision, backspace_compare, baseball_game, daily_temperatures, decode_string,
     largest_rectangle_area, valid_parentheses, StockSpanner,
 };
 
@@ -105,6 +105,18 @@ fn asteroid_collision_resolves_simple_and_equal_collisions() {
 fn asteroid_collision_handles_chain_and_non_colliding_paths() {
     assert_eq!(asteroid_collision(vec![10, 2, -5]), vec![10]);
     assert_eq!(asteroid_collision(vec![-2, -1, 1, 2]), vec![-2, -1, 1, 2]);
+}
+
+#[test]
+fn decode_string_expands_simple_and_nested_repetitions() {
+    assert_eq!(decode_string("3[a]2[bc]"), "aaabcbc");
+    assert_eq!(decode_string("3[a2[c]]"), "accaccacc");
+}
+
+#[test]
+fn decode_string_preserves_multiple_fragments_and_empty_input() {
+    assert_eq!(decode_string("2[abc]3[cd]ef"), "abcabccdcdcdef");
+    assert_eq!(decode_string(""), "");
 }
 
 #[test]

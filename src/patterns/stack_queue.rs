@@ -151,6 +151,40 @@ pub fn asteroid_collision(asteroids: Vec<i32>) -> Vec<i32> {
     survivors
 }
 
+/// Decode String
+///
+/// Pattern: stack of nested decoding contexts.
+/// Idea: each opening bracket saves the completed prefix and its multiplier;
+/// each closing bracket expands only the current innermost text.
+///
+/// Time: O(n + output length)
+/// Space: O(n + output length)
+pub fn decode_string(encoded: &str) -> String {
+    let mut contexts: Vec<(String, usize)> = Vec::new();
+    let mut current = String::new();
+    let mut multiplier = 0_usize;
+
+    for character in encoded.chars() {
+        match character {
+            digit if digit.is_ascii_digit() => {
+                multiplier = multiplier * 10 + digit.to_digit(10).unwrap_or(0) as usize;
+            }
+            '[' => {
+                contexts.push((std::mem::take(&mut current), multiplier));
+                multiplier = 0;
+            }
+            ']' => {
+                if let Some((prefix, repetitions)) = contexts.pop() {
+                    current = prefix + &current.repeat(repetitions);
+                }
+            }
+            _ => current.push(character),
+        }
+    }
+
+    current
+}
+
 /// Online Stock Span
 ///
 /// Pattern: monotonic decreasing stack with accumulated spans.
