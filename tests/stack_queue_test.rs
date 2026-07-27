@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::stack_queue::{
-    backspace_compare, baseball_game, daily_temperatures, largest_rectangle_area,
-    valid_parentheses, StockSpanner,
+    asteroid_collision, backspace_compare, baseball_game, daily_temperatures,
+    largest_rectangle_area, valid_parentheses, StockSpanner,
 };
 
 #[test]
@@ -93,6 +93,18 @@ fn stock_spanner_handles_equal_prices_and_descending_state() {
     assert_eq!(spanner.next(50), 2);
     assert_eq!(spanner.next(40), 1);
     assert_eq!(spanner.next(30), 1);
+}
+
+#[test]
+fn asteroid_collision_resolves_simple_and_equal_collisions() {
+    assert_eq!(asteroid_collision(vec![5, 10, -5]), vec![5, 10]);
+    assert_eq!(asteroid_collision(vec![8, -8]), Vec::<i32>::new());
+}
+
+#[test]
+fn asteroid_collision_handles_chain_and_non_colliding_paths() {
+    assert_eq!(asteroid_collision(vec![10, 2, -5]), vec![10]);
+    assert_eq!(asteroid_collision(vec![-2, -1, 1, 2]), vec![-2, -1, 1, 2]);
 }
 
 #[test]
