@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::heaps::{
     k_closest_points_heap, kth_largest, last_stone_weight, merge_k_sorted_lists,
-    minimum_cost_to_connect_sticks, reorganize_string, MedianFinder,
+    minimum_cost_to_connect_sticks, reorganize_string, schedule_courses, MedianFinder,
 };
 use rust_algorithms::patterns::linked_lists::{list_from_vec, list_to_vec};
 
@@ -128,4 +128,17 @@ fn last_stone_weight_smashes_two_largest_stones() {
 #[test]
 fn last_stone_weight_returns_zero_when_all_stones_cancel() {
     assert_eq!(last_stone_weight(vec![3, 3]), 0);
+}
+
+#[test]
+fn schedule_courses_keeps_the_largest_feasible_set() {
+    let courses = vec![(100, 200), (200, 1300), (1000, 1250), (2000, 3200)];
+
+    assert_eq!(schedule_courses(courses), 3);
+}
+
+#[test]
+fn schedule_courses_replaces_the_longest_course_and_ignores_invalid_entries() {
+    assert_eq!(schedule_courses(vec![(5, 5), (4, 6), (2, 6)]), 2);
+    assert_eq!(schedule_courses(vec![(0, 3), (-1, 2), (3, 0)]), 0);
 }

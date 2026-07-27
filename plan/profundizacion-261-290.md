@@ -101,6 +101,7 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | 268: Kth Smallest Element in a Sorted Matrix | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #72, función `kth_smallest_in_sorted_matrix` y tests de conteo, bordes y matriz mínima. |
 | 269: Split Array Largest Sum | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #74, función `split_array_largest_sum` y tests de límite óptimo, una partición por valor y entradas inválidas. |
 | 270: Minimum Days to Make M Bouquets | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #73, función `minimum_days_to_make_bouquets` y tests de día mínimo, imposibilidad y rachas. |
+| 274: Course Schedule III | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #78, función `schedule_courses` y tests de selección factible, reemplazo de duración y entradas inválidas. |
 | 266: Reorganize String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #70, función `reorganize_string` y tests de reorganización posible, imposible y vacío. |
 
 ## Distribución de señal

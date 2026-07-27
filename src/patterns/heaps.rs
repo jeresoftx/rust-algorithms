@@ -142,6 +142,39 @@ pub fn minimum_cost_to_connect_sticks(sticks: Vec<i32>) -> i32 {
     total_cost
 }
 
+/// Course Schedule III.
+///
+/// Pattern: greedy by deadline plus a max heap of accepted durations.
+/// Idea: accept each valid course in deadline order; when the accumulated
+/// duration exceeds its deadline, discard the longest accepted course because
+/// it frees the most time while preserving the number of selected courses.
+///
+/// Time: O(n log n).
+/// Space: O(n).
+pub fn schedule_courses(mut courses: Vec<(i32, i32)>) -> usize {
+    courses.sort_unstable_by_key(|&(_, deadline)| deadline);
+
+    let mut accepted_durations = BinaryHeap::new();
+    let mut total_duration = 0;
+
+    for (duration, deadline) in courses {
+        if duration <= 0 || deadline <= 0 {
+            continue;
+        }
+
+        accepted_durations.push(duration);
+        total_duration += duration;
+
+        if total_duration > deadline {
+            if let Some(longest) = accepted_durations.pop() {
+                total_duration -= longest;
+            }
+        }
+    }
+
+    accepted_durations.len()
+}
+
 /// Reorganize String
 ///
 /// Pattern: frequency max heap.
