@@ -85,6 +85,58 @@ pub fn min_meeting_rooms(mut meetings: Vec<(i32, i32)>) -> i32 {
     best as i32
 }
 
+/// Meeting Rooms III.
+///
+/// Pattern: two min heaps for temporal simulation.
+/// Idea: one heap exposes the lowest-index available room and the other the
+/// earliest occupied room. When every room is busy, delay the meeting in the
+/// room that becomes available first while keeping its original duration.
+///
+/// Time: O(m log n), where `m` is the number of meetings and `n` the rooms.
+/// Space: O(n).
+pub fn most_booked_room(room_count: usize, mut meetings: Vec<(i64, i64)>) -> Option<usize> {
+    if room_count == 0 {
+        return None;
+    }
+
+    meetings.sort_unstable_by_key(|&(start, end)| (start, end));
+    let mut available: BinaryHeap<Reverse<usize>> = (0..room_count).map(Reverse).collect();
+    let mut occupied: BinaryHeap<Reverse<(i64, usize)>> = BinaryHeap::new();
+    let mut bookings = vec![0_usize; room_count];
+
+    for (start, end) in meetings {
+        if end <= start {
+            continue;
+        }
+
+        while occupied
+            .peek()
+            .is_some_and(|&Reverse((available_at, _))| available_at <= start)
+        {
+            if let Some(Reverse((_, room))) = occupied.pop() {
+                available.push(Reverse(room));
+            }
+        }
+
+        let (room, finishes_at) = if let Some(Reverse(room)) = available.pop() {
+            (room, end)
+        } else if let Some(Reverse((available_at, room))) = occupied.pop() {
+            (room, available_at + (end - start))
+        } else {
+            return None;
+        };
+
+        bookings[room] += 1;
+        occupied.push(Reverse((finishes_at, room)));
+    }
+
+    bookings
+        .iter()
+        .enumerate()
+        .max_by_key(|&(room, &count)| (count, Reverse(room)))
+        .map(|(room, _)| room)
+}
+
 /// Non-overlapping Intervals
 ///
 /// Pattern: greedy by earliest end.
