@@ -3,7 +3,7 @@ use rust_algorithms::patterns::dynamic_programming::{
     distinct_subsequences, edit_distance, house_robber, house_robber_circular, house_robber_tree,
     longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
     max_profit_with_cooldown, maximum_product_subarray, min_cost_climbing_stairs, minimum_path_sum,
-    target_sum_ways, unique_paths, word_break,
+    number_of_longest_increasing_subsequences, target_sum_ways, unique_paths, word_break,
 };
 use rust_algorithms::patterns::trees::tree_from_level_order;
 
@@ -98,6 +98,23 @@ fn longest_increasing_subsequence_returns_best_length() {
 #[test]
 fn longest_increasing_subsequence_handles_decreasing_input() {
     assert_eq!(longest_increasing_subsequence(vec![5, 4, 3, 2, 1]), 1);
+}
+
+#[test]
+fn number_of_longest_increasing_subsequences_counts_distinct_optimal_paths() {
+    assert_eq!(
+        number_of_longest_increasing_subsequences(vec![1, 3, 5, 4, 7]),
+        2
+    );
+}
+
+#[test]
+fn number_of_longest_increasing_subsequences_handles_duplicates_and_empty_input() {
+    assert_eq!(
+        number_of_longest_increasing_subsequences(vec![2, 2, 2, 2, 2]),
+        5
+    );
+    assert_eq!(number_of_longest_increasing_subsequences(Vec::new()), 0);
 }
 
 #[test]
