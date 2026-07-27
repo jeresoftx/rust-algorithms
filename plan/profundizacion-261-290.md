@@ -99,6 +99,7 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | 264: Shortest Subarray with Sum at Least K | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #66, función `shortest_subarray_at_least_k` y tests de negativos, ausencia y ventana mínima. |
 | 265: Minimum Cost to Connect Sticks | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #68, función `minimum_cost_to_connect_sticks` y tests de caso típico, extremos y repetidos. |
 | 268: Kth Smallest Element in a Sorted Matrix | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #72, función `kth_smallest_in_sorted_matrix` y tests de conteo, bordes y matriz mínima. |
+| 270: Minimum Days to Make M Bouquets | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #73, función `minimum_days_to_make_bouquets` y tests de día mínimo, imposibilidad y rachas. |
 | 266: Reorganize String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #70, función `reorganize_string` y tests de reorganización posible, imposible y vacío. |
 
 ## Distribución de señal

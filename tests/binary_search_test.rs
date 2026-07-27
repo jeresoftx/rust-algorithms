@@ -1,7 +1,7 @@
 use rust_algorithms::patterns::binary_search::{
     arrange_coins, binary_search, find_min_rotated, find_peak_element, min_eating_speed,
-    search_insert, search_matrix, search_range, search_rotated, search_rotated_with_duplicates,
-    ship_within_days,
+    minimum_days_to_make_bouquets, search_insert, search_matrix, search_range, search_rotated,
+    search_rotated_with_duplicates, ship_within_days,
 };
 
 #[test]
@@ -122,6 +122,26 @@ fn ship_within_days_handles_tight_single_day_deadline() {
 #[test]
 fn ship_within_days_returns_zero_for_empty_weights() {
     assert_eq!(ship_within_days(vec![], 3), 0);
+}
+
+#[test]
+fn minimum_days_to_make_bouquets_finds_earliest_feasible_day() {
+    assert_eq!(
+        minimum_days_to_make_bouquets(&[1, 10, 3, 10, 2], 3, 1),
+        Some(3)
+    );
+}
+
+#[test]
+fn minimum_days_to_make_bouquets_handles_impossible_and_consecutive_runs() {
+    assert_eq!(
+        minimum_days_to_make_bouquets(&[1, 10, 3, 10, 2], 3, 2),
+        None
+    );
+    assert_eq!(
+        minimum_days_to_make_bouquets(&[7, 7, 7, 7, 12, 7, 7], 2, 3),
+        Some(12)
+    );
 }
 
 #[test]
