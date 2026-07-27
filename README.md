@@ -176,6 +176,7 @@ Planes locales:
 - [Profundización 291-315](plan/profundizacion-291-315.md)
 - [Profundización 316-330](plan/profundizacion-316-330.md)
 - [Cierre 331-360](plan/cierre-331-360.md)
+- [Cierre 361-400](plan/cierre-361-400.md)
 - [Guía de explicación avanzada para simulacros](notes/explicacion-avanzada-trade-offs.md)
 - [Cierre del hito de 140 problemas](plan/cierre-hito-140.md)
 - [Cierre del hito de 190 problemas](plan/cierre-hito-190.md)
