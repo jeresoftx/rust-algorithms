@@ -99,6 +99,9 @@ La puerta de entrada para aceptar o descartar candidatos vive en
 La distribución por dificultad y familia vive en
 [`matriz-cobertura-400.md`](./matriz-cobertura-400.md).
 
+El flujo operativo para cada issue y PR vive en
+[`plantilla-bloque-autonomo-191-plus.md`](./plantilla-bloque-autonomo-191-plus.md).
+
 ## Reglas para avanzar
 
 - Cada bloque debe entrar por un issue asignado a `jeresoftx`, con milestone,

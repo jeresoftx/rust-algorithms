@@ -103,6 +103,7 @@ plan/
   estandar-rfc-0001.md
   horizonte-400.md
   matriz-cobertura-400.md
+  plantilla-bloque-autonomo-191-plus.md
   plan-alcance-avanzado.md
   plan-algoritmos-rust.md
 ```
@@ -164,6 +165,7 @@ Planes locales:
 - [Horizonte 400](plan/horizonte-400.md)
 - [Criterios de selección para problemas 191+](plan/criterios-seleccion-191-plus.md)
 - [Matriz de cobertura Easy, Medium y Hard](plan/matriz-cobertura-400.md)
+- [Plantilla de bloque autónomo para problemas 191+](plan/plantilla-bloque-autonomo-191-plus.md)
 - [Cierre del hito de 140 problemas](plan/cierre-hito-140.md)
 - [Cierre del hito de 190 problemas](plan/cierre-hito-190.md)
 
