@@ -108,6 +108,32 @@ pub fn is_subsequence(subsequence: &str, text: &str) -> bool {
     false
 }
 
+/// Merge Sorted Array
+///
+/// Pattern: two pointers from the end.
+/// Idea: fill the destination from right to left, so values from its sorted
+/// prefix are not overwritten before they are compared.
+///
+/// Time: O(n + m)
+/// Space: O(1) extra space.
+pub fn merge_sorted_array(destination: &mut [i32], left_len: usize, source: &[i32]) {
+    let mut write = destination.len();
+    let mut left = left_len;
+    let mut right = source.len();
+
+    while right > 0 {
+        write -= 1;
+
+        if left > 0 && destination[left - 1] > source[right - 1] {
+            left -= 1;
+            destination[write] = destination[left];
+        } else {
+            right -= 1;
+            destination[write] = source[right];
+        }
+    }
+}
+
 /// 3Sum
 ///
 /// Pattern: sort + two pointers.
