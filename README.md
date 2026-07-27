@@ -100,6 +100,7 @@ notes/
   mistakes.md
 plan/
   estandar-rfc-0001.md
+  horizonte-400.md
   plan-alcance-avanzado.md
   plan-algoritmos-rust.md
 ```
@@ -158,6 +159,7 @@ Planes locales:
 
 - [Plan base de algoritmos en Rust](plan/plan-algoritmos-rust.md)
 - [Plan de alcance avanzado](plan/plan-alcance-avanzado.md)
+- [Horizonte 400](plan/horizonte-400.md)
 - [Cierre del hito de 140 problemas](plan/cierre-hito-140.md)
 - [Cierre del hito de 190 problemas](plan/cierre-hito-190.md)
 
@@ -189,7 +191,8 @@ Páginas destacadas:
 - Semana documentada: 27-28
 - Problemas implementados: 190
 - Tests automatizados: 454 pruebas deterministas/property + 9 doctests
-- Ruta avanzada: hito 190 completado; repeticiones personales fuera del avance autónomo
+- Ruta avanzada: hito 190 completado; horizonte 400 documentado como plan
+  opcional futuro
 - Lenguaje: Rust
 
 ## Benchmarks y Property Testing

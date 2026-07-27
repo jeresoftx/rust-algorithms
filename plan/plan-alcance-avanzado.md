@@ -46,7 +46,9 @@ El plan base sigue siendo el núcleo. La expansión agrega una ruta gradual:
 | Avanzado completo | 190 | Segment tree, Fenwick, strings avanzados y MST |
 | Largo plazo | 260+ | Problemas difíciles selectivos y simulacros mixtos |
 
-La meta de 400 problemas queda como horizonte opcional de largo plazo. El hito de 190 problemas bien probados y documentados quedó completado.
+La meta de 400 problemas queda como horizonte opcional de largo plazo y vive en
+[`horizonte-400.md`](./horizonte-400.md). El hito de 190 problemas bien probados
+y documentados quedó completado.
 
 El hito mínimo de 140 problemas ya quedó cerrado. El hito de 190 problemas también quedó completado y está documentado en `plan/cierre-hito-190.md`.
 

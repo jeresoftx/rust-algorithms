@@ -26,7 +26,16 @@ doc-comments, benchmarks y property testing donde apliquen.
 El checklist de esa brecha vive en
 [`plan/estandar-rfc-0001.md`](plan/estandar-rfc-0001.md).
 
+## Horizonte 400
+
+El borrador local `plan/DSA_Google_Study_Plan.md` quedó absorbido como horizonte
+futuro en [`plan/horizonte-400.md`](plan/horizonte-400.md). Ese horizonte no
+reemplaza el plan base ni cambia el estado actual del repo: solo registra una
+ruta opcional para crecer de 190 a 400 problemas mediante milestones, issues y
+PRs revisables.
+
 ## Fuera de alcance por ahora
 
 Problemas 191+, una nueva fase temática o cambios de fondo al plan de estudio no
-forman parte de la alineación actual; se deciden aparte.
+forman parte de la alineación actual; se deciden aparte desde el Project
+[`rust-algorithms`](https://github.com/users/jeresoftx/projects/5).
