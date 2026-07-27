@@ -108,6 +108,7 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | 281: Russian Doll Envelopes | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #85, función `max_russian_doll_envelopes` y tests de anidamiento, empate de ancho y entrada vacía. |
 | 282: Longest Increasing Path in a Matrix | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #88, función `longest_increasing_path` y tests de memoización, matriz mínima e irregularidad. |
 | 283: Word Ladder | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #89, función `word_ladder_length` y tests de ruta mínima y destino ausente. |
+| 287: Minimum Genetic Mutation | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #92, función `minimum_genetic_mutation` y tests de ruta mínima y banco ausente. |
 | 266: Reorganize String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #70, función `reorganize_string` y tests de reorganización posible, imposible y vacío. |
 
 ## Distribución de señal

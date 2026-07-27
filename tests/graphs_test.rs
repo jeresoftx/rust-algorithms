@@ -1,8 +1,9 @@
 use rust_algorithms::patterns::graphs::{
     accounts_merge, alien_order, can_finish, clone_graph, count_connected_components,
     evaluate_division, find_circle_num, find_course_order, graph_valid_tree, is_bipartite,
-    max_area_of_island, number_of_islands, oranges_rotting, pacific_atlantic, possible_bipartition,
-    redundant_connection, walls_and_gates, word_ladder_length,
+    max_area_of_island, minimum_genetic_mutation, number_of_islands, oranges_rotting,
+    pacific_atlantic, possible_bipartition, redundant_connection, walls_and_gates,
+    word_ladder_length,
 };
 
 #[test]
@@ -32,6 +33,19 @@ fn word_ladder_length_finds_the_shortest_transformation() {
         word_ladder_length("hit", "cog", &["hot", "dot", "dog"]),
         None
     );
+}
+
+#[test]
+fn minimum_genetic_mutation_finds_shortest_valid_sequence() {
+    assert_eq!(
+        minimum_genetic_mutation(
+            "AACCGGTT",
+            "AAACGGTA",
+            &["AACCGGTA", "AACCGCTA", "AAACGGTA"]
+        ),
+        Some(2)
+    );
+    assert_eq!(minimum_genetic_mutation("AACCGGTT", "AACCGGTA", &[]), None);
 }
 
 #[test]
