@@ -124,6 +124,7 @@ Cada candidato se ejecutará en un PR posterior con:
 | 198: Baseball Game | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #39, función `baseball_game` y tests de historial compuesto, operaciones y entradas inválidas. |
 | 199: Remove Duplicates from Sorted Array II | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #44, función `remove_duplicates_sorted_at_most_twice` y tests de repetidos, cortos y distintos. |
 | 200: Sort Colors | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #43, función `sort_colors` y tests de partición, repetidos y entradas mínimas. |
+| 202: Continuous Subarray Sum | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #48, función `continuous_subarray_sum` y tests de múltiplo, longitud mínima, negativos y divisor cero. |
 
 ## Relación con el milestone
 

@@ -1,7 +1,7 @@
 use rust_algorithms::patterns::hashing::{
-    contains_duplicate, first_unique_char, group_anagrams, is_isomorphic, longest_consecutive,
-    product_except_self, subarray_sum_equals_k, top_k_frequent, two_sum, valid_anagram,
-    word_pattern,
+    contains_duplicate, continuous_subarray_sum, first_unique_char, group_anagrams, is_isomorphic,
+    longest_consecutive, product_except_self, subarray_sum_equals_k, top_k_frequent, two_sum,
+    valid_anagram, word_pattern,
 };
 
 #[test]
@@ -207,4 +207,26 @@ fn subarray_sum_equals_k_returns_zero_when_no_subarray_matches() {
     let result = subarray_sum_equals_k(vec![2, 4, 6], 5);
 
     assert_eq!(result, 0);
+}
+
+#[test]
+fn continuous_subarray_sum_accepts_a_multiple_from_two_or_more_values() {
+    assert!(continuous_subarray_sum(vec![23, 2, 4, 6, 7], 6));
+}
+
+#[test]
+fn continuous_subarray_sum_rejects_a_single_value_and_absent_multiple() {
+    assert!(!continuous_subarray_sum(vec![6], 6));
+    assert!(!continuous_subarray_sum(vec![23, 2, 6, 4, 7], 13));
+}
+
+#[test]
+fn continuous_subarray_sum_works_with_negative_values() {
+    assert!(continuous_subarray_sum(vec![-1, 1, 5], 5));
+}
+
+#[test]
+fn continuous_subarray_sum_handles_zero_divisor_as_zero_sum_target() {
+    assert!(continuous_subarray_sum(vec![0, 0], 0));
+    assert!(!continuous_subarray_sum(vec![1, 2, 3], 0));
 }
