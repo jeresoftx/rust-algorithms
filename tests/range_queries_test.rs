@@ -1,9 +1,31 @@
 use rust_algorithms::patterns::range_queries::{
     car_pooling, corporate_flight_bookings, count_range_sum, count_smaller_numbers_after_self,
-    queue_reconstruction_by_height, range_addition, reverse_pairs, sliding_window_maximum,
-    DifferenceArray, FenwickTree, LazySegmentTree, MyCalendar, MyCalendarTwo, RangeSumQuery,
-    RangeSumQuery2D, SegmentTree, SnapshotArray,
+    pivot_index, queue_reconstruction_by_height, range_addition, reverse_pairs,
+    sliding_window_maximum, DifferenceArray, FenwickTree, LazySegmentTree, MyCalendar,
+    MyCalendarTwo, RangeSumQuery, RangeSumQuery2D, SegmentTree, SnapshotArray,
 };
+
+#[test]
+fn pivot_index_returns_first_balanced_middle_index() {
+    assert_eq!(pivot_index(&[1, 7, 3, 6, 5, 6]), Some(3));
+}
+
+#[test]
+fn pivot_index_handles_first_and_last_positions() {
+    assert_eq!(pivot_index(&[0, 1, -1]), Some(0));
+    assert_eq!(pivot_index(&[-1, 1, 0]), Some(2));
+}
+
+#[test]
+fn pivot_index_returns_none_when_sides_never_balance() {
+    assert_eq!(pivot_index(&[1, 2, 3]), None);
+}
+
+#[test]
+fn pivot_index_handles_empty_and_negative_values() {
+    assert_eq!(pivot_index(&[]), None);
+    assert_eq!(pivot_index(&[-1, -1, -1, 0, 1, 1]), Some(0));
+}
 
 #[test]
 fn fenwick_tree_returns_prefix_and_range_sums() {
