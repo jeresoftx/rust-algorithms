@@ -1,6 +1,6 @@
 use rust_algorithms::patterns::matrices::{
-    game_of_life, is_valid_sudoku, kth_smallest_in_sorted_matrix, maximal_square, rotate_image,
-    search_matrix_ii, set_matrix_zeroes, spiral_order, RandomizedSet,
+    game_of_life, is_valid_sudoku, kth_smallest_in_sorted_matrix, longest_increasing_path,
+    maximal_square, rotate_image, search_matrix_ii, set_matrix_zeroes, spiral_order, RandomizedSet,
 };
 
 #[test]
@@ -31,6 +31,20 @@ fn kth_smallest_in_sorted_matrix_handles_edges_and_minimal_matrix() {
     assert_eq!(kth_smallest_in_sorted_matrix(&matrix, 1), Some(1));
     assert_eq!(kth_smallest_in_sorted_matrix(&matrix, 4), Some(3));
     assert_eq!(kth_smallest_in_sorted_matrix(&[vec![7]], 1), Some(7));
+}
+
+#[test]
+fn longest_increasing_path_reuses_memoized_cell_paths() {
+    assert_eq!(
+        longest_increasing_path(&[vec![9, 9, 4], vec![6, 6, 8], vec![2, 1, 1]]),
+        Some(4)
+    );
+}
+
+#[test]
+fn longest_increasing_path_handles_minimal_and_irregular_matrices() {
+    assert_eq!(longest_increasing_path(&[vec![7]]), Some(1));
+    assert_eq!(longest_increasing_path(&[vec![1], vec![2, 3]]), None);
 }
 
 #[test]
