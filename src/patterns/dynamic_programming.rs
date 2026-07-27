@@ -223,6 +223,33 @@ pub fn number_of_longest_increasing_subsequences(nums: Vec<i32>) -> i32 {
         .sum()
 }
 
+/// Russian Doll Envelopes.
+///
+/// Pattern: sort plus longest increasing subsequence.
+/// Idea: equal widths must sort by descending height so the strict LIS over
+/// heights cannot incorrectly nest envelopes with the same width.
+///
+/// Time: O(n log n).
+/// Space: O(n).
+pub fn max_russian_doll_envelopes(mut envelopes: Vec<(i32, i32)>) -> usize {
+    envelopes
+        .sort_unstable_by(|left, right| left.0.cmp(&right.0).then_with(|| right.1.cmp(&left.1)));
+
+    let mut tails = Vec::new();
+    for (_, height) in envelopes {
+        match tails.binary_search(&height) {
+            Ok(index) | Err(index) => {
+                if index == tails.len() {
+                    tails.push(height);
+                } else {
+                    tails[index] = height;
+                }
+            }
+        }
+    }
+    tails.len()
+}
+
 /// Word Break
 ///
 /// Pattern: decision DP over prefixes.

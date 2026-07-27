@@ -2,8 +2,9 @@ use rust_algorithms::patterns::dynamic_programming::{
     can_partition, climb_stairs, coin_change, combination_sum_iv, decode_ways,
     distinct_subsequences, edit_distance, house_robber, house_robber_circular, house_robber_tree,
     longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
-    max_profit_with_cooldown, maximum_product_subarray, min_cost_climbing_stairs, minimum_path_sum,
-    number_of_longest_increasing_subsequences, target_sum_ways, unique_paths, word_break,
+    max_profit_with_cooldown, max_russian_doll_envelopes, maximum_product_subarray,
+    min_cost_climbing_stairs, minimum_path_sum, number_of_longest_increasing_subsequences,
+    target_sum_ways, unique_paths, word_break,
 };
 use rust_algorithms::patterns::trees::tree_from_level_order;
 
@@ -115,6 +116,20 @@ fn number_of_longest_increasing_subsequences_handles_duplicates_and_empty_input(
         5
     );
     assert_eq!(number_of_longest_increasing_subsequences(Vec::new()), 0);
+}
+
+#[test]
+fn max_russian_doll_envelopes_uses_descending_height_for_equal_widths() {
+    assert_eq!(
+        max_russian_doll_envelopes(vec![(5, 4), (6, 4), (6, 7), (2, 3)]),
+        3
+    );
+    assert_eq!(max_russian_doll_envelopes(vec![(1, 1), (1, 2), (1, 3)]), 1);
+}
+
+#[test]
+fn max_russian_doll_envelopes_handles_empty_input() {
+    assert_eq!(max_russian_doll_envelopes(Vec::new()), 0);
 }
 
 #[test]

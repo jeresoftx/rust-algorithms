@@ -105,6 +105,7 @@ simple deja de ser suficiente. El estado inicial de todos los candidatos es
 | 275: Meeting Rooms III | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #79, función `most_booked_room` y tests de retraso, desempate por índice y cero salas. |
 | 277: My Calendar III | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #82, estructura `MyCalendarThree` y tests de concurrencia, límites semiabiertos e intervalos inválidos. |
 | 280: Number of Longest Increasing Subsequence | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #84, función `number_of_longest_increasing_subsequences` y tests de rutas óptimas, duplicados y entrada vacía. |
+| 281: Russian Doll Envelopes | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #85, función `max_russian_doll_envelopes` y tests de anidamiento, empate de ancho y entrada vacía. |
 | 266: Reorganize String | Implementado y probado; pendiente de revisión humana como contenido educativo. | Issue #70, función `reorganize_string` y tests de reorganización posible, imposible y vacío. |
 
 ## Distribución de señal
