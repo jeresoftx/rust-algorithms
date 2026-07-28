@@ -2,8 +2,8 @@ use rust_algorithms::patterns::weighted_graphs::{
     bellman_ford_shortest_paths, cheapest_flight_within_k_stops, critical_connections,
     dijkstra_shortest_paths, find_critical_and_pseudo_critical_edges, floyd_warshall_all_pairs,
     kruskal_minimum_spanning_tree_weight, min_cost_connect_points, minimum_effort_path,
-    network_delay_time, prim_minimum_spanning_tree_weight, strongly_connected_components,
-    swim_in_rising_water, BellmanFordError,
+    minimum_obstacle_removal, network_delay_time, prim_minimum_spanning_tree_weight,
+    strongly_connected_components, swim_in_rising_water, BellmanFordError,
 };
 
 #[test]
@@ -20,6 +20,15 @@ fn dijkstra_returns_shortest_paths_from_start() {
 fn swim_in_rising_water_finds_the_lowest_reachable_level() {
     assert_eq!(swim_in_rising_water(vec![vec![0, 2], vec![1, 3]]), 3);
     assert_eq!(swim_in_rising_water(Vec::new()), 0);
+}
+
+#[test]
+fn minimum_obstacle_removal_prefers_zero_cost_frontiers() {
+    assert_eq!(
+        minimum_obstacle_removal(vec![vec![0, 1, 1], vec![1, 1, 0], vec![1, 1, 0]]),
+        2
+    );
+    assert_eq!(minimum_obstacle_removal(Vec::new()), 0);
 }
 
 #[test]

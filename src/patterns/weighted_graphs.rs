@@ -10,7 +10,7 @@
 //! ```
 
 use std::cmp::Reverse;
-use std::collections::BinaryHeap;
+use std::collections::{BinaryHeap, VecDeque};
 
 const GRID_DIRECTIONS: [(isize, isize); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
@@ -37,6 +37,49 @@ pub fn swim_in_rising_water(grid: Vec<Vec<i32>>) -> i32 {
         }
     }
     low
+}
+
+/// Removes the fewest obstacles needed to reach the bottom-right cell.
+///
+/// Pattern: 0-1 BFS, where free moves remain at the front of the deque.
+/// Time: O(rows * columns). Space: O(rows * columns).
+pub fn minimum_obstacle_removal(grid: Vec<Vec<i32>>) -> i32 {
+    let Some(width) = grid.first().map(Vec::len) else {
+        return 0;
+    };
+    if width == 0 || grid.iter().any(|row| row.len() != width) {
+        return 0;
+    }
+    let height = grid.len();
+    let mut distances = vec![vec![i32::MAX; width]; height];
+    let mut queue = VecDeque::from([(0, 0)]);
+    distances[0][0] = 0;
+    while let Some((row, column)) = queue.pop_front() {
+        let distance = distances[row][column];
+        for (delta_row, delta_column) in GRID_DIRECTIONS {
+            let next_row = row as isize + delta_row;
+            let next_column = column as isize + delta_column;
+            if next_row < 0
+                || next_column < 0
+                || next_row as usize >= height
+                || next_column as usize >= width
+            {
+                continue;
+            }
+            let (next_row, next_column) = (next_row as usize, next_column as usize);
+            let next_distance = distance + grid[next_row][next_column];
+            if next_distance >= distances[next_row][next_column] {
+                continue;
+            }
+            distances[next_row][next_column] = next_distance;
+            if grid[next_row][next_column] == 0 {
+                queue.push_front((next_row, next_column));
+            } else {
+                queue.push_back((next_row, next_column));
+            }
+        }
+    }
+    distances[height - 1][width - 1]
 }
 
 fn grid_reachable_at_level(grid: &[Vec<i32>], level: i32) -> bool {
