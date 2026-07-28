@@ -4,7 +4,7 @@ use rust_algorithms::patterns::dynamic_programming::{
     longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
     max_profit_with_cooldown, max_russian_doll_envelopes, maximum_product_subarray,
     min_cost_climbing_stairs, minimum_path_sum, number_of_longest_increasing_subsequences,
-    regular_expression_matches, target_sum_ways, unique_paths, word_break,
+    regular_expression_matches, target_sum_ways, unique_paths, wildcard_matches, word_break,
 };
 use rust_algorithms::patterns::trees::tree_from_level_order;
 
@@ -18,6 +18,12 @@ fn climb_stairs_counts_ways_to_reach_top() {
 fn regular_expression_matches_handles_dot_and_star() {
     assert!(regular_expression_matches("aab", "c*a*b"));
     assert!(!regular_expression_matches("mississippi", "mis*is*p*."));
+}
+
+#[test]
+fn wildcard_matches_handles_question_and_star() {
+    assert!(wildcard_matches("adceb", "*a*b"));
+    assert!(!wildcard_matches("acdcb", "a*c?b"));
 }
 
 #[test]
