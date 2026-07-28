@@ -326,3 +326,25 @@ pub fn continuous_subarray_sum(nums: Vec<i32>, k: i32) -> bool {
 
     false
 }
+
+/// First Missing Positive.
+///
+/// Pattern: in-place hashing by index.
+/// Time: O(n). Space: O(1) beyond the input buffer.
+pub fn first_missing_positive(mut values: Vec<i32>) -> i32 {
+    let len = values.len();
+    for index in 0..len {
+        while values[index] > 0
+            && (values[index] as usize) <= len
+            && values[values[index] as usize - 1] != values[index]
+        {
+            let target = values[index] as usize - 1;
+            values.swap(index, target);
+        }
+    }
+    values
+        .iter()
+        .enumerate()
+        .find_map(|(index, &value)| (value != index as i32 + 1).then_some(index as i32 + 1))
+        .unwrap_or(len as i32 + 1)
+}

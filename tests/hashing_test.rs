@@ -1,7 +1,7 @@
 use rust_algorithms::patterns::hashing::{
-    contains_duplicate, continuous_subarray_sum, first_unique_char, group_anagrams, is_isomorphic,
-    longest_consecutive, product_except_self, subarray_sum_equals_k, top_k_frequent, two_sum,
-    valid_anagram, word_pattern,
+    contains_duplicate, continuous_subarray_sum, first_missing_positive, first_unique_char,
+    group_anagrams, is_isomorphic, longest_consecutive, product_except_self, subarray_sum_equals_k,
+    top_k_frequent, two_sum, valid_anagram, word_pattern,
 };
 
 #[test]
@@ -11,6 +11,12 @@ fn two_sum_returns_indices_for_pair_that_adds_to_target() {
     let result = two_sum(nums, 9);
 
     assert_eq!(result, Some((0, 1)));
+}
+
+#[test]
+fn first_missing_positive_places_values_at_their_indexes() {
+    assert_eq!(first_missing_positive(vec![3, 4, -1, 1]), 2);
+    assert_eq!(first_missing_positive(vec![1, 2, 0]), 3);
 }
 
 #[test]
