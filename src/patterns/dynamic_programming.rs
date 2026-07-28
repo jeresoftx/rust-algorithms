@@ -152,6 +152,54 @@ pub fn strange_printer_turns(text: &str) -> usize {
     turns[0][characters.len() - 1]
 }
 
+/// Minimum cuts needed to partition a string into palindromes.
+///
+/// Pattern: center expansion with dynamic programming over valid prefixes.
+/// Time: O(n^2). Space: O(n).
+pub fn minimum_palindrome_partition_cuts(text: &str) -> usize {
+    let characters = text.as_bytes();
+    if characters.is_empty() {
+        return 0;
+    }
+
+    let mut partitions = (0..=characters.len()).collect::<Vec<_>>();
+
+    for center in 0..characters.len() {
+        extend_palindrome_partition(
+            characters,
+            &mut partitions,
+            center as isize,
+            center as isize,
+        );
+        extend_palindrome_partition(
+            characters,
+            &mut partitions,
+            center as isize,
+            center as isize + 1,
+        );
+    }
+
+    partitions[characters.len()] - 1
+}
+
+fn extend_palindrome_partition(
+    characters: &[u8],
+    partitions: &mut [usize],
+    mut left: isize,
+    mut right: isize,
+) {
+    while left >= 0
+        && right < characters.len() as isize
+        && characters[left as usize] == characters[right as usize]
+    {
+        let prefix_parts = partitions[left as usize] + 1;
+        let right_boundary = right as usize + 1;
+        partitions[right_boundary] = partitions[right_boundary].min(prefix_parts);
+        left -= 1;
+        right += 1;
+    }
+}
+
 /// House Robber
 ///
 /// Pattern: 1D decision DP with state compression.
