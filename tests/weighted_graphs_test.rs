@@ -3,7 +3,7 @@ use rust_algorithms::patterns::weighted_graphs::{
     dijkstra_shortest_paths, find_critical_and_pseudo_critical_edges, floyd_warshall_all_pairs,
     kruskal_minimum_spanning_tree_weight, min_cost_connect_points, minimum_effort_path,
     network_delay_time, prim_minimum_spanning_tree_weight, strongly_connected_components,
-    BellmanFordError,
+    swim_in_rising_water, BellmanFordError,
 };
 
 #[test]
@@ -14,6 +14,12 @@ fn dijkstra_returns_shortest_paths_from_start() {
         dijkstra_shortest_paths(4, &edges, 0),
         vec![Some(0), Some(3), Some(1), Some(4)]
     );
+}
+
+#[test]
+fn swim_in_rising_water_finds_the_lowest_reachable_level() {
+    assert_eq!(swim_in_rising_water(vec![vec![0, 2], vec![1, 3]]), 3);
+    assert_eq!(swim_in_rising_water(Vec::new()), 0);
 }
 
 #[test]
