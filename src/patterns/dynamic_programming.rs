@@ -182,6 +182,29 @@ pub fn minimum_palindrome_partition_cuts(text: &str) -> usize {
     partitions[characters.len()] - 1
 }
 
+/// Maximum profit from non-overlapping jobs.
+///
+/// Pattern: sort by end time, then combine dynamic programming with binary search.
+/// Time: O(n log n). Space: O(n).
+pub fn maximum_job_profit(start_times: Vec<i32>, end_times: Vec<i32>, profits: Vec<i32>) -> i32 {
+    let mut jobs = start_times
+        .into_iter()
+        .zip(end_times)
+        .zip(profits)
+        .map(|((start, end), profit)| (start, end, profit))
+        .collect::<Vec<_>>();
+    jobs.sort_unstable_by_key(|&(_, end, _)| end);
+
+    let mut best = vec![0; jobs.len() + 1];
+    for index in 0..jobs.len() {
+        let (start, _, profit) = jobs[index];
+        let compatible = jobs[..index].partition_point(|&(_, end, _)| end <= start);
+        best[index + 1] = best[index].max(best[compatible] + profit);
+    }
+
+    best[jobs.len()]
+}
+
 fn extend_palindrome_partition(
     characters: &[u8],
     partitions: &mut [usize],
