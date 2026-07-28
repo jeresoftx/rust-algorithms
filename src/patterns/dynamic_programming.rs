@@ -85,6 +85,35 @@ pub fn wildcard_matches(text: &str, pattern: &str) -> bool {
     dp[text.len()][pattern.len()]
 }
 
+/// Burst Balloons with interval dynamic programming.
+///
+/// Pattern: choose the last balloon burst in each open interval.
+/// Time: O(n^3). Space: O(n^2).
+pub fn burst_balloons(nums: Vec<i32>) -> i32 {
+    let mut values = Vec::with_capacity(nums.len() + 2);
+    values.push(1);
+    values.extend(nums);
+    values.push(1);
+
+    let mut best = vec![vec![0; values.len()]; values.len()];
+
+    for width in 2..values.len() {
+        for left in 0..values.len() - width {
+            let right = left + width;
+
+            for last in left + 1..right {
+                best[left][right] = best[left][right].max(
+                    best[left][last]
+                        + values[left] * values[last] * values[right]
+                        + best[last][right],
+                );
+            }
+        }
+    }
+
+    best[0][values.len() - 1]
+}
+
 /// House Robber
 ///
 /// Pattern: 1D decision DP with state compression.
