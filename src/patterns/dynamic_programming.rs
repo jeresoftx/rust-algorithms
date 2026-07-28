@@ -56,6 +56,35 @@ pub fn regular_expression_matches(text: &str, pattern: &str) -> bool {
     dp[text.len()][pattern.len()]
 }
 
+/// Wildcard Matching with `?` and `*`.
+///
+/// Pattern: two-dimensional dynamic programming.
+/// Time: O(text * pattern). Space: O(text * pattern).
+pub fn wildcard_matches(text: &str, pattern: &str) -> bool {
+    let text = text.as_bytes();
+    let pattern = pattern.as_bytes();
+    let mut dp = vec![vec![false; pattern.len() + 1]; text.len() + 1];
+    dp[0][0] = true;
+
+    for column in 1..=pattern.len() {
+        if pattern[column - 1] == b'*' {
+            dp[0][column] = dp[0][column - 1];
+        }
+    }
+
+    for row in 1..=text.len() {
+        for column in 1..=pattern.len() {
+            dp[row][column] = match pattern[column - 1] {
+                b'*' => dp[row][column - 1] || dp[row - 1][column],
+                b'?' => dp[row - 1][column - 1],
+                character => character == text[row - 1] && dp[row - 1][column - 1],
+            };
+        }
+    }
+
+    dp[text.len()][pattern.len()]
+}
+
 /// House Robber
 ///
 /// Pattern: 1D decision DP with state compression.
