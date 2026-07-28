@@ -85,6 +85,36 @@ pub fn max_path_sum(root: TreeLink) -> Option<i32> {
     Some(best)
 }
 
+/// Count Complete Tree Nodes.
+///
+/// Pattern: compare leftmost and rightmost heights.
+/// Time: O(log^2 n). Space: O(log n).
+pub fn count_complete_tree_nodes(root: TreeLink) -> usize {
+    fn height(mut node: TreeLink, left: bool) -> usize {
+        let mut result = 0;
+        while let Some(current) = node {
+            result += 1;
+            node = if left {
+                current.borrow().left.clone()
+            } else {
+                current.borrow().right.clone()
+            };
+        }
+        result
+    }
+    let Some(node) = root else {
+        return 0;
+    };
+    let left_height = height(Some(node.clone()), true);
+    let right_height = height(Some(node.clone()), false);
+    if left_height == right_height {
+        (1_usize << left_height) - 1
+    } else {
+        1 + count_complete_tree_nodes(node.borrow().left.clone())
+            + count_complete_tree_nodes(node.borrow().right.clone())
+    }
+}
+
 /// Convert a binary tree to compact level-order values.
 ///
 /// Time: O(n)

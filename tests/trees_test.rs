@@ -1,9 +1,9 @@
 use rust_algorithms::patterns::trees::{
-    build_tree_inorder_postorder, build_tree_preorder_inorder, deserialize_tree,
-    diameter_of_binary_tree, has_path_sum, invert_tree, is_balanced, is_same_tree, is_subtree,
-    is_valid_bst, kth_smallest_bst, level_order, lowest_common_ancestor_bst, max_depth,
-    max_path_sum, path_sum_ii, right_side_view, serialize_tree, tree_from_level_order,
-    tree_to_level_order,
+    build_tree_inorder_postorder, build_tree_preorder_inorder, count_complete_tree_nodes,
+    deserialize_tree, diameter_of_binary_tree, has_path_sum, invert_tree, is_balanced,
+    is_same_tree, is_subtree, is_valid_bst, kth_smallest_bst, level_order,
+    lowest_common_ancestor_bst, max_depth, max_path_sum, path_sum_ii, right_side_view,
+    serialize_tree, tree_from_level_order, tree_to_level_order,
 };
 
 #[test]
@@ -41,6 +41,22 @@ fn max_path_sum_can_join_both_child_gains() {
         Some(42)
     );
     assert_eq!(max_path_sum(None), None);
+}
+
+#[test]
+fn count_complete_tree_nodes_uses_perfect_subtree_heights() {
+    assert_eq!(
+        count_complete_tree_nodes(tree_from_level_order(vec![
+            Some(1),
+            Some(2),
+            Some(3),
+            Some(4),
+            Some(5),
+            Some(6)
+        ])),
+        6
+    );
+    assert_eq!(count_complete_tree_nodes(None), 0);
 }
 
 #[test]
