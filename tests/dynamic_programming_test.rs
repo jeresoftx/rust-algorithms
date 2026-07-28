@@ -3,9 +3,9 @@ use rust_algorithms::patterns::dynamic_programming::{
     distinct_subsequences, edit_distance, house_robber, house_robber_circular, house_robber_tree,
     longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
     max_profit_with_cooldown, max_russian_doll_envelopes, maximum_product_subarray,
-    min_cost_climbing_stairs, minimum_path_sum, number_of_longest_increasing_subsequences,
-    regular_expression_matches, strange_printer_turns, target_sum_ways, unique_paths,
-    wildcard_matches, word_break,
+    min_cost_climbing_stairs, minimum_palindrome_partition_cuts, minimum_path_sum,
+    number_of_longest_increasing_subsequences, regular_expression_matches, strange_printer_turns,
+    target_sum_ways, unique_paths, wildcard_matches, word_break,
 };
 use rust_algorithms::patterns::trees::tree_from_level_order;
 
@@ -38,6 +38,13 @@ fn strange_printer_reuses_turns_for_matching_characters() {
     assert_eq!(strange_printer_turns("aaabbb"), 2);
     assert_eq!(strange_printer_turns("aba"), 2);
     assert_eq!(strange_printer_turns(""), 0);
+}
+
+#[test]
+fn minimum_palindrome_partition_cuts_uses_palindromic_suffixes() {
+    assert_eq!(minimum_palindrome_partition_cuts("aab"), 1);
+    assert_eq!(minimum_palindrome_partition_cuts("a"), 0);
+    assert_eq!(minimum_palindrome_partition_cuts(""), 0);
 }
 
 #[test]
