@@ -1,6 +1,31 @@
 use rust_algorithms::patterns::tries::{
-    concatenated_words, find_words, maximum_pair_xor, replace_words, Trie, WordDictionary,
+    concatenated_words, find_words, maximum_pair_xor, replace_words, AutocompleteSystem, Trie,
+    WordDictionary,
 };
+
+#[test]
+fn autocomplete_system_orders_by_frequency_and_learns_confirmed_sentences() {
+    let mut system = AutocompleteSystem::new(
+        vec!["i love you", "island", "ironman", "i love leetcode"],
+        vec![5, 3, 2, 2],
+    );
+
+    assert_eq!(
+        system.input('i'),
+        vec!["i love you", "island", "i love leetcode"]
+    );
+    assert_eq!(system.input(' '), vec!["i love you", "i love leetcode"]);
+    assert!(system.input('a').is_empty());
+    assert!(system.input('#').is_empty());
+    assert_eq!(
+        system.input('i'),
+        vec!["i love you", "island", "i love leetcode"]
+    );
+    assert_eq!(
+        system.input(' '),
+        vec!["i love you", "i love leetcode", "i a"]
+    );
+}
 
 #[test]
 fn maximum_pair_xor_prefers_opposite_high_bits() {
