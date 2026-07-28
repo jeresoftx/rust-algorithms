@@ -1,9 +1,10 @@
 use rust_algorithms::patterns::weighted_graphs::{
     bellman_ford_shortest_paths, cheapest_flight_within_k_stops, critical_connections,
     dijkstra_shortest_paths, find_critical_and_pseudo_critical_edges, floyd_warshall_all_pairs,
-    kruskal_minimum_spanning_tree_weight, min_cost_connect_points, minimum_effort_path,
-    minimum_obstacle_removal, network_delay_time, prim_minimum_spanning_tree_weight,
-    strongly_connected_components, swim_in_rising_water, BellmanFordError,
+    kruskal_minimum_spanning_tree_weight, min_cost_connect_points, minimum_cost_valid_path,
+    minimum_effort_path, minimum_obstacle_removal, network_delay_time,
+    prim_minimum_spanning_tree_weight, strongly_connected_components, swim_in_rising_water,
+    BellmanFordError,
 };
 
 #[test]
@@ -29,6 +30,15 @@ fn minimum_obstacle_removal_prefers_zero_cost_frontiers() {
         2
     );
     assert_eq!(minimum_obstacle_removal(Vec::new()), 0);
+}
+
+#[test]
+fn minimum_cost_valid_path_changes_only_needed_arrows() {
+    assert_eq!(
+        minimum_cost_valid_path(vec![vec![1, 1, 3], vec![3, 2, 2], vec![1, 1, 4]]),
+        0
+    );
+    assert_eq!(minimum_cost_valid_path(Vec::new()), 0);
 }
 
 #[test]
