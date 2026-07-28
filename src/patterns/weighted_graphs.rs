@@ -14,6 +14,63 @@ use std::collections::BinaryHeap;
 
 const GRID_DIRECTIONS: [(isize, isize); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
+/// Finds the lowest water level that connects the top-left and bottom-right cells.
+///
+/// Pattern: binary search on a monotone reachability condition.
+/// Time: O(n^2 log h). Space: O(n^2).
+pub fn swim_in_rising_water(grid: Vec<Vec<i32>>) -> i32 {
+    let Some(width) = grid.first().map(Vec::len) else {
+        return 0;
+    };
+    if width == 0 || grid.iter().any(|row| row.len() != width) {
+        return 0;
+    }
+
+    let mut low = grid[0][0];
+    let mut high = *grid.iter().flatten().max().unwrap_or(&low);
+    while low < high {
+        let level = low + (high - low) / 2;
+        if grid_reachable_at_level(&grid, level) {
+            high = level;
+        } else {
+            low = level + 1;
+        }
+    }
+    low
+}
+
+fn grid_reachable_at_level(grid: &[Vec<i32>], level: i32) -> bool {
+    if grid[0][0] > level {
+        return false;
+    }
+    let height = grid.len();
+    let width = grid[0].len();
+    let mut stack = vec![(0, 0)];
+    let mut visited = vec![vec![false; width]; height];
+    visited[0][0] = true;
+    while let Some((row, column)) = stack.pop() {
+        if row == height - 1 && column == width - 1 {
+            return true;
+        }
+        for (delta_row, delta_column) in GRID_DIRECTIONS {
+            let next_row = row as isize + delta_row;
+            let next_column = column as isize + delta_column;
+            if next_row >= 0
+                && next_column >= 0
+                && (next_row as usize) < height
+                && (next_column as usize) < width
+            {
+                let (next_row, next_column) = (next_row as usize, next_column as usize);
+                if !visited[next_row][next_column] && grid[next_row][next_column] <= level {
+                    visited[next_row][next_column] = true;
+                    stack.push((next_row, next_column));
+                }
+            }
+        }
+    }
+    false
+}
+
 /// Error returned by Bellman-Ford when a reachable negative cycle exists.
 #[derive(Debug, PartialEq, Eq)]
 pub enum BellmanFordError {
