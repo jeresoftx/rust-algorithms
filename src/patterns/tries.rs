@@ -13,6 +13,49 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
+/// Returns the largest XOR obtainable from any pair of non-negative numbers.
+///
+/// Pattern: bit trie that prefers the opposite bit at each position.
+/// Time: O(32n). Space: O(32n).
+pub fn maximum_pair_xor(numbers: &[u32]) -> u32 {
+    if numbers.len() < 2 {
+        return 0;
+    }
+
+    let mut children = vec![[None, None]];
+    for &number in numbers {
+        let mut node = 0;
+        for bit in (0..32).rev() {
+            let branch = ((number >> bit) & 1) as usize;
+            let next = match children[node][branch] {
+                Some(next) => next,
+                None => {
+                    children.push([None, None]);
+                    let next = children.len() - 1;
+                    children[node][branch] = Some(next);
+                    next
+                }
+            };
+            node = next;
+        }
+    }
+
+    numbers.iter().fold(0, |best, &number| {
+        let mut node = 0;
+        let mut candidate = 0;
+        for bit in (0..32).rev() {
+            let branch = ((number >> bit) & 1) as usize;
+            let preferred = 1 - branch;
+            let chooses_preferred = children[node][preferred].is_some();
+            let chosen =
+                children[node][preferred].unwrap_or_else(|| children[node][branch].unwrap());
+            candidate |= u32::from(chooses_preferred) << bit;
+            node = chosen;
+        }
+        best.max(candidate)
+    })
+}
+
 /// Returns words that can be formed by concatenating at least two shorter words.
 pub fn concatenated_words(words: &[&str]) -> Vec<String> {
     let mut ordered = words.to_vec();
