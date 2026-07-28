@@ -64,6 +64,27 @@ pub fn tree_from_level_order(values: Vec<Option<i32>>) -> TreeLink {
     Some(root)
 }
 
+/// Binary Tree Maximum Path Sum.
+///
+/// Pattern: post-order DFS with a global best path.
+/// Time: O(n). Space: O(height).
+pub fn max_path_sum(root: TreeLink) -> Option<i32> {
+    let mut best = i32::MIN;
+    fn gain(node: &TreeLink, best: &mut i32) -> i32 {
+        let Some(node) = node else {
+            return 0;
+        };
+        let node = node.borrow();
+        let left = gain(&node.left, best).max(0);
+        let right = gain(&node.right, best).max(0);
+        *best = (*best).max(node.val + left + right);
+        node.val + left.max(right)
+    }
+    root.as_ref()?;
+    gain(&root, &mut best);
+    Some(best)
+}
+
 /// Convert a binary tree to compact level-order values.
 ///
 /// Time: O(n)
