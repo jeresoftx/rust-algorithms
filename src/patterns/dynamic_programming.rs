@@ -22,6 +22,40 @@ pub fn climb_stairs(n: usize) -> i32 {
     previous
 }
 
+/// Regular Expression Matching with `.` and `*`.
+///
+/// Pattern: two-dimensional dynamic programming.
+/// Time: O(text * pattern). Space: O(text * pattern).
+pub fn regular_expression_matches(text: &str, pattern: &str) -> bool {
+    let text = text.as_bytes();
+    let pattern = pattern.as_bytes();
+    let mut dp = vec![vec![false; pattern.len() + 1]; text.len() + 1];
+    dp[0][0] = true;
+
+    for index in 2..=pattern.len() {
+        if pattern[index - 1] == b'*' {
+            dp[0][index] = dp[0][index - 2];
+        }
+    }
+
+    for row in 1..=text.len() {
+        for column in 1..=pattern.len() {
+            let matches = pattern[column - 1] == b'.' || pattern[column - 1] == text[row - 1];
+
+            if pattern[column - 1] == b'*' && column >= 2 {
+                let repeated_character_matches =
+                    pattern[column - 2] == b'.' || pattern[column - 2] == text[row - 1];
+                dp[row][column] =
+                    dp[row][column - 2] || (repeated_character_matches && dp[row - 1][column]);
+            } else {
+                dp[row][column] = matches && dp[row - 1][column - 1];
+            }
+        }
+    }
+
+    dp[text.len()][pattern.len()]
+}
+
 /// House Robber
 ///
 /// Pattern: 1D decision DP with state compression.
