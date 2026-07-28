@@ -82,6 +82,49 @@ pub fn minimum_obstacle_removal(grid: Vec<Vec<i32>>) -> i32 {
     distances[height - 1][width - 1]
 }
 
+/// Finds the minimum number of arrows to change to reach the bottom-right cell.
+///
+/// Pattern: 0-1 BFS over grid directions.
+/// Time: O(rows * columns). Space: O(rows * columns).
+pub fn minimum_cost_valid_path(grid: Vec<Vec<i32>>) -> i32 {
+    let Some(width) = grid.first().map(Vec::len) else {
+        return 0;
+    };
+    if width == 0 || grid.iter().any(|row| row.len() != width) {
+        return 0;
+    }
+    let height = grid.len();
+    let mut distance = vec![vec![i32::MAX; width]; height];
+    let mut queue = VecDeque::from([(0, 0)]);
+    distance[0][0] = 0;
+    while let Some((row, column)) = queue.pop_front() {
+        for (direction, delta_row, delta_column) in [(3, 1, 0), (4, -1, 0), (1, 0, 1), (2, 0, -1)] {
+            let next_row = row as isize + delta_row;
+            let next_column = column as isize + delta_column;
+            if next_row < 0
+                || next_column < 0
+                || next_row as usize >= height
+                || next_column as usize >= width
+            {
+                continue;
+            }
+            let (next_row, next_column) = (next_row as usize, next_column as usize);
+            let cost = i32::from(grid[row][column] != direction);
+            let next = distance[row][column] + cost;
+            if next >= distance[next_row][next_column] {
+                continue;
+            }
+            distance[next_row][next_column] = next;
+            if cost == 0 {
+                queue.push_front((next_row, next_column));
+            } else {
+                queue.push_back((next_row, next_column));
+            }
+        }
+    }
+    distance[height - 1][width - 1]
+}
+
 fn grid_reachable_at_level(grid: &[Vec<i32>], level: i32) -> bool {
     if grid[0][0] > level {
         return false;
