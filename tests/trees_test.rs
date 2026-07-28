@@ -2,7 +2,8 @@ use rust_algorithms::patterns::trees::{
     build_tree_inorder_postorder, build_tree_preorder_inorder, deserialize_tree,
     diameter_of_binary_tree, has_path_sum, invert_tree, is_balanced, is_same_tree, is_subtree,
     is_valid_bst, kth_smallest_bst, level_order, lowest_common_ancestor_bst, max_depth,
-    path_sum_ii, right_side_view, serialize_tree, tree_from_level_order, tree_to_level_order,
+    max_path_sum, path_sum_ii, right_side_view, serialize_tree, tree_from_level_order,
+    tree_to_level_order,
 };
 
 #[test]
@@ -23,6 +24,23 @@ fn max_depth_returns_longest_root_to_leaf_path() {
 #[test]
 fn max_depth_returns_zero_for_empty_tree() {
     assert_eq!(max_depth(None), 0);
+}
+
+#[test]
+fn max_path_sum_can_join_both_child_gains() {
+    assert_eq!(
+        max_path_sum(tree_from_level_order(vec![
+            Some(-10),
+            Some(9),
+            Some(20),
+            None,
+            None,
+            Some(15),
+            Some(7)
+        ])),
+        Some(42)
+    );
+    assert_eq!(max_path_sum(None), None);
 }
 
 #[test]
