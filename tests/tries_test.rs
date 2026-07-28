@@ -1,6 +1,12 @@
 use rust_algorithms::patterns::tries::{
-    concatenated_words, find_words, replace_words, Trie, WordDictionary,
+    concatenated_words, find_words, maximum_pair_xor, replace_words, Trie, WordDictionary,
 };
+
+#[test]
+fn maximum_pair_xor_prefers_opposite_high_bits() {
+    assert_eq!(maximum_pair_xor(&[3, 10, 5, 25, 2, 8]), 28);
+    assert_eq!(maximum_pair_xor(&[7]), 0);
+}
 
 #[test]
 fn trie_searches_inserted_words_exactly() {
