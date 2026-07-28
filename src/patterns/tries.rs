@@ -13,6 +13,99 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
+/// Interactive sentence autocomplete backed by a trie.
+pub struct AutocompleteSystem {
+    nodes: Vec<AutocompleteNode>,
+    counts: BTreeMap<String, i32>,
+    current_prefix: String,
+}
+
+#[derive(Default)]
+struct AutocompleteNode {
+    children: BTreeMap<char, usize>,
+    sentence: Option<String>,
+}
+
+impl AutocompleteSystem {
+    /// Creates a system from sentences and their historical frequencies.
+    pub fn new(sentences: Vec<&str>, times: Vec<i32>) -> Self {
+        let mut system = Self {
+            nodes: vec![AutocompleteNode::default()],
+            counts: BTreeMap::new(),
+            current_prefix: String::new(),
+        };
+
+        for (sentence, count) in sentences.into_iter().zip(times) {
+            system.add_sentence(sentence, count);
+        }
+
+        system
+    }
+
+    /// Accepts one character and returns up to three matching sentences.
+    ///
+    /// The `#` character confirms the current sentence and starts a new query.
+    pub fn input(&mut self, character: char) -> Vec<String> {
+        if character == '#' {
+            if !self.current_prefix.is_empty() {
+                let sentence = std::mem::take(&mut self.current_prefix);
+                self.add_sentence(&sentence, 1);
+            }
+            return Vec::new();
+        }
+
+        self.current_prefix.push(character);
+        self.suggestions()
+    }
+
+    fn add_sentence(&mut self, sentence: &str, increment: i32) {
+        *self.counts.entry(sentence.to_owned()).or_default() += increment;
+
+        let mut node = 0;
+        for character in sentence.chars() {
+            let next = match self.nodes[node].children.get(&character) {
+                Some(&next) => next,
+                None => {
+                    self.nodes.push(AutocompleteNode::default());
+                    let next = self.nodes.len() - 1;
+                    self.nodes[node].children.insert(character, next);
+                    next
+                }
+            };
+            node = next;
+        }
+        self.nodes[node].sentence = Some(sentence.to_owned());
+    }
+
+    fn suggestions(&self) -> Vec<String> {
+        let mut node = 0;
+        for character in self.current_prefix.chars() {
+            let Some(&next) = self.nodes[node].children.get(&character) else {
+                return Vec::new();
+            };
+            node = next;
+        }
+
+        let mut matches = Vec::new();
+        self.collect_sentences(node, &mut matches);
+        matches.sort_unstable_by(|left, right| {
+            self.counts[right]
+                .cmp(&self.counts[left])
+                .then_with(|| left.cmp(right))
+        });
+        matches.into_iter().take(3).collect()
+    }
+
+    fn collect_sentences(&self, node: usize, matches: &mut Vec<String>) {
+        if let Some(sentence) = &self.nodes[node].sentence {
+            matches.push(sentence.clone());
+        }
+        for &child in self.nodes[node].children.values() {
+            self.collect_sentences(child, matches);
+        }
+    }
+}
+
 /// Returns the largest XOR obtainable from any pair of non-negative numbers.
 ///
 /// Pattern: bit trie that prefers the opposite bit at each position.
