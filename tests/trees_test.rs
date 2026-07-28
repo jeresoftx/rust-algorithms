@@ -2,8 +2,9 @@ use rust_algorithms::patterns::trees::{
     build_tree_inorder_postorder, build_tree_preorder_inorder, count_complete_tree_nodes,
     deserialize_tree, diameter_of_binary_tree, has_path_sum, invert_tree, is_balanced,
     is_same_tree, is_subtree, is_valid_bst, kth_smallest_bst, level_order,
-    lowest_common_ancestor_bst, max_depth, max_path_sum, path_sum_ii, recover_binary_search_tree,
-    right_side_view, serialize_tree, tree_from_level_order, tree_to_level_order,
+    lowest_common_ancestor_bst, max_depth, max_path_sum, max_sum_bst, path_sum_ii,
+    recover_binary_search_tree, right_side_view, serialize_tree, tree_from_level_order,
+    tree_to_level_order,
 };
 
 #[test]
@@ -67,6 +68,29 @@ fn recover_binary_search_tree_restores_swapped_inorder_values() {
         tree_to_level_order(tree.clone()),
         vec![Some(2), Some(1), Some(4), None, None, Some(3)]
     );
+}
+
+#[test]
+fn max_sum_bst_keeps_the_largest_valid_subtree_sum() {
+    let tree = tree_from_level_order(vec![
+        Some(1),
+        Some(4),
+        Some(3),
+        Some(2),
+        Some(4),
+        Some(2),
+        Some(5),
+        None,
+        None,
+        None,
+        None,
+        None,
+        None,
+        Some(4),
+        Some(6),
+    ]);
+    assert_eq!(max_sum_bst(tree), 20);
+    assert_eq!(max_sum_bst(None), 0);
 }
 
 #[test]
