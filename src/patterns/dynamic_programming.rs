@@ -114,6 +114,44 @@ pub fn burst_balloons(nums: Vec<i32>) -> i32 {
     best[0][values.len() - 1]
 }
 
+/// Strange Printer with interval dynamic programming.
+///
+/// Pattern: matching endpoints can share one printing turn.
+/// Time: O(n^3). Space: O(n^2).
+pub fn strange_printer_turns(text: &str) -> usize {
+    let characters = text.as_bytes();
+    if characters.is_empty() {
+        return 0;
+    }
+
+    let mut turns = vec![vec![0; characters.len()]; characters.len()];
+
+    for (index, row) in turns.iter_mut().enumerate() {
+        row[index] = 1;
+    }
+
+    for width in 2..=characters.len() {
+        for left in 0..=characters.len() - width {
+            let right = left + width - 1;
+            turns[left][right] = turns[left + 1][right] + 1;
+
+            for matching in left + 1..=right {
+                if characters[left] == characters[matching] {
+                    let middle_turns = if matching == left + 1 {
+                        0
+                    } else {
+                        turns[left + 1][matching - 1]
+                    };
+                    turns[left][right] =
+                        turns[left][right].min(middle_turns + turns[matching][right]);
+                }
+            }
+        }
+    }
+
+    turns[0][characters.len() - 1]
+}
+
 /// House Robber
 ///
 /// Pattern: 1D decision DP with state compression.

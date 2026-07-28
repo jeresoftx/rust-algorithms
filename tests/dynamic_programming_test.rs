@@ -4,7 +4,8 @@ use rust_algorithms::patterns::dynamic_programming::{
     longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
     max_profit_with_cooldown, max_russian_doll_envelopes, maximum_product_subarray,
     min_cost_climbing_stairs, minimum_path_sum, number_of_longest_increasing_subsequences,
-    regular_expression_matches, target_sum_ways, unique_paths, wildcard_matches, word_break,
+    regular_expression_matches, strange_printer_turns, target_sum_ways, unique_paths,
+    wildcard_matches, word_break,
 };
 use rust_algorithms::patterns::trees::tree_from_level_order;
 
@@ -30,6 +31,13 @@ fn wildcard_matches_handles_question_and_star() {
 fn burst_balloons_chooses_the_best_last_balloon_in_each_interval() {
     assert_eq!(burst_balloons(vec![3, 1, 5, 8]), 167);
     assert_eq!(burst_balloons(Vec::new()), 0);
+}
+
+#[test]
+fn strange_printer_reuses_turns_for_matching_characters() {
+    assert_eq!(strange_printer_turns("aaabbb"), 2);
+    assert_eq!(strange_printer_turns("aba"), 2);
+    assert_eq!(strange_printer_turns(""), 0);
 }
 
 #[test]
