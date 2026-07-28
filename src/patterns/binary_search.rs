@@ -26,6 +26,60 @@ pub fn binary_search(nums: Vec<i32>, target: i32) -> Option<usize> {
     None
 }
 
+/// Median of Two Sorted Arrays.
+///
+/// Pattern: binary search over the partition of the shorter array.
+/// Time: O(log(min(m, n))). Space: O(1).
+pub fn median_two_sorted_arrays(first: &[i32], second: &[i32]) -> Option<f64> {
+    if first.is_empty() && second.is_empty() {
+        return None;
+    }
+    let (short, long) = if first.len() <= second.len() {
+        (first, second)
+    } else {
+        (second, first)
+    };
+    let (mut left, mut right) = (0_i32, short.len() as i32);
+    let half = (short.len() + long.len()).div_ceil(2);
+    while left <= right {
+        let cut_short = (left + right) / 2;
+        let cut_long = half as i32 - cut_short;
+        let ls = if cut_short == 0 {
+            i32::MIN
+        } else {
+            short[cut_short as usize - 1]
+        };
+        let rs = if cut_short as usize == short.len() {
+            i32::MAX
+        } else {
+            short[cut_short as usize]
+        };
+        let ll = if cut_long == 0 {
+            i32::MIN
+        } else {
+            long[cut_long as usize - 1]
+        };
+        let rl = if cut_long as usize == long.len() {
+            i32::MAX
+        } else {
+            long[cut_long as usize]
+        };
+        if ls <= rl && ll <= rs {
+            return Some(if (short.len() + long.len()) % 2 == 0 {
+                (ls.max(ll) as f64 + rs.min(rl) as f64) / 2.0
+            } else {
+                ls.max(ll) as f64
+            });
+        }
+        if ls > rl {
+            right = cut_short - 1;
+        } else {
+            left = cut_short + 1;
+        }
+    }
+    None
+}
+
 /// Search Insert Position
 ///
 /// Pattern: lower bound.

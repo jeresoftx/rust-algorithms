@@ -1,12 +1,19 @@
 use rust_algorithms::patterns::binary_search::{
-    arrange_coins, binary_search, find_min_rotated, find_peak_element, min_eating_speed,
-    minimum_days_to_make_bouquets, search_insert, search_matrix, search_range, search_rotated,
-    search_rotated_with_duplicates, ship_within_days, split_array_largest_sum,
+    arrange_coins, binary_search, find_min_rotated, find_peak_element, median_two_sorted_arrays,
+    min_eating_speed, minimum_days_to_make_bouquets, search_insert, search_matrix, search_range,
+    search_rotated, search_rotated_with_duplicates, ship_within_days, split_array_largest_sum,
 };
 
 #[test]
 fn binary_search_returns_index_when_target_exists() {
     assert_eq!(binary_search(vec![-1, 0, 3, 5, 9, 12], 9), Some(4));
+}
+
+#[test]
+fn median_two_sorted_arrays_handles_even_odd_and_empty_side() {
+    assert_eq!(median_two_sorted_arrays(&[1, 3], &[2]), Some(2.0));
+    assert_eq!(median_two_sorted_arrays(&[1, 2], &[3, 4]), Some(2.5));
+    assert_eq!(median_two_sorted_arrays(&[], &[1]), Some(1.0));
 }
 
 #[test]
