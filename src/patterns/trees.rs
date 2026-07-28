@@ -115,6 +115,44 @@ pub fn count_complete_tree_nodes(root: TreeLink) -> usize {
     }
 }
 
+/// Recover Binary Search Tree.
+///
+/// Pattern: inorder traversal detects inversions in sorted order.
+/// Time: O(n). Space: O(n).
+pub fn recover_binary_search_tree(root: &TreeLink) {
+    let mut stack = Vec::new();
+    let mut current = root.clone();
+    let mut previous: TreeLink = None;
+    let mut first: TreeLink = None;
+    let mut second: TreeLink = None;
+
+    while current.is_some() || !stack.is_empty() {
+        while let Some(node) = current {
+            current = node.borrow().left.clone();
+            stack.push(node);
+        }
+        let node = stack.pop().expect("stack has an inorder node");
+        if previous
+            .as_ref()
+            .is_some_and(|prior| prior.borrow().val > node.borrow().val)
+        {
+            if first.is_none() {
+                first = previous.clone();
+            }
+            second = Some(node.clone());
+        }
+        current = node.borrow().right.clone();
+        previous = Some(node);
+    }
+
+    if let (Some(first), Some(second)) = (first, second) {
+        let first_value = first.borrow().val;
+        let second_value = second.borrow().val;
+        first.borrow_mut().val = second_value;
+        second.borrow_mut().val = first_value;
+    }
+}
+
 /// Convert a binary tree to compact level-order values.
 ///
 /// Time: O(n)
