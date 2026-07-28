@@ -2,10 +2,10 @@ use rust_algorithms::patterns::dynamic_programming::{
     burst_balloons, can_partition, climb_stairs, coin_change, combination_sum_iv, decode_ways,
     distinct_subsequences, edit_distance, house_robber, house_robber_circular, house_robber_tree,
     longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
-    max_profit_with_cooldown, max_russian_doll_envelopes, maximum_product_subarray,
-    min_cost_climbing_stairs, minimum_palindrome_partition_cuts, minimum_path_sum,
-    number_of_longest_increasing_subsequences, regular_expression_matches, strange_printer_turns,
-    target_sum_ways, unique_paths, wildcard_matches, word_break,
+    max_profit_with_cooldown, max_russian_doll_envelopes, maximum_job_profit,
+    maximum_product_subarray, min_cost_climbing_stairs, minimum_palindrome_partition_cuts,
+    minimum_path_sum, number_of_longest_increasing_subsequences, regular_expression_matches,
+    strange_printer_turns, target_sum_ways, unique_paths, wildcard_matches, word_break,
 };
 use rust_algorithms::patterns::trees::tree_from_level_order;
 
@@ -45,6 +45,15 @@ fn minimum_palindrome_partition_cuts_uses_palindromic_suffixes() {
     assert_eq!(minimum_palindrome_partition_cuts("aab"), 1);
     assert_eq!(minimum_palindrome_partition_cuts("a"), 0);
     assert_eq!(minimum_palindrome_partition_cuts(""), 0);
+}
+
+#[test]
+fn maximum_job_profit_uses_the_last_compatible_job() {
+    assert_eq!(
+        maximum_job_profit(vec![1, 2, 3, 3], vec![3, 4, 5, 6], vec![50, 10, 40, 70]),
+        120
+    );
+    assert_eq!(maximum_job_profit(Vec::new(), Vec::new(), Vec::new()), 0);
 }
 
 #[test]
