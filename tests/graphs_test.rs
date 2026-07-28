@@ -2,9 +2,24 @@ use rust_algorithms::patterns::graphs::{
     accounts_merge, alien_order, can_finish, clone_graph, count_connected_components,
     evaluate_division, find_circle_num, find_course_order, graph_valid_tree, is_bipartite,
     max_area_of_island, minimum_genetic_mutation, number_of_islands, oranges_rotting,
-    pacific_atlantic, possible_bipartition, redundant_connection, walls_and_gates,
-    word_ladder_length,
+    pacific_atlantic, possible_bipartition, reconstruct_itinerary, redundant_connection,
+    walls_and_gates, word_ladder_length,
 };
+
+#[test]
+fn reconstruct_itinerary_consumes_every_ticket_in_lexicographic_order() {
+    let tickets = vec![
+        ("JFK", "SFO"),
+        ("JFK", "ATL"),
+        ("SFO", "ATL"),
+        ("ATL", "JFK"),
+        ("ATL", "SFO"),
+    ];
+    assert_eq!(
+        reconstruct_itinerary(tickets),
+        vec!["JFK", "ATL", "JFK", "SFO", "ATL", "SFO"]
+    );
+}
 
 #[test]
 fn number_of_islands_counts_disconnected_land_groups() {

@@ -2,6 +2,34 @@ use std::collections::{BTreeSet, HashMap, HashSet, VecDeque};
 
 const DIRECTIONS: [(isize, isize); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
 
+/// Reconstructs the lexicographically smallest itinerary starting at JFK.
+///
+/// Pattern: ordered Hierholzer traversal over directed edges.
+/// Time: O(e log e). Space: O(e).
+pub fn reconstruct_itinerary(tickets: Vec<(&str, &str)>) -> Vec<String> {
+    let mut graph: HashMap<String, Vec<String>> = HashMap::new();
+    for (from, to) in tickets {
+        graph
+            .entry(from.to_owned())
+            .or_default()
+            .push(to.to_owned());
+    }
+    for destinations in graph.values_mut() {
+        destinations.sort_unstable_by(|left, right| right.cmp(left));
+    }
+    let mut route = Vec::new();
+    let mut stack = vec!["JFK".to_owned()];
+    while let Some(airport) = stack.last().cloned() {
+        if let Some(destination) = graph.get_mut(&airport).and_then(Vec::pop) {
+            stack.push(destination);
+        } else {
+            route.push(stack.pop().unwrap());
+        }
+    }
+    route.reverse();
+    route
+}
+
 /// Number of Islands
 ///
 /// Pattern: DFS in a matrix.
