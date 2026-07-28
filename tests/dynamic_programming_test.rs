@@ -1,5 +1,5 @@
 use rust_algorithms::patterns::dynamic_programming::{
-    can_partition, climb_stairs, coin_change, combination_sum_iv, decode_ways,
+    burst_balloons, can_partition, climb_stairs, coin_change, combination_sum_iv, decode_ways,
     distinct_subsequences, edit_distance, house_robber, house_robber_circular, house_robber_tree,
     longest_common_subsequence, longest_increasing_subsequence, longest_palindromic_subsequence,
     max_profit_with_cooldown, max_russian_doll_envelopes, maximum_product_subarray,
@@ -24,6 +24,12 @@ fn regular_expression_matches_handles_dot_and_star() {
 fn wildcard_matches_handles_question_and_star() {
     assert!(wildcard_matches("adceb", "*a*b"));
     assert!(!wildcard_matches("acdcb", "a*c?b"));
+}
+
+#[test]
+fn burst_balloons_chooses_the_best_last_balloon_in_each_interval() {
+    assert_eq!(burst_balloons(vec![3, 1, 5, 8]), 167);
+    assert_eq!(burst_balloons(Vec::new()), 0);
 }
 
 #[test]
