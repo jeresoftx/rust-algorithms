@@ -1,5 +1,19 @@
 # Rust Algorithms
 
+<p>
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust">
+  <img src="https://img.shields.io/badge/Cargo-F64D27?style=for-the-badge&logo=rust&logoColor=white" alt="Cargo">
+  <img src="https://img.shields.io/badge/Algorithms-FFB000?style=for-the-badge&logo=dependabot&logoColor=black" alt="Algoritmos">
+  <img src="https://img.shields.io/badge/Complexity-1D1D1B?style=for-the-badge&logo=googleanalytics&logoColor=FFB000" alt="Complejidad">
+  <img src="https://img.shields.io/badge/Testing-1D1D1B?style=for-the-badge&logo=rust&logoColor=FFB000" alt="Pruebas">
+  <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white" alt="Markdown">
+  <img src="https://img.shields.io/badge/Mermaid-FF3670?style=for-the-badge&logo=mermaid&logoColor=white" alt="Mermaid">
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  <img src="https://img.shields.io/badge/Apache%202.0-D22128?style=for-the-badge&logo=apache&logoColor=white" alt="Apache 2.0">
+  <img src="https://img.shields.io/badge/MIT-111111?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="MIT">
+</p>
+
 Repositorio de autoestudio de algoritmos y estructuras de datos en Rust, pensado para practicar resolución de problemas, análisis de complejidad y hábitos de entrevista técnica.
 
 El objetivo es que este proyecto sirva como material de estudio reutilizable: cada solución debe tener una implementación clara, tests automatizados y notas que expliquen el patrón usado.
